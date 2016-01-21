@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <title>Плагины к компилятору</title>
+
+    <link rel="stylesheet" type="text/css" href="../rustbook.css">
+
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+                <div id="nav">
+                    <button id="toggle-nav">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </button>
+                </div>
+<div id='toc' class='mobile-hidden'>
+<ul class='chapter'>
+<li><a  href='../README.html'><b>1.</b> Introduction</a>
+</li>
+<li><a  href='../src/INTRODUCTION.html'><b>2.</b> Введение</a>
+</li>
+<li><a  href='../src/getting-started.html'><b>3.</b> C чего начать</a>
+</li>
+<li><a  href='../src/learn-rust.html'><b>4.</b> Изучение Rust</a>
+<ul class='section'>
+<li><a  href='../src/guessing-game.html'><b>4.1.</b> Угадайка</a>
+</li>
+<li><a  href='../src/dining-philosophers.html'><b>4.2.</b> Обедающие философы</a>
+</li>
+<li><a  href='../src/rust-inside-other-languages.html'><b>4.3.</b> Вызов кода на Rust из других языков</a>
+</li>
+</ul>
+</li>
+<li><a  href='../src/effective-rust.html'><b>5.</b> Эффективное использование Rust</a>
+<ul class='section'>
+<li><a  href='../src/the-stack-and-the-heap.html'><b>5.1.</b> Стек и куча</a>
+</li>
+<li><a  href='../src/testing.html'><b>5.2.</b> Тестирование</a>
+</li>
+<li><a  href='../src/conditional-compilation.html'><b>5.3.</b> Условная компиляция</a>
+</li>
+<li><a  href='../src/documentation.html'><b>5.4.</b> Документация</a>
+</li>
+<li><a  href='../src/iterators.html'><b>5.5.</b> Итераторы</a>
+</li>
+<li><a  href='../src/concurrency.html'><b>5.6.</b> Многозадачность</a>
+</li>
+<li><a  href='../src/error-handling.html'><b>5.7.</b> Обработка ошибок</a>
+</li>
+<li><a  href='../src/choosing-your-guarantees.html'><b>5.8.</b> Выбор гарантий</a>
+</li>
+<li><a  href='../src/ffi.html'><b>5.9.</b> Интерфейс внешних функций (FFI)</a>
+</li>
+<li><a  href='../src/borrow-and-asref.html'><b>5.10.</b> Типажи `Borrow` и `AsRef`</a>
+</li>
+<li><a  href='../src/release-channels.html'><b>5.11.</b> Каналы сборок</a>
+</li>
+</ul>
+</li>
+<li><a  href='../src/syntax-and-semantics.html'><b>6.</b> Синтаксис и семантика</a>
+<ul class='section'>
+<li><a  href='../src/variable-bindings.html'><b>6.1.</b> Связывание имён</a>
+</li>
+<li><a  href='../src/functions.html'><b>6.2.</b> Функции</a>
+</li>
+<li><a  href='../src/primitive-types.html'><b>6.3.</b> Простые типы</a>
+</li>
+<li><a  href='../src/comments.html'><b>6.4.</b> Комментарии</a>
+</li>
+<li><a  href='../src/if.html'><b>6.5.</b> Конструкция `if`</a>
+</li>
+<li><a  href='../src/loops.html'><b>6.6.</b> Циклы</a>
+</li>
+<li><a  href='../src/ownership.html'><b>6.7.</b> Владение</a>
+</li>
+<li><a  href='../src/references-and-borrowing.html'><b>6.8.</b> Ссылки и заимствование</a>
+</li>
+<li><a  href='../src/lifetimes.html'><b>6.9.</b> Время жизни</a>
+</li>
+<li><a  href='../src/mutability.html'><b>6.10.</b> Изменяемость (mutability)</a>
+</li>
+<li><a  href='../src/structs.html'><b>6.11.</b> Структуры</a>
+</li>
+<li><a  href='../src/enums.html'><b>6.12.</b> Перечисления</a>
+</li>
+<li><a  href='../src/match.html'><b>6.13.</b> Конструкция `match`</a>
+</li>
+<li><a  href='../src/patterns.html'><b>6.14.</b> Шаблоны сопоставления `match`</a>
+</li>
+<li><a  href='../src/method-syntax.html'><b>6.15.</b> Синтаксис методов</a>
+</li>
+<li><a  href='../src/vectors.html'><b>6.16.</b> Вектора</a>
+</li>
+<li><a  href='../src/strings.html'><b>6.17.</b> Строки</a>
+</li>
+<li><a  href='../src/generics.html'><b>6.18.</b> Обобщённое программирование</a>
+</li>
+<li><a  href='../src/traits.html'><b>6.19.</b> Типажи</a>
+</li>
+<li><a  href='../src/drop.html'><b>6.20.</b> Типаж `Drop` (сброс)</a>
+</li>
+<li><a  href='../src/if-let.html'><b>6.21.</b> Конструкция `if let`</a>
+</li>
+<li><a  href='../src/trait-objects.html'><b>6.22.</b> Типажи-объекты</a>
+</li>
+<li><a  href='../src/closures.html'><b>6.23.</b> Замыкания</a>
+</li>
+<li><a  href='../src/ufcs.html'><b>6.24.</b> Универсальный синтаксис вызова функций (UFCS)</a>
+</li>
+<li><a  href='../src/crates-and-modules.html'><b>6.25.</b> Контейнеры (crates) и модули (modules)</a>
+</li>
+<li><a  href='../src/const-and-static.html'><b>6.26.</b> `const` и `static`</a>
+</li>
+<li><a  href='../src/attributes.html'><b>6.27.</b> Атрибуты</a>
+</li>
+<li><a  href='../src/type-aliases.html'><b>6.28.</b> Псевдонимы типов</a>
+</li>
+<li><a  href='../src/casting-between-types.html'><b>6.29.</b> Приведение типов</a>
+</li>
+<li><a  href='../src/associated-types.html'><b>6.30.</b> Ассоциированные типы</a>
+</li>
+<li><a  href='../src/unsized-types.html'><b>6.31.</b> Безразмерные типы</a>
+</li>
+<li><a  href='../src/operators-and-overloading.html'><b>6.32.</b> Перегрузка операций</a>
+</li>
+<li><a  href='../src/deref-coercions.html'><b>6.33.</b> Преобразования при разыменовании (deref coercions)</a>
+</li>
+<li><a  href='../src/macros.html'><b>6.34.</b> Макросы</a>
+</li>
+<li><a  href='../src/raw-pointers.html'><b>6.35.</b> Сырые указатели</a>
+</li>
+<li><a  href='../src/unsafe.html'><b>6.36.</b> Небезопасный код</a>
+</li>
+</ul>
+</li>
+<li><a  href='../src/nightly-rust.html'><b>7.</b> Нестабильные возможности Rust</a>
+<ul class='section'>
+<li><a class='active' href='../src/compiler-plugins.html'><b>7.1.</b> Плагины к компилятору</a>
+</li>
+<li><a  href='../src/inline-assembly.html'><b>7.2.</b> Встроенный ассемблерный код</a>
+</li>
+<li><a  href='../src/no-stdlib.html'><b>7.3.</b> Без stdlib</a>
+</li>
+<li><a  href='../src/intrinsics.html'><b>7.4.</b> Внутренние средства (intrinsics)</a>
+</li>
+<li><a  href='../src/lang-items.html'><b>7.5.</b> Элементы языка (lang items)</a>
+</li>
+<li><a  href='../src/advanced-linking.html'><b>7.6.</b> Продвинутое руководство по компоновке (advanced linking)</a>
+</li>
+<li><a  href='../src/benchmark-tests.html'><b>7.7.</b> Тесты производительности</a>
+</li>
+<li><a  href='../src/box-syntax-and-patterns.html'><b>7.8.</b> Синтаксис упаковки и шаблоны `match`</a>
+</li>
+<li><a  href='../src/slice-patterns.html'><b>7.9.</b> Шаблоны `match` для срезов</a>
+</li>
+<li><a  href='../src/associated-constants.html'><b>7.10.</b> Ассоциированные константы</a>
+</li>
+<li><a  href='../src/custom-allocators.html'><b>7.11.</b> Пользовательские менеджеры памяти</a>
+</li>
+</ul>
+</li>
+<li><a  href='../src/glossary.html'><b>8.</b> Глоссарий</a>
+</li>
+<li><a  href='../src/bibliography.html'><b>9.</b> Библиография</a>
+</li>
+</ul>
+</div>
+<div id='page-wrapper'>
+<div id='page'>
+
+
+    <h1 class="title">Плагины к компилятору</h1>
+    
+<h1 id='Введение' class='section-header'><a href='#Введение'>Введение</a></h1>
+<p><code>rustc</code>, компилятор Rust, поддерживает плагины. Плагины — это разработанные
+пользователями библиотеки, которые добавляют новые возможности в компилятор: это
+могут быть расширения синтаксиса, дополнительные статические проверки (lints), и
+другое.</p>
+
+<p>Плагин — это контейнер, собираемый в динамическую библиотеку, и имеющий
+отдельную функцию для регистрации расширения в <code>rustc</code>. Другие контейнеры могут
+загружать эти расширения с помощью атрибута <code>#![plugin(...)]</code>. Также смотрите
+раздел <a href="http://doc.rust-lang.org/rustc/plugin/index.html"><code>rustc::plugin</code></a> с
+подробным описанием механизма определения и загрузки плагина.</p>
+
+<p>Передаваемые в <code>#![plugin(foo(... args ...))]</code> аргументы не обрабатываются самим
+<code>rustc</code>. Они передаются плагину с помощью
+<a href="http://doc.rust-lang.org/rustc/plugin/registry/struct.Registry.html#method.args">метода <code>args</code></a>
+структуры <code>Registry</code>.</p>
+
+<p>В подавляющем большинстве случаев плагин должен использоваться <em>только</em> через
+конструкцию <code>#![plugin]</code>, а не через <code>extern crate</code>. Компоновка потянула бы
+внутренние библиотеки <code>libsyntax</code> и <code>librustc</code> как зависимости для вашего
+контейнера. Обычно это нежелательно, и может потребоваться только если вы
+собираете ещё один, другой, плагин. Статический анализ <code>plugin_as_library</code>
+проверяет выполнение этой рекомендации.</p>
+
+<p>Обычная практика — помещать плагины в отдельный контейнер, не содержащий
+определений макросов (<code>macro_rules!</code>) и обычного кода на Rust, предназначенного
+для непосредственно конечных пользователей библиотеки.</p>
+
+<h1 id='Расширения-синтаксиса' class='section-header'><a href='#Расширения-синтаксиса'>Расширения синтаксиса</a></h1>
+<p>Плагины могут по-разному расширять синтаксис Rust. Один из видов расширения
+синтаксиса — это процедурные макросы. Они вызываются так же, как и
+<a href="macros.html">обычные макросы</a>, но их раскрытие производится произвольным кодом
+на Rust, который оперирует
+<a href="http://doc.rust-lang.org/syntax/ast/index.html">синтаксическими деревьями</a> во
+время компиляции.</p>
+
+<p>Давайте напишем плагин
+<a href="https://github.com/rust-lang/rust/tree/master/src/test/auxiliary/roman_numerals.rs"><code>roman_numerals.rs</code></a>,
+который реализует целочисленные литералы с римскими цифрами.</p>
+<span class='rusttest'>fn main() {
+    #![crate_type=&quot;dylib&quot;]
+    #![feature(plugin_registrar, rustc_private)]
+    
+    extern crate syntax;
+    extern crate rustc;
+    
+    use syntax::codemap::Span;
+    use syntax::parse::token;
+    use syntax::ast::{TokenTree, TtToken};
+    use syntax::ext::base::{ExtCtxt, MacResult, DummyResult, MacEager};
+    use syntax::ext::build::AstBuilder;  // типаж для expr_usize
+    use rustc::plugin::Registry;
+    
+    fn expand_rn(cx: &amp;mut ExtCtxt, sp: Span, args: &amp;[TokenTree])
+            -&gt; Box&lt;MacResult + &#39;static&gt; {
+    
+        static NUMERALS: &amp;&#39;static [(&amp;&#39;static str, u32)] = &amp;[
+            (&quot;M&quot;, 1000), (&quot;CM&quot;, 900), (&quot;D&quot;, 500), (&quot;CD&quot;, 400),
+            (&quot;C&quot;,  100), (&quot;XC&quot;,  90), (&quot;L&quot;,  50), (&quot;XL&quot;,  40),
+            (&quot;X&quot;,   10), (&quot;IX&quot;,   9), (&quot;V&quot;,   5), (&quot;IV&quot;,   4),
+            (&quot;I&quot;,    1)];
+    
+        let text = match args {
+            [TtToken(_, token::Ident(s, _))] =&gt; token::get_ident(s).to_string(),
+            _ =&gt; {
+                cx.span_err(sp, &quot;аргумент должен быть единственным идентификатором&quot;);
+                return DummyResult::any(sp);
+            }
+        };
+    
+        let mut text = &amp;*text;
+        let mut total = 0;
+        while !text.is_empty() {
+            match NUMERALS.iter().find(|&amp;&amp;(rn, _)| text.starts_with(rn)) {
+                Some(&amp;(rn, val)) =&gt; {
+                    total += val;
+                    text = &amp;text[rn.len()..];
+                }
+                None =&gt; {
+                    cx.span_err(sp, &quot;неправильное римское число&quot;);
+                    return DummyResult::any(sp);
+                }
+            }
+        }
+    
+        MacEager::expr(cx.expr_u32(sp, total))
+    }
+    
+    #[plugin_registrar]
+    pub fn plugin_registrar(reg: &amp;mut Registry) {
+        reg.register_macro(&quot;rn&quot;, expand_rn);
+    }
+}</span><pre class='rust rust-example-rendered'>
+<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>crate_type</span><span class='op'>=</span><span class='string'>&quot;dylib&quot;</span>]</span>
+<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>feature</span>(<span class='ident'>plugin_registrar</span>, <span class='ident'>rustc_private</span>)]</span>
+
+<span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>syntax</span>;
+<span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>rustc</span>;
+
+<span class='kw'>use</span> <span class='ident'>syntax</span>::<span class='ident'>codemap</span>::<span class='ident'>Span</span>;
+<span class='kw'>use</span> <span class='ident'>syntax</span>::<span class='ident'>parse</span>::<span class='ident'>token</span>;
+<span class='kw'>use</span> <span class='ident'>syntax</span>::<span class='ident'>ast</span>::{<span class='ident'>TokenTree</span>, <span class='ident'>TtToken</span>};
+<span class='kw'>use</span> <span class='ident'>syntax</span>::<span class='ident'>ext</span>::<span class='ident'>base</span>::{<span class='ident'>ExtCtxt</span>, <span class='ident'>MacResult</span>, <span class='ident'>DummyResult</span>, <span class='ident'>MacEager</span>};
+<span class='kw'>use</span> <span class='ident'>syntax</span>::<span class='ident'>ext</span>::<span class='ident'>build</span>::<span class='ident'>AstBuilder</span>;  <span class='comment'>// типаж для expr_usize</span>
+<span class='kw'>use</span> <span class='ident'>rustc</span>::<span class='ident'>plugin</span>::<span class='ident'>Registry</span>;
+
+<span class='kw'>fn</span> <span class='ident'>expand_rn</span>(<span class='ident'>cx</span>: <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>ExtCtxt</span>, <span class='ident'>sp</span>: <span class='ident'>Span</span>, <span class='ident'>args</span>: <span class='kw-2'>&amp;</span>[<span class='ident'>TokenTree</span>])
+        <span class='op'>-&gt;</span> <span class='ident'>Box</span><span class='op'>&lt;</span><span class='ident'>MacResult</span> <span class='op'>+</span> <span class='lifetime'>&#39;static</span><span class='op'>&gt;</span> {
+
+    <span class='kw'>static</span> <span class='ident'>NUMERALS</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> [(<span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span>, <span class='ident'>u32</span>)] <span class='op'>=</span> <span class='kw-2'>&amp;</span>[
+        (<span class='string'>&quot;M&quot;</span>, <span class='number'>1000</span>), (<span class='string'>&quot;CM&quot;</span>, <span class='number'>900</span>), (<span class='string'>&quot;D&quot;</span>, <span class='number'>500</span>), (<span class='string'>&quot;CD&quot;</span>, <span class='number'>400</span>),
+        (<span class='string'>&quot;C&quot;</span>,  <span class='number'>100</span>), (<span class='string'>&quot;XC&quot;</span>,  <span class='number'>90</span>), (<span class='string'>&quot;L&quot;</span>,  <span class='number'>50</span>), (<span class='string'>&quot;XL&quot;</span>,  <span class='number'>40</span>),
+        (<span class='string'>&quot;X&quot;</span>,   <span class='number'>10</span>), (<span class='string'>&quot;IX&quot;</span>,   <span class='number'>9</span>), (<span class='string'>&quot;V&quot;</span>,   <span class='number'>5</span>), (<span class='string'>&quot;IV&quot;</span>,   <span class='number'>4</span>),
+        (<span class='string'>&quot;I&quot;</span>,    <span class='number'>1</span>)];
+
+    <span class='kw'>let</span> <span class='ident'>text</span> <span class='op'>=</span> <span class='kw'>match</span> <span class='ident'>args</span> {
+        [<span class='ident'>TtToken</span>(_, <span class='ident'>token</span>::<span class='ident'>Ident</span>(<span class='ident'>s</span>, _))] <span class='op'>=&gt;</span> <span class='ident'>token</span>::<span class='ident'>get_ident</span>(<span class='ident'>s</span>).<span class='ident'>to_string</span>(),
+        _ <span class='op'>=&gt;</span> {
+            <span class='ident'>cx</span>.<span class='ident'>span_err</span>(<span class='ident'>sp</span>, <span class='string'>&quot;аргумент должен быть единственным идентификатором&quot;</span>);
+            <span class='kw'>return</span> <span class='ident'>DummyResult</span>::<span class='ident'>any</span>(<span class='ident'>sp</span>);
+        }
+    };
+
+    <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>text</span> <span class='op'>=</span> <span class='kw-2'>&amp;</span><span class='op'>*</span><span class='ident'>text</span>;
+    <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>total</span> <span class='op'>=</span> <span class='number'>0</span>;
+    <span class='kw'>while</span> <span class='op'>!</span><span class='ident'>text</span>.<span class='ident'>is_empty</span>() {
+        <span class='kw'>match</span> <span class='ident'>NUMERALS</span>.<span class='ident'>iter</span>().<span class='ident'>find</span>(<span class='op'>|</span><span class='op'>&amp;&amp;</span>(<span class='ident'>rn</span>, _)<span class='op'>|</span> <span class='ident'>text</span>.<span class='ident'>starts_with</span>(<span class='ident'>rn</span>)) {
+            <span class='prelude-val'>Some</span>(<span class='kw-2'>&amp;</span>(<span class='ident'>rn</span>, <span class='ident'>val</span>)) <span class='op'>=&gt;</span> {
+                <span class='ident'>total</span> <span class='op'>+=</span> <span class='ident'>val</span>;
+                <span class='ident'>text</span> <span class='op'>=</span> <span class='kw-2'>&amp;</span><span class='ident'>text</span>[<span class='ident'>rn</span>.<span class='ident'>len</span>()..];
+            }
+            <span class='prelude-val'>None</span> <span class='op'>=&gt;</span> {
+                <span class='ident'>cx</span>.<span class='ident'>span_err</span>(<span class='ident'>sp</span>, <span class='string'>&quot;неправильное римское число&quot;</span>);
+                <span class='kw'>return</span> <span class='ident'>DummyResult</span>::<span class='ident'>any</span>(<span class='ident'>sp</span>);
+            }
+        }
+    }
+
+    <span class='ident'>MacEager</span>::<span class='ident'>expr</span>(<span class='ident'>cx</span>.<span class='ident'>expr_u32</span>(<span class='ident'>sp</span>, <span class='ident'>total</span>))
+}
+
+<span class='attribute'>#[<span class='ident'>plugin_registrar</span>]</span>
+<span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>plugin_registrar</span>(<span class='ident'>reg</span>: <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>Registry</span>) {
+    <span class='ident'>reg</span>.<span class='ident'>register_macro</span>(<span class='string'>&quot;rn&quot;</span>, <span class='ident'>expand_rn</span>);
+}</pre>
+
+<p>Теперь мы можем использовать <code>rn!()</code> как любой другой макрос:</p>
+<span class='rusttest'>#![feature(plugin)]
+#![plugin(roman_numerals)]
+
+fn main() {
+    assert_eq!(rn!(MMXV), 2015);
+}
+</span><pre class='rust rust-example-rendered'>
+<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>feature</span>(<span class='ident'>plugin</span>)]</span>
+<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>plugin</span>(<span class='ident'>roman_numerals</span>)]</span>
+
+<span class='kw'>fn</span> <span class='ident'>main</span>() {
+    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='macro'>rn</span><span class='macro'>!</span>(<span class='ident'>MMXV</span>), <span class='number'>2015</span>);
+}</pre>
+
+<p>У этого подхода есть преимущества относительно простой функции <code>fn(&amp;str) -&gt; u32</code>:</p>
+
+<ul>
+<li>Преобразование (в общем случае, произвольной сложности) выполняется во время
+компиляции;</li>
+<li>Проверка правильности записи литерала также производится во время компиляции;</li>
+<li>Можно добавить возможность использования литерала в образцах (patterns), что
+по сути позволяет создавать литералы для любого типа данных.</li>
+</ul>
+
+<p>В дополнение к процедурным макросам, вы можете определять новые атрибуты
+<a href="http://doc.rust-lang.org/reference.html#derive"><code>derive</code></a> и другие виды
+расширений. Смотрите раздел
+<a href="http://doc.rust-lang.org/rustc/plugin/registry/struct.Registry.html#method.register_syntax_extension"><code>Registry::register_syntax_extension</code></a>
+и документацию
+<a href="http://doc.rust-lang.org/syntax/ext/base/enum.SyntaxExtension.html">перечисления <code>SyntaxExtension</code></a>.
+В качестве более продвинутого примера с макросами, можно ознакомиться с
+макросами регулярных выражений
+<a href="https://github.com/rust-lang/regex/blob/master/regex_macros/src/lib.rs"><code>regex_macros</code></a>.</p>
+
+<h2 id='Советы-и-хитрости' class='section-header'><a href='#Советы-и-хитрости'>Советы и хитрости</a></h2>
+<p>Некоторые <a href="macros.html#debugging-macro-code">советы по отладке макросов</a>
+применимы и в случае плагинов.</p>
+
+<p>Можно использовать
+<a href="http://doc.rust-lang.org/syntax/parse/index.html"><code>syntax::parse</code></a>, чтобы
+преобразовать деревья токенов в высокоуровневые элементы синтаксиса, вроде
+выражений:</p>
+<span class='rusttest'>fn main() {
+    fn expand_foo(cx: &amp;mut ExtCtxt, sp: Span, args: &amp;[TokenTree])
+            -&gt; Box&lt;MacResult+&#39;static&gt; {
+    
+        let mut parser = cx.new_parser_from_tts(args);
+    
+        let expr: P&lt;Expr&gt; = parser.parse_expr();
+}</span><pre class='rust rust-example-rendered'>
+<span class='kw'>fn</span> <span class='ident'>expand_foo</span>(<span class='ident'>cx</span>: <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>ExtCtxt</span>, <span class='ident'>sp</span>: <span class='ident'>Span</span>, <span class='ident'>args</span>: <span class='kw-2'>&amp;</span>[<span class='ident'>TokenTree</span>])
+        <span class='op'>-&gt;</span> <span class='ident'>Box</span><span class='op'>&lt;</span><span class='ident'>MacResult</span><span class='op'>+</span><span class='lifetime'>&#39;static</span><span class='op'>&gt;</span> {
+
+    <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>parser</span> <span class='op'>=</span> <span class='ident'>cx</span>.<span class='ident'>new_parser_from_tts</span>(<span class='ident'>args</span>);
+
+    <span class='kw'>let</span> <span class='ident'>expr</span>: <span class='ident'>P</span><span class='op'>&lt;</span><span class='ident'>Expr</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='ident'>parser</span>.<span class='ident'>parse_expr</span>();</pre>
+
+<p>Можно просмотреть код
+<a href="https://github.com/rust-lang/rust/blob/master/src/libsyntax/parse/parser.rs">парсера <code>libsyntax</code></a>,
+чтобы получить представление о работе инфраструктуры разбора.</p>
+
+<p>Сохраняйте <a href="http://doc.rust-lang.org/syntax/codemap/struct.Span.html"><code>Span</code>ы</a>
+всего, что вы разбираете, чтобы лучше сообщать об ошибках. Вы можете обернуть
+ваши структуры данных в
+<a href="http://doc.rust-lang.org/syntax/codemap/struct.Spanned.html"><code>Spanned</code></a>.</p>
+
+<p>Вызов
+<a href="http://doc.rust-lang.org/syntax/ext/base/struct.ExtCtxt.html#method.span_fatal"><code>ExtCtxt::span_fatal</code></a>
+сразу прервёт компиляцию. Вместо этого, лучше вызвать
+<a href="http://doc.rust-lang.org/syntax/ext/base/struct.ExtCtxt.html#method.span_err"><code>ExtCtxt::span_err</code></a>
+и вернуть
+<a href="http://doc.rust-lang.org/syntax/ext/base/struct.DummyResult.html"><code>DummyResult</code></a>,
+чтобы компилятор мог продолжить работу и обнаружить дальнейшие ошибки.</p>
+
+<p>Вы можете использовать
+<a href="http://doc.rust-lang.org/syntax/ext/base/struct.ExtCtxt.html#method.span_note"><code>span_note</code></a>
+и
+<a href="http://doc.rust-lang.org/syntax/print/pprust/index.html#functions"><code>syntax::print::pprust::*_to_string</code></a>
+чтобы напечатать синтаксический фрагмент для отладки.</p>
+
+<p>Пример выше создавал целочисленный литерал с помощью
+<a href="http://doc.rust-lang.org/syntax/ext/build/trait.AstBuilder.html#tymethod.expr_usize"><code>AstBuilder::expr_usize</code></a>.
+В качестве альтернативы типажу <code>AstBuilder</code>, <code>libsyntax</code> предоставляет набор
+<a href="http://doc.rust-lang.org/syntax/ext/quote/index.html">макросов квазицитирования</a>.
+Они не документированы и совсем не отполированы. Однако, эта реализация может
+стать неплохой основой для улучшенной библиотеки квазицитирования, которая
+работала бы как обычный плагин.</p>
+
+<h1 id='Плагины-статических-проверок' class='section-header'><a href='#Плагины-статических-проверок'>Плагины статических проверок</a></h1>
+<p>Плагины могут расширять
+<a href="http://doc.rust-lang.org/reference.html#lint-check-attributes">инфраструктуру статических проверок Rust</a>,
+предоставляя новые проверки стиля кодирования, безопасности, и т.д. Полный
+пример можно найти в
+<a href="https://github.com/rust-lang/rust/blob/master/src/test/auxiliary/lint_plugin_test.rs"><code>src/test/auxiliary/lint_plugin_test.rs</code></a>.
+Здесь мы приводим его суть:</p>
+<span class='rusttest'>fn main() {
+    declare_lint!(TEST_LINT, Warn,
+                  &quot;Предупреждать об элементах, названных &#39;lintme&#39;&quot;);
+    
+    struct Pass;
+    
+    impl LintPass for Pass {
+        fn get_lints(&amp;self) -&gt; LintArray {
+            lint_array!(TEST_LINT)
+        }
+    
+        fn check_item(&amp;mut self, cx: &amp;Context, it: &amp;ast::Item) {
+            let name = token::get_ident(it.ident);
+            if name.get() == &quot;lintme&quot; {
+                cx.span_lint(TEST_LINT, it.span, &quot;элемент называется &#39;lintme&#39;&quot;);
+            }
+        }
+    }
+    
+    #[plugin_registrar]
+    pub fn plugin_registrar(reg: &amp;mut Registry) {
+        reg.register_lint_pass(box Pass as LintPassObject);
+    }
+}</span><pre class='rust rust-example-rendered'>
+<span class='macro'>declare_lint</span><span class='macro'>!</span>(<span class='ident'>TEST_LINT</span>, <span class='ident'>Warn</span>,
+              <span class='string'>&quot;Предупреждать об элементах, названных &#39;lintme&#39;&quot;</span>);
+
+<span class='kw'>struct</span> <span class='ident'>Pass</span>;
+
+<span class='kw'>impl</span> <span class='ident'>LintPass</span> <span class='kw'>for</span> <span class='ident'>Pass</span> {
+    <span class='kw'>fn</span> <span class='ident'>get_lints</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>LintArray</span> {
+        <span class='macro'>lint_array</span><span class='macro'>!</span>(<span class='ident'>TEST_LINT</span>)
+    }
+
+    <span class='kw'>fn</span> <span class='ident'>check_item</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>, <span class='ident'>cx</span>: <span class='kw-2'>&amp;</span><span class='ident'>Context</span>, <span class='ident'>it</span>: <span class='kw-2'>&amp;</span><span class='ident'>ast</span>::<span class='ident'>Item</span>) {
+        <span class='kw'>let</span> <span class='ident'>name</span> <span class='op'>=</span> <span class='ident'>token</span>::<span class='ident'>get_ident</span>(<span class='ident'>it</span>.<span class='ident'>ident</span>);
+        <span class='kw'>if</span> <span class='ident'>name</span>.<span class='ident'>get</span>() <span class='op'>==</span> <span class='string'>&quot;lintme&quot;</span> {
+            <span class='ident'>cx</span>.<span class='ident'>span_lint</span>(<span class='ident'>TEST_LINT</span>, <span class='ident'>it</span>.<span class='ident'>span</span>, <span class='string'>&quot;элемент называется &#39;lintme&#39;&quot;</span>);
+        }
+    }
+}
+
+<span class='attribute'>#[<span class='ident'>plugin_registrar</span>]</span>
+<span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>plugin_registrar</span>(<span class='ident'>reg</span>: <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>Registry</span>) {
+    <span class='ident'>reg</span>.<span class='ident'>register_lint_pass</span>(<span class='kw'>box</span> <span class='ident'>Pass</span> <span class='kw'>as</span> <span class='ident'>LintPassObject</span>);
+}</pre>
+
+<p>Тогда код вроде</p>
+<span class='rusttest'>fn main() {
+    #![plugin(lint_plugin_test)]
+    
+    fn lintme() { }
+}</span><pre class='rust rust-example-rendered'>
+<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>plugin</span>(<span class='ident'>lint_plugin_test</span>)]</span>
+
+<span class='kw'>fn</span> <span class='ident'>lintme</span>() { }</pre>
+
+<p>выдаст предупреждение компилятора:</p>
+
+<pre><code class="language-txt">foo.rs:4:1: 4:16 warning: item is named &#39;lintme&#39;, #[warn(test_lint)] on by default
+foo.rs:4 fn lintme() { }
+         ^~~~~~~~~~~~~~~
+</code></pre>
+
+<p>Плагин статического анализа состоит из следующих частей:</p>
+
+<ul>
+<li><p>один или больше вызовов <code>declare_lint!</code>, которые определяют статические
+структуры <a href="http://doc.rust-lang.org/rustc/lint/struct.Lint.html"><code>Lint</code></a>;</p></li>
+<li><p>структура, содержащая состояние, необходимое анализатору (в данном случае, его
+нет);</p></li>
+<li><p>реализация типажа
+<a href="http://doc.rust-lang.org/rustc/lint/trait.LintPass.html"><code>LintPass</code></a>,
+определяющая, как проверять каждый элемент синтаксиса. Один <code>LintPass</code> может
+вызывать <code>span_lint</code> для нескольких различных <code>Lint</code>, но он должен
+зарегистрировать их все через метод <code>get_lints</code>.</p></li>
+</ul>
+
+<p>Проходы статического анализатора — это обходы синтаксического дерева, но они
+выполняются на поздних стадиях компиляции, когда уже доступа информация о типах.
+Встроенные в <code>rustc</code>
+<a href="https://github.com/rust-lang/rust/blob/master/src/librustc/lint/builtin.rs">анализы</a>
+в основном используют ту же инфрастуктуру, что и плагины статического анализа.
+Смотрите их исходный код, чтобы понять, как получать информацию о типах.</p>
+
+<p>Статические проверки, определяемые плагинами, управляются обычными
+<a href="http://doc.rust-lang.org/reference.html#lint-check-attributes">атрибутами и флагами компилятора</a>,
+т.е. <code>#[allow(test_lint)]</code> или <code>-A test-lint</code>. Эти идентификаторы выводятся из
+первого аргумента <code>declare_lint!</code>, с учётом соответствующих преобразований
+регистра букв и пунктуации.</p>
+
+<p>Вы можете выполнить команду <code>rustc -W help foo.rs</code>, чтобы увидеть весь список
+статических проверок, известных <code>rustc</code>, включая те, что загружаются
+из<code>foo.rs</code>.</p>
+
+    <script type="text/javascript">
+        window.playgroundUrl = "https://play.rust-lang.org";
+    </script>
+    <script src='rustbook.js'></script>
+<script src='playpen.js'></script>
+</div></div>
+
+
+</body>
+</html>

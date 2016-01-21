@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <title>Связывание имён</title>
+
+    <link rel="stylesheet" type="text/css" href="../rustbook.css">
+
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+                <div id="nav">
+                    <button id="toggle-nav">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </button>
+                </div>
+<div id='toc' class='mobile-hidden'>
+<ul class='chapter'>
+<li><a  href='../README.html'><b>1.</b> Introduction</a>
+</li>
+<li><a  href='../src/INTRODUCTION.html'><b>2.</b> Введение</a>
+</li>
+<li><a  href='../src/getting-started.html'><b>3.</b> C чего начать</a>
+</li>
+<li><a  href='../src/learn-rust.html'><b>4.</b> Изучение Rust</a>
+<ul class='section'>
+<li><a  href='../src/guessing-game.html'><b>4.1.</b> Угадайка</a>
+</li>
+<li><a  href='../src/dining-philosophers.html'><b>4.2.</b> Обедающие философы</a>
+</li>
+<li><a  href='../src/rust-inside-other-languages.html'><b>4.3.</b> Вызов кода на Rust из других языков</a>
+</li>
+</ul>
+</li>
+<li><a  href='../src/effective-rust.html'><b>5.</b> Эффективное использование Rust</a>
+<ul class='section'>
+<li><a  href='../src/the-stack-and-the-heap.html'><b>5.1.</b> Стек и куча</a>
+</li>
+<li><a  href='../src/testing.html'><b>5.2.</b> Тестирование</a>
+</li>
+<li><a  href='../src/conditional-compilation.html'><b>5.3.</b> Условная компиляция</a>
+</li>
+<li><a  href='../src/documentation.html'><b>5.4.</b> Документация</a>
+</li>
+<li><a  href='../src/iterators.html'><b>5.5.</b> Итераторы</a>
+</li>
+<li><a  href='../src/concurrency.html'><b>5.6.</b> Многозадачность</a>
+</li>
+<li><a  href='../src/error-handling.html'><b>5.7.</b> Обработка ошибок</a>
+</li>
+<li><a  href='../src/choosing-your-guarantees.html'><b>5.8.</b> Выбор гарантий</a>
+</li>
+<li><a  href='../src/ffi.html'><b>5.9.</b> Интерфейс внешних функций (FFI)</a>
+</li>
+<li><a  href='../src/borrow-and-asref.html'><b>5.10.</b> Типажи `Borrow` и `AsRef`</a>
+</li>
+<li><a  href='../src/release-channels.html'><b>5.11.</b> Каналы сборок</a>
+</li>
+</ul>
+</li>
+<li><a  href='../src/syntax-and-semantics.html'><b>6.</b> Синтаксис и семантика</a>
+<ul class='section'>
+<li><a class='active' href='../src/variable-bindings.html'><b>6.1.</b> Связывание имён</a>
+</li>
+<li><a  href='../src/functions.html'><b>6.2.</b> Функции</a>
+</li>
+<li><a  href='../src/primitive-types.html'><b>6.3.</b> Простые типы</a>
+</li>
+<li><a  href='../src/comments.html'><b>6.4.</b> Комментарии</a>
+</li>
+<li><a  href='../src/if.html'><b>6.5.</b> Конструкция `if`</a>
+</li>
+<li><a  href='../src/loops.html'><b>6.6.</b> Циклы</a>
+</li>
+<li><a  href='../src/ownership.html'><b>6.7.</b> Владение</a>
+</li>
+<li><a  href='../src/references-and-borrowing.html'><b>6.8.</b> Ссылки и заимствование</a>
+</li>
+<li><a  href='../src/lifetimes.html'><b>6.9.</b> Время жизни</a>
+</li>
+<li><a  href='../src/mutability.html'><b>6.10.</b> Изменяемость (mutability)</a>
+</li>
+<li><a  href='../src/structs.html'><b>6.11.</b> Структуры</a>
+</li>
+<li><a  href='../src/enums.html'><b>6.12.</b> Перечисления</a>
+</li>
+<li><a  href='../src/match.html'><b>6.13.</b> Конструкция `match`</a>
+</li>
+<li><a  href='../src/patterns.html'><b>6.14.</b> Шаблоны сопоставления `match`</a>
+</li>
+<li><a  href='../src/method-syntax.html'><b>6.15.</b> Синтаксис методов</a>
+</li>
+<li><a  href='../src/vectors.html'><b>6.16.</b> Вектора</a>
+</li>
+<li><a  href='../src/strings.html'><b>6.17.</b> Строки</a>
+</li>
+<li><a  href='../src/generics.html'><b>6.18.</b> Обобщённое программирование</a>
+</li>
+<li><a  href='../src/traits.html'><b>6.19.</b> Типажи</a>
+</li>
+<li><a  href='../src/drop.html'><b>6.20.</b> Типаж `Drop` (сброс)</a>
+</li>
+<li><a  href='../src/if-let.html'><b>6.21.</b> Конструкция `if let`</a>
+</li>
+<li><a  href='../src/trait-objects.html'><b>6.22.</b> Типажи-объекты</a>
+</li>
+<li><a  href='../src/closures.html'><b>6.23.</b> Замыкания</a>
+</li>
+<li><a  href='../src/ufcs.html'><b>6.24.</b> Универсальный синтаксис вызова функций (UFCS)</a>
+</li>
+<li><a  href='../src/crates-and-modules.html'><b>6.25.</b> Контейнеры (crates) и модули (modules)</a>
+</li>
+<li><a  href='../src/const-and-static.html'><b>6.26.</b> `const` и `static`</a>
+</li>
+<li><a  href='../src/attributes.html'><b>6.27.</b> Атрибуты</a>
+</li>
+<li><a  href='../src/type-aliases.html'><b>6.28.</b> Псевдонимы типов</a>
+</li>
+<li><a  href='../src/casting-between-types.html'><b>6.29.</b> Приведение типов</a>
+</li>
+<li><a  href='../src/associated-types.html'><b>6.30.</b> Ассоциированные типы</a>
+</li>
+<li><a  href='../src/unsized-types.html'><b>6.31.</b> Безразмерные типы</a>
+</li>
+<li><a  href='../src/operators-and-overloading.html'><b>6.32.</b> Перегрузка операций</a>
+</li>
+<li><a  href='../src/deref-coercions.html'><b>6.33.</b> Преобразования при разыменовании (deref coercions)</a>
+</li>
+<li><a  href='../src/macros.html'><b>6.34.</b> Макросы</a>
+</li>
+<li><a  href='../src/raw-pointers.html'><b>6.35.</b> Сырые указатели</a>
+</li>
+<li><a  href='../src/unsafe.html'><b>6.36.</b> Небезопасный код</a>
+</li>
+</ul>
+</li>
+<li><a  href='../src/nightly-rust.html'><b>7.</b> Нестабильные возможности Rust</a>
+<ul class='section'>
+<li><a  href='../src/compiler-plugins.html'><b>7.1.</b> Плагины к компилятору</a>
+</li>
+<li><a  href='../src/inline-assembly.html'><b>7.2.</b> Встроенный ассемблерный код</a>
+</li>
+<li><a  href='../src/no-stdlib.html'><b>7.3.</b> Без stdlib</a>
+</li>
+<li><a  href='../src/intrinsics.html'><b>7.4.</b> Внутренние средства (intrinsics)</a>
+</li>
+<li><a  href='../src/lang-items.html'><b>7.5.</b> Элементы языка (lang items)</a>
+</li>
+<li><a  href='../src/advanced-linking.html'><b>7.6.</b> Продвинутое руководство по компоновке (advanced linking)</a>
+</li>
+<li><a  href='../src/benchmark-tests.html'><b>7.7.</b> Тесты производительности</a>
+</li>
+<li><a  href='../src/box-syntax-and-patterns.html'><b>7.8.</b> Синтаксис упаковки и шаблоны `match`</a>
+</li>
+<li><a  href='../src/slice-patterns.html'><b>7.9.</b> Шаблоны `match` для срезов</a>
+</li>
+<li><a  href='../src/associated-constants.html'><b>7.10.</b> Ассоциированные константы</a>
+</li>
+<li><a  href='../src/custom-allocators.html'><b>7.11.</b> Пользовательские менеджеры памяти</a>
+</li>
+</ul>
+</li>
+<li><a  href='../src/glossary.html'><b>8.</b> Глоссарий</a>
+</li>
+<li><a  href='../src/bibliography.html'><b>9.</b> Библиография</a>
+</li>
+</ul>
+</div>
+<div id='page-wrapper'>
+<div id='page'>
+
+
+    <h1 class="title">Связывание имён</h1>
+    <p>Любая реальная программа на Rust посложнее, чем «Hello World», использует
+<em>связывание имён</em>. Это выглядит так:</p>
+<span class='rusttest'>fn main() {
+    let x = 5;
+}
+</span><pre class='rust rust-example-rendered'>
+<span class='kw'>fn</span> <span class='ident'>main</span>() {
+    <span class='kw'>let</span> <span class='ident'>x</span> <span class='op'>=</span> <span class='number'>5</span>;
+}</pre>
+
+<p>Все операции, производимые ниже, будут происходить в функции <code>main()</code>, так как
+каждый раз вставлять в примеры <code>fn main() {</code> немного утомляет. Убедитесь, что
+примеры, приведённые в этом разделе, вы вводите в функцию <code>main()</code>, иначе можете
+получить ошибку при компиляции.</p>
+
+<p>Во многих языках программирования это называется <em>переменной</em>. Но у связывания
+переменных в Rust есть пара трюков в рукаве. В левой части выражения <code>let</code>
+располагается не просто имя переменной, а &quot;<a href="patterns.html">шаблон</a>&quot;. Это значит, что
+мы можем делать вещи вроде этой:</p>
+<span class='rusttest'>fn main() {
+    let (x, y) = (1, 2);
+}</span><pre class='rust rust-example-rendered'>
+<span class='kw'>let</span> (<span class='ident'>x</span>, <span class='ident'>y</span>) <span class='op'>=</span> (<span class='number'>1</span>, <span class='number'>2</span>);</pre>
+
+<p>После завершения этого выражения <code>x</code> будет единицей, a <code>y</code> — двойкой. Шаблоны
+очень мощны, и о них написана отдельная <a href="patterns.html">глава</a>. Но на данный момент
+нам не нужны эти возможности, так что мы просто будем помнить о них и пойдём
+дальше.</p>
+
+<p>Rust — статически типизированный язык программирования, и значит мы должны
+указывать типы, и они будут проверяться во время компиляции. Так почему же наш
+первый пример скомпилировался? В Rust есть нечто, называемое <em>выводом типов</em>.
+Если Rust самостоятельно может понять, какой тип у переменной, то он не требует
+указывать его.</p>
+
+<p>Тем не менее, мы можем указать желаемый тип. Он следует после двоеточия (<code>:</code>):</p>
+<span class='rusttest'>fn main() {
+    let x: i32 = 5;
+}</span><pre class='rust rust-example-rendered'>
+<span class='kw'>let</span> <span class='ident'>x</span>: <span class='ident'>i32</span> <span class='op'>=</span> <span class='number'>5</span>;</pre>
+
+<p>Если бы мы попросили вас прочитать это вслух, вы бы сказали «<code>x</code> - это
+связывание типа <code>int</code> со значением <code>пять</code>».</p>
+
+<p>В этом случае мы указали, что <code>x</code> у нас будет 32-битным целым числом со знаком.
+В Rust есть и другие целочисленные типы. Их имена начинаются с <code>i</code> для целых
+чисел со знаком и с <code>u</code> для целых чисел без знака. Целые числа могут иметь
+размер 8, 16, 32 и 64 бита.</p>
+
+<p>В дальнейших примерах мы будем указывать тип в комментариях. Это будет выглядеть
+вот так:</p>
+<span class='rusttest'>fn main() {
+    let x = 5; // x: i32
+}
+</span><pre class='rust rust-example-rendered'>
+<span class='kw'>fn</span> <span class='ident'>main</span>() {
+    <span class='kw'>let</span> <span class='ident'>x</span> <span class='op'>=</span> <span class='number'>5</span>; <span class='comment'>// x: i32</span>
+}</pre>
+
+<p>Обратите внимание на сходство между этим комментарием и синтаксисом, который вы
+используете с <code>let</code>. Включение такого типа комментариев не является
+идиоматичным для Rust, но иногда мы будем включать их для того, чтобы помочь
+вам понять, какие типы будут выведены Rust.</p>
+
+<p>По умолчанию, связывание <em>неизменяемо</em>. Этот код не скомпилируется:</p>
+<span class='rusttest'>fn main() {
+    let x = 5;
+    x = 10;
+}</span><pre class='rust rust-example-rendered'>
+<span class='kw'>let</span> <span class='ident'>x</span> <span class='op'>=</span> <span class='number'>5</span>;
+<span class='ident'>x</span> <span class='op'>=</span> <span class='number'>10</span>;</pre>
+
+<p>И вы получите ошибку:</p>
+
+<pre><code class="language-text">error: re-assignment of immutable variable `x`
+     x = 10;
+     ^~~~~~~
+</code></pre>
+
+<p>Если вы хотите, чтобы связывание было изменяемым, вы можете использовать
+модификатор <code>mut</code>:</p>
+<span class='rusttest'>fn main() {
+    let mut x = 5; // mut x: i32
+    x = 10;
+}</span><pre class='rust rust-example-rendered'>
+<span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>x</span> <span class='op'>=</span> <span class='number'>5</span>; <span class='comment'>// mut x: i32</span>
+<span class='ident'>x</span> <span class='op'>=</span> <span class='number'>10</span>;</pre>
+
+<p>Может показаться, что незачем делать связывание неизменяемым по умолчанию. Но
+вспомните, на чём в первую очередь фокусируется Rust: на безопасности. Если вы
+случайно забыли указать <code>mut</code> и изменили связывание, компилятор заметит это, и
+сообщит вам, что вы попытались изменить не то, что собирались. Если бы по
+умолчанию связывание было изменяемым, то в приведённой выше ситуации компилятор
+не сможет вам помочь. Если вы намерены изменить значение переменной, то просто
+добавьте <code>mut</code>.</p>
+
+<p>Есть и другие весомые аргументы в пользу того, чтобы по возможности избегать
+изменяемого состояния, но это выходит за рамки данной книги. В общем, зачастую
+вы можете избежать явных изменений, и это предпочтительнее в Rust. Тем не менее,
+иногда без изменения значения просто не обойтись, так что это не запрещено.</p>
+
+<p>Вернёмся к связыванию. Связывание переменных в Rust имеет ещё одно отличие от
+других языков: оно требует инициализации перед использованием.</p>
+
+<p>Давайте приступим к рассмотрению вышесказанного. Измените ваш файл <code>src/main.rs</code>
+так, что бы он выглядел следующим образом:</p>
+<span class='rusttest'>fn main() {
+    let x: i32;
+
+    println!(&quot;Hello world!&quot;);
+}
+</span><pre class='rust rust-example-rendered'>
+<span class='kw'>fn</span> <span class='ident'>main</span>() {
+    <span class='kw'>let</span> <span class='ident'>x</span>: <span class='ident'>i32</span>;
+
+    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Hello world!&quot;</span>);
+}</pre>
+
+<p>Используйте команду <code>cargo build</code> в командной строке, чтобы собрать проект. Вы
+должны получить предупреждение, но программа будет работать и будет выводить
+строку «Привет, мир!»:</p>
+
+<pre><code class="language-text">   Compiling hello_world v0.0.1 (file:///home/you/projects/hello_world)
+src/main.rs:2:9: 2:10 warning: unused variable: `x`, #[warn(unused_variable)]
+   on by default
+src/main.rs:2     let x: i32;
+                      ^
+</code></pre>
+
+<p>Rust предупредит нас о том, что мы не используем связанную переменную, но от
+того, что мы её не используем, не будет никакого вреда, поэтому это не ошибка.
+Однако, всё изменится, если мы попробуем использовать <code>x</code>. Сделаем это. Измените
+вашу программу так, что бы она выглядела следующим образом:</p>
+<span class='rusttest'>fn main() {
+    let x: i32;
+
+    println!(&quot;x имеет значение {}&quot;, x);
+}
+</span><pre class='rust rust-example-rendered'>
+<span class='kw'>fn</span> <span class='ident'>main</span>() {
+    <span class='kw'>let</span> <span class='ident'>x</span>: <span class='ident'>i32</span>;
+
+    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;x имеет значение {}&quot;</span>, <span class='ident'>x</span>);
+}</pre>
+
+<p>И попробуйте собрать проект. Вы получите ошибку:</p>
+
+<pre><code class="language-bash">$ cargo build
+   Compiling hello_world v0.0.1 (file:///home/you/projects/hello_world)
+src/main.rs:4:39: 4:40 error: use of possibly uninitialized variable: `x`
+src/main.rs:4     println!(&quot;x имеет значение {}&quot;, x);
+                                                    ^
+note: in expansion of format_args!
+&lt;std macros&gt;:2:23: 2:77 note: expansion site
+&lt;std macros&gt;:1:1: 3:2 note: in expansion of println!
+src/main.rs:4:5: 4:42 note: expansion site
+error: aborting due to previous error
+Could not compile `hello_world`.
+</code></pre>
+
+<p>Rust не позволит использовать неинициализированную переменную. Далее, поговорим
+о <code>{}</code>, которые мы добавили в <code>println!</code>.</p>
+
+<p>Если вы добавите две фигурные скобки (<code>{}</code>, иногда называемые «усами»...) в вашу
+печатаемую строку, Rust истолкует это как просьбу вставки некоторого значения.
+<em>Строковая интерполяция</em> — это термин в информатике, который обозначает
+«вставить посреди строки». Мы добавили запятую, и затем <code>x</code>, чтобы указать, что
+мы хотим вставить <code>x</code> в строку. Запятая используется для разделения параметров,
+если в функцию или макрос передаётся больше одного параметра.</p>
+
+<p>При вставке переменной в строку, Rust проверит её тип и попытается отобразить
+осмысленное значение. Если вы хотите указать формат более детально, то можете
+ознакомиться с <a href="http://doc.rust-lang.org/std/fmt/index.html">доступными способами форматирования строк (англ.)</a>. На
+данный момент мы просто используем способ по умолчанию: печатать целые числа не
+очень сложно.</p>
+
+    <script type="text/javascript">
+        window.playgroundUrl = "https://play.rust-lang.org";
+    </script>
+    <script src='rustbook.js'></script>
+<script src='playpen.js'></script>
+</div></div>
+
+
+</body>
+</html>

@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <title>Продвинутое руководстве по компоновке (advanced linking)</title>
+
+    <link rel="stylesheet" type="text/css" href="../rustbook.css">
+
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+                <div id="nav">
+                    <button id="toggle-nav">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </button>
+                </div>
+<div id='toc' class='mobile-hidden'>
+<ul class='chapter'>
+<li><a  href='../README.html'><b>1.</b> Introduction</a>
+</li>
+<li><a  href='../src/INTRODUCTION.html'><b>2.</b> Введение</a>
+</li>
+<li><a  href='../src/getting-started.html'><b>3.</b> C чего начать</a>
+</li>
+<li><a  href='../src/learn-rust.html'><b>4.</b> Изучение Rust</a>
+<ul class='section'>
+<li><a  href='../src/guessing-game.html'><b>4.1.</b> Угадайка</a>
+</li>
+<li><a  href='../src/dining-philosophers.html'><b>4.2.</b> Обедающие философы</a>
+</li>
+<li><a  href='../src/rust-inside-other-languages.html'><b>4.3.</b> Вызов кода на Rust из других языков</a>
+</li>
+</ul>
+</li>
+<li><a  href='../src/effective-rust.html'><b>5.</b> Эффективное использование Rust</a>
+<ul class='section'>
+<li><a  href='../src/the-stack-and-the-heap.html'><b>5.1.</b> Стек и куча</a>
+</li>
+<li><a  href='../src/testing.html'><b>5.2.</b> Тестирование</a>
+</li>
+<li><a  href='../src/conditional-compilation.html'><b>5.3.</b> Условная компиляция</a>
+</li>
+<li><a  href='../src/documentation.html'><b>5.4.</b> Документация</a>
+</li>
+<li><a  href='../src/iterators.html'><b>5.5.</b> Итераторы</a>
+</li>
+<li><a  href='../src/concurrency.html'><b>5.6.</b> Многозадачность</a>
+</li>
+<li><a  href='../src/error-handling.html'><b>5.7.</b> Обработка ошибок</a>
+</li>
+<li><a  href='../src/choosing-your-guarantees.html'><b>5.8.</b> Выбор гарантий</a>
+</li>
+<li><a  href='../src/ffi.html'><b>5.9.</b> Интерфейс внешних функций (FFI)</a>
+</li>
+<li><a  href='../src/borrow-and-asref.html'><b>5.10.</b> Типажи `Borrow` и `AsRef`</a>
+</li>
+<li><a  href='../src/release-channels.html'><b>5.11.</b> Каналы сборок</a>
+</li>
+</ul>
+</li>
+<li><a  href='../src/syntax-and-semantics.html'><b>6.</b> Синтаксис и семантика</a>
+<ul class='section'>
+<li><a  href='../src/variable-bindings.html'><b>6.1.</b> Связывание имён</a>
+</li>
+<li><a  href='../src/functions.html'><b>6.2.</b> Функции</a>
+</li>
+<li><a  href='../src/primitive-types.html'><b>6.3.</b> Простые типы</a>
+</li>
+<li><a  href='../src/comments.html'><b>6.4.</b> Комментарии</a>
+</li>
+<li><a  href='../src/if.html'><b>6.5.</b> Конструкция `if`</a>
+</li>
+<li><a  href='../src/loops.html'><b>6.6.</b> Циклы</a>
+</li>
+<li><a  href='../src/ownership.html'><b>6.7.</b> Владение</a>
+</li>
+<li><a  href='../src/references-and-borrowing.html'><b>6.8.</b> Ссылки и заимствование</a>
+</li>
+<li><a  href='../src/lifetimes.html'><b>6.9.</b> Время жизни</a>
+</li>
+<li><a  href='../src/mutability.html'><b>6.10.</b> Изменяемость (mutability)</a>
+</li>
+<li><a  href='../src/structs.html'><b>6.11.</b> Структуры</a>
+</li>
+<li><a  href='../src/enums.html'><b>6.12.</b> Перечисления</a>
+</li>
+<li><a  href='../src/match.html'><b>6.13.</b> Конструкция `match`</a>
+</li>
+<li><a  href='../src/patterns.html'><b>6.14.</b> Шаблоны сопоставления `match`</a>
+</li>
+<li><a  href='../src/method-syntax.html'><b>6.15.</b> Синтаксис методов</a>
+</li>
+<li><a  href='../src/vectors.html'><b>6.16.</b> Вектора</a>
+</li>
+<li><a  href='../src/strings.html'><b>6.17.</b> Строки</a>
+</li>
+<li><a  href='../src/generics.html'><b>6.18.</b> Обобщённое программирование</a>
+</li>
+<li><a  href='../src/traits.html'><b>6.19.</b> Типажи</a>
+</li>
+<li><a  href='../src/drop.html'><b>6.20.</b> Типаж `Drop` (сброс)</a>
+</li>
+<li><a  href='../src/if-let.html'><b>6.21.</b> Конструкция `if let`</a>
+</li>
+<li><a  href='../src/trait-objects.html'><b>6.22.</b> Типажи-объекты</a>
+</li>
+<li><a  href='../src/closures.html'><b>6.23.</b> Замыкания</a>
+</li>
+<li><a  href='../src/ufcs.html'><b>6.24.</b> Универсальный синтаксис вызова функций (UFCS)</a>
+</li>
+<li><a  href='../src/crates-and-modules.html'><b>6.25.</b> Контейнеры (crates) и модули (modules)</a>
+</li>
+<li><a  href='../src/const-and-static.html'><b>6.26.</b> `const` и `static`</a>
+</li>
+<li><a  href='../src/attributes.html'><b>6.27.</b> Атрибуты</a>
+</li>
+<li><a  href='../src/type-aliases.html'><b>6.28.</b> Псевдонимы типов</a>
+</li>
+<li><a  href='../src/casting-between-types.html'><b>6.29.</b> Приведение типов</a>
+</li>
+<li><a  href='../src/associated-types.html'><b>6.30.</b> Ассоциированные типы</a>
+</li>
+<li><a  href='../src/unsized-types.html'><b>6.31.</b> Безразмерные типы</a>
+</li>
+<li><a  href='../src/operators-and-overloading.html'><b>6.32.</b> Перегрузка операций</a>
+</li>
+<li><a  href='../src/deref-coercions.html'><b>6.33.</b> Преобразования при разыменовании (deref coercions)</a>
+</li>
+<li><a  href='../src/macros.html'><b>6.34.</b> Макросы</a>
+</li>
+<li><a  href='../src/raw-pointers.html'><b>6.35.</b> Сырые указатели</a>
+</li>
+<li><a  href='../src/unsafe.html'><b>6.36.</b> Небезопасный код</a>
+</li>
+</ul>
+</li>
+<li><a  href='../src/nightly-rust.html'><b>7.</b> Нестабильные возможности Rust</a>
+<ul class='section'>
+<li><a  href='../src/compiler-plugins.html'><b>7.1.</b> Плагины к компилятору</a>
+</li>
+<li><a  href='../src/inline-assembly.html'><b>7.2.</b> Встроенный ассемблерный код</a>
+</li>
+<li><a  href='../src/no-stdlib.html'><b>7.3.</b> Без stdlib</a>
+</li>
+<li><a  href='../src/intrinsics.html'><b>7.4.</b> Внутренние средства (intrinsics)</a>
+</li>
+<li><a  href='../src/lang-items.html'><b>7.5.</b> Элементы языка (lang items)</a>
+</li>
+<li><a class='active' href='../src/advanced-linking.html'><b>7.6.</b> Продвинутое руководство по компоновке (advanced linking)</a>
+</li>
+<li><a  href='../src/benchmark-tests.html'><b>7.7.</b> Тесты производительности</a>
+</li>
+<li><a  href='../src/box-syntax-and-patterns.html'><b>7.8.</b> Синтаксис упаковки и шаблоны `match`</a>
+</li>
+<li><a  href='../src/slice-patterns.html'><b>7.9.</b> Шаблоны `match` для срезов</a>
+</li>
+<li><a  href='../src/associated-constants.html'><b>7.10.</b> Ассоциированные константы</a>
+</li>
+<li><a  href='../src/custom-allocators.html'><b>7.11.</b> Пользовательские менеджеры памяти</a>
+</li>
+</ul>
+</li>
+<li><a  href='../src/glossary.html'><b>8.</b> Глоссарий</a>
+</li>
+<li><a  href='../src/bibliography.html'><b>9.</b> Библиография</a>
+</li>
+</ul>
+</div>
+<div id='page-wrapper'>
+<div id='page'>
+
+
+    <h1 class="title">Продвинутое руководстве по компоновке (advanced linking)</h1>
+    <p>Распространённые ситуации, в которых требовалась компоновка с кодом на Rust, уже
+были рассмотрены в предыдущих главах книги. Однако для поддержки прозрачного
+взаимодействия с нативными библиотеками требуется более широкая поддержка разных
+вариантов компоновки.</p>
+
+<h1 id='Аргументы-компоновки-link-args' class='section-header'><a href='#Аргументы-компоновки-link-args'>Аргументы компоновки (link args)</a></h1>
+<p>Есть только один способ тонкой настройки компоновки — атрибут <code>link_args</code>.
+Этот атрибут применяется к блокам <code>extern</code>, и указывает сырые аргументы, которые
+должны быть переданы компоновщику при создании артефакта. Например:</p>
+<span class='rusttest'>#![feature(link_args)]
+
+#[link_args = &quot;-foo -bar -baz&quot;]
+extern {}
+fn main() {}
+</span><pre class='rust rust-example-rendered'>
+<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>feature</span>(<span class='ident'>link_args</span>)]</span>
+
+<span class='attribute'>#[<span class='ident'>link_args</span> <span class='op'>=</span> <span class='string'>&quot;-foo -bar -baz&quot;</span>]</span>
+<span class='kw'>extern</span> {}</pre>
+
+<p>Обратите внимание, что эта возможность скрыта за <code>feature(link_args)</code>, так как
+это нештатный способ компоновки. В данный момент <code>rustc</code> вызывает системный
+компоновщик (на большинстве систем это <code>gcc</code>, на Windows — <code>link.exe</code>),
+поэтому передача аргументов командной строки имеет смысл. Но реализация не
+всегда будет такой — в будущем <code>rustc</code> может напрямую использовать LLVM для
+связывания с нативными библиотеками, и тогда <code>link_args</code> станет бессмысленным.
+Того же эффекта можно достигнуть с пощощью передачи <code>rustc</code> аргумента <code>-C link-args</code>.</p>
+
+<p>Крайне рекомендуется <em>не</em> использовать этот атрибут, и пользоваться вместо него
+более точно определённым атрибутом <code>#link(...)</code> для блоков <code>extern</code>.</p>
+
+<h1 id='Статическое-связывание' class='section-header'><a href='#Статическое-связывание'>Статическое связывание</a></h1>
+<p>Статическое связывание — это процесс создания артефакта, который содержит все
+нужные библиотеки, и потому не потребует установленных библиотек на целевой
+системе. Библиотеки на Rust по умолчанию связываются статически, поэтому
+приложения и библиотеки на Rust можно использовать без установки Rust повсюду.
+Напротив, нативные библиотеки (например, <code>libc</code> и <code>libm</code>) обычно связываются
+динамически, но это можно изменить, и сделать чтобы они также связывались
+статически.</p>
+
+<p>Компоновка — это процесс, который реализуется по-разному на разных платформах.
+На некоторых из них статическое связывание вообще не возможно! Этот раздел
+предполагает знакомство с процессом компоновки на вашей платформе.</p>
+
+<h2 id='linux' class='section-header'><a href='#linux'>Linux</a></h2>
+<p>По умолчанию, программы на Rust для Linux компонуются с системной <code>libc</code> и ещё
+некоторыми библиотеками. Давайте посмотрим на пример на 64-битной машине с
+Linux, GCC и <code>glibc</code> (самой популярной <code>libc</code> на Linux):</p>
+
+<pre><code class="language-text">$ cat example.rs
+fn main() {}
+$ rustc example.rs
+$ ldd example
+        linux-vdso.so.1 =&gt;  (0x00007ffd565fd000)
+        libdl.so.2 =&gt; /lib/x86_64-linux-gnu/libdl.so.2 (0x00007fa81889c000)
+        libpthread.so.0 =&gt; /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007fa81867e000)
+        librt.so.1 =&gt; /lib/x86_64-linux-gnu/librt.so.1 (0x00007fa818475000)
+        libgcc_s.so.1 =&gt; /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007fa81825f000)
+        libc.so.6 =&gt; /lib/x86_64-linux-gnu/libc.so.6 (0x00007fa817e9a000)
+        /lib64/ld-linux-x86-64.so.2 (0x00007fa818cf9000)
+        libm.so.6 =&gt; /lib/x86_64-linux-gnu/libm.so.6 (0x00007fa817b93000)
+</code></pre>
+
+<p>Иногда динамическое связывание на Linux нежелательно: например, если вы хотите
+использовать возможности из новых библиотек на старых системах или на целевых
+системах нет таких библиотек.</p>
+
+<p>Статическое связывание возможно с альтернативной <code>libc</code>, <code>musl</code>. Вы можете
+скомпилировать свою версию Rust, которая будет использовать <code>musl</code>, и установить
+её в отдельную директорию, с помощью инструкции, приведённой ниже:</p>
+
+<pre><code class="language-text">$ mkdir musldist
+$ PREFIX=$(pwd)/musldist
+$
+$ # Build musl
+$ wget http://www.musl-libc.org/releases/musl-1.1.10.tar.gz
+[...]
+$ tar xf musl-1.1.10.tar.gz
+$ cd musl-1.1.10/
+musl-1.1.10 $ ./configure --disable-shared --prefix=$PREFIX
+[...]
+musl-1.1.10 $ make
+[...]
+musl-1.1.10 $ make install
+[...]
+musl-1.1.10 $ cd ..
+$ du -h musldist/lib/libc.a
+2.2M    musldist/lib/libc.a
+$
+$ # Build libunwind.a
+$ wget http://llvm.org/releases/3.6.1/llvm-3.6.1.src.tar.xz
+$ tar xf llvm-3.6.1.src.tar.xz
+$ cd llvm-3.6.1.src/projects/
+llvm-3.6.1.src/projects $ svn co http://llvm.org/svn/llvm-project/libcxxabi/trunk/ libcxxabi
+llvm-3.6.1.src/projects $ svn co http://llvm.org/svn/llvm-project/libunwind/trunk/ libunwind
+llvm-3.6.1.src/projects $ sed -i &#39;s#^\(include_directories\).*$#\0\n\1(../libcxxabi/include)#&#39; libunwind/CMakeLists.txt
+llvm-3.6.1.src/projects $ mkdir libunwind/build
+llvm-3.6.1.src/projects $ cd libunwind/build
+llvm-3.6.1.src/projects/libunwind/build $ cmake -DLLVM_PATH=../../.. -DLIBUNWIND_ENABLE_SHARED=0 ..
+llvm-3.6.1.src/projects/libunwind/build $ make
+llvm-3.6.1.src/projects/libunwind/build $ cp lib/libunwind.a $PREFIX/lib/
+llvm-3.6.1.src/projects/libunwind/build $ cd cd ../../../../
+$ du -h musldist/lib/libunwind.a
+164K    musldist/lib/libunwind.a
+$
+$ # Build musl-enabled rust
+$ git clone https://github.com/rust-lang/rust.git muslrust
+$ cd muslrust
+muslrust $ ./configure --target=x86_64-unknown-linux-musl --musl-root=$PREFIX --prefix=$PREFIX
+muslrust $ make
+muslrust $ make install
+muslrust $ cd ..
+$ du -h musldist/bin/rustc
+12K     musldist/bin/rustc
+</code></pre>
+
+<p>Теперь у вас есть сборка Rust с <code>musl</code>! Поскольку мы установили её в отдельную
+корневую директорию, надо удостовериться в том, что система может найти
+исполняемые файлы и библиотеки:</p>
+
+<pre><code class="language-text">$ export PATH=$PREFIX/bin:$PATH
+$ export LD_LIBRARY_PATH=$PREFIX/lib:$LD_LIBRARY_PATH
+</code></pre>
+
+<p>Давайте попробуем!</p>
+
+<pre><code class="language-text">$ echo &#39;fn main() { println!(&quot;hi!&quot;); panic!(&quot;failed&quot;); }&#39; &gt; example.rs
+$ rustc --target=x86_64-unknown-linux-musl example.rs
+$ ldd example
+        not a dynamic executable
+$ ./example
+hi!
+thread &#39;&lt;main&gt;&#39; panicked at &#39;failed&#39;, example.rs:1
+</code></pre>
+
+<p>Успех! Эта программа может быть скопирована на почти любую машину с Linux с той
+же архитектурой процессора и будет работать без проблем.</p>
+
+<p><code>cargo build</code> также принимает опцию <code>--target</code>, так что вы можете собирать
+контейнеры как обычно. Однако, возможно вам придётся пересобрать нативные
+библиотеки с <code>musl</code>, чтобы иметь возможность скомпоноваться с ними.</p>
+
+    <script type="text/javascript">
+        window.playgroundUrl = "https://play.rust-lang.org";
+    </script>
+    <script src='rustbook.js'></script>
+<script src='playpen.js'></script>
+</div></div>
+
+
+</body>
+</html>
