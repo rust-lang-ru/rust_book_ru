@@ -10,7 +10,7 @@
  * except according to those terms.
  */
 
-@import url('../rust.css');
+@import url('./rust.css');
 
 body {
     max-width: none;
