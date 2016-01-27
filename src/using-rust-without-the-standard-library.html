@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="rustdoc">
-    <title>Ассоциированные константы</title>
+    <title>Using Rust Without the Standard Library</title>
 
     <link rel="stylesheet" type="text/css" href="../rustbook.css">
 
@@ -145,7 +145,7 @@
 </li>
 <li><a  href='../src/release-channels.html'><b>6.11.</b> Каналы сборок</a>
 </li>
-<li><a  href='../src/using-rust-without-the-standard-library.html'><b>6.12.</b> Using Rust without the standard library</a>
+<li><a class='active' href='../src/using-rust-without-the-standard-library.html'><b>6.12.</b> Using Rust without the standard library</a>
 </li>
 </ul>
 </li>
@@ -169,7 +169,7 @@
 </li>
 <li><a  href='../src/slice-patterns.html'><b>7.9.</b> Шаблоны `match` для срезов</a>
 </li>
-<li><a class='active' href='../src/associated-constants.html'><b>7.10.</b> Ассоциированные константы</a>
+<li><a  href='../src/associated-constants.html'><b>7.10.</b> Ассоциированные константы</a>
 </li>
 <li><a  href='../src/custom-allocators.html'><b>7.11.</b> Пользовательские менеджеры памяти</a>
 </li>
@@ -187,123 +187,59 @@
 <div id='page'>
 
 
-    <h1 class="title">Ассоциированные константы</h1>
-    <p>С включенной возможностью <code>associated_consts</code> вы можете определить константы
-вроде этой:</p>
-<span class='rusttest'>#![feature(associated_consts)]
+    <h1 class="title">Using Rust Without the Standard Library</h1>
+    <p>Rust’s standard library provides a lot of useful functionality, but assumes
+support for various features of its host system: threads, networking, heap
+allocation, and others. There are systems that do not have these features,
+however, and Rust can work with those too! To do so, we tell Rust that we
+don’t want to use the standard library via an attribute: <code>#![no_std]</code>.</p>
 
-trait Foo {
-    const ID: i32;
-}
+<blockquote>
+<p>Note: This feature is technically stable, but there are some caveats. For
+one, you can build a <code>#![no_std]</code> <em>library</em> on stable, but not a <em>binary</em>.
+For details on binaries without the standard library, see <a href="no-stdlib.html">the nightly
+chapter on <code>#![no_std]</code></a></p>
+</blockquote>
 
-impl Foo for i32 {
-    const ID: i32 = 1;
-}
-
-fn main() {
-    assert_eq!(1, i32::ID);
-}
-</span><pre class='rust rust-example-rendered'>
-<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>feature</span>(<span class='ident'>associated_consts</span>)]</span>
-
-<span class='kw'>trait</span> <span class='ident'>Foo</span> {
-    <span class='kw'>const</span> <span class='ident'>ID</span>: <span class='ident'>i32</span>;
-}
-
-<span class='kw'>impl</span> <span class='ident'>Foo</span> <span class='kw'>for</span> <span class='ident'>i32</span> {
-    <span class='kw'>const</span> <span class='ident'>ID</span>: <span class='ident'>i32</span> <span class='op'>=</span> <span class='number'>1</span>;
-}
-
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>1</span>, <span class='ident'>i32</span>::<span class='ident'>ID</span>);
-}</pre>
-
-<p>Любая реализация <code>Foo</code> должна будет определить <code>ID</code>. Без этого определения:</p>
-<span class='rusttest'>#![feature(associated_consts)]
-
-fn main() {
-    trait Foo {
-        const ID: i32;
-    }
+<p>To use <code>#![no_std]</code>, add a it to your crate root:</p>
+<span class='rusttest'>fn main() {
+    #![no_std]
     
-    impl Foo for i32 {
+    fn plus_one(x: i32) -&gt; i32 {
+        x + 1
     }
 }</span><pre class='rust rust-example-rendered'>
-<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>feature</span>(<span class='ident'>associated_consts</span>)]</span>
+<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>no_std</span>]</span>
 
-<span class='kw'>trait</span> <span class='ident'>Foo</span> {
-    <span class='kw'>const</span> <span class='ident'>ID</span>: <span class='ident'>i32</span>;
-}
-
-<span class='kw'>impl</span> <span class='ident'>Foo</span> <span class='kw'>for</span> <span class='ident'>i32</span> {
+<span class='kw'>fn</span> <span class='ident'>plus_one</span>(<span class='ident'>x</span>: <span class='ident'>i32</span>) <span class='op'>-&gt;</span> <span class='ident'>i32</span> {
+    <span class='ident'>x</span> <span class='op'>+</span> <span class='number'>1</span>
 }</pre>
 
-<p>выдаст ошибку</p>
-
-<pre><code class="language-text">error: not all trait items implemented, missing: `ID` [E0046]
-     impl Foo for i32 {
-     }
-</code></pre>
-
-<p>Также может быть реализовано значение по умолчанию:</p>
-<span class='rusttest'>#![feature(associated_consts)]
-
-trait Foo {
-    const ID: i32 = 1;
-}
-
-impl Foo for i32 {
-}
-
-impl Foo for i64 {
-    const ID: i32 = 5;
-}
-
-fn main() {
-    assert_eq!(1, i32::ID);
-    assert_eq!(5, i64::ID);
-}
-</span><pre class='rust rust-example-rendered'>
-<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>feature</span>(<span class='ident'>associated_consts</span>)]</span>
-
-<span class='kw'>trait</span> <span class='ident'>Foo</span> {
-    <span class='kw'>const</span> <span class='ident'>ID</span>: <span class='ident'>i32</span> <span class='op'>=</span> <span class='number'>1</span>;
-}
-
-<span class='kw'>impl</span> <span class='ident'>Foo</span> <span class='kw'>for</span> <span class='ident'>i32</span> {
-}
-
-<span class='kw'>impl</span> <span class='ident'>Foo</span> <span class='kw'>for</span> <span class='ident'>i64</span> {
-    <span class='kw'>const</span> <span class='ident'>ID</span>: <span class='ident'>i32</span> <span class='op'>=</span> <span class='number'>5</span>;
-}
-
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>1</span>, <span class='ident'>i32</span>::<span class='ident'>ID</span>);
-    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>5</span>, <span class='ident'>i64</span>::<span class='ident'>ID</span>);
-}</pre>
-
-<p>Как вы можете видеть, при реализации <code>Foo</code>, можно оставить константу
-неопределенной, как в случае для <code>i32</code>. Тогда будет использовано значение по
-умолчанию. Но также можно и добавить собственное определение, как в случае для
-<code>i64</code>.</p>
-
-<p>Ассоциированные константы могут быть ассоциированы не только с типажом. Это
-также прекрасно работает и с блоком <code>impl</code> для <code>struct</code>:</p>
-<span class='rusttest'>#![feature(associated_consts)]
-
-fn main() {
-    struct Foo;
+<p>Much of the functionality that’s exposed in the standard library is also
+available via the <a href="(http://doc.rust-lang.org/core/)"><code>core</code> crate</a>. When we’re using the standard
+library, Rust automatically brings <code>std</code> into scope, allowing you to use
+its features without an explicit import. By the same token, when using
+<code>!#[no_std]</code>, Rust will bring <code>core</code> into scope for you, as well as <a href="(http://doc.rust-lang.org/core/prelude/v1/)">its
+prelude</a>. This means that a lot of code will Just Work:</p>
+<span class='rusttest'>fn main() {
+    #![no_std]
     
-    impl Foo {
-        pub const FOO: u32 = 3;
+    fn may_fail(failure: bool) -&gt; Result&lt;(), &amp;&#39;static str&gt; {
+        if failure {
+            Err(&quot;this didn’t work!&quot;)
+        } else {
+            Ok(())
+        }
     }
 }</span><pre class='rust rust-example-rendered'>
-<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>feature</span>(<span class='ident'>associated_consts</span>)]</span>
+<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>no_std</span>]</span>
 
-<span class='kw'>struct</span> <span class='ident'>Foo</span>;
-
-<span class='kw'>impl</span> <span class='ident'>Foo</span> {
-    <span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>FOO</span>: <span class='ident'>u32</span> <span class='op'>=</span> <span class='number'>3</span>;
+<span class='kw'>fn</span> <span class='ident'>may_fail</span>(<span class='ident'>failure</span>: <span class='ident'>bool</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span>(), <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span><span class='op'>&gt;</span> {
+    <span class='kw'>if</span> <span class='ident'>failure</span> {
+        <span class='prelude-val'>Err</span>(<span class='string'>&quot;this didn’t work!&quot;</span>)
+    } <span class='kw'>else</span> {
+        <span class='prelude-val'>Ok</span>(())
+    }
 }</pre>
 
     <script type="text/javascript">
