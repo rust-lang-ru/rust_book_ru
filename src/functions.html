@@ -430,12 +430,59 @@ help: consider removing this semicolon:
 
 <p><code>panic!</code> — это макрос, как и <code>println!()</code>, который мы встречали ранее. В отличие
 от <code>println!()</code>, <code>panic!()</code> вызывает остановку текущего потока исполнения с
-заданным сообщением.</p>
+заданным сообщением. Поскольку эта функция вызывает остановку исполнения, она
+никогда не вернёт управление. Поэтому тип её возвращаемого значения обозначается
+знаком <code>!</code> и читается как «расходится».</p>
 
-<p>Поскольку эта функция вызывает остановку исполнения, она никогда не вернёт
-управление. Поэтому тип её возвращаемого значения обозначается знаком <code>!</code> и
-читается как «расходится». Значение расходящейся функции может быть использовано
-как значение любого типа:</p>
+<p>Если добавить функцию <code>diverges()</code> и запустить её, то вы получите следующее
+сообщение:</p>
+
+<pre><code class="language-text">thread ‘&lt;main&gt;’ panicked at ‘This function never returns!’, hello.rs:2
+</code></pre>
+
+<p>Для получение более подробной информации вы можете посмотреть трассировку
+установив переменную среды <code>RUST_BACKTRACE</code>:</p>
+
+<pre><code class="language-text">$ RUST_BACKTRACE=1 ./diverges
+thread &#39;&lt;main&gt;&#39; panicked at &#39;This function never returns!&#39;, hello.rs:2
+stack backtrace:
+   1:     0x7f402773a829 - sys::backtrace::write::h0942de78b6c02817K8r
+   2:     0x7f402773d7fc - panicking::on_panic::h3f23f9d0b5f4c91bu9w
+   3:     0x7f402773960e - rt::unwind::begin_unwind_inner::h2844b8c5e81e79558Bw
+   4:     0x7f4027738893 - rt::unwind::begin_unwind::h4375279447423903650
+   5:     0x7f4027738809 - diverges::h2266b4c4b850236beaa
+   6:     0x7f40277389e5 - main::h19bb1149c2f00ecfBaa
+   7:     0x7f402773f514 - rt::unwind::try::try_fn::h13186883479104382231
+   8:     0x7f402773d1d8 - __rust_try
+   9:     0x7f402773f201 - rt::lang_start::ha172a3ce74bb453aK5w
+  10:     0x7f4027738a19 - main
+  11:     0x7f402694ab44 - __libc_start_main
+  12:     0x7f40277386c8 - &lt;unknown&gt;
+  13:                0x0 - &lt;unknown&gt;
+</code></pre>
+
+<p><code>RUST_BACKTRACE</code> также работает при выполнении команды <code>run</code>:</p>
+
+<pre><code class="language-text">$ RUST_BACKTRACE=1 cargo run
+     Running `target/debug/diverges`
+thread &#39;&lt;main&gt;&#39; panicked at &#39;This function never returns!&#39;, hello.rs:2
+stack backtrace:
+   1:     0x7f402773a829 - sys::backtrace::write::h0942de78b6c02817K8r
+   2:     0x7f402773d7fc - panicking::on_panic::h3f23f9d0b5f4c91bu9w
+   3:     0x7f402773960e - rt::unwind::begin_unwind_inner::h2844b8c5e81e79558Bw
+   4:     0x7f4027738893 - rt::unwind::begin_unwind::h4375279447423903650
+   5:     0x7f4027738809 - diverges::h2266b4c4b850236beaa
+   6:     0x7f40277389e5 - main::h19bb1149c2f00ecfBaa
+   7:     0x7f402773f514 - rt::unwind::try::try_fn::h13186883479104382231
+   8:     0x7f402773d1d8 - __rust_try
+   9:     0x7f402773f201 - rt::lang_start::ha172a3ce74bb453aK5w
+  10:     0x7f4027738a19 - main
+  11:     0x7f402694ab44 - __libc_start_main
+  12:     0x7f40277386c8 - &lt;unknown&gt;
+  13:                0x0 - &lt;unknown&gt;
+</code></pre>
+
+<p>Значение расходящейся функции может быть использовано как значение любого типа:</p>
 <span class='rusttest'>fn main() {
     fn diverges() -&gt; ! {
        panic!(&quot;Эта функция никогда не выходит!&quot;);
@@ -445,6 +492,44 @@ help: consider removing this semicolon:
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>let</span> <span class='ident'>x</span>: <span class='ident'>i32</span> <span class='op'>=</span> <span class='ident'>diverges</span>();
 <span class='kw'>let</span> <span class='ident'>x</span>: <span class='ident'>String</span> <span class='op'>=</span> <span class='ident'>diverges</span>();</pre>
+
+<h2 id='Указатели-на-функции' class='section-header'><a href='#Указатели-на-функции'>Указатели на функции</a></h2>
+<p>Можно объявить имя, связанное с функцией:</p>
+<span class='rusttest'>fn main() {
+    let f: fn(i32) -&gt; i32;
+}</span><pre class='rust rust-example-rendered'>
+<span class='kw'>let</span> <span class='ident'>f</span>: <span class='kw'>fn</span>(<span class='ident'>i32</span>) <span class='op'>-&gt;</span> <span class='ident'>i32</span>;</pre>
+
+<p><code>f</code> — это имя, связанное с указателем на функцию, которая принимает в качестве
+аргумента <code>i32</code> и возвращает <code>i32</code>. Например:</p>
+<span class='rusttest'>fn main() {
+    fn plus_one(i: i32) -&gt; i32 {
+        i + 1
+    }
+    
+    // без вывода типа
+    let f: fn(i32) -&gt; i32 = plus_one;
+    
+    // с выводом типа
+    let f = plus_one;
+}</span><pre class='rust rust-example-rendered'>
+<span class='kw'>fn</span> <span class='ident'>plus_one</span>(<span class='ident'>i</span>: <span class='ident'>i32</span>) <span class='op'>-&gt;</span> <span class='ident'>i32</span> {
+    <span class='ident'>i</span> <span class='op'>+</span> <span class='number'>1</span>
+}
+
+<span class='comment'>// без вывода типа</span>
+<span class='kw'>let</span> <span class='ident'>f</span>: <span class='kw'>fn</span>(<span class='ident'>i32</span>) <span class='op'>-&gt;</span> <span class='ident'>i32</span> <span class='op'>=</span> <span class='ident'>plus_one</span>;
+
+<span class='comment'>// с выводом типа</span>
+<span class='kw'>let</span> <span class='ident'>f</span> <span class='op'>=</span> <span class='ident'>plus_one</span>;</pre>
+
+<p>Теперь мы можем использовать <code>f</code>, чтобы вызвать функцию:</p>
+<span class='rusttest'>fn main() {
+    fn plus_one(i: i32) -&gt; i32 { i + 1 }
+    let f = plus_one;
+    let six = f(5);
+}</span><pre class='rust rust-example-rendered'>
+<span class='kw'>let</span> <span class='ident'>six</span> <span class='op'>=</span> <span class='ident'>f</span>(<span class='number'>5</span>);</pre>
 
     <script type="text/javascript">
         window.playgroundUrl = "https://play.rust-lang.org";
