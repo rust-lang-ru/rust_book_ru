@@ -382,7 +382,8 @@ Could not compile `hello_world`.
         let y: i32 = 3;
         println!(&quot;Значение x равно {} и значение y равно {}&quot;, x, y);
     }
-    println!(&quot;Значение x равно {} и значение y равно {}&quot;, x, y); // Это не заработает
+    // Ошибка компиляции
+    println!(&quot;Значение x равно {} и значение y равно {}&quot;, x, y);
 }
 </span><pre class='rust rust-example-rendered'>
 <span class='kw'>fn</span> <span class='ident'>main</span>() {
@@ -391,7 +392,8 @@ Could not compile `hello_world`.
         <span class='kw'>let</span> <span class='ident'>y</span>: <span class='ident'>i32</span> <span class='op'>=</span> <span class='number'>3</span>;
         <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Значение x равно {} и значение y равно {}&quot;</span>, <span class='ident'>x</span>, <span class='ident'>y</span>);
     }
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Значение x равно {} и значение y равно {}&quot;</span>, <span class='ident'>x</span>, <span class='ident'>y</span>); <span class='comment'>// Это не заработает</span>
+    <span class='comment'>// Ошибка компиляции</span>
+    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Значение x равно {} и значение y равно {}&quot;</span>, <span class='ident'>x</span>, <span class='ident'>y</span>);
 }</pre>
 
 <p>Первый <code>println!</code> выведет &quot;Значение x равно 17 и значение y равно 3&quot;, но этот
@@ -400,16 +402,13 @@ Could not compile `hello_world`.
 
 <pre><code class="language-bash">$ cargo build
    Compiling hello v0.1.0 (file:///home/you/projects/hello_world)
-main.rs:7:62: 7:63 error: unresolved name `y`. Did you mean `x`? [E0425]
-main.rs:7     println!(&quot;Значение x равно {} и значение y равно {}&quot;, x, y); // Это не заработает
+main.rs:8:62: 8:63 error: unresolved name `y`. Did you mean `x`? [E0425]
+main.rs:8     println!(&quot;Значение x равно {} и значение y равно {}&quot;, x, y);
                                                                        ^
-note: in expansion of format_args!
-&lt;std macros&gt;:2:25: 2:56 note: expansion site
-&lt;std macros&gt;:1:1: 2:62 note: in expansion of print!
-&lt;std macros&gt;:3:1: 3:54 note: expansion site
-&lt;std macros&gt;:1:1: 3:58 note: in expansion of println!
-main.rs:7:5: 7:65 note: expansion site
-main.rs:7:62: 7:63 help: run `rustc --explain E0425` to see a detailed explanation
+&lt;std macros&gt;:2:25: 2:56 note: in this expansion of format_args!
+&lt;std macros&gt;:3:1: 3:54 note: in this expansion of print! (defined in &lt;std macros&gt;)
+main.rs:8:5: 8:65 note: in this expansion of println! (defined in &lt;std macros&gt;)
+main.rs:8:62: 8:63 help: run `rustc --explain E0425` to see a detailed explanation
 error: aborting due to previous error
 Could not compile `hello`.
 
@@ -443,21 +442,21 @@ To learn more, run the command again with --verbose.
 <p>Затенение и изменяемое связывание могут казаться двумя сторонами одной монеты, но
 они являются двумя отдельными концепциями, которые не всегда взаимозаменяемы.
 Например, затенение позволяет связать имя с другим типом или изменить связь с
-изменяемой на неизменяемою.</p>
+изменяемой на неизменяемую.</p>
 <span class='rusttest'>fn main() {
     let mut x: i32 = 1;
     x = 7;
-    let x = x; // теперь x неизменяемое и связанно с 7
+    let x = x; // теперь X неизменяемое и связанно с 7
     
     let y = 4;
-    let y = &quot;Я так же могу быть связан с текстом!&quot;; // теперь y другого типа
+    let y = &quot;Я так же могу быть связан с текстом!&quot;; // теперь Y другого типа
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>x</span>: <span class='ident'>i32</span> <span class='op'>=</span> <span class='number'>1</span>;
 <span class='ident'>x</span> <span class='op'>=</span> <span class='number'>7</span>;
-<span class='kw'>let</span> <span class='ident'>x</span> <span class='op'>=</span> <span class='ident'>x</span>; <span class='comment'>// теперь x неизменяемое и связанно с 7</span>
+<span class='kw'>let</span> <span class='ident'>x</span> <span class='op'>=</span> <span class='ident'>x</span>; <span class='comment'>// теперь X неизменяемое и связанно с 7</span>
 
 <span class='kw'>let</span> <span class='ident'>y</span> <span class='op'>=</span> <span class='number'>4</span>;
-<span class='kw'>let</span> <span class='ident'>y</span> <span class='op'>=</span> <span class='string'>&quot;Я так же могу быть связан с текстом!&quot;</span>; <span class='comment'>// теперь y другого типа</span></pre>
+<span class='kw'>let</span> <span class='ident'>y</span> <span class='op'>=</span> <span class='string'>&quot;Я так же могу быть связан с текстом!&quot;</span>; <span class='comment'>// теперь Y другого типа</span></pre>
 
     <script type="text/javascript">
         window.playgroundUrl = "https://play.rust-lang.org";
