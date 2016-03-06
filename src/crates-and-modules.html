@@ -258,6 +258,7 @@ $ cd phrases
 <h1 id='Объявление-модулей' class='section-header'><a href='#Объявление-модулей'>Объявление модулей</a></h1>
 <p>Для объявления каждого из наших модулей, мы используем ключевое слово <code>mod</code>.
 Давайте сделаем, чтобы наш <code>src/lib.rs</code> выглядел следующим образом:</p>
+
 <span class='rusttest'>fn main() {
     mod english {
         mod greetings {
@@ -322,6 +323,7 @@ build  deps  examples  libphrases-a7448e02a0468eaa.rlib  native
 Rust поддерживает это двумя способами.</p>
 
 <p>Вместо объявления модуля наподобие:</p>
+
 <span class='rusttest'>fn main() {
     mod english {
         // contents of our module go here
@@ -332,6 +334,7 @@ Rust поддерживает это двумя способами.</p>
 }</pre>
 
 <p>Мы можем объявить наш модуль в виде:</p>
+
 <span class='rusttest'>fn main() {
     mod english;
 }</span><pre class='rust rust-example-rendered'>
@@ -370,6 +373,7 @@ Rust поддерживает это двумя способами.</p>
 </code></pre>
 
 <p><code>src/lib.rs</code> — корень нашего контейнера, и выглядит он следующим образом:</p>
+
 <span class='rusttest'>fn main() {
     mod english;
     mod japanese;
@@ -382,6 +386,7 @@ Rust поддерживает это двумя способами.</p>
 от нашей структуры. В данном примере мы выбрали второй вариант из-за того, что
 наши модули содержат суб-модули. И <code>src/english/mod.rs</code> и <code>src/japanese/mod.rs</code>
 выглядят следующим образом:</p>
+
 <span class='rusttest'>fn main() {
     mod greetings;
     mod farewells;
@@ -401,6 +406,7 @@ Rust поддерживает это двумя способами.</p>
 пустыми на данный момент. Давайте добавим несколько функций.</p>
 
 <p>Поместите следующий код в <code>src/english/greetings.rs</code>:</p>
+
 <span class='rusttest'>fn main() {
     fn hello() -&gt; String {
         &quot;Hello!&quot;.to_string()
@@ -411,6 +417,7 @@ Rust поддерживает это двумя способами.</p>
 }</pre>
 
 <p>Следующий код в <code>src/english/farewells.rs</code>:</p>
+
 <span class='rusttest'>fn main() {
     fn goodbye() -&gt; String {
         &quot;Goodbye.&quot;.to_string()
@@ -421,6 +428,7 @@ Rust поддерживает это двумя способами.</p>
 }</pre>
 
 <p>Следующий код в <code>src/japanese/greetings.rs</code>:</p>
+
 <span class='rusttest'>fn main() {
     fn hello() -&gt; String {
         &quot;こんにちは&quot;.to_string()
@@ -435,6 +443,7 @@ Rust поддерживает это двумя способами.</p>
 языке написано «Konnichiwa», чтобы понять как работает модульная система.</p>
 
 <p>Поместите следующий код в <code>src/japanese/farewells.rs</code>:</p>
+
 <span class='rusttest'>fn main() {
     fn goodbye() -&gt; String {
         &quot;さようなら&quot;.to_string()
@@ -455,6 +464,7 @@ Rust поддерживает это двумя способами.</p>
 
 <p>Создайте файл <code>src/main.rs</code> и положите в него следующее: (при этом он не будет
 компилироваться)</p>
+
 <span class='rusttest'>extern crate phrases;
 
 fn main() {
@@ -514,6 +524,7 @@ phrases/src/main.rs:4:5: 4:76 note: expansion site
 сделать элементы публичными, вы используете ключевое слово <code>pub</code>. Давайте
 сначала сосредоточимся на модуле <code>english</code>, для чего сократим файл <code>src/main.rs</code>
 до этого:</p>
+
 <span class='rusttest'>extern crate phrases;
 
 fn main() {
@@ -530,6 +541,7 @@ fn main() {
 
 <p>В файле <code>src/lib.rs</code> в объявлении модуля <code>english</code> давайте добавим модификатор
 <code>pub</code>:</p>
+
 <span class='rusttest'>fn main() {
     pub mod english;
     mod japanese;
@@ -538,6 +550,7 @@ fn main() {
 <span class='kw'>mod</span> <span class='ident'>japanese</span>;</pre>
 
 <p>В файле <code>src/english/mod.rs</code> давайте сделаем оба модуля с модификатором <code>pub</code>:</p>
+
 <span class='rusttest'>fn main() {
     pub mod greetings;
     pub mod farewells;
@@ -547,6 +560,7 @@ fn main() {
 
 <p>В файле <code>src/english/greetings.rs</code> давайте добавим модификатор <code>pub</code> к
 объявлению нашей функции <code>fn</code>:</p>
+
 <span class='rusttest'>fn main() {
     pub fn hello() -&gt; String {
         &quot;Hello!&quot;.to_string()
@@ -557,6 +571,7 @@ fn main() {
 }</pre>
 
 <p>А также в файле <code>src/english/farewells.rs</code>:</p>
+
 <span class='rusttest'>fn main() {
     pub fn goodbye() -&gt; String {
         &quot;Goodbye.&quot;.to_string()
@@ -594,6 +609,7 @@ Goodbye in English: Goodbye.
 <p>Rust предоставляет ключевое слово <code>use</code>, которое позволяет импортировать имена в
 нашу локальную область видимости. Давайте изменим файл <code>src/main.rs</code>, чтобы он
 выглядел следующим образом:</p>
+
 <span class='rusttest'>extern crate phrases;
 
 use phrases::english::greetings;
@@ -619,6 +635,7 @@ fn main() {
 коротким именам. По соглашению, при импорте функции, лучшей практикой считается
 импортировать модуль, а не функцию непосредственно. Другими словами, вы <em>могли
 бы</em> сделать следующее:</p>
+
 <span class='rusttest'>extern crate phrases;
 
 use phrases::english::greetings::hello;
@@ -644,6 +661,7 @@ fn main() {
 программа разрастается, это становится проблемой. Если у нас возникает конфликт
 имен, то Rust выдает ошибку компиляции. Например, если мы сделаем функции
 <code>japanese</code> публичными, и пытаемся скомпилировать этот код:</p>
+
 <span class='rusttest'>extern crate phrases;
 
 use phrases::english::greetings::hello;
@@ -676,6 +694,7 @@ Could not compile `phrases`.
 
 <p>Если мы импортируем несколько имен из одного модуля, то нам совсем не
 обязательно писать одно и то же много раз. Вместо этого кода:</p>
+
 <span class='rusttest'>fn main() {
     use phrases::english::greetings;
     use phrases::english::farewells;
@@ -684,6 +703,7 @@ Could not compile `phrases`.
 <span class='kw'>use</span> <span class='ident'>phrases</span>::<span class='ident'>english</span>::<span class='ident'>farewells</span>;</pre>
 
 <p>Вы можете использовать сокращение:</p>
+
 <span class='rusttest'>fn main() {
     use phrases::english::{greetings, farewells};
 }</span><pre class='rust rust-example-rendered'>
@@ -696,6 +716,7 @@ Could not compile `phrases`.
 напрямую отображать внутреннюю организацию кода.</p>
 
 <p>Давайте посмотрим на примере. Измените файл <code>src/main.rs</code> следующим образом:</p>
+
 <span class='rusttest'>extern crate phrases;
 
 use phrases::english::{greetings,farewells};
@@ -723,6 +744,7 @@ fn main() {
 }</pre>
 
 <p>Затем измените файл <code>src/lib.rs</code>, чтобы сделать модуль <code>japanese</code> с публичным:</p>
+
 <span class='rusttest'>fn main() {
     pub mod english;
     pub mod japanese;
@@ -732,6 +754,7 @@ fn main() {
 
 <p>Далее, убедитесь, что обе функции публичные, сперва в
 <code>src/japanese/greetings.rs</code>:</p>
+
 <span class='rusttest'>fn main() {
     pub fn hello() -&gt; String {
         &quot;こんにちは&quot;.to_string()
@@ -742,6 +765,7 @@ fn main() {
 }</pre>
 
 <p>А затем в <code>src/japanese/farewells.rs</code>:</p>
+
 <span class='rusttest'>fn main() {
     pub fn goodbye() -&gt; String {
         &quot;さようなら&quot;.to_string()
@@ -752,6 +776,7 @@ fn main() {
 }</pre>
 
 <p>Наконец, измените файл <code>src/japanese/mod.rs</code> вот так:</p>
+
 <span class='rusttest'>fn main() {
     pub use self::greetings::hello;
     pub use self::farewells::goodbye;

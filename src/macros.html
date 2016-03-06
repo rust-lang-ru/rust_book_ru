@@ -222,6 +222,7 @@
 <h1 id='Определение-макросов-Макроопределения' class='section-header'><a href='#Определение-макросов-Макроопределения'>Определение макросов (Макроопределения)</a></h1>
 <p>Вы, возможно, видели макрос <code>vec!</code>, который используется для инициализации
 <a href="vectors.html">вектора</a> с произвольным количеством элементов.</p>
+
 <span class='rusttest'>fn main() {
     let x: Vec&lt;u32&gt; = vec![1, 2, 3];
     assert_eq!(x, [1, 2, 3]);
@@ -231,6 +232,7 @@
 <p>Его нельзя реализовать в виде обычной функции, так как он принимает любое
 количество аргументов. Но мы можем представить его в виде синтаксического
 сокращения для следующего кода</p>
+
 <span class='rusttest'>fn main() {
     let x: Vec&lt;u32&gt; = {
         let mut temp_vec = Vec::new();
@@ -250,6 +252,7 @@
 };</pre>
 
 <p>Мы можем реализовать это сокращение, используя макрос: <sup id="fnref1"><a href="#fn1" rel="footnote">1</a></sup></p>
+
 <span class='rusttest'>macro_rules! vec {
     ( $( $x:expr ),* ) =&gt; {
         {
@@ -278,6 +281,7 @@ fn main() {
 }</pre>
 
 <p>Ого, тут много нового синтаксиса! Давайте разберем его.</p>
+
 <span class='rusttest'>fn main() {
     macro_rules! vec { ... }
 }</span><pre class='rust rust-example-rendered'>
@@ -292,6 +296,7 @@ fn main() {
 <h2 id='Сопоставление-matching-Синтаксис-вызова-макрокоманды' class='section-header'><a href='#Сопоставление-matching-Синтаксис-вызова-макрокоманды'>Сопоставление (Matching) (Синтаксис вызова макрокоманды)</a></h2>
 <p>Макрос определяется с помощью ряда <em>правил</em>, которые представляют собой варианты
 сопоставления с образцом. Выше у нас было</p>
+
 <span class='rusttest'>fn main() {
     ( $( $x:expr ),* ) =&gt; { ... };
 }</span><pre class='rust rust-example-rendered'>
@@ -313,6 +318,7 @@ fn main() {
 <p>За исключением специального синтаксиса сопоставления с образцом, любые другие
 элементы Rust, которые появляются в образце, должны в точности совпадать.
 Например,</p>
+
 <span class='rusttest'>macro_rules! foo {
     (x =&gt; $e:expr) =&gt; (println!(&quot;mode X: {}&quot;, $e));
     (y =&gt; $e:expr) =&gt; (println!(&quot;mode Y: {}&quot;, $e));
@@ -337,6 +343,7 @@ fn main() {
 </code></pre>
 
 <p>А с</p>
+
 <span class='rusttest'>fn main() {
     foo!(z =&gt; 3);
 }</span><pre class='rust rust-example-rendered'>
@@ -351,6 +358,7 @@ fn main() {
 <p>С правой стороны макро правил используется, по большей части, обычный синтаксис
 Rust. Но мы можем соединить кусочки раздробленного синтаксиса, захваченные при
 сопоставлении с соответствующим образцом. Из предыдущего примера:</p>
+
 <span class='rusttest'>fn main() {
     $(
         temp_vec.push($x);
@@ -371,6 +379,7 @@ $(
 
 <p>Еще одна деталь: макрос <code>vec!</code> имеет <em>две</em> пары фигурных скобках правой части.
 Они часто сочетаются таким образом:</p>
+
 <span class='rusttest'>fn main() {
     macro_rules! foo {
         () =&gt; {{
@@ -414,6 +423,7 @@ $(
 
 <p>Этот причудливый макрос иллюстрирует дублирования переменных из внешних уровней
 повторения.</p>
+
 <span class='rusttest'>macro_rules! o_O {
     (
         $(
@@ -477,6 +487,7 @@ int main() {
 приоритет чем сложение. Если вы часто использовали C макросы, вы, наверное,
 знаете стандартные идиомы для устранения этой проблемы, а также пять или шесть
 других проблем. В Rust мы можем не беспокоиться об этом.</p>
+
 <span class='rusttest'>macro_rules! five_times {
     ($x:expr) =&gt; (5 * $x);
 }
@@ -527,6 +538,7 @@ if (state &gt; 0) {
 команде печати требуется обращаться к ним обоим.</p>
 
 <p>Эквивалентный макрос в Rust обладает требуемым поведением.</p>
+
 <span class='rusttest'>fn get_log_state() -&gt; i32 { 3 }
 macro_rules! log {
     ($msg:expr) =&gt; {{
@@ -565,6 +577,7 @@ fn main() {
 
 <p>Это также ограничивает возможности макросов для внедрения новых связываний
 переменных на месте вызова. Код, приведенный ниже, не будет работать:</p>
+
 <span class='rusttest'>macro_rules! foo {
     () =&gt; (let x = 3);
 }
@@ -585,6 +598,7 @@ fn main() {
 
 <p>Вместо этого вы должны передавать имя переменной при вызове, тогда она будет
 обладать меткой правильного контекста синтаксиса.</p>
+
 <span class='rusttest'>macro_rules! foo {
     ($v:ident) =&gt; (let $v = 3);
 }
@@ -605,6 +619,7 @@ fn main() {
 
 <p>Это справедливо для <code>let</code> привязок и меток loop, но не для <a href="https://doc.rust-lang.org/stable/reference.html#items">элементов</a>.
 Код, приведенный ниже, компилируется:</p>
+
 <span class='rusttest'>macro_rules! foo {
     () =&gt; (fn x() { });
 }
@@ -628,6 +643,7 @@ fn main() {
 вызовы того макроса, который раскрывается. Эти рекурсивные макросы могут быть
 использованы для обработки древовидного ввода, как показано на этом (упрощенном)
 HTML сокращение:</p>
+
 <span class='rusttest'>#![allow(unused_must_use)]
 macro_rules! write_html {
     ($w:expr, ) =&gt; (());
@@ -806,6 +822,7 @@ fn main() {
 
 <p>Атрибут <code>macro_use</code> также можно поставить на подключение контейнера <code>extern crate</code>. В этом контексте оно управляет тем, какие макросы будут загружены из
 внешнего контейнера, т.е.</p>
+
 <span class='rusttest'>fn main() {
     #[macro_use(foo, bar)]
     extern crate baz;
@@ -821,6 +838,7 @@ fn main() {
 артефакт, можно использовать атрибут <code>#[no_link]</code>.</p>
 
 <p>Например:</p>
+
 <span class='rusttest'>macro_rules! m1 { () =&gt; (()) }
 
 // здесь видны: m1
@@ -891,6 +909,7 @@ fn main() { }
 <h1 id='Переменная-crate' class='section-header'><a href='#Переменная-crate'>Переменная <code>$crate</code></a></h1>
 <p>Если макрос используется в нескольких контейнерах, всё становится ещё
 сложнее. Допустим, <code>mylib</code> определяет</p>
+
 <span class='rusttest'>pub fn increment(x: u32) -&gt; u32 {
     x + 1
 }
@@ -928,6 +947,7 @@ fn main() { }
 макроса, импортированного из контейнера <code>foo</code>. А когда макрос определён и
 используется в одном и том же контейнере, <code>$crate</code> станет пустой. Это означает,
 что мы можем написать</p>
+
 <span class='rusttest'>#[macro_export]
 macro_rules! inc {
     ($x:expr) =&gt; ( $crate::increment($x) )
@@ -957,6 +977,7 @@ fn main() { }
 <a href="http://esolangs.org/wiki/Bitwise_Cyclic_Tag">Bitwise Cyclic Tag</a>. Стоит
 заметить, что мы не рекомендуем такой подход, а просто иллюстрируем возможности
 макросов.</p>
+
 <span class='rusttest'>fn main() {
     macro_rules! bct {
         // cmd 0:  d ... =&gt; ...
@@ -1011,6 +1032,7 @@ fn main() { }
 <h2 id='panic' class='section-header'><a href='#panic'>panic!</a></h2>
 <p>Этот макрос вызывает панику текущего потока. Вы можете указать сообщение, с
 которым поток завершится:</p>
+
 <span class='rusttest'>fn main() {
     panic!(&quot;о нет!&quot;);
 }</span><pre class='rust rust-example-rendered'>
@@ -1019,6 +1041,7 @@ fn main() { }
 <h2 id='vec' class='section-header'><a href='#vec'>vec!</a></h2>
 <p>Макрос <code>vec!</code> используется по всей книге, поэтому вы наверняка уже видели его.
 Он упрощает создание <code>Vec&lt;T&gt;</code>:</p>
+
 <span class='rusttest'>fn main() {
     let v = vec![1, 2, 3, 4, 5];
 }</span><pre class='rust rust-example-rendered'>
@@ -1026,6 +1049,7 @@ fn main() { }
 
 <p>Он также позволяет вам создавать векторы с повторяющимися значениями. Например,
 вот сто нолей:</p>
+
 <span class='rusttest'>fn main() {
     let v = vec![0; 100];
 }</span><pre class='rust rust-example-rendered'>
@@ -1035,6 +1059,7 @@ fn main() { }
 <p>Эти два макроса используются в тестах. <code>assert!</code> принимает логическое значение.
 <code>assert_eq!</code> принимает два значения и проверяет, что они равны. <code>true</code>
 засчитывается как успех, а <code>false</code> вызывает панику и проваливает тест. Вот так:</p>
+
 <span class='rusttest'>fn main() {
     // Работает!
     
@@ -1060,6 +1085,7 @@ fn main() { }
 <p><code>try!</code> используется для обработки ошибок. Он принимает нечто возвращающее
 <code>Result&lt;T, E&gt;</code> и возвращает <code>T</code> если было возвращено <code>Ok&lt;T&gt;</code>; иначе он делает
 возврат из функции со значением <code>Err(E)</code>. Вроде такого:</p>
+
 <span class='rusttest'>fn main() {
     use std::fs::File;
     
@@ -1078,6 +1104,7 @@ fn main() { }
 }</pre>
 
 <p>Такой код читается легче, чем этот:</p>
+
 <span class='rusttest'>fn main() {
     use std::fs::File;
     
@@ -1108,6 +1135,7 @@ fn main() { }
 <h2 id='unreachable' class='section-header'><a href='#unreachable'>unreachable!</a></h2>
 <p>Этот макрос применяется, когда вы хотите пометить какой-то код, который никогда
 не должен исполняться:</p>
+
 <span class='rusttest'>fn main() {
     if false {
         unreachable!();
@@ -1120,6 +1148,7 @@ fn main() { }
 <p>Иногда вам придётся определять ветви условных конструкций, которые точно никогда
 не исполнятся. В таком случае, используйте этот макрос, чтобы в случае ошибки
 программа запаниковала:</p>
+
 <span class='rusttest'>fn main() {
     let x: Option&lt;i32&gt; = None;
     

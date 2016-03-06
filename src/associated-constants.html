@@ -190,6 +190,7 @@
     <h1 class="title">Ассоциированные константы</h1>
     <p>С включенной возможностью <code>associated_consts</code> вы можете определить константы
 вроде этой:</p>
+
 <span class='rusttest'>#![feature(associated_consts)]
 
 trait Foo {
@@ -219,6 +220,7 @@ fn main() {
 }</pre>
 
 <p>Любая реализация <code>Foo</code> должна будет определить <code>ID</code>. Без этого определения:</p>
+
 <span class='rusttest'>#![feature(associated_consts)]
 
 fn main() {
@@ -246,6 +248,7 @@ fn main() {
 </code></pre>
 
 <p>Также может быть реализовано значение по умолчанию:</p>
+
 <span class='rusttest'>#![feature(associated_consts)]
 
 trait Foo {
@@ -289,6 +292,7 @@ fn main() {
 
 <p>Ассоциированные константы могут быть ассоциированы не только с типажом. Это
 также прекрасно работает и с блоком <code>impl</code> для <code>struct</code>:</p>
+
 <span class='rusttest'>#![feature(associated_consts)]
 
 fn main() {

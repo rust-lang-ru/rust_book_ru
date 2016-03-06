@@ -191,6 +191,7 @@
     <p>Изменяемость, то есть возможность изменить что-то, работает в Rust несколько
 иначе, чем в других языках. Во-первых, по умолчанию связанные имена не
 изменяемы:</p>
+
 <span class='rusttest'>fn main() {
     let x = 5;
     x = 6; // ошибка!
@@ -199,6 +200,7 @@
 <span class='ident'>x</span> <span class='op'>=</span> <span class='number'>6</span>; <span class='comment'>// ошибка!</span></pre>
 
 <p>Изменяемость можно добавить с помощью ключевого слова <code>mut</code>:</p>
+
 <span class='rusttest'>fn main() {
     let mut x = 5;
     
@@ -214,6 +216,7 @@
 
 <p>Если же вы хотите изменить само связанное значение, вам понадобится
 <a href="references-and-borrowing.html">изменяемая ссылка</a>:</p>
+
 <span class='rusttest'>fn main() {
     let mut x = 5;
     let y = &amp;mut x;
@@ -226,6 +229,7 @@
 связанная ссылка (<code>*y = 5</code>). Тонкая разница.</p>
 
 <p>Конечно, вы можете объявить и изменяемое имя для изменяемой ссылки:</p>
+
 <span class='rusttest'>fn main() {
     let mut x = 5;
     let mut y = &amp;mut x;
@@ -238,6 +242,7 @@
 
 <p>Стоит отметить, что <code>mut</code> — это часть <a href="patterns.html">шаблона</a>, поэтому можно делать
 такие вещи:</p>
+
 <span class='rusttest'>fn main() {
     let (mut x, y) = (5, 6);
     
@@ -252,6 +257,7 @@
 <p>Однако, когда мы говорим, что что-либо «неизменяемо» в Rust, это не означает,
 что оно совсем не может измениться. Мы говорим о «внешней изменяемости». Для
 примера рассмотрим <a href="http://doc.rust-lang.org/std/sync/struct.Arc.html"><code>Arc&lt;T&gt;</code></a>:</p>
+
 <span class='rusttest'>fn main() {
     use std::sync::Arc;
     
@@ -290,6 +296,7 @@
 
 <p>Другие типы, например те, что определены в модуле <a href="http://doc.rust-lang.org/std/cell/index.html"><code>std::cell</code></a>,
 напротив, имеют «внутреннюю изменяемость». Например:</p>
+
 <span class='rusttest'>fn main() {
     use std::cell::RefCell;
     
@@ -305,6 +312,7 @@
 
 <p>RefCell возвращает изменяемую ссылку <code>&amp;mut</code> при помощи метода <code>borrow_mut()</code>. А
 не опасно ли это? Что, если мы сделаем так:</p>
+
 <span class='rusttest'>fn main() {
     use std::cell::RefCell;
     
@@ -336,6 +344,7 @@
 <p>Изменяемость — это свойство либо ссылки (<code>&amp;mut</code>), либо имени (<code>let mut</code>). Это
 значит, что, например, у вас не может быть <a href="structs.html">структуры</a>, часть полей
 которой изменяется, а другая часть — нет:</p>
+
 <span class='rusttest'>fn main() {
     struct Point {
         x: i32,
@@ -348,6 +357,7 @@
 }</pre>
 
 <p>Изменяемость структуры определяется при её связывании:</p>
+
 <span class='rusttest'>fn main() {
     struct Point {
         x: i32,
@@ -377,6 +387,7 @@
 
 <p>Однако, используя <a href="http://doc.rust-lang.org/std/cell/struct.Cell.html"><code>Cell&lt;T&gt;</code></a>, вы можете эмулировать изменяемость на
 уровне полей:</p>
+
 <span class='rusttest'>fn main() {
     use std::cell::Cell;
     

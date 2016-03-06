@@ -228,6 +228,7 @@
 <p>Давайте напишем плагин
 <a href="https://github.com/rust-lang/rust/tree/master/src/test/auxiliary/roman_numerals.rs"><code>roman_numerals.rs</code></a>,
 который реализует целочисленные литералы с римскими цифрами.</p>
+
 <span class='rusttest'>fn main() {
     #![crate_type=&quot;dylib&quot;]
     #![feature(plugin_registrar, rustc_private)]
@@ -336,6 +337,7 @@
 }</pre>
 
 <p>Теперь мы можем использовать <code>rn!()</code> как любой другой макрос:</p>
+
 <span class='rusttest'>#![feature(plugin)]
 #![plugin(roman_numerals)]
 
@@ -378,6 +380,7 @@ fn main() {
 <a href="http://doc.rust-lang.org/syntax/parse/index.html"><code>syntax::parse</code></a>, чтобы
 преобразовать деревья токенов в высокоуровневые элементы синтаксиса, вроде
 выражений:</p>
+
 <span class='rusttest'>fn main() {
     fn expand_foo(cx: &amp;mut ExtCtxt, sp: Span, args: &amp;[TokenTree])
             -&gt; Box&lt;MacResult+&#39;static&gt; {
@@ -431,6 +434,7 @@ fn main() {
 пример можно найти в
 <a href="https://github.com/rust-lang/rust/blob/master/src/test/auxiliary/lint_plugin_test.rs"><code>src/test/auxiliary/lint_plugin_test.rs</code></a>.
 Здесь мы приводим его суть:</p>
+
 <span class='rusttest'>fn main() {
     declare_lint!(TEST_LINT, Warn,
                   &quot;Предупреждать об элементах, названных &#39;lintme&#39;&quot;);
@@ -479,6 +483,7 @@ fn main() {
 }</pre>
 
 <p>Тогда код вроде</p>
+
 <span class='rusttest'>fn main() {
     #![plugin(lint_plugin_test)]
     

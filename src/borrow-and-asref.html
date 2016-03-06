@@ -197,6 +197,7 @@
 
 <p>Например, <a href="http://doc.rust-lang.org/std/collections/struct.HashMap.html"><code>HashMap</code></a> имеет метод <a href="http://doc.rust-lang.org/std/collections/struct.HashMap.html#method.get"><code>get</code></a>, который использует
 <code>Borrow</code>:</p>
+
 <span class='rusttest'>fn main() {
     fn get&lt;Q: ?Sized&gt;(&amp;self, k: &amp;Q) -&gt; Option&lt;&amp;V&gt;
         where K: Borrow&lt;Q&gt;,
@@ -208,6 +209,7 @@
 
 <p>Эта сигнатура является довольно сложной. Параметр <code>K</code> — это то, что нас здесь
 интересует. Он ссылается на параметр самого <code>HashMap</code>:</p>
+
 <span class='rusttest'>fn main() {
     struct HashMap&lt;K, V, S = RandomState&gt; {
 }</span><pre class='rust rust-example-rendered'>
@@ -217,6 +219,7 @@
 Взглянем на сигнатуру <code>get()</code> еще раз. Использовать <code>get()</code> возможно, когда ключ
 реализует <code>Borrow&lt;Q&gt;</code>. Таким образом, мы можем сделать <code>HashMap</code>, который
 использует ключи <code>String</code>, но использовать <code>&amp;str</code>, когда мы выполняем поиск:</p>
+
 <span class='rusttest'>fn main() {
     use std::collections::HashMap;
     
@@ -239,6 +242,7 @@
 становится полезен, когда есть более одного вида занимаемого значения. Это
 особенно верно для ссылок и срезов: у вас может быть как <code>&amp;T</code>, так и <code>&amp;mut T</code>.
 Если мы хотим принимать оба этих типа, <code>Borrow</code> как раз для этого подходит:</p>
+
 <span class='rusttest'>fn main() {
     use std::borrow::Borrow;
     use std::fmt::Display;
@@ -269,6 +273,7 @@
 <h1 id='Типаж-asref' class='section-header'><a href='#Типаж-asref'>Типаж AsRef</a></h1>
 <p>Типаж <code>AsRef</code> является преобразующим типажом. Он используется в обобщённом коде
 для преобразования некоторого значения в ссылку. Например:</p>
+
 <span class='rusttest'>fn main() {
     let s = &quot;Hello&quot;.to_string();
     

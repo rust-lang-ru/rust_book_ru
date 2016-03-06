@@ -194,6 +194,7 @@
 нестабильной сборке может быть использовано ключевое слово <code>box</code>, как для
 создания, так и для деструктуризации <code>Box</code>. Ниже представлен пример
 использования:</p>
+
 <span class='rusttest'>#![feature(box_syntax, box_patterns)]
 
 fn main() {
@@ -238,6 +239,7 @@ fn main() {
 <h1 id='Возврат-указателей' class='section-header'><a href='#Возврат-указателей'>Возврат указателей</a></h1>
 <p>Во многих языках с указателями, вы можете вернуть указатель из функции, чтобы
 таким образом избежать копирования большой структуры данных. Например:</p>
+
 <span class='rusttest'>struct BigStruct {
     one: i32,
     two: i32,
@@ -284,6 +286,7 @@ fn main() {
 указателя, а не всех <code>int</code>, из которых состоит <code>BigStruct</code>.</p>
 
 <p>Это антипаттерн в Rust. Вместо этого следует написать так:</p>
+
 <span class='rusttest'>#![feature(box_syntax)]
 
 struct BigStruct {

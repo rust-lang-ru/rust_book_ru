@@ -191,6 +191,7 @@
     <p>В Rust <em>перечисление</em> (<code>enum</code>) — это тип данных, который представляет собой один
 из нескольких возможных вариантов. Каждый вариант в перечислении может быть
 также связан с другими данными:</p>
+
 <span class='rusttest'>fn main() {
     enum Message {
         Quit,
@@ -218,6 +219,7 @@
 <p>Мы используем синтаксис <code>::</code> чтобы использовать имя каждого из вариантов. Их
 область видимости ограничена именем самого перечисления. Это позволяет
 использовать оба варианта из примера ниже совместно:</p>
+
 <span class='rusttest'>fn main() {
     enum Message {
         Move { x: i32, y: i32 },
@@ -248,6 +250,7 @@
 содержит информацию о том, какой именно это вариант. Это иногда называют
 <em>размеченное объединение</em> (<em>tagged union</em>), поскольку данные включают в себя
 метку, обозначающую что это за тип.</p>
+
 <span class='rusttest'>fn main() {
     fn process_color_change(msg: Message) {
         let Message::ChangeColor(r, g, b) = msg; // ошибка времени компиляции
@@ -267,6 +270,7 @@
 <h1 id='Конструкторы-как-функции' class='section-header'><a href='#Конструкторы-как-функции'>Конструкторы как функции</a></h1>
 <p>Конструктор перечисления может быть также использован как обычная функция.
 Например:</p>
+
 <span class='rusttest'>fn main() {
     enum Message {
     Write(String),
@@ -276,6 +280,7 @@
 <span class='kw'>let</span> <span class='ident'>m</span> <span class='op'>=</span> <span class='ident'>Message</span>::<span class='ident'>Write</span>(<span class='string'>&quot;Hello, world&quot;</span>.<span class='ident'>to_string</span>());</pre>
 
 <p>тоже самое, что и</p>
+
 <span class='rusttest'>fn main() {
     enum Message {
     Write(String),
@@ -296,6 +301,7 @@
 <a href="closures.html">замыканиям</a>, мы поговорим о передаче функций в роли аргумента другой
 функции. Например, с помощью <a href="iterators.html">итераторов</a> мы можем преобразовывать
 вектор строк в вектор состоящий из <code>Message::Write</code>:</p>
+
 <span class='rusttest'>fn main() {
     enum Message {
     Write(String),

@@ -192,6 +192,7 @@
 виде стандартного библиотечного типа <a href="http://doc.rust-lang.org/std/vec/index.html"><code>Vec&lt;T&gt;</code></a> (где <code>&lt;T&gt;</code> является
 <a href="generics.html">обобщённым типом</a>). Вектора всегда размещают данные в куче. Вы можете
 создавать их с помощью макроса <code>vec!</code>:</p>
+
 <span class='rusttest'>fn main() {
     let v = vec![1, 2, 3, 4, 5]; // v: Vec&lt;i32&gt;
 }</span><pre class='rust rust-example-rendered'>
@@ -203,6 +204,7 @@
 соглашение.)</p>
 
 <p>Для создания вектора из повторяющихся значений есть другая форма <code>vec!</code>:</p>
+
 <span class='rusttest'>fn main() {
     let v = vec![0; 10]; // десять нулей
 }</span><pre class='rust rust-example-rendered'>
@@ -210,6 +212,7 @@
 
 <h2 id='Доступ-к-элементам' class='section-header'><a href='#Доступ-к-элементам'>Доступ к элементам</a></h2>
 <p>Чтобы получить значение по определенному индексу в векторе, мы используем <code>[]</code>:</p>
+
 <span class='rusttest'>fn main() {
     let v = vec![1, 2, 3, 4, 5];
     
@@ -223,6 +226,7 @@
 
 <h2 id='Обход' class='section-header'><a href='#Обход'>Обход</a></h2>
 <p>Вы можете обойти элементы вектора с помощью <code>for</code>. Есть три варианта:</p>
+
 <span class='rusttest'>fn main() {
     let mut v = vec![1, 2, 3, 4, 5];
     

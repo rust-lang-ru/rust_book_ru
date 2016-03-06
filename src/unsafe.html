@@ -198,6 +198,7 @@
 <p>Давайте рассмотрим синтаксис, а затем поговорим о семантике. <code>unsafe</code>
 используется в четырёх контекстах. Первый — это объявление того, что функция
 небезопасна:</p>
+
 <span class='rusttest'>fn main() {
     unsafe fn beregis_avtomobilya() {
         // страшные вещи
@@ -209,6 +210,7 @@
 
 <p>Например, все функции, вызываемые через <a href="ffi.html">FFI</a>, должны быть помечены как
 небезопасные. Другое использование <code>unsafe</code> — это отметка небезопасного блока:</p>
+
 <span class='rusttest'>fn main() {
     unsafe {
         // страшные вещи
@@ -219,12 +221,14 @@
 }</pre>
 
 <p>Третье — небезопасные типажи:</p>
+
 <span class='rusttest'>fn main() {
     unsafe trait Scary { }
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>unsafe</span> <span class='kw'>trait</span> <span class='ident'>Scary</span> { }</pre>
 
 <p>И четвёртое — реализация (<code>impl</code>) таких типажей:</p>
+
 <span class='rusttest'>fn main() {
     unsafe trait Scary { }
     unsafe impl Scary for i32 {}

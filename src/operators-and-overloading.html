@@ -194,6 +194,7 @@
 чего перегружается операция.</p>
 
 <p>Например, операция <code>+</code> может быть перегружена с помощью типажа <code>Add</code>:</p>
+
 <span class='rusttest'>use std::ops::Add;
 
 #[derive(Debug)]
@@ -253,6 +254,7 @@ fn main() {
 
 <p>Реализация этих типажей следует паттерну. Давайте посмотрим на типаж
 <a href="http://doc.rust-lang.org/std/ops/trait.Add.html"><code>Add</code></a> более детально:</p>
+
 <span class='rusttest'>fn main() {
     mod foo {
     pub trait Add&lt;RHS = Self&gt; {
@@ -272,6 +274,7 @@ fn main() {
 реализуем, тип <code>RHS</code>, который по умолчанию равен <code>Self</code> и тип <code>Output</code>. Для
 выражения <code>let z = x + y</code>: <code>x</code> — это тип <code>Self</code>, <code>y</code> — это тип <code>RHS</code>, а <code>z</code> -
 это тип <code>Self::Output</code>.</p>
+
 <span class='rusttest'>fn main() {
     struct Point;
     use std::ops::Add;
@@ -293,6 +296,7 @@ fn main() {
 }</pre>
 
 <p>позволит вам сделать следующее:</p>
+
 <span class='rusttest'>fn main() {
     let p: Point = // ...
     let x: f64 = p + 2i32;
@@ -304,6 +308,7 @@ fn main() {
 <p>Теперь, когда мы знаем, как реализованы типажи операций, мы можем реализовать
 наш типаж <code>HasArea</code> и структуру <code>Square</code> из <a href="traits.html">главы о типажах</a> более
 общим образом:</p>
+
 <span class='rusttest'>use std::ops::Mul;
 
 trait HasArea&lt;T&gt; {
@@ -364,6 +369,7 @@ fn main() {
 
 <p>Мы просто объявляем тип-параметр <code>T</code> и используем его вместо <code>f64</code> в определении
 <code>HasArea</code> и <code>Square</code>. В реализации нужно сделать более хитрые изменения:</p>
+
 <span class='rusttest'>fn main() {
     impl&lt;T&gt; HasArea&lt;T&gt; for Square&lt;T&gt;
             where T: Mul&lt;Output=T&gt; + Copy { ... }

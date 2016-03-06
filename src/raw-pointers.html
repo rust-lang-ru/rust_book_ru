@@ -222,6 +222,7 @@ after-free);</li>
 
 <h1 id='Основы' class='section-header'><a href='#Основы'>Основы</a></h1>
 <p>Создание сырого указателя совершенно безопасно:</p>
+
 <span class='rusttest'>fn main() {
     let x = 5;
     let raw = &amp;x as *const i32;
@@ -236,6 +237,7 @@ after-free);</li>
 <span class='kw'>let</span> <span class='ident'>raw_mut</span> <span class='op'>=</span> <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>y</span> <span class='kw'>as</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>i32</span>;</pre>
 
 <p>А вот его разыменование не является. Следующий код не будет работать:</p>
+
 <span class='rusttest'>fn main() {
     let x = 5;
     let raw = &amp;x as *const i32;
@@ -257,6 +259,7 @@ after-free);</li>
 <p>Когда вы разыменовываете сырой указатель, вы принимаете на себя ответственность,
 что он не указывает на что-то, что может быть некорректным. Таким образом, вы
 должны использовать <code>unsafe</code>:</p>
+
 <span class='rusttest'>fn main() {
     let x = 5;
     let raw = &amp;x as *const i32;
@@ -297,6 +300,7 @@ after-free);</li>
 <em>должен</em> гарантировать это.</p>
 
 <p>Рекомендуемым методом преобразования является</p>
+
 <span class='rusttest'>fn main() {
     let i: u32 = 1;
     

@@ -191,6 +191,7 @@
     <p>По умолчанию, <code>std</code> компонуется с каждым контейнером Rust. В некоторых случаях это
 нежелательно, и этого можно избежать с помощью атрибута <code>#![no_std]</code>,
 примененного (привязанного) к контейнеру.</p>
+
 <span class='rusttest'>// a minimal library
 #![crate_type=&quot;lib&quot;]
 #![feature(no_std)]
@@ -209,6 +210,7 @@
 
 <p>В функцию, помеченную атрибутом <code>#[start]</code>, передаются параметры командной
 строки в том же формате, что и в C:</p>
+
 <span class='rusttest'>#![feature(lang_items, start, no_std, libc)]
 #![no_std]
 
@@ -252,6 +254,7 @@ fn start(_argc: isize, _argv: *const *const u8) -&gt; isize {
 отключить ее с помощью <code>#![no_main]</code>, а затем создать соответствующий символ с
 правильным ABI и правильным именем, что также потребует переопределение
 искажения (коверкания) имен компилятором (<code>#[no_mangle]</code>):</p>
+
 <span class='rusttest'>#![feature(no_std)]
 #![no_std]
 #![no_main]
@@ -326,6 +329,7 @@ libstd</a>), но можно с
 <p>В качестве примера приведем программу, которая вычисляет скалярное произведение
 двух векторов, предоставленных из кода C, и использует идиоматические практики
 Rust.</p>
+
 <span class='rusttest'>#![feature(lang_items, start, no_std, core, libc)]
 #![no_std]
 

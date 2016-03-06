@@ -211,18 +211,21 @@
 <p>А зачем это всё? Поскольку мы можем использовать <code>[T]</code> только через указатель,
 если бы язык не поддерживал безразмерные типы, мы бы не смогли написать такой
 код:</p>
+
 <span class='rusttest'>fn main() {
     impl Foo for str {
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>impl</span> <span class='ident'>Foo</span> <span class='kw'>for</span> <span class='ident'>str</span> {</pre>
 
 <p>или</p>
+
 <span class='rusttest'>fn main() {
     impl&lt;T&gt; Foo for [T] {
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span> <span class='ident'>Foo</span> <span class='kw'>for</span> [<span class='ident'>T</span>] {</pre>
 
 <p>Вместо этого, вам бы пришлось написать:</p>
+
 <span class='rusttest'>fn main() {
     impl Foo for &amp;str {
 }</span><pre class='rust rust-example-rendered'>
@@ -236,6 +239,7 @@
 <h1 id='sized' class='section-header'><a href='#sized'>?Sized</a></h1>
 <p>Если вы пишете функцию, принимающую тип динамического размера, вы можете
 использовать специальное ограничение <code>?Sized</code>:</p>
+
 <span class='rusttest'>fn main() {
     struct Foo&lt;T: ?Sized&gt; {
         f: T,

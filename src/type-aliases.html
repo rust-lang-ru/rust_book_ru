@@ -189,12 +189,14 @@
 
     <h1 class="title">Псевдонимы типов</h1>
     <p>Ключевое слово <code>type</code> позволяет объявить псевдоним другого типа:</p>
+
 <span class='rusttest'>fn main() {
     type Name = String;
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>type</span> <span class='ident'>Name</span> <span class='op'>=</span> <span class='ident'>String</span>;</pre>
 
 <p>Затем вы можете использовать этот псевдоним вместо реального типа:</p>
+
 <span class='rusttest'>fn main() {
     type Name = String;
     
@@ -207,6 +209,7 @@
 <p>Однако, обратите внимание на то что <em>псевдоним</em> не объявляет новый тип. Rust
 строго типизированный язык, например у вас не получится сравнить значения двух
 различных типов:</p>
+
 <span class='rusttest'>fn main() {
     let x: i32 = 5;
     let y: i64 = 5;
@@ -234,6 +237,7 @@
 </code></pre>
 
 <p>Но если мы используем псевдоним:</p>
+
 <span class='rusttest'>fn main() {
     type Num = i32;
     
@@ -257,6 +261,7 @@
 же как и у типа <code>i32</code>.</p>
 
 <p>Вы также можете использовать псевдонимы типов с обобщённым кодом:</p>
+
 <span class='rusttest'>fn main() {
     use std::result;
     

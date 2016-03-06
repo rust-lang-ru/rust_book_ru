@@ -216,6 +216,7 @@ $ cd adder
 
 <p>При создании нового проекта, Cargo автоматически сгенерирует простой тест. Ниже
 представлено содержимое <code>src/lib.rs</code>:</p>
+
 <span class='rusttest'>fn main() {
     #[test]
     fn it_works() {
@@ -254,6 +255,7 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
 </code></pre>
 
 <p>Обратите внимание на <code>it_works</code>. Это название нашей функции:</p>
+
 <span class='rusttest'>fn main() {
     fn it_works() {
     }
@@ -269,6 +271,7 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
 который не вызывает <code>panic!</code>, выполняется удачно, а любой тест, который вызывает
 <code>panic!</code>, выполняется неудачно. Давайте сделаем тест, который выполнится
 неудачно:</p>
+
 <span class='rusttest'>fn main() {
     #[test]
     fn it_works() {
@@ -338,6 +341,7 @@ thread &#39;&lt;main&gt;&#39; panicked at &#39;Some tests failed&#39;, /home/ste
 
 <p>Можно инвертировать ожидаемый результат теста с помощью атрибута:
 <code>should_panic</code>:</p>
+
 <span class='rusttest'>fn main() {
     #[test]
     #[should_panic]
@@ -372,6 +376,7 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
 
 <p>Rust предоставляет и другой макрос, <code>assert_eq!</code>, который проверяет равенство
 двух аргументов:</p>
+
 <span class='rusttest'>fn main() {
     #[test]
     #[should_panic]
@@ -409,6 +414,7 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
 атрибуту <code>should_panic</code> может быть добавлен необязательный параметр <code>expected</code>.
 Тогда тест также будет проверять, что сообщение об ошибке содержит ожидаемый
 текст. Ниже представлен более безопасный вариант приведенного выше примера:</p>
+
 <span class='rusttest'>fn main() {
     #[test]
     #[should_panic(expected = &quot;assertion failed&quot;)]
@@ -423,6 +429,7 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
 }</pre>
 
 <p>Вот и все, что касается основ! Давайте напишем один «настоящий» тест:</p>
+
 <span class='rusttest'>fn main() {
     pub fn add_two(a: i32) -&gt; i32 {
         a + 2
@@ -449,6 +456,7 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
 <h1 id='Тесты-с-атрибутом-ignore' class='section-header'><a href='#Тесты-с-атрибутом-ignore'>Тесты с атрибутом <code>ignore</code></a></h1>
 <p>Некоторые тесты могу занимать много времени на выполнение. Такие тесты могут
 быть отключены по умолчанию с помощью атрибута <code>ignore</code>:</p>
+
 <span class='rusttest'>fn main() {
     fn it_works() {
         assert_eq!(4, add_two(2));
@@ -515,6 +523,7 @@ Cargo, именно поэтому команда выглядит так <code>
 <p>Есть один нюанс, из-за которого наш пример нельзя назвать идиоматичным:
 отсутствует модуль тестирования. Идиоматичный вариант нашего примера будет
 выглядеть примерно так:</p>
+
 <span class='rusttest'>fn main() {
     pub fn add_two(a: i32) -&gt; i32 {
         a + 2
@@ -557,6 +566,7 @@ Cargo, именно поэтому команда выглядит так <code>
 области видимости. Это может раздражать, если у вас большой модуль, и поэтому
 обычно используют возможность <code>glob</code>. Давайте изменим <code>src/lib.rs</code>
 соответствующим образом:</p>
+
 <span class='rusttest'>fn main() {
     pub fn add_two(a: i32) -&gt; i32 {
         a + 2
@@ -617,6 +627,7 @@ tests)? Для этого следует использовать директо
 <h1 id='Тесты-в-директории-tests' class='section-header'><a href='#Тесты-в-директории-tests'>Тесты в директории <code>tests</code></a></h1>
 <p>Чтобы написать интеграционный тест, давайте создадим директорию <code>tests</code>, и
 положим в нее файл <code>tests/lib.rs</code> со следующим содержимым:</p>
+
 <span class='rusttest'>fn main() {
     extern crate adder;
     
@@ -678,6 +689,7 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
 написана документация. Для того, чтобы такой ситуации не возникало, Rust
 поддерживает автоматический запуск примеров в документации (имейте ввиду, что
 это работает только с библиотеками). Вот дополненный <code>src/lib.rs</code> с примерами:</p>
+
 <span class='rusttest'>fn main() {
     //! Контейнер `adder` предоставляет функции сложения чисел.
     //!

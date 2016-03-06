@@ -203,6 +203,7 @@
 <code>&amp;str</code> — это «строковый срез». Строковые срезы имеют фиксированный размер и
 не могут быть изменены. Они представляют собой ссылку на последовательность
 байт UTF-8:</p>
+
 <span class='rusttest'>fn main() {
     let greeting = &quot;Всем привет.&quot;; // greeting: &amp;&#39;static str
 }</span><pre class='rust rust-example-rendered'>
@@ -218,6 +219,7 @@
 <p>Строковые литералы могут состоять из нескольких строк. Такие литералы можно
 записывать в двух разных формах. Первая будет включать в себя перевод на новую
 строку и ведущие пробелы:</p>
+
 <span class='rusttest'>fn main() {
     let s = &quot;foo
         bar&quot;;
@@ -230,6 +232,7 @@
 <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='string'>&quot;foo\n        bar&quot;</span>, <span class='ident'>s</span>);</pre>
 
 <p>Вторая форма, включающая в себя <code>\</code>, вырезает пробелы и перевод на новую строку:</p>
+
 <span class='rusttest'>fn main() {
     let s = &quot;foo\
         bar&quot;; 
@@ -245,6 +248,7 @@
 размещенную в куче. Эта строка расширяема, и она также гарантированно является 
 последовательностью UTF-8. <code>String</code> обычно создаётся путем преобразования из 
 строкового среза с использованием метода <code>to_string</code>.</p>
+
 <span class='rusttest'>fn main() {
     let mut s = &quot;Привет&quot;.to_string(); // mut s: String
     println!(&quot;{}&quot;, s);
@@ -259,6 +263,7 @@
 <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>s</span>);</pre>
 
 <p><code>String</code> преобразуются в <code>&amp;str</code> с помощью <code>&amp;</code>:</p>
+
 <span class='rusttest'>fn takes_slice(slice: &amp;str) {
     println!(&quot;Получили: {}&quot;, slice);
 }
@@ -281,6 +286,7 @@ fn main() {
 типаж <code>&amp;str</code>, а не сам <code>&amp;str</code>. Например, у метода
 <a href="https://doc.rust-lang.org/stable/std/net/struct.TcpStream.html#method.connect"><code>TcpStream::connect</code></a> есть параметр типа <code>ToSocketAddrs</code>. Сюда можно
 передать <code>&amp;str</code>, но <code>String</code> нужно явно преобразовать с помощью <code>&amp;*</code>.</p>
+
 <span class='rusttest'>fn main() {
     use std::net::TcpStream;
     
@@ -302,6 +308,7 @@ fn main() {
 <h2 id='Индексация' class='section-header'><a href='#Индексация'>Индексация</a></h2>
 <p>Поскольку строки являются валидными UTF-8 последовательностями, то они не
 поддерживают индексацию:</p>
+
 <span class='rusttest'>fn main() {
     let s = &quot;привет&quot;;
     
@@ -318,6 +325,7 @@ fn main() {
 вводить в заблуждение. Кроме того, «литера» — это не совсем то, что определено в
 Unicode. Мы можем выбрать как рассматривать строку: как отдельные байты или как
 кодовые единицы (codepoints):</p>
+
 <span class='rusttest'>fn main() {
     let hachiko = &quot;忠犬ハチ公&quot;;
     
@@ -356,6 +364,7 @@ Unicode. Мы можем выбрать как рассматривать стр
 <p>Как вы можете видеть, количество байт больше, чем количество символов (<code>char</code>).</p>
 
 <p>Вы можете получить что-то наподобие индекса, как показано ниже:</p>
+
 <span class='rusttest'>fn main() {
     let hachiko = &quot;忠犬ハチ公&quot;;
     let dog = hachiko.chars().nth(1); // что-то вроде hachiko[1]
@@ -366,6 +375,7 @@ Unicode. Мы можем выбрать как рассматривать стр
 
 <h2 id='Срезы' class='section-header'><a href='#Срезы'>Срезы</a></h2>
 <p>Вы можете получить срез строки с помощью синтаксиса срезов:</p>
+
 <span class='rusttest'>fn main() {
     let dog = &quot;hachiko&quot;;
     let hachi = &amp;dog[0..5];
@@ -375,6 +385,7 @@ Unicode. Мы можем выбрать как рассматривать стр
 
 <p>Но заметьте, что это индексы <em>байтов</em>, а не <em>символов</em>. Поэтому этот код
 запаникует:</p>
+
 <span class='rusttest'>fn main() {
     let dog = &quot;忠犬ハチ公&quot;;
     let hachi = &amp;dog[0..2];
@@ -390,6 +401,7 @@ character boundary&#39;
 
 <h2 id='Конкатенация' class='section-header'><a href='#Конкатенация'>Конкатенация</a></h2>
 <p>Если у вас есть <code>String</code>, то вы можете присоединить к нему в конец <code>&amp;str</code>:</p>
+
 <span class='rusttest'>fn main() {
     let hello = &quot;Hello &quot;.to_string();
     let world = &quot;world!&quot;;
@@ -402,6 +414,7 @@ character boundary&#39;
 <span class='kw'>let</span> <span class='ident'>hello_world</span> <span class='op'>=</span> <span class='ident'>hello</span> <span class='op'>+</span> <span class='ident'>world</span>;</pre>
 
 <p>Но если у вас есть две <code>String</code>, то необходимо использовать <code>&amp;</code>:</p>
+
 <span class='rusttest'>fn main() {
     let hello = &quot;Hello &quot;.to_string();
     let world = &quot;world!&quot;.to_string();

@@ -199,6 +199,7 @@
 <p>Для остальной части этой главы нам потребуется типаж и несколько его реализаций.
 Давайте создадим простой типаж <code>Foo</code>. Он содержит один метод, который возвращает
 <code>String</code>.</p>
+
 <span class='rusttest'>fn main() {
     trait Foo {
         fn method(&amp;self) -&gt; String;
@@ -209,6 +210,7 @@
 }</pre>
 
 <p>Также мы реализуем этот типаж для <code>u8</code> и <code>String</code>:</p>
+
 <span class='rusttest'>fn main() {
     trait Foo { fn method(&amp;self) -&gt; String; }
     impl Foo for u8 {
@@ -230,6 +232,7 @@
 <h2 id='Статическая-диспетчеризация' class='section-header'><a href='#Статическая-диспетчеризация'>Статическая диспетчеризация</a></h2>
 <p>Мы можем использовать этот типаж для выполнения статической диспетчеризации с
 помощью ограничения типажом:</p>
+
 <span class='rusttest'>trait Foo { fn method(&amp;self) -&gt; String; }
 impl Foo for u8 { fn method(&amp;self) -&gt; String { format!(&quot;u8: {}&quot;, *self) } }
 impl Foo for String { fn method(&amp;self) -&gt; String { format!(&quot;string: {}&quot;, *self) } }
@@ -261,6 +264,7 @@ fn main() {
 означает, что Rust создаст специальную версию <code>do_something()</code> для каждого из
 типов: <code>u8</code> и <code>String</code>, а затем заменит все места вызовов на вызовы этих
 специализированных функций. Другими словами, Rust сгенерирует нечто вроде этого:</p>
+
 <span class='rusttest'>trait Foo { fn method(&amp;self) -&gt; String; }
 impl Foo for u8 { fn method(&amp;self) -&gt; String { format!(&quot;u8: {}&quot;, *self) } }
 impl Foo for String { fn method(&amp;self) -&gt; String { format!(&quot;string: {}&quot;, *self) } }
@@ -338,6 +342,7 @@ fn main() {
 <p>Возвращаясь к примеру выше, мы можем использовать тот же самый типаж для
 выполнения динамической диспетчеризации с типажами-объектами путем явного
 приведения типа:</p>
+
 <span class='rusttest'>trait Foo { fn method(&amp;self) -&gt; String; }
 impl Foo for u8 { fn method(&amp;self) -&gt; String { format!(&quot;u8: {}&quot;, *self) } }
 impl Foo for String { fn method(&amp;self) -&gt; String { format!(&quot;string: {}&quot;, *self) } }
@@ -362,6 +367,7 @@ fn main() {
 }</pre>
 
 <p>или неявного приведения типа:</p>
+
 <span class='rusttest'>trait Foo { fn method(&amp;self) -&gt; String; }
 impl Foo for u8 { fn method(&amp;self) -&gt; String { format!(&quot;u8: {}&quot;, *self) } }
 impl Foo for String { fn method(&amp;self) -&gt; String { format!(&quot;string: {}&quot;, *self) } }
@@ -422,6 +428,7 @@ fn main() {
 <p>Давайте начнем с простого, с рантайм представления типажа-объекта. Модуль
 <code>std::raw</code> содержит структуры с макетами, которые являются такими же, как и
 сложные встроенные типы, <a href="http://doc.rust-lang.org/std/raw/struct.TraitObject.html">в том числе типажи-объекты</a>:</p>
+
 <span class='rusttest'>fn main() {
     mod foo {
     pub struct TraitObject {
@@ -447,6 +454,7 @@ fn main() {
 Вызов метода наподобие <code>trait_object.method()</code> возвращает правильный указатель
 из виртуальной таблицы, а затем динамически вызывает метод по этому указателю.
 Например:</p>
+
 <span class='rusttest'>fn main() {
     struct FooVtable {
         destructor: fn(*mut ()),
@@ -554,6 +562,7 @@ fn main() {
 <p>Предположим, у нас есть несколько значений, которые реализуют <code>Foo</code>, тогда явный
 вид создания и использования типажей-объектов <code>Foo</code> может выглядеть примерно как
 (игнорируются несоответствия типов: в любом случае, они всего лишь указатели):</p>
+
 <span class='rusttest'>fn main() {
     let a: String = &quot;foo&quot;.to_string();
     let x: u8 = 1;

@@ -189,6 +189,7 @@
 
     <h1 class="title">`const` и `static`</h1>
     <p>В Rust можно определить постоянную с помощью ключевого слова <code>const</code>:</p>
+
 <span class='rusttest'>fn main() {
     const N: i32 = 5;
 }</span><pre class='rust rust-example-rendered'>
@@ -209,6 +210,7 @@
 существует в единственном экземпляре, и у него есть определённый адрес.</p>
 
 <p>Вот пример:</p>
+
 <span class='rusttest'>fn main() {
     static N: i32 = 5;
 }</span><pre class='rust rust-example-rendered'>
@@ -220,6 +222,7 @@
 <p>Статические значения живут в течение всего времени работы программы, и любая
 ссылка на постоянную имеет <a href="lifetimes.html">статическое время жизни</a> (<code>static</code>
 lifetime):</p>
+
 <span class='rusttest'>fn main() {
     static NAME: &amp;&#39;static str = &quot;Steve&quot;;
 }</span><pre class='rust rust-example-rendered'>
@@ -228,6 +231,7 @@ lifetime):</p>
 <h2 id='Изменяемость' class='section-header'><a href='#Изменяемость'>Изменяемость</a></h2>
 <p>Вы можете сделать статическое значение изменяемым с помощью ключевого слова
 <code>mut</code>:</p>
+
 <span class='rusttest'>fn main() {
     static mut N: i32 = 5;
 }</span><pre class='rust rust-example-rendered'>
@@ -238,6 +242,7 @@ lifetime):</p>
 небезопасным поведением в Rust. Поэтому и чтение, и изменение статического
 изменяемого значения (<code>static mut</code>) является <a href="unsafe.html">небезопасным</a> (unsafe), и
 обе эти операции должны выполняться в небезопасных блоках (<code>unsafe</code> block):</p>
+
 <span class='rusttest'>fn main() {
     static mut N: i32 = 5;
     

@@ -280,6 +280,7 @@
 когда мы сталкивались бы с чем-то неожиданным. (<code>panic</code> вызывает прерывание
 текущего потока и, в большинстве случаев, приводит к завершению всей программы.)
 Вот пример:</p>
+
 <span class='rusttest'>// Попробуйте угадать число от 1 до 10.
 // Если заданное число соответствует тому, что мы загадали, возвращается true.
 // В противном случае возвращается false.
@@ -318,6 +319,7 @@ fn main() {
 качестве аргумента, удваивает его значение и печатает на экране.</p>
 
 <p><a name="code-unwrap-double"></a></p>
+
 <span class='rusttest'>use std::env;
 
 fn main() {
@@ -361,6 +363,7 @@ fn main() {
 
 <h3 id='Тип-option' class='section-header'><a href='#Тип-option'>Тип <code>Option</code></a></h3>
 <p>Тип <code>Option</code> <a href="http://doc.rust-lang.org/std/option/enum.Option.html">объявлен в стандартной библиотеке</a>:</p>
+
 <span class='rusttest'>fn main() {
     enum Option&lt;T&gt; {
         None,
@@ -379,6 +382,7 @@ fn main() {
 пример, который пытается найти символ в строке:</p>
 
 <p><a name="code-option-ex-string-find"></a></p>
+
 <span class='rusttest'>fn main() {
     // Поиск Unicode-символа `needle` в `haystack`. Когда первый символ найден,
     // возвращается побайтовое смещение для этого символа. Иначе возвращается `None`.
@@ -413,6 +417,7 @@ fn main() {
 истории. Вторая половина — это <em>использование</em> функции <code>find</code>, которую мы
 написали. Давайте попробуем использовать ее, чтобы найти расширение
 в имени файла.</p>
+
 <span class='rusttest'>fn find(_: &amp;str, _: char) -&gt; Option&lt;usize&gt; { None }
 fn main() {
     let file_name = &quot;foobar.rs&quot;;
@@ -442,6 +447,7 @@ fn main() {
 самостоятельно, если захотите:</p>
 
 <p><a name="code-option-def-unwrap"></a></p>
+
 <span class='rusttest'>fn main() {
     enum Option&lt;T&gt; {
         None,
@@ -490,6 +496,7 @@ fn main() {
 
 <p>Получение расширения имени файла — довольно распространенная операция,
 так что имеет смысл вынести код в отдельную функцию:</p>
+
 <span class='rusttest'>fn main() {
     fn find(_: &amp;str, _: char) -&gt; Option&lt;usize&gt; { None }
     // Возвращает расширение заданного имени файла, а именно все символы,
@@ -532,6 +539,7 @@ fn main() {
 объявить комбинатор, который абстрагирует это поведение:</p>
 
 <p><a name="code-option-map"></a></p>
+
 <span class='rusttest'>fn main() {
     fn map&lt;F, T, A&gt;(option: Option&lt;T&gt;, f: F) -&gt; Option&lt;A&gt; where F: FnOnce(T) -&gt; A {
         match option {
@@ -551,6 +559,7 @@ fn main() {
 
 <p>Вооружившись нашим новым комбинатором, мы можем переписать наш метод
 <code>extension_explicit</code> так, чтобы избавиться от вариативного анализа:</p>
+
 <span class='rusttest'>fn main() {
     fn find(_: &amp;str, _: char) -&gt; Option&lt;usize&gt; { None }
     // Возвращает расширение заданного имени файла, а именно все символы,
@@ -574,6 +583,7 @@ fn main() {
 
 <p>Легко представить, что этот случай вариативного анализа не специфичен
 только для расширений файлов — такой подход может работать с любым <code>Option&lt;T&gt;</code>:</p>
+
 <span class='rusttest'>fn main() {
     fn unwrap_or&lt;T&gt;(option: Option&lt;T&gt;, default: T) -&gt; T {
         match option {
@@ -592,6 +602,7 @@ fn main() {
 <p>Хитрость только в том, что значение по-умолчанию должно иметь тот же тип, что и
 значение, которое может находится внутри  <code>Option&lt;T&gt;</code>. Использование этого
 метода элементарно:</p>
+
 <span class='rusttest'>fn find(haystack: &amp;str, needle: char) -&gt; Option&lt;usize&gt; {
     for (offset, c) in haystack.char_indices() {
         if c == needle {
@@ -630,6 +641,7 @@ fn main() {
 
 <p>Таким образом, мы определили задачу нахождения расширения заданного <em>файлового
 пути</em>. Начнем с явного вариативного анализа:</p>
+
 <span class='rusttest'>fn main() {
     fn extension(file_name: &amp;str) -&gt; Option&lt;&amp;str&gt; { None }
     fn file_path_ext_explicit(file_path: &amp;str) -&gt; Option&lt;&amp;str&gt; {
@@ -666,6 +678,7 @@ fn main() {
 Результат такой функции <em>всегда</em> <a href="#code-option-map">оборачивается в <code>Some</code></a>.
 Вместо этого, нам нужен метод, похожий <code>map</code>, но который позволяет вызывающему
 передать еще один <code>Option</code>. Его общая реализация даже проще, чем <code>map</code>:</p>
+
 <span class='rusttest'>fn main() {
     fn and_then&lt;F, T, A&gt;(option: Option&lt;T&gt;, f: F) -&gt; Option&lt;A&gt;
             where F: FnOnce(T) -&gt; Option&lt;A&gt; {
@@ -685,6 +698,7 @@ fn main() {
 
 <p>Теперь мы можем переписать нашу функцию <code>file_path_ext</code> без явного вариативного
 анализа:</p>
+
 <span class='rusttest'>fn main() {
     fn extension(file_name: &amp;str) -&gt; Option&lt;&amp;str&gt; { None }
     fn file_name(file_path: &amp;str) -&gt; Option&lt;&amp;str&gt; { None }
@@ -716,6 +730,7 @@ fn main() {
 <p>Тип <code>Result</code> также <a href="http://doc.rust-lang.org/std/result/">определен в стандартной библиотеке</a>:</p>
 
 <p><a name="code-result-def"></a></p>
+
 <span class='rusttest'>fn main() {
     enum Result&lt;T, E&gt; {
         Ok(T),
@@ -733,6 +748,7 @@ fn main() {
 результат определенного вычисления не был получен. Строго говоря, это более
 общая форма <code>Option</code>. Рассмотрим следующий псевдоним типа, который во всех
 смыслах семантически эквивалентен реальному <code>Option&lt;T&gt;</code>:</p>
+
 <span class='rusttest'>fn main() {
     type Option&lt;T&gt; = Result&lt;T, ()&gt;;
 }</span><pre class='rust rust-example-rendered'>
@@ -749,6 +765,7 @@ fn main() {
 
 <p>Подобно <code>Option</code>, тип <code>Result</code> имеет метод <code>unwrap</code>,
 <a href="http://doc.rust-lang.org/std/result/enum.Result.html#method.unwrap">определенный в стандартной библиотеке</a>. Давайте объявим его самостоятельно:</p>
+
 <span class='rusttest'>fn main() {
     enum Result&lt;T, E&gt; { Ok(T), Err(E) }
     impl&lt;T, E: ::std::fmt::Debug&gt; Result&lt;T, E&gt; {
@@ -789,6 +806,7 @@ fn main() {
 <p>Стандартная библиотека Rust позволяет элементарно преобразовывать строки
 в целые числа. На самом деле это настолько просто, что возникает соблазн написать
 что-то вроде:</p>
+
 <span class='rusttest'>fn double_number(number_str: &amp;str) -&gt; i32 {
     2 * number_str.parse::&lt;i32&gt;().unwrap()
 }
@@ -819,6 +837,7 @@ fn main() {
 с этим делать. Это означает необходимость изменения типа, который возвращается
 <code>double_number</code>. Но на какой? Чтобы понять это, необходимо посмотреть на
 сигнатуру <a href="http://doc.rust-lang.org/std/primitive.str.html#method.parse"><code>метода parse</code></a> из стандартной библиотеки:</p>
+
 <span class='rusttest'>fn main() {
     impl str {
         fn parse&lt;F: FromStr&gt;(&amp;self) -&gt; Result&lt;F, F::Err&gt;;
@@ -850,6 +869,7 @@ fn main() {
 <code>Err</code>. Мы делаем это, чтобы определить конкретный тип ошибки. В данном
 случае, это <a href="http://doc.rust-lang.org/std/num/struct.ParseIntError.html"><code>std::num::ParseIntError</code></a>.
 Наконец, мы можем переписать нашу функцию:</p>
+
 <span class='rusttest'>use std::num::ParseIntError;
 
 fn double_number(number_str: &amp;str) -&gt; Result&lt;i32, ParseIntError&gt; {
@@ -889,6 +909,7 @@ fn main() {
 комбинаторов, определенных в качестве методов. Существует большой
 список комбинаторов, общих между <code>Result</code> и <code>Option</code>. И <code>map</code> входит в этот
 список:</p>
+
 <span class='rusttest'>use std::num::ParseIntError;
 
 fn double_number(number_str: &amp;str) -&gt; Result&lt;i32, ParseIntError&gt; {
@@ -932,6 +953,7 @@ fn main() {
 заключается в определении псевдонима типа <code>Result</code>, который <em>фиксирует</em> один из
 параметров конкретным типом. Обычно фиксируется тип ошибки. Например, наш
 предыдущий пример с преобразованием строк в числа можно переписать так:</p>
+
 <span class='rusttest'>fn main() {
     use std::num::ParseIntError;
     use std::result;
@@ -1026,6 +1048,7 @@ value&quot;.</p>
 вариативному анализу, или можно продолжить использовать комбинаторы?</p>
 
 <p>Давайте на время вернемся к одному из первых примеров в этой главе:</p>
+
 <span class='rusttest'>use std::env;
 
 fn main() {
@@ -1057,6 +1080,7 @@ fn main() {
 <code>String</code> для описания ошибки. Давайте попробуем:</p>
 
 <p><a name="code-error-double-string"></a></p>
+
 <span class='rusttest'>use std::env;
 
 fn double_arg(mut argv: env::Args) -&gt; Result&lt;i32, String&gt; {
@@ -1093,6 +1117,7 @@ fn main() {
 требует явного определения ошибки, которую необходимо вернуть в случае, когда
 значение <code>Option</code> равно <code>None</code>. Как и для всех комбинаторов, которые мы
 рассматривали, его объявление очень простое:</p>
+
 <span class='rusttest'>fn main() {
     fn ok_or&lt;T, E&gt;(option: Option&lt;T&gt;, err: E) -&gt; Result&lt;T, E&gt; {
         match option {
@@ -1135,6 +1160,7 @@ fn main() {
 на проблеме, а не на обработке ошибок, и это выявляет места, где надлежащая
 обработка ошибок необходима. Давайте начнем с того, что напишем просто
 работающий код, а затем отрефакторим его для лучшей обработки ошибок.</p>
+
 <span class='rusttest'>use std::fs::File;
 use std::io::Read;
 use std::path::Path;
@@ -1214,6 +1240,7 @@ fn main() {
 возникнуть два <em>разных</em> типа ошибок, мы должны преобразовать их к общему типу.
 Одним из таких типов является <code>String</code>. Давайте посмотрим, как это отразится на
 нашем коде:</p>
+
 <span class='rusttest'>use std::fs::File;
 use std::io::Read;
 use std::path::Path;
@@ -1303,6 +1330,7 @@ fn main() {
 <em>раннего возврата</em>. Ранний <code>return</code> позволяет выйти из функции досрочно. Мы не
 можем выполнить <code>return</code> для <code>file_double</code> внутри замыкания, поэтому нам
 необходимо вернуться к явному вариативному анализу.</p>
+
 <span class='rusttest'>use std::fs::File;
 use std::io::Read;
 use std::path::Path;
@@ -1380,6 +1408,7 @@ fn main() {
 <p>Вот упрощенное определение макроса `try!:</p>
 
 <p><a name="code-try-def-simple"></a></p>
+
 <span class='rusttest'>fn main() {
     macro_rules! try {
         ($e:expr) =&gt; (match $e {
@@ -1401,6 +1430,7 @@ fn main() {
 <p>Использование макроса <code>try!</code> может очень легко упростить наш последний
 пример. Поскольку он выполняет анализ вариантов и досрочной возврат из функции,
 мы получаем более плотный код, который легче читать:</p>
+
 <span class='rusttest'>use std::fs::File;
 use std::io::Read;
 use std::path::Path;
@@ -1494,6 +1524,7 @@ fn main() {
 определение нашего собственного типа-суммы с помощью <code>enum</code>. В нашем случае,
 ошибка представляет собой либо <code>io::Error</code>, либо <code>num::ParseIntError</code>, из чего
 естественным образом вытекает определение:</p>
+
 <span class='rusttest'>fn main() {
     use std::io;
     use std::num;
@@ -1520,6 +1551,7 @@ fn main() {
 <p>Осталось только немного подогнать наш код из примера. Вместо преобразования
 ошибок в строки, мы будем просто конвертировать их в наш тип <code>CliError</code>,
 используя соответствующий конструктор значения:</p>
+
 <span class='rusttest'>#[derive(Debug)]
 enum CliError { Io(::std::io::Error), Parse(::std::num::ParseIntError) }
 use std::fs::File;
@@ -1590,6 +1622,7 @@ fn main() {
 <h2 id='Типаж-error' class='section-header'><a href='#Типаж-error'>Типаж <code>Error</code></a></h2>
 <p>Типаж <code>Error</code>
 <a href="http://doc.rust-lang.org/std/error/trait.Error.html">объявлен в стандартной библиотеке</a>:</p>
+
 <span class='rusttest'>fn main() {
     use std::fmt::{Debug, Display};
     
@@ -1636,6 +1669,7 @@ object). Обычно это выглядит как <code>Box&lt;Error&gt;</cod
 <p>В настоящее время достаточно показать пример, реализующий типаж <code>Error</code>.
 Давайте воспользуемся для этого типом ошибки, который мы определили в
 <a href="#defining-your-own-error-type">предыдущем разделе</a>:</p>
+
 <span class='rusttest'>fn main() {
     use std::io;
     use std::num;
@@ -1666,6 +1700,7 @@ object). Обычно это выглядит как <code>Box&lt;Error&gt;</cod
 
 <p>Реализация <code>Error</code> довольно прямолинейна и главным образом состоит из явного
 анализа вариантов:</p>
+
 <span class='rusttest'>fn main() {
     use std::error;
     use std::fmt;
@@ -1747,6 +1782,7 @@ object). Обычно это выглядит как <code>Box&lt;Error&gt;</cod
 <a href="http://doc.rust-lang.org/std/convert/trait.From.html">стандартной библиотеке</a>:</p>
 
 <p><a name="code-from-def"></a></p>
+
 <span class='rusttest'>fn main() {
     trait From&lt;T&gt; {
         fn from(T) -&gt; Self;
@@ -1763,6 +1799,7 @@ object). Обычно это выглядит как <code>Box&lt;Error&gt;</cod
 предоставляемых стандартной библиотекой</a>.</p>
 
 <p>Вот несколько простых примеров, демонстрирующих работу <code>From</code>:</p>
+
 <span class='rusttest'>fn main() {
     let string: String = From::from(&quot;foo&quot;);
     let bytes: Vec&lt;u8&gt; = From::from(&quot;foo&quot;);
@@ -1774,6 +1811,7 @@ object). Обычно это выглядит как <code>Box&lt;Error&gt;</cod
 
 <p>Итак, <code>From</code> полезен для выполнения преобразований между строками. Но как
 насчет ошибок? Оказывается, существует одна важная реализация:</p>
+
 <span class='rusttest'>fn main() {
     impl&lt;&#39;a, E: Error + &#39;a&gt; From&lt;E&gt; for Box&lt;Error + &#39;a&gt;
 }</span><pre class='rust rust-example-rendered'>
@@ -1786,6 +1824,7 @@ object). Обычно это выглядит как <code>Box&lt;Error&gt;</cod
 <p>Помните те две ошибки, с которыми мы имели дело ранее, а именно, <code>io::Error</code>
 and <code>num::ParseIntError</code>? Поскольку обе они реализуют <code>Error</code>, они также
 работают с <code>From</code>:</p>
+
 <span class='rusttest'>fn main() {
     use std::error::Error;
     use std::fs;
@@ -1830,6 +1869,7 @@ and <code>num::ParseIntError</code>? Поскольку обе они реали
 
 <h2 id='Настоящий-макрос-try' class='section-header'><a href='#Настоящий-макрос-try'>Настоящий макрос <code>try!</code></a></h2>
 <p>До этого мы привели такое определение <code>try!</code>:</p>
+
 <span class='rusttest'>fn main() {
     macro_rules! try {
         ($e:expr) =&gt; (match $e {
@@ -1849,6 +1889,7 @@ and <code>num::ParseIntError</code>? Поскольку обе они реали
 в <a href="http://doc.rust-lang.org/std/macro.try!.html">стандартной библиотеке</a>:</p>
 
 <p><a name="code-try-def"></a></p>
+
 <span class='rusttest'>fn main() {
     macro_rules! try {
         ($e:expr) =&gt; (match $e {
@@ -1871,6 +1912,7 @@ and <code>num::ParseIntError</code>? Поскольку обе они реали
 
 <p>Вооружившись более мощным макросом <code>try!</code>, давайте взглянем на код, написанный
 нами ранее, который читает файл и конвертирует его содержимое в число:</p>
+
 <span class='rusttest'>fn main() {
     use std::fs::File;
     use std::io::Read;
@@ -1900,6 +1942,7 @@ and <code>num::ParseIntError</code>? Поскольку обе они реали
 все что мы должны для этого сделать — это найти тип, который работает с
 <code>From</code>. Как мы увидели в предыдущем разделе, <code>From</code> имеет реализацию, которая
 позволяет преобразовать любой тип ошибки в <code>Box&lt;Error&gt;</code>:</p>
+
 <span class='rusttest'>fn main() {
     use std::error::Error;
     use std::fs::File;
@@ -1965,6 +2008,7 @@ and <code>num::ParseIntError</code>? Поскольку обе они реали
 <p>Чтобы исправить это, мы используем средство, с которым мы уже знакомы:
 создание собственного типа ошибки. Давайте вспомним код, который считывает
 содержимое файла и преобразует его в целое число:</p>
+
 <span class='rusttest'>fn main() {
     use std::fs::File;
     use std::io::{self, Read};
@@ -2014,6 +2058,7 @@ and <code>num::ParseIntError</code>? Поскольку обе они реали
 конвертировать типы ошибок <code>io::Error</code> и <code>num::ParseIntError</code> в наш собственный
 тип <code>CliError</code>. Но мы можем легко это исправить! Поскольку мы определили тип
 <code>CliError</code>, мы можем также реализовать для него типаж <code>From</code>:</p>
+
 <span class='rusttest'>fn main() {
     #[derive(Debug)]
     enum CliError { Io(io::Error), Parse(num::ParseIntError) }
@@ -2052,6 +2097,7 @@ and <code>num::ParseIntError</code>? Поскольку обе они реали
 конструктора значения. <em>Как правило</em>, это все что нужно.</p>
 
 <p>Наконец, мы можем переписать <code>file_double</code>:</p>
+
 <span class='rusttest'>fn main() {
     use std::io;
     use std::num;
@@ -2097,6 +2143,7 @@ and <code>num::ParseIntError</code>? Поскольку обе они реали
 выполнять какие-то другие операции, например, преобразовать строку в число
 с плавающей точкой, то мы должны были бы добавить новый вариант к нашему типу
 ошибок:</p>
+
 <span class='rusttest'>fn main() {
     use std::io;
     use std::num;
@@ -2117,6 +2164,7 @@ and <code>num::ParseIntError</code>? Поскольку обе они реали
 }</pre>
 
 <p>И добавить новую реализацию для <code>From</code>:</p>
+
 <span class='rusttest'>fn main() {
     enum CliError {
         Io(::std::io::Error),

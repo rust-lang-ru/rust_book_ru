@@ -191,6 +191,7 @@
     <p>Если вы хотите в качестве шаблона для сопоставления использовать срез или
 массив, то вы можете использовать <code>&amp;</code> и активировать возможность
 <code>slice_patterns</code>:</p>
+
 <span class='rusttest'>#![feature(slice_patterns)]
 
 fn main() {
@@ -217,6 +218,7 @@ fn main() {
 чтобы обозначить любое число элементов в шаблоне. Этот символ подстановки можно
 использовать в массиве один раз. Если перед <code>..</code> есть идентификатор, результат
 среза будет связан с этим именем. Например:</p>
+
 <span class='rusttest'>#![feature(advanced_slice_patterns, slice_patterns)]
 
 fn is_symmetric(list: &amp;[u32]) -&gt; bool {

@@ -194,6 +194,7 @@
 
 <p>В качестве примера рассмотрим <code>Option&lt;T&gt;</code>. Если это <code>Some&lt;T&gt;</code>, мы хотим вызвать
 функцию на этом значении, а если это <code>None</code> — не делать ничего. Вроде такого:</p>
+
 <span class='rusttest'>fn main() {
     let option = Some(5);
     fn foo(x: i32) { }
@@ -208,6 +209,7 @@
 }</pre>
 
 <p>Здесь необязательно использовать <code>match</code>. <code>if</code> тоже подойдёт:</p>
+
 <span class='rusttest'>fn main() {
     let option = Some(5);
     fn foo(x: i32) { }
@@ -222,6 +224,7 @@
 }</pre>
 
 <p>Но оба этих варианта выглядят странно. Мы можем исправить это с помощью <code>if let</code>:</p>
+
 <span class='rusttest'>fn main() {
     let option = Some(5);
     fn foo(x: i32) { }
@@ -239,6 +242,7 @@
 
 <p>Если вы хотите делать что-то ещё при несовпадении с образцом, используйте
 <code>else</code>:</p>
+
 <span class='rusttest'>fn main() {
     let option = Some(5);
     fn foo(x: i32) { }
@@ -258,6 +262,7 @@
 <h2 id='while-let' class='section-header'><a href='#while-let'><code>while let</code></a></h2>
 <p>Похожим образом, <code>while let</code> можно использовать для перебора значений, пока
 они соответствуют образцу. Код вроде такого:</p>
+
 <span class='rusttest'>fn main() {
     let option: Option&lt;i32&gt; = None;
     loop {
@@ -275,6 +280,7 @@
 }</pre>
 
 <p>Превращается в такой:</p>
+
 <span class='rusttest'>fn main() {
     let option: Option&lt;i32&gt; = None;
     while let Some(x) = option {

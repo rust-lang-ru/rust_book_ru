@@ -193,6 +193,7 @@
 напрямую. Rust поддерживает использование встроенного ассемблера и делает это с
 помощью с помощью макроса <code>asm!</code>. Синтаксис примерно соответствует синтаксису
 GCC и Clang:</p>
+
 <span class='rusttest'>fn main() {
     asm!(assembly template
        : output operands
@@ -221,6 +222,7 @@ GCC и Clang:</p>
 <p>Шаблон инструкции ассемблера (assembly template) является единственным
 обязательным параметром, и он должен быть представлен строкой символов (т.е.
 <code>&quot;&quot;</code>)</p>
+
 <span class='rusttest'>#![feature(asm)]
 
 #[cfg(any(target_arch = &quot;x86&quot;, target_arch = &quot;x86_64&quot;))]
@@ -264,6 +266,7 @@ fn main() {
 <p>Выходные операнды (output operands), входные операнды (input operands),
 затираемое (clobbers) и опции (options) не являются обязательными, но вы должны
 будете добавить соответствующее количество <code>:</code> если хотите пропустить их:</p>
+
 <span class='rusttest'>#![feature(asm)]
 #[cfg(any(target_arch = &quot;x86&quot;, target_arch = &quot;x86_64&quot;))]
 fn main() { unsafe {
@@ -281,6 +284,7 @@ asm!(&quot;xor %eax, %eax&quot;
    );</pre>
 
 <p>Пробелы и отступы также не имеют значения:</p>
+
 <span class='rusttest'>#![feature(asm)]
 #[cfg(any(target_arch = &quot;x86&quot;, target_arch = &quot;x86_64&quot;))]
 fn main() { unsafe {
@@ -294,6 +298,7 @@ asm!(&quot;xor %eax, %eax&quot; ::: &quot;{eax}&quot;);
 <code>:&quot;ограничение1&quot;(выражение1), &quot;ограничение2&quot;(выражение2), ...&quot;</code>. Выражения для
 выходных операндов должны быть либо изменяемыми, либо неизменяемыми, но еще не
 иницилиализированными, L-значениями:</p>
+
 <span class='rusttest'>#![feature(asm)]
 #[cfg(any(target_arch = &quot;x86&quot;, target_arch = &quot;x86_64&quot;))]
 fn add(a: i32, b: i32) -&gt; i32 {
@@ -333,6 +338,7 @@ fn main() {
 <code>{}</code>, и вы должны будете указать конкретный размер операнда. Это полезно для
 очень низкоуровневого программирования, когда важны регистры, которые вы
 используете:</p>
+
 <span class='rusttest'>#![feature(asm)]
 fn main() {
     #[cfg(any(target_arch = &quot;x86&quot;, target_arch = &quot;x86_64&quot;))]
@@ -350,6 +356,7 @@ fn main() {
 <p>Некоторые инструкции могут изменять значения регистров, поэтому мы используем
 список затираемого. Он указывает компилятору, что тот не должен допускать
 какого-либо изменение значений этих регистров, чтобы они оставались корректными.</p>
+
 <span class='rusttest'>#![feature(asm)]
 #[cfg(any(target_arch = &quot;x86&quot;, target_arch = &quot;x86_64&quot;))]
 fn main() { unsafe {
@@ -384,6 +391,7 @@ asm!(&quot;mov $$0x200, %eax&quot; : /* no outputs */ : /* no inputs */ : &quot;
 <li><p><em>intel</em> — эта опция указывает использовать синтаксис Intel вместо
 используемого по умолчанию синтаксиса AT&amp;T.</p></li>
 </ol>
+
 <span class='rusttest'>#![feature(asm)]
 #[cfg(any(target_arch = &quot;x86&quot;, target_arch = &quot;x86_64&quot;))]
 fn main() {

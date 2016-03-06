@@ -190,6 +190,7 @@
     <h1 class="title">Атрибуты</h1>
     <p>В Rust объявления могут быть аннотированы с помощью «атрибутов». Они выглядят
 так:</p>
+
 <span class='rusttest'>fn main() {
     #[test]
     fn foo() {}
@@ -197,6 +198,7 @@
 <span class='attribute'>#[<span class='ident'>test</span>]</span></pre>
 
 <p>или так:</p>
+
 <span class='rusttest'>fn main() {
     mod foo {
     #![test]
@@ -206,6 +208,7 @@
 
 <p>Разница между ними состоит в символе <code>!</code>, который изменяет его поведение,
 определяющее к какому элементу применяется атрибут:</p>
+
 <span class='rusttest'>fn main() {
     #[foo]
     struct Foo;
@@ -227,6 +230,7 @@
 образом изменяют значение элемента, к которому они прикреплены.</p>
 
 <p>Например, рассмотрим такую функцию:</p>
+
 <span class='rusttest'>fn main() {
     #[test]
     fn check() {
@@ -243,6 +247,7 @@
 не будет включена. Теперь эта функция является функцией тестирования.</p>
 
 <p>Атрибуты также могут иметь дополнительные данные:</p>
+
 <span class='rusttest'>fn main() {
     #[inline(always)]
     fn super_fast_fn() {
@@ -252,6 +257,7 @@
 <span class='kw'>fn</span> <span class='ident'>super_fast_fn</span>() {</pre>
 
 <p>Или даже ключи и значения:</p>
+
 <span class='rusttest'>fn main() {
     #[cfg(target_os = &quot;macos&quot;)]
     mod macos_only {

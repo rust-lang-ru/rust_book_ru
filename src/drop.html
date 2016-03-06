@@ -192,6 +192,7 @@
 предоставляемом стандартной библиотекой Rust. Этот типаж — <a href="http://doc.rust-lang.org/std/ops/trait.Drop.html"><code>Drop</code></a>
 (сброс) — позволяет выполнить некоторый код, когда значение выходит из области
 видимости. Например:</p>
+
 <span class='rusttest'>struct HasDrop;
 
 impl Drop for HasDrop {
@@ -229,6 +230,7 @@ fn main() {
 <p>Вот и всё! Работа <code>Drop</code> достаточно проста, но есть несколько
 тонкостей. Например, значения сбрасываются в порядке, обратном порядку их
 объявления. Вот ещё пример:</p>
+
 <span class='rusttest'>struct Firework {
     strength: i32,
 }

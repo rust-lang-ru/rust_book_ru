@@ -195,6 +195,7 @@
 
 <h1 id='as' class='section-header'><a href='#as'><code>as</code></a></h1>
 <p>Ключевое слово <code>as</code> выполняет обычное приведение типов:</p>
+
 <span class='rusttest'>fn main() {
     let x: i32 = 5;
     
@@ -205,6 +206,7 @@
 <span class='kw'>let</span> <span class='ident'>y</span> <span class='op'>=</span> <span class='ident'>x</span> <span class='kw'>as</span> <span class='ident'>i64</span>;</pre>
 
 <p>Оно допускает только определенные виды приведения типов:</p>
+
 <span class='rusttest'>fn main() {
     let a = [0u8, 0u8, 0u8, 0u8];
     
@@ -235,6 +237,7 @@ let b = a as u32; // four eights makes 32
 <p>В предыдущем примере, мы знаем, что массив из четырех <code>u8</code> отображается в массив
 <code>u32</code> должным образом, и поэтому мы хотим выполнить приведение. Если вместо <code>as</code>
 использовать <code>transmute</code>, то Rust позволит это сделать:</p>
+
 <span class='rusttest'>fn main() {
     use std::mem;
     
@@ -263,6 +266,7 @@ let b = a as u32; // four eights makes 32
 <p>Хотя при использовании <code>transmute</code> и выполняется очень мало проверок, но как
 минимум будет проверяться, что типы имеют одинаковый размер. Нижеприведенный код
 завершится ошибкой:</p>
+
 <span class='rusttest'>fn main() {
     use std::mem;
     

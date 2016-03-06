@@ -248,6 +248,7 @@ Rust, вы всегда можете создать альтернативную
 <p>Стандартная библиотека Rust предоставляет библиотеку многопоточности, которая
 позволяет запускать код на Rust параллельно. Вот простой пример использования
 <code>std::thread</code>:</p>
+
 <span class='rusttest'>use std::thread;
 
 fn main() {
@@ -267,6 +268,7 @@ fn main() {
 <p>Метод <code>thread::spawn()</code> в качестве единственного аргумента принимает замыкание,
 которое выполняется в новом потоке. Он возвращает дескриптор потока, который
 используется для ожидания завершения этого потока и извлечения его результата:</p>
+
 <span class='rusttest'>use std::thread;
 
 fn main() {
@@ -316,6 +318,7 @@ fn main() {
 
 <p>В качестве примера приведем программу на Rust, которая входила бы в состояние
 гонки по данным на многих языках. На Rust она не скомпилируется:</p>
+
 <span class='rusttest'>use std::thread;
 
 fn main() {
@@ -366,6 +369,7 @@ fn main() {
 обеспечить изменение своего содержимого лишь одним пользователем одновременно.
 Для этого мы можем использовать тип <code>Mutex&lt;T&gt;</code>. Вот вторая версия нашего кода.
 Она по-прежнему не работает, но по другой причине:</p>
+
 <span class='rusttest'>use std::thread;
 use std::sync::Mutex;
 
@@ -411,6 +415,7 @@ fn main() {
 <p>Вы можете видеть, что <a href="http://doc.rust-lang.org/std/sync/struct.Mutex.html"><code>Mutex</code></a> содержит метод
 <a href="http://doc.rust-lang.org/std/sync/struct.Mutex.html#method.lock"><code>lock</code></a>, который имеет следующую
 сигнатуру:</p>
+
 <span class='rusttest'>fn main() {
     fn lock(&amp;self) -&gt; LockResult&lt;MutexGuard&lt;T&gt;&gt;
 }</span><pre class='rust rust-example-rendered'>
@@ -421,6 +426,7 @@ fn main() {
 сообщении об ошибке.</p>
 
 <p>Мы можем использовать <code>Arc&lt;T&gt;</code>, чтобы исправить это. Вот рабочая версия:</p>
+
 <span class='rusttest'>use std::sync::{Arc, Mutex};
 use std::thread;
 
@@ -458,6 +464,7 @@ fn main() {
 <p>Теперь мы вызываем <code>clone()</code> для нашего <code>Arc</code>, что увеличивает внутренний
 счетчик. Затем полученная ссылка перемещается в новый поток. Давайте более
 подробно рассмотрим тело потока:</p>
+
 <span class='rusttest'>use std::sync::{Arc, Mutex};
 use std::thread;
 fn main() {
@@ -495,6 +502,7 @@ thread::spawn(move || {
 <h2 id='Каналы' class='section-header'><a href='#Каналы'>Каналы</a></h2>
 <p>Вот версия нашего кода, которая использует для синхронизации каналы, вместо
 того, чтобы ждать в течение определенного времени:</p>
+
 <span class='rusttest'>use std::sync::{Arc, Mutex};
 use std::thread;
 use std::sync::mpsc;
@@ -553,6 +561,7 @@ fn main() {
 <p>Хотя по этому каналу посылается просто сигнал (пустой кортеж <code>()</code> не несёт
 никаких данных), в общем случае мы можем отправить по каналу любое значение,
 которое реализует типаж <code>Send</code>!</p>
+
 <span class='rusttest'>use std::thread;
 use std::sync::mpsc;
 
@@ -598,6 +607,7 @@ fn main() {
 <h2 id='Паника' class='section-header'><a href='#Паника'>Паника</a></h2>
 <p><code>panic!</code> аварийно завершает выполняемый в данный момент поток. Вы можете
 использовать потоки Rust как простой механизм изоляции:</p>
+
 <span class='rusttest'>fn main() {
     use std::thread;
     

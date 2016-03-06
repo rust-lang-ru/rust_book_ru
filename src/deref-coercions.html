@@ -190,6 +190,7 @@
     <h1 class="title">Преобразования при разыменовании (deref coercions)</h1>
     <p>Стандартная библиотека Rust реализует особый типаж, <a href="http://doc.rust-lang.org/std/ops/trait.Deref.html"><code>Deref</code></a>. Обычно его
 используют, чтобы перегрузить <code>*</code>, операцию разыменования:</p>
+
 <span class='rusttest'>use std::ops::Deref;
 
 struct DerefExample&lt;T&gt; {
@@ -232,6 +233,7 @@ fn main() {
 возможность, связанная с <code>Deref</code>: преобразования при разыменовании. Вот правило:
 если есть тип <code>U</code>, и он реализует <code>Deref&lt;Target=T&gt;</code>, значения <code>&amp;U</code> будут
 автоматически преобразованы в <code>&amp;T</code>, когда это необходимо. Вот пример:</p>
+
 <span class='rusttest'>fn main() {
     fn foo(s: &amp;str) {
         // позаимствуем строку на секунду
@@ -261,6 +263,7 @@ fn main() {
 <p>Вот и всё. Это правило — одно из немногих мест в Rust, где типы преобразуются
 автоматически. Оно позволяет писать гораздо более гибкий код. Например, тип
 <code>Rc&lt;T&gt;</code> реализует <code>Deref&lt;Target=T&gt;</code>, поэтому такой код работает:</p>
+
 <span class='rusttest'>fn main() {
     use std::rc::Rc;
     
@@ -297,6 +300,7 @@ fn main() {
 
 <p>Другая известная реализация, предоставляемая стандартной библиотекой, это
 <code>impl Deref&lt;Target=[T]&gt; for Vec&lt;T&gt;</code>:</p>
+
 <span class='rusttest'>fn main() {
     fn foo(s: &amp;[i32]) {
         // позаимствуем срез на секунду
@@ -321,6 +325,7 @@ fn main() {
 <h2 id='Разыменование-и-вызов-методов' class='section-header'><a href='#Разыменование-и-вызов-методов'>Разыменование и вызов методов</a></h2>
 <p><code>Deref</code> также будет работать при вызове метода. Другими словами, возможен такой
 код:</p>
+
 <span class='rusttest'>fn main() {
     struct Foo;
     
@@ -344,6 +349,7 @@ fn main() {
 
 <p>Несмотря на то, что <code>f</code> — это не ссылка, а <code>foo</code> принимает <code>&amp;self</code>, это будет
 работать. Более того, все примеры ниже делают одно и то же:</p>
+
 <span class='rusttest'>fn main() {
     f.foo();
     (&amp;f).foo();

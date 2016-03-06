@@ -190,6 +190,7 @@
     <h1 class="title">Условная компиляция</h1>
     <p>В Rust есть специальный атрибут, <code>#[cfg]</code>, который позволяет компилировать код в
 зависимости от флагов, переданных компилятору. Он имеет две формы:</p>
+
 <span class='rusttest'>fn main() {
     #[cfg(foo)]
     fn foo() {}
@@ -202,6 +203,7 @@
 <span class='attribute'>#[<span class='ident'>cfg</span>(<span class='ident'>bar</span> <span class='op'>=</span> <span class='string'>&quot;baz&quot;</span>)]</span></pre>
 
 <p>Над атрибутами конфигурации определены логические операции:</p>
+
 <span class='rusttest'>fn main() {
     #[cfg(any(unix, windows))]
     fn foo() {}
@@ -219,6 +221,7 @@
 <span class='attribute'>#[<span class='ident'>cfg</span>(<span class='ident'>not</span>(<span class='ident'>foo</span>))]</span></pre>
 
 <p>Они могут быть как угодно вложены:</p>
+
 <span class='rusttest'>fn main() {
     #[cfg(any(not(unix), all(target_os=&quot;macos&quot;, target_arch = &quot;powerpc&quot;)))]
     fn foo() {}
@@ -245,6 +248,7 @@ secure-password = [&quot;bcrypt&quot;]
 <p>Совокупность этих флагов конфигурации (<code>cfg</code>) будет определять, какие из них
 будут активны, и, следовательно, какой код будет скомпилирован. Давайте
 рассмотрим такой код:</p>
+
 <span class='rusttest'>fn main() {
     #[cfg(feature = &quot;foo&quot;)]
     mod foo {
@@ -262,6 +266,7 @@ secure-password = [&quot;bcrypt&quot;]
 <h1 id='cfg_attr' class='section-header'><a href='#cfg_attr'>cfg_attr</a></h1>
 <p>Вы также можете установить другой атрибут в зависимости от переменной <code>cfg</code> с
 помощью атрибута <code>cfg_attr</code>:</p>
+
 <span class='rusttest'>fn main() {
     #[cfg_attr(a, b)]
     fn foo() {}
@@ -274,6 +279,7 @@ secure-password = [&quot;bcrypt&quot;]
 <h1 id='cfg' class='section-header'><a href='#cfg'>cfg!</a></h1>
 <p><a href="compiler-plugins.html">Расширение синтаксиса</a> <code>cfg!</code> позволяет использовать данные
 виды флагов и в другом месте в коде:</p>
+
 <span class='rusttest'>fn main() {
     if cfg!(target_os = &quot;macos&quot;) || cfg!(target_os = &quot;ios&quot;) {
         println!(&quot;Think Different!&quot;);

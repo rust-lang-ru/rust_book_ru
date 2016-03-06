@@ -189,6 +189,7 @@
 
     <h1 class="title">Функции</h1>
     <p>Каждая программа на Rust имеет по крайней мере одну функцию — <code>main</code>:</p>
+
 <span class='rusttest'>fn main() {
 }
 </span><pre class='rust rust-example-rendered'>
@@ -199,6 +200,7 @@
 объявляет функцию. За ним следует её имя, пустые круглые скобки (поскольку эта
 функция не принимает аргументов), а затем тело функции, заключённое в фигурные
 скобки. Вот функция <code>foo</code>:</p>
+
 <span class='rusttest'>fn main() {
     fn foo() {
     }
@@ -208,6 +210,7 @@
 
 <p>Итак, что насчёт аргументов, принимаемых функцией? Вот функция, печатающая
 число:</p>
+
 <span class='rusttest'>fn main() {
     fn print_number(x: i32) {
         println!(&quot;x равен: {}&quot;, x);
@@ -218,6 +221,7 @@
 }</pre>
 
 <p>Вот полная программа, использующая функцию <code>print_number</code>:</p>
+
 <span class='rusttest'>fn main() {
     print_number(5);
 }
@@ -238,6 +242,7 @@ fn print_number(x: i32) {
 аргумента после двоеточия.</p>
 
 <p>Вот полная программа, которая складывает два числа и печатает их:</p>
+
 <span class='rusttest'>fn main() {
     print_sum(5, 6);
 }
@@ -258,6 +263,7 @@ fn print_sum(x: i32, y: i32) {
 
 <p>В отличие от <code>let</code>, вы <em>должны</em> объявлять типы аргументов функции. Этот код не
 скомпилируется:</p>
+
 <span class='rusttest'>fn main() {
     fn print_sum(x, y) {
         println!(&quot;сумма чисел: {}&quot;, x + y);
@@ -281,6 +287,7 @@ fn print_number(x, y) {
 
 <p>Как насчёт возвращаемого значения? Вот функция, которая прибавляет один к
 целому:</p>
+
 <span class='rusttest'>fn main() {
     fn add_one(x: i32) -&gt; i32 {
         x + 1
@@ -294,6 +301,7 @@ fn print_number(x, y) {
 «стрелки». «Стрелка» представляет собой дефис (<code>-</code>), за которым следует знак
 «больше» (<code>&gt;</code>). Заметьте, что в функции выше нет точки с запятой. Если бы мы
 добавили её:</p>
+
 <span class='rusttest'>fn main() {
     fn add_one(x: i32) -&gt; i32 {
         x + 1;
@@ -340,6 +348,7 @@ help: consider removing this semicolon:
 
 <p>Однако, в Rust использование <code>let</code> для связывания <em>не является</em> выражением.
 Следующий код вызовет ошибку компиляции:</p>
+
 <span class='rusttest'>fn main() {
     let x = (let y = 5); // expected identifier, found keyword `let`
 }</span><pre class='rust rust-example-rendered'>
@@ -353,6 +362,7 @@ help: consider removing this semicolon:
 языков, где результатом присваивания является присваиваемое значение (например,
 <code>5</code> из предыдущего примера), в Rust значением присваивания является пустой
 кортеж <code>()</code>.</p>
+
 <span class='rusttest'>fn main() {
     let mut y = 5;
     
@@ -370,6 +380,7 @@ help: consider removing this semicolon:
 каждой строки. Вы увидите её в конце почти каждой строки кода на Rust.</p>
 
 <p>Из-за чего мы говорим «почти»? Вы это уже видели в этом примере:</p>
+
 <span class='rusttest'>fn main() {
     fn add_one(x: i32) -&gt; i32 {
         x + 1
@@ -386,6 +397,7 @@ help: consider removing this semicolon:
 <h2 id='Досрочный-возврат-из-функции' class='section-header'><a href='#Досрочный-возврат-из-функции'>Досрочный возврат из функции</a></h2>
 <p>А что насчёт досрочного возврата из функции? У нас есть для этого ключевое слово
 <code>return</code>:</p>
+
 <span class='rusttest'>fn main() {
     fn foo(x: i32) -&gt; i32 {
         return x;
@@ -403,6 +415,7 @@ help: consider removing this semicolon:
 
 <p><code>return</code> можно написать в последней строке тела функции, но это считается
 плохим стилем:</p>
+
 <span class='rusttest'>fn main() {
     fn foo(x: i32) -&gt; i32 {
         return x + 1;
@@ -419,6 +432,7 @@ help: consider removing this semicolon:
 <h2 id='Расходящиеся-функции' class='section-header'><a href='#Расходящиеся-функции'>Расходящиеся функции</a></h2>
 <p>Для функций, которые не возвращают управление («расходящихся»), в Rust есть
 специальный синтаксис:</p>
+
 <span class='rusttest'>fn main() {
     fn diverges() -&gt; ! {
         panic!(&quot;Эта функция не возвращает управление!&quot;);
@@ -483,6 +497,7 @@ stack backtrace:
 </code></pre>
 
 <p>Значение расходящейся функции может быть использовано как значение любого типа:</p>
+
 <span class='rusttest'>fn main() {
     fn diverges() -&gt; ! {
        panic!(&quot;Эта функция никогда не выходит!&quot;);
@@ -495,6 +510,7 @@ stack backtrace:
 
 <h2 id='Указатели-на-функции' class='section-header'><a href='#Указатели-на-функции'>Указатели на функции</a></h2>
 <p>Можно объявить имя, связанное с функцией:</p>
+
 <span class='rusttest'>fn main() {
     let f: fn(i32) -&gt; i32;
 }</span><pre class='rust rust-example-rendered'>
@@ -502,6 +518,7 @@ stack backtrace:
 
 <p><code>f</code> — это имя, связанное с указателем на функцию, которая принимает в качестве
 аргумента <code>i32</code> и возвращает <code>i32</code>. Например:</p>
+
 <span class='rusttest'>fn main() {
     fn plus_one(i: i32) -&gt; i32 {
         i + 1
@@ -524,6 +541,7 @@ stack backtrace:
 <span class='kw'>let</span> <span class='ident'>f</span> <span class='op'>=</span> <span class='ident'>plus_one</span>;</pre>
 
 <p>Теперь мы можем использовать <code>f</code>, чтобы вызвать функцию:</p>
+
 <span class='rusttest'>fn main() {
     fn plus_one(i: i32) -&gt; i32 { i + 1 }
     let f = plus_one;
