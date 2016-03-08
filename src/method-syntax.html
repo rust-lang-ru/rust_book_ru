@@ -206,9 +206,8 @@
 }</span><pre class='rust rust-example-rendered'>
 <span class='ident'>foo</span>.<span class='ident'>bar</span>().<span class='ident'>baz</span>();</pre>
 
-<p>К счастью, как вы уже наверно догадались, это возможно! Rust предоставляет
-возможность использовать такой <em>синтаксис вызова метода</em> с помощью ключевого
-слова <code>impl</code>.</p>
+<p>К счастью, это возможно! Rust предоставляет возможность использовать такой
+<em>синтаксис вызова метода</em> с помощью ключевого слова <code>impl</code>.</p>
 
 <h1 id='Вызов-методов' class='section-header'><a href='#Вызов-методов'>Вызов методов</a></h1>
 <p>Вот как это работает:</p>
@@ -448,7 +447,7 @@ struct CircleBuilder {
 
 impl CircleBuilder {
     fn new() -&gt; CircleBuilder {
-        CircleBuilder { x: 0.0, y: 0.0, radius: 0.0, }
+        CircleBuilder { x: 0.0, y: 0.0, radius: 1.0, }
     }
 
     fn x(&amp;mut self, coordinate: f64) -&gt; &amp;mut CircleBuilder {
@@ -503,7 +502,7 @@ fn main() {
 
 <span class='kw'>impl</span> <span class='ident'>CircleBuilder</span> {
     <span class='kw'>fn</span> <span class='ident'>new</span>() <span class='op'>-&gt;</span> <span class='ident'>CircleBuilder</span> {
-        <span class='ident'>CircleBuilder</span> { <span class='ident'>x</span>: <span class='number'>0.0</span>, <span class='ident'>y</span>: <span class='number'>0.0</span>, <span class='ident'>radius</span>: <span class='number'>0.0</span>, }
+        <span class='ident'>CircleBuilder</span> { <span class='ident'>x</span>: <span class='number'>0.0</span>, <span class='ident'>y</span>: <span class='number'>0.0</span>, <span class='ident'>radius</span>: <span class='number'>1.0</span>, }
     }
 
     <span class='kw'>fn</span> <span class='ident'>x</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>, <span class='ident'>coordinate</span>: <span class='ident'>f64</span>) <span class='op'>-&gt;</span> <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>CircleBuilder</span> {
@@ -538,11 +537,11 @@ fn main() {
     <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;y: {}&quot;</span>, <span class='ident'>c</span>.<span class='ident'>y</span>);
 }</pre>
 
-<p>Всё, что мы сделали здесь — это создали ещё одну структуру, <code>CircleBuilder</code>. В
+<p>Всё, что мы сделали здесь, — это создали ещё одну структуру, <code>CircleBuilder</code>. В
 ней мы определили методы строителя. Также мы определили метод <code>area()</code> в
 <code>Circle</code>. Мы также сделали еще один метод в <code>CircleBuilder</code>: <code>finalize()</code>. Этот
 метод создаёт наш окончательный <code>Circle</code> из строителя. Таким образом, мы можем
-использовать методы <code>CircleBuilder</code> чтобы уточнить создание <code>Circle</code>.</p>
+использовать методы <code>CircleBuilder</code>, чтобы уточнить создание <code>Circle</code>.</p>
 
     <script type="text/javascript">
         window.playgroundUrl = "https://play.rust-lang.org";
