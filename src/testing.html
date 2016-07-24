@@ -219,8 +219,8 @@ $ cd adder
 
 <span class='rusttest'>fn main() {
     #[test]
-    fn it_works() {
-    }
+fn it_works() {
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='attribute'>#[<span class='ident'>test</span>]</span>
 <span class='kw'>fn</span> <span class='ident'>it_works</span>() {
@@ -258,7 +258,7 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
 
 <span class='rusttest'>fn main() {
     fn it_works() {
-    }
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>fn</span> <span class='ident'>it_works</span>() {</pre>
 
@@ -274,13 +274,13 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
 
 <span class='rusttest'>fn main() {
     #[test]
-    fn it_works() {
-        assert!(false);
-    }
+fn it_works() {
+    assert!(false);
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='attribute'>#[<span class='ident'>test</span>]</span>
 <span class='kw'>fn</span> <span class='ident'>it_works</span>() {
-    <span class='macro'>assert</span><span class='macro'>!</span>(<span class='boolval'>false</span>);
+    <span class='macro'>assert</span><span class='macro'>!</span>(<span class='bool-val'>false</span>);
 }</pre>
 
 <p><code>assert!</code> — это макрос, определенный в Rust, и принимающий один аргумент: если
@@ -344,15 +344,15 @@ thread &#39;&lt;main&gt;&#39; panicked at &#39;Some tests failed&#39;, /home/ste
 
 <span class='rusttest'>fn main() {
     #[test]
-    #[should_panic]
-    fn it_works() {
-        assert!(false);
-    }
+#[should_panic]
+fn it_works() {
+    assert!(false);
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='attribute'>#[<span class='ident'>test</span>]</span>
 <span class='attribute'>#[<span class='ident'>should_panic</span>]</span>
 <span class='kw'>fn</span> <span class='ident'>it_works</span>() {
-    <span class='macro'>assert</span><span class='macro'>!</span>(<span class='boolval'>false</span>);
+    <span class='macro'>assert</span><span class='macro'>!</span>(<span class='bool-val'>false</span>);
 }</pre>
 
 <p>Теперь этот тест будет выполнен удачно, если вызывается <code>panic!</code>, и неудачно,
@@ -379,10 +379,10 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
 
 <span class='rusttest'>fn main() {
     #[test]
-    #[should_panic]
-    fn it_works() {
-        assert_eq!(&quot;Hello&quot;, &quot;world&quot;);
-    }
+#[should_panic]
+fn it_works() {
+    assert_eq!(&quot;Hello&quot;, &quot;world&quot;);
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='attribute'>#[<span class='ident'>test</span>]</span>
 <span class='attribute'>#[<span class='ident'>should_panic</span>]</span>
@@ -417,10 +417,10 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
 
 <span class='rusttest'>fn main() {
     #[test]
-    #[should_panic(expected = &quot;assertion failed&quot;)]
-    fn it_works() {
-        assert_eq!(&quot;Hello&quot;, &quot;world&quot;);
-    }
+#[should_panic(expected = &quot;assertion failed&quot;)]
+fn it_works() {
+    assert_eq!(&quot;Hello&quot;, &quot;world&quot;);
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='attribute'>#[<span class='ident'>test</span>]</span>
 <span class='attribute'>#[<span class='ident'>should_panic</span>(<span class='ident'>expected</span> <span class='op'>=</span> <span class='string'>&quot;assertion failed&quot;</span>)]</span>
@@ -432,13 +432,13 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
 
 <span class='rusttest'>fn main() {
     pub fn add_two(a: i32) -&gt; i32 {
-        a + 2
-    }
-    
-    #[test]
-    fn it_works() {
-        assert_eq!(4, add_two(2));
-    }
+    a + 2
+}
+
+#[test]
+fn it_works() {
+    assert_eq!(4, add_two(2));
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>add_two</span>(<span class='ident'>a</span>: <span class='ident'>i32</span>) <span class='op'>-&gt;</span> <span class='ident'>i32</span> {
     <span class='ident'>a</span> <span class='op'>+</span> <span class='number'>2</span>
@@ -459,14 +459,14 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
 
 <span class='rusttest'>fn main() {
     fn it_works() {
-        assert_eq!(4, add_two(2));
-    }
-    
-    #[test]
-    #[ignore]
-    fn expensive_test() {
-        // код, который занимает час на выполнение
-    }
+    assert_eq!(4, add_two(2));
+}
+
+#[test]
+#[ignore]
+fn expensive_test() {
+    // код, который занимает час на выполнение
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>fn</span> <span class='ident'>it_works</span>() {
     <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>4</span>, <span class='ident'>add_two</span>(<span class='number'>2</span>));
@@ -526,18 +526,18 @@ Cargo, именно поэтому команда выглядит так <code>
 
 <span class='rusttest'>fn main() {
     pub fn add_two(a: i32) -&gt; i32 {
-        a + 2
+    a + 2
+}
+
+#[cfg(test)]
+mod test {
+    use super::add_two;
+
+    #[test]
+    fn it_works() {
+        assert_eq!(4, add_two(2));
     }
-    
-    #[cfg(test)]
-    mod test {
-        use super::add_two;
-    
-        #[test]
-        fn it_works() {
-            assert_eq!(4, add_two(2));
-        }
-    }
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>add_two</span>(<span class='ident'>a</span>: <span class='ident'>i32</span>) <span class='op'>-&gt;</span> <span class='ident'>i32</span> {
     <span class='ident'>a</span> <span class='op'>+</span> <span class='number'>2</span>
@@ -545,7 +545,7 @@ Cargo, именно поэтому команда выглядит так <code>
 
 <span class='attribute'>#[<span class='ident'>cfg</span>(<span class='ident'>test</span>)]</span>
 <span class='kw'>mod</span> <span class='ident'>test</span> {
-    <span class='kw'>use</span> <span class='ident'>super</span>::<span class='ident'>add_two</span>;
+    <span class='kw'>use</span> <span class='kw'>super</span>::<span class='ident'>add_two</span>;
 
     <span class='attribute'>#[<span class='ident'>test</span>]</span>
     <span class='kw'>fn</span> <span class='ident'>it_works</span>() {
@@ -569,18 +569,18 @@ Cargo, именно поэтому команда выглядит так <code>
 
 <span class='rusttest'>fn main() {
     pub fn add_two(a: i32) -&gt; i32 {
-        a + 2
+    a + 2
+}
+
+#[cfg(test)]
+mod test {
+    use super::*;
+
+    #[test]
+    fn it_works() {
+        assert_eq!(4, add_two(2));
     }
-    
-    #[cfg(test)]
-    mod test {
-        use super::*;
-    
-        #[test]
-        fn it_works() {
-            assert_eq!(4, add_two(2));
-        }
-    }
+}
 }</span><pre class='rust rust-example-rendered'>
 
 <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>add_two</span>(<span class='ident'>a</span>: <span class='ident'>i32</span>) <span class='op'>-&gt;</span> <span class='ident'>i32</span> {
@@ -589,7 +589,7 @@ Cargo, именно поэтому команда выглядит так <code>
 
 <span class='attribute'>#[<span class='ident'>cfg</span>(<span class='ident'>test</span>)]</span>
 <span class='kw'>mod</span> <span class='ident'>test</span> {
-    <span class='kw'>use</span> <span class='ident'>super</span>::<span class='op'>*</span>;
+    <span class='kw'>use</span> <span class='kw'>super</span>::<span class='op'>*</span>;
 
     <span class='attribute'>#[<span class='ident'>test</span>]</span>
     <span class='kw'>fn</span> <span class='ident'>it_works</span>() {
@@ -630,11 +630,11 @@ tests)? Для этого следует использовать директо
 
 <span class='rusttest'>fn main() {
     extern crate adder;
-    
-    #[test]
-    fn it_works() {
-        assert_eq!(4, adder::add_two(2));
-    }
+
+#[test]
+fn it_works() {
+    assert_eq!(4, adder::add_two(2));
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>adder</span>;
 
@@ -692,35 +692,35 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
 
 <span class='rusttest'>fn main() {
     //! Контейнер `adder` предоставляет функции сложения чисел.
-    //!
-    //! # Examples
-    //!
-    //! ```
-    //! assert_eq!(4, adder::add_two(2));
-    //! ```
-    
-    /// Эта функция прибавляет 2 к своему аргументу.
-    ///
-    /// # Examples
-    ///
-    /// ```
-    /// use adder::add_two;
-    ///
-    /// assert_eq!(4, add_two(2));
-    /// ```
-    pub fn add_two(a: i32) -&gt; i32 {
-        a + 2
+//!
+//! # Examples
+//!
+//! ```
+//! assert_eq!(4, adder::add_two(2));
+//! ```
+
+/// Эта функция прибавляет 2 к своему аргументу.
+///
+/// # Examples
+///
+/// ```
+/// use adder::add_two;
+///
+/// assert_eq!(4, add_two(2));
+/// ```
+pub fn add_two(a: i32) -&gt; i32 {
+    a + 2
+}
+
+#[cfg(test)]
+mod test {
+    use super::*;
+
+    #[test]
+    fn it_works() {
+        assert_eq!(4, add_two(2));
     }
-    
-    #[cfg(test)]
-    mod test {
-        use super::*;
-    
-        #[test]
-        fn it_works() {
-            assert_eq!(4, add_two(2));
-        }
-    }
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='doccomment'>//! Контейнер `adder` предоставляет функции сложения чисел.</span>
 <span class='doccomment'>//!</span>
@@ -745,7 +745,7 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
 
 <span class='attribute'>#[<span class='ident'>cfg</span>(<span class='ident'>test</span>)]</span>
 <span class='kw'>mod</span> <span class='ident'>test</span> {
-    <span class='kw'>use</span> <span class='ident'>super</span>::<span class='op'>*</span>;
+    <span class='kw'>use</span> <span class='kw'>super</span>::<span class='op'>*</span>;
 
     <span class='attribute'>#[<span class='ident'>test</span>]</span>
     <span class='kw'>fn</span> <span class='ident'>it_works</span>() {
@@ -802,7 +802,7 @@ test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured
     <script type="text/javascript">
         window.playgroundUrl = "https://play.rust-lang.org";
     </script>
-    <script src='rustbook.js'></script>
+    <script src='../rustbook.js'></script>
 <script src='playpen.js'></script>
 </div></div>
 

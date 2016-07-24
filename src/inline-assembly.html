@@ -196,11 +196,11 @@ GCC и Clang:</p>
 
 <span class='rusttest'>fn main() {
     asm!(assembly template
-       : output operands
-       : input operands
-       : clobbers
-       : options
-       );
+   : output operands
+   : input operands
+   : clobbers
+   : options
+   );
 }</span><pre class='rust rust-example-rendered'>
 <span class='macro'>asm</span><span class='macro'>!</span>(<span class='ident'>assembly</span> <span class='ident'>template</span>
    : <span class='ident'>output</span> <span class='ident'>operands</span>
@@ -342,11 +342,11 @@ fn main() {
 <span class='rusttest'>#![feature(asm)]
 fn main() {
     #[cfg(any(target_arch = &quot;x86&quot;, target_arch = &quot;x86_64&quot;))]
-    unsafe fn read_byte_in(port: u16) -&gt; u8 {
-    let result: u8;
-    asm!(&quot;in %dx, %al&quot; : &quot;={al}&quot;(result) : &quot;{dx}&quot;(port));
-    result
-    }
+unsafe fn read_byte_in(port: u16) -&gt; u8 {
+let result: u8;
+asm!(&quot;in %dx, %al&quot; : &quot;={al}&quot;(result) : &quot;{dx}&quot;(port));
+result
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>let</span> <span class='ident'>result</span>: <span class='ident'>u8</span>;
 <span class='macro'>asm</span><span class='macro'>!</span>(<span class='string'>&quot;in %dx, %al&quot;</span> : <span class='string'>&quot;={al}&quot;</span>(<span class='ident'>result</span>) : <span class='string'>&quot;{dx}&quot;</span>(<span class='ident'>port</span>));
@@ -417,7 +417,7 @@ println!(&quot;eax is currently {}&quot;, result);
     <script type="text/javascript">
         window.playgroundUrl = "https://play.rust-lang.org";
     </script>
-    <script src='rustbook.js'></script>
+    <script src='../rustbook.js'></script>
 <script src='playpen.js'></script>
 </div></div>
 

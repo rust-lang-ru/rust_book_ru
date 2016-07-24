@@ -205,10 +205,10 @@ chapter on <code>#![no_std]</code></a></p>
 
 <span class='rusttest'>fn main() {
     #![no_std]
-    
-    fn plus_one(x: i32) -&gt; i32 {
-        x + 1
-    }
+
+fn plus_one(x: i32) -&gt; i32 {
+    x + 1
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='attribute'>#<span class='op'>!</span>[<span class='ident'>no_std</span>]</span>
 
@@ -225,14 +225,14 @@ prelude</a>. This means that a lot of code will Just Work:</p>
 
 <span class='rusttest'>fn main() {
     #![no_std]
-    
-    fn may_fail(failure: bool) -&gt; Result&lt;(), &amp;&#39;static str&gt; {
-        if failure {
-            Err(&quot;this didn’t work!&quot;)
-        } else {
-            Ok(())
-        }
+
+fn may_fail(failure: bool) -&gt; Result&lt;(), &amp;&#39;static str&gt; {
+    if failure {
+        Err(&quot;this didn’t work!&quot;)
+    } else {
+        Ok(())
     }
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='attribute'>#<span class='op'>!</span>[<span class='ident'>no_std</span>]</span>
 
@@ -247,7 +247,7 @@ prelude</a>. This means that a lot of code will Just Work:</p>
     <script type="text/javascript">
         window.playgroundUrl = "https://play.rust-lang.org";
     </script>
-    <script src='rustbook.js'></script>
+    <script src='../rustbook.js'></script>
 <script src='playpen.js'></script>
 </div></div>
 

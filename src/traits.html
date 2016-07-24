@@ -197,16 +197,16 @@
 <span class='rusttest'>#![feature(core)]
 fn main() {
     struct Circle {
-        x: f64,
-        y: f64,
-        radius: f64,
+    x: f64,
+    y: f64,
+    radius: f64,
+}
+
+impl Circle {
+    fn area(&amp;self) -&gt; f64 {
+        std::f64::consts::PI * (self.radius * self.radius)
     }
-    
-    impl Circle {
-        fn area(&amp;self) -&gt; f64 {
-            std::f64::consts::PI * (self.radius * self.radius)
-        }
-    }
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>struct</span> <span class='ident'>Circle</span> {
     <span class='ident'>x</span>: <span class='ident'>f64</span>,
@@ -227,20 +227,20 @@ fn main() {
 <span class='rusttest'>#![feature(core)]
 fn main() {
     struct Circle {
-        x: f64,
-        y: f64,
-        radius: f64,
+    x: f64,
+    y: f64,
+    radius: f64,
+}
+
+trait HasArea {
+    fn area(&amp;self) -&gt; f64;
+}
+
+impl HasArea for Circle {
+    fn area(&amp;self) -&gt; f64 {
+        std::f64::consts::PI * (self.radius * self.radius)
     }
-    
-    trait HasArea {
-        fn area(&amp;self) -&gt; f64;
-    }
-    
-    impl HasArea for Circle {
-        fn area(&amp;self) -&gt; f64 {
-            std::f64::consts::PI * (self.radius * self.radius)
-        }
-    }
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>struct</span> <span class='ident'>Circle</span> {
     <span class='ident'>x</span>: <span class='ident'>f64</span>,
@@ -268,8 +268,8 @@ fn main() {
 
 <span class='rusttest'>fn main() {
     fn print_area&lt;T&gt;(shape: T) {
-        println!(&quot;This shape has an area of {}&quot;, shape.area());
-    }
+    println!(&quot;This shape has an area of {}&quot;, shape.area());
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>fn</span> <span class='ident'>print_area</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span>(<span class='ident'>shape</span>: <span class='ident'>T</span>) {
     <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;This shape has an area of {}&quot;</span>, <span class='ident'>shape</span>.<span class='ident'>area</span>());
@@ -286,11 +286,11 @@ fn main() {
 
 <span class='rusttest'>fn main() {
     trait HasArea {
-        fn area(&amp;self) -&gt; f64;
-    }
-    fn print_area&lt;T: HasArea&gt;(shape: T) {
-        println!(&quot;This shape has an area of {}&quot;, shape.area());
-    }
+    fn area(&amp;self) -&gt; f64;
+}
+fn print_area&lt;T: HasArea&gt;(shape: T) {
+    println!(&quot;This shape has an area of {}&quot;, shape.area());
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>fn</span> <span class='ident'>print_area</span><span class='op'>&lt;</span><span class='ident'>T</span>: <span class='ident'>HasArea</span><span class='op'>&gt;</span>(<span class='ident'>shape</span>: <span class='ident'>T</span>) {
     <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;This shape has an area of {}&quot;</span>, <span class='ident'>shape</span>.<span class='ident'>area</span>());
@@ -427,18 +427,18 @@ fn main() {
 
 <span class='rusttest'>fn main() {
     trait HasArea {
-        fn area(&amp;self) -&gt; f64;
+    fn area(&amp;self) -&gt; f64;
+}
+
+impl HasArea for i32 {
+    fn area(&amp;self) -&gt; f64 {
+        println!(&quot;это нелепо&quot;);
+
+        *self as f64
     }
-    
-    impl HasArea for i32 {
-        fn area(&amp;self) -&gt; f64 {
-            println!(&quot;это нелепо&quot;);
-    
-            *self as f64
-        }
-    }
-    
-    5.area();
+}
+
+5.area();
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>trait</span> <span class='ident'>HasArea</span> {
     <span class='kw'>fn</span> <span class='ident'>area</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>f64</span>;
@@ -466,9 +466,9 @@ fn main() {
 
 <span class='rusttest'>fn main() {
     let mut f = std::fs::File::open(&quot;foo.txt&quot;).ok().expect(&quot;Не могу открыть foo.txt&quot;);
-    let buf = b&quot;whatever&quot;; // литерал строки байт. buf: &amp;[u8; 8]
-    let result = f.write(buf);
-    result.unwrap(); // игнорируем ошибку
+let buf = b&quot;whatever&quot;; // литерал строки байт. buf: &amp;[u8; 8]
+let result = f.write(buf);
+result.unwrap(); // игнорируем ошибку
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>f</span> <span class='op'>=</span> <span class='ident'>std</span>::<span class='ident'>fs</span>::<span class='ident'>File</span>::<span class='ident'>open</span>(<span class='string'>&quot;foo.txt&quot;</span>).<span class='ident'>ok</span>().<span class='ident'>expect</span>(<span class='string'>&quot;Не могу открыть foo.txt&quot;</span>);
 <span class='kw'>let</span> <span class='ident'>buf</span> <span class='op'>=</span> <span class='string'>b&quot;whatever&quot;</span>; <span class='comment'>// литерал строки байт. buf: &amp;[u8; 8]</span>
@@ -485,11 +485,11 @@ let result = f.write(buf);
 
 <span class='rusttest'>fn main() {
     use std::io::Write;
-    
-    let mut f = std::fs::File::open(&quot;foo.txt&quot;).ok().expect(&quot;Не могу открыть foo.txt&quot;);
-    let buf = b&quot;whatever&quot;;
-    let result = f.write(buf);
-    result.unwrap(); // игнорируем ошибку
+
+let mut f = std::fs::File::open(&quot;foo.txt&quot;).ok().expect(&quot;Не могу открыть foo.txt&quot;);
+let buf = b&quot;whatever&quot;;
+let result = f.write(buf);
+result.unwrap(); // игнорируем ошибку
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>io</span>::<span class='ident'>Write</span>;
 
@@ -520,8 +520,8 @@ let result = f.write(buf);
 
 <span class='rusttest'>fn main() {
     fn foo&lt;T: Clone&gt;(x: T) {
-        x.clone();
-    }
+    x.clone();
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>fn</span> <span class='ident'>foo</span><span class='op'>&lt;</span><span class='ident'>T</span>: <span class='ident'>Clone</span><span class='op'>&gt;</span>(<span class='ident'>x</span>: <span class='ident'>T</span>) {
     <span class='ident'>x</span>.<span class='ident'>clone</span>();
@@ -531,11 +531,11 @@ let result = f.write(buf);
 
 <span class='rusttest'>fn main() {
     use std::fmt::Debug;
-    
-    fn foo&lt;T: Clone + Debug&gt;(x: T) {
-        x.clone();
-        println!(&quot;{:?}&quot;, x);
-    }
+
+fn foo&lt;T: Clone + Debug&gt;(x: T) {
+    x.clone();
+    println!(&quot;{:?}&quot;, x);
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>fmt</span>::<span class='ident'>Debug</span>;
 
@@ -553,12 +553,12 @@ let result = f.write(buf);
 
 <span class='rusttest'>fn main() {
     use std::fmt::Debug;
-    
-    fn foo&lt;T: Clone, K: Clone + Debug&gt;(x: T, y: K) {
-        x.clone();
-        y.clone();
-        println!(&quot;{:?}&quot;, y);
-    }
+
+fn foo&lt;T: Clone, K: Clone + Debug&gt;(x: T, y: K) {
+    x.clone();
+    y.clone();
+    println!(&quot;{:?}&quot;, y);
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>fmt</span>::<span class='ident'>Debug</span>;
 
@@ -618,15 +618,15 @@ fn main() {
 
 <span class='rusttest'>fn main() {
     use std::fmt::Debug;
-    
-    fn bar&lt;T, K&gt;(x: T, y: K)
-        where T: Clone,
-              K: Clone + Debug {
-    
-        x.clone();
-        y.clone();
-        println!(&quot;{:?}&quot;, y);
-    }
+
+fn bar&lt;T, K&gt;(x: T, y: K)
+    where T: Clone,
+          K: Clone + Debug {
+
+    x.clone();
+    y.clone();
+    println!(&quot;{:?}&quot;, y);
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>fmt</span>::<span class='ident'>Debug</span>;
 
@@ -646,24 +646,24 @@ fn main() {
 
 <span class='rusttest'>fn main() {
     trait ConvertTo&lt;Output&gt; {
-        fn convert(&amp;self) -&gt; Output;
-    }
-    
-    impl ConvertTo&lt;i64&gt; for i32 {
-        fn convert(&amp;self) -&gt; i64 { *self as i64 }
-    }
-    
-    // может быть вызван с T == i32
-    fn normal&lt;T: ConvertTo&lt;i64&gt;&gt;(x: &amp;T) -&gt; i64 {
-        x.convert()
-    }
-    
-    // может быть вызван с T == i64
-    fn inverse&lt;T&gt;() -&gt; T
-            // использует ConvertTo как если бы это было «ConvertFrom&lt;i32&gt;»
-            where i32: ConvertTo&lt;T&gt; {
-        1i32.convert()
-    }
+    fn convert(&amp;self) -&gt; Output;
+}
+
+impl ConvertTo&lt;i64&gt; for i32 {
+    fn convert(&amp;self) -&gt; i64 { *self as i64 }
+}
+
+// может быть вызван с T == i32
+fn normal&lt;T: ConvertTo&lt;i64&gt;&gt;(x: &amp;T) -&gt; i64 {
+    x.convert()
+}
+
+// может быть вызван с T == i64
+fn inverse&lt;T&gt;() -&gt; T
+        // использует ConvertTo как если бы это было «ConvertFrom&lt;i32&gt;»
+        where i32: ConvertTo&lt;T&gt; {
+    1i32.convert()
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>trait</span> <span class='ident'>ConvertTo</span><span class='op'>&lt;</span><span class='ident'>Output</span><span class='op'>&gt;</span> {
     <span class='kw'>fn</span> <span class='ident'>convert</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>Output</span>;
@@ -696,10 +696,10 @@ fn main() {
 
 <span class='rusttest'>fn main() {
     trait Foo {
-        fn is_valid(&amp;self) -&gt; bool;
-    
-        fn is_invalid(&amp;self) -&gt; bool { !self.is_valid() }
-    }
+    fn is_valid(&amp;self) -&gt; bool;
+
+    fn is_invalid(&amp;self) -&gt; bool { !self.is_valid() }
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>trait</span> <span class='ident'>Foo</span> {
     <span class='kw'>fn</span> <span class='ident'>is_valid</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>bool</span>;
@@ -713,45 +713,45 @@ fn main() {
 
 <span class='rusttest'>fn main() {
     trait Foo {
-        fn is_valid(&amp;self) -&gt; bool;
-    
-        fn is_invalid(&amp;self) -&gt; bool { !self.is_valid() }
+    fn is_valid(&amp;self) -&gt; bool;
+
+    fn is_invalid(&amp;self) -&gt; bool { !self.is_valid() }
+}
+struct UseDefault;
+
+impl Foo for UseDefault {
+    fn is_valid(&amp;self) -&gt; bool {
+        println!(&quot;Вызван UseDefault.is_valid.&quot;);
+        true
     }
-    struct UseDefault;
-    
-    impl Foo for UseDefault {
-        fn is_valid(&amp;self) -&gt; bool {
-            println!(&quot;Вызван UseDefault.is_valid.&quot;);
-            true
-        }
+}
+
+struct OverrideDefault;
+
+impl Foo for OverrideDefault {
+    fn is_valid(&amp;self) -&gt; bool {
+        println!(&quot;Вызван OverrideDefault.is_valid.&quot;);
+        true
     }
-    
-    struct OverrideDefault;
-    
-    impl Foo for OverrideDefault {
-        fn is_valid(&amp;self) -&gt; bool {
-            println!(&quot;Вызван OverrideDefault.is_valid.&quot;);
-            true
-        }
-    
-        fn is_invalid(&amp;self) -&gt; bool {
-            println!(&quot;Вызван OverrideDefault.is_invalid!&quot;);
-            true // эта реализация противоречит сама себе!
-        }
+
+    fn is_invalid(&amp;self) -&gt; bool {
+        println!(&quot;Вызван OverrideDefault.is_invalid!&quot;);
+        true // эта реализация противоречит сама себе!
     }
-    
-    let default = UseDefault;
-    assert!(!default.is_invalid()); // печатает «Вызван UseDefault.is_valid.»
-    
-    let over = OverrideDefault;
-    assert!(over.is_invalid()); // печатает «Вызван OverrideDefault.is_invalid!»
+}
+
+let default = UseDefault;
+assert!(!default.is_invalid()); // печатает «Вызван UseDefault.is_valid.»
+
+let over = OverrideDefault;
+assert!(over.is_invalid()); // печатает «Вызван OverrideDefault.is_invalid!»
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>struct</span> <span class='ident'>UseDefault</span>;
 
 <span class='kw'>impl</span> <span class='ident'>Foo</span> <span class='kw'>for</span> <span class='ident'>UseDefault</span> {
     <span class='kw'>fn</span> <span class='ident'>is_valid</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>bool</span> {
         <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Вызван UseDefault.is_valid.&quot;</span>);
-        <span class='boolval'>true</span>
+        <span class='bool-val'>true</span>
     }
 }
 
@@ -760,12 +760,12 @@ fn main() {
 <span class='kw'>impl</span> <span class='ident'>Foo</span> <span class='kw'>for</span> <span class='ident'>OverrideDefault</span> {
     <span class='kw'>fn</span> <span class='ident'>is_valid</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>bool</span> {
         <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Вызван OverrideDefault.is_valid.&quot;</span>);
-        <span class='boolval'>true</span>
+        <span class='bool-val'>true</span>
     }
 
     <span class='kw'>fn</span> <span class='ident'>is_invalid</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>bool</span> {
         <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Вызван OverrideDefault.is_invalid!&quot;</span>);
-        <span class='boolval'>true</span> <span class='comment'>// эта реализация противоречит сама себе!</span>
+        <span class='bool-val'>true</span> <span class='comment'>// эта реализация противоречит сама себе!</span>
     }
 }
 
@@ -781,12 +781,12 @@ fn main() {
 
 <span class='rusttest'>fn main() {
     trait Foo {
-        fn foo(&amp;self);
-    }
-    
-    trait FooBar : Foo {
-        fn foobar(&amp;self);
-    }
+    fn foo(&amp;self);
+}
+
+trait FooBar : Foo {
+    fn foobar(&amp;self);
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>trait</span> <span class='ident'>Foo</span> {
     <span class='kw'>fn</span> <span class='ident'>foo</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>);
@@ -800,20 +800,20 @@ fn main() {
 
 <span class='rusttest'>fn main() {
     trait Foo {
-        fn foo(&amp;self);
-    }
-    trait FooBar : Foo {
-        fn foobar(&amp;self);
-    }
-    struct Baz;
-    
-    impl Foo for Baz {
-        fn foo(&amp;self) { println!(&quot;foo&quot;); }
-    }
-    
-    impl FooBar for Baz {
-        fn foobar(&amp;self) { println!(&quot;foobar&quot;); }
-    }
+    fn foo(&amp;self);
+}
+trait FooBar : Foo {
+    fn foobar(&amp;self);
+}
+struct Baz;
+
+impl Foo for Baz {
+    fn foo(&amp;self) { println!(&quot;foo&quot;); }
+}
+
+impl FooBar for Baz {
+    fn foobar(&amp;self) { println!(&quot;foobar&quot;); }
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>struct</span> <span class='ident'>Baz</span>;
 
@@ -833,7 +833,7 @@ fn main() {
     <script type="text/javascript">
         window.playgroundUrl = "https://play.rust-lang.org";
     </script>
-    <script src='rustbook.js'></script>
+    <script src='../rustbook.js'></script>
 <script src='playpen.js'></script>
 </div></div>
 

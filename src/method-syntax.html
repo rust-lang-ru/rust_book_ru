@@ -266,24 +266,24 @@ fn main() {
 
 <span class='rusttest'>fn main() {
     struct Circle {
-        x: f64,
-        y: f64,
-        radius: f64,
+    x: f64,
+    y: f64,
+    radius: f64,
+}
+
+impl Circle {
+    fn reference(&amp;self) {
+       println!(&quot;принимаем self по ссылке!&quot;);
     }
-    
-    impl Circle {
-        fn reference(&amp;self) {
-           println!(&quot;принимаем self по ссылке!&quot;);
-        }
-    
-        fn mutable_reference(&amp;mut self) {
-           println!(&quot;принимаем self по изменяемой ссылке!&quot;);
-        }
-    
-        fn takes_ownership(self) {
-           println!(&quot;принимаем владение self!&quot;);
-        }
+
+    fn mutable_reference(&amp;mut self) {
+       println!(&quot;принимаем self по изменяемой ссылке!&quot;);
     }
+
+    fn takes_ownership(self) {
+       println!(&quot;принимаем владение self!&quot;);
+    }
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>struct</span> <span class='ident'>Circle</span> {
     <span class='ident'>x</span>: <span class='ident'>f64</span>,
@@ -362,9 +362,9 @@ fn main() {
 
 <span class='rusttest'>fn main() {
     struct Circle;
-    impl Circle {
-    fn grow(&amp;self) -&gt; Circle {
-    Circle } }
+impl Circle {
+fn grow(&amp;self) -&gt; Circle {
+Circle } }
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>fn</span> <span class='ident'>grow</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>Circle</span> {</pre>
 
@@ -546,7 +546,7 @@ fn main() {
     <script type="text/javascript">
         window.playgroundUrl = "https://play.rust-lang.org";
     </script>
-    <script src='rustbook.js'></script>
+    <script src='../rustbook.js'></script>
 <script src='playpen.js'></script>
 </div></div>
 

@@ -610,12 +610,12 @@ fn main() {
 
 <span class='rusttest'>fn main() {
     use std::thread;
-    
-    let result = thread::spawn(move || {
-        panic!(&quot;oops!&quot;);
-    }).join();
-    
-    assert!(result.is_err());
+
+let result = thread::spawn(move || {
+    panic!(&quot;oops!&quot;);
+}).join();
+
+assert!(result.is_err());
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>thread</span>;
 
@@ -631,7 +631,7 @@ fn main() {
     <script type="text/javascript">
         window.playgroundUrl = "https://play.rust-lang.org";
     </script>
-    <script src='rustbook.js'></script>
+    <script src='../rustbook.js'></script>
 <script src='playpen.js'></script>
 </div></div>
 

@@ -198,13 +198,13 @@
 
 <span class='rusttest'>fn main() {
     let x = 1;
-    
-    match x {
-        1 =&gt; println!(&quot;один&quot;),
-        2 =&gt; println!(&quot;два&quot;),
-        3 =&gt; println!(&quot;три&quot;),
-        _ =&gt; println!(&quot;что угодно&quot;),
-    }
+
+match x {
+    1 =&gt; println!(&quot;один&quot;),
+    2 =&gt; println!(&quot;два&quot;),
+    3 =&gt; println!(&quot;три&quot;),
+    _ =&gt; println!(&quot;что угодно&quot;),
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>let</span> <span class='ident'>x</span> <span class='op'>=</span> <span class='number'>1</span>;
 
@@ -222,12 +222,12 @@
 
 <span class='rusttest'>fn main() {
     let x = 1;
-    
-    match x {
-        1 | 2 =&gt; println!(&quot;один или два&quot;),
-        3 =&gt; println!(&quot;три&quot;),
-        _ =&gt; println!(&quot;что угодно&quot;),
-    }
+
+match x {
+    1 | 2 =&gt; println!(&quot;один или два&quot;),
+    3 =&gt; println!(&quot;три&quot;),
+    _ =&gt; println!(&quot;что угодно&quot;),
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>let</span> <span class='ident'>x</span> <span class='op'>=</span> <span class='number'>1</span>;
 
@@ -245,15 +245,15 @@
 
 <span class='rusttest'>fn main() {
     struct Point {
-        x: i32,
-        y: i32,
-    }
-    
-    let origin = Point { x: 0, y: 0 };
-    
-    match origin {
-        Point { x, y } =&gt; println!(&quot;({},{})&quot;, x, y),
-    }
+    x: i32,
+    y: i32,
+}
+
+let origin = Point { x: 0, y: 0 };
+
+match origin {
+    Point { x, y } =&gt; println!(&quot;({},{})&quot;, x, y),
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>struct</span> <span class='ident'>Point</span> {
     <span class='ident'>x</span>: <span class='ident'>i32</span>,
@@ -270,15 +270,15 @@
 
 <span class='rusttest'>fn main() {
     struct Point {
-        x: i32,
-        y: i32,
-    }
-    
-    let origin = Point { x: 0, y: 0 };
-    
-    match origin {
-        Point { x: x1, y: y1 } =&gt; println!(&quot;({},{})&quot;, x1, y1),
-    }
+    x: i32,
+    y: i32,
+}
+
+let origin = Point { x: 0, y: 0 };
+
+match origin {
+    Point { x: x1, y: y1 } =&gt; println!(&quot;({},{})&quot;, x1, y1),
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>struct</span> <span class='ident'>Point</span> {
     <span class='ident'>x</span>: <span class='ident'>i32</span>,
@@ -296,15 +296,15 @@
 
 <span class='rusttest'>fn main() {
     struct Point {
-        x: i32,
-        y: i32,
-    }
-    
-    let origin = Point { x: 0, y: 0 };
-    
-    match origin {
-        Point { x, .. } =&gt; println!(&quot;x равен {}&quot;, x),
-    }
+    x: i32,
+    y: i32,
+}
+
+let origin = Point { x: 0, y: 0 };
+
+match origin {
+    Point { x, .. } =&gt; println!(&quot;x равен {}&quot;, x),
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>struct</span> <span class='ident'>Point</span> {
     <span class='ident'>x</span>: <span class='ident'>i32</span>,
@@ -324,15 +324,15 @@
 
 <span class='rusttest'>fn main() {
     struct Point {
-        x: i32,
-        y: i32,
-    }
-    
-    let origin = Point { x: 0, y: 0 };
-    
-    match origin {
-        Point { y, .. } =&gt; println!(&quot;y равен {}&quot;, y),
-    }
+    x: i32,
+    y: i32,
+}
+
+let origin = Point { x: 0, y: 0 };
+
+match origin {
+    Point { y, .. } =&gt; println!(&quot;y равен {}&quot;, y),
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>struct</span> <span class='ident'>Point</span> {
     <span class='ident'>x</span>: <span class='ident'>i32</span>,
@@ -356,10 +356,10 @@
 
 <span class='rusttest'>fn main() {
     let some_value: Result&lt;i32, &amp;&#39;static str&gt; = Err(&quot;Здесь была какая-то ошибка&quot;);
-    match some_value {
-        Ok(value) =&gt; println!(&quot;получили значение: {}&quot;, value),
-        Err(_) =&gt; println!(&quot;произошла ошибка&quot;),
-    }
+match some_value {
+    Ok(value) =&gt; println!(&quot;получили значение: {}&quot;, value),
+    Err(_) =&gt; println!(&quot;произошла ошибка&quot;),
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>match</span> <span class='ident'>some_value</span> {
     <span class='prelude-val'>Ok</span>(<span class='ident'>value</span>) <span class='op'>=&gt;</span> <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;получили значение: {}&quot;</span>, <span class='ident'>value</span>),
@@ -375,11 +375,11 @@
 
 <span class='rusttest'>fn main() {
     fn coordinate() -&gt; (i32, i32, i32) {
-        // создаём и возвращаем какой-то кортеж из трёх элементов
-    (1, 2, 3)
-    }
-    
-    let (x, _, z) = coordinate();
+    // создаём и возвращаем какой-то кортеж из трёх элементов
+(1, 2, 3)
+}
+
+let (x, _, z) = coordinate();
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>fn</span> <span class='ident'>coordinate</span>() <span class='op'>-&gt;</span> (<span class='ident'>i32</span>, <span class='ident'>i32</span>, <span class='ident'>i32</span>) {
     <span class='comment'>// создаём и возвращаем какой-то кортеж из трёх элементов</span>
@@ -395,16 +395,16 @@
 
 <span class='rusttest'>fn main() {
     enum OptionalTuple {
-        Value(i32, i32, i32),
-        Missing,
-    }
-    
-    let x = OptionalTuple::Value(5, -2, 3);
-    
-    match x {
-        OptionalTuple::Value(..) =&gt; println!(&quot;Получили кортеж!&quot;),
-        OptionalTuple::Missing =&gt; println!(&quot;Вот неудача.&quot;),
-    }
+    Value(i32, i32, i32),
+    Missing,
+}
+
+let x = OptionalTuple::Value(5, -2, 3);
+
+match x {
+    OptionalTuple::Value(..) =&gt; println!(&quot;Получили кортеж!&quot;),
+    OptionalTuple::Missing =&gt; println!(&quot;Вот неудача.&quot;),
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>enum</span> <span class='ident'>OptionalTuple</span> {
     <span class='ident'>Value</span>(<span class='ident'>i32</span>, <span class='ident'>i32</span>, <span class='ident'>i32</span>),
@@ -425,10 +425,10 @@
 
 <span class='rusttest'>fn main() {
     let x = 5;
-    
-    match x {
-        ref r =&gt; println!(&quot;Получили ссылку на {}&quot;, r),
-    }
+
+match x {
+    ref r =&gt; println!(&quot;Получили ссылку на {}&quot;, r),
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>let</span> <span class='ident'>x</span> <span class='op'>=</span> <span class='number'>5</span>;
 
@@ -444,10 +444,10 @@
 
 <span class='rusttest'>fn main() {
     let mut x = 5;
-    
-    match x {
-        ref mut mr =&gt; println!(&quot;Получили изменяемую ссылку на {}&quot;, mr),
-    }
+
+match x {
+    ref mut mr =&gt; println!(&quot;Получили изменяемую ссылку на {}&quot;, mr),
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>x</span> <span class='op'>=</span> <span class='number'>5</span>;
 
@@ -460,11 +460,11 @@
 
 <span class='rusttest'>fn main() {
     let x = 1;
-    
-    match x {
-        1 ... 5 =&gt; println!(&quot;от одного до пяти&quot;),
-        _ =&gt; println!(&quot;что угодно&quot;),
-    }
+
+match x {
+    1 ... 5 =&gt; println!(&quot;от одного до пяти&quot;),
+    _ =&gt; println!(&quot;что угодно&quot;),
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>let</span> <span class='ident'>x</span> <span class='op'>=</span> <span class='number'>1</span>;
 
@@ -479,12 +479,12 @@
 
 <span class='rusttest'>fn main() {
     let x = &#39;💅&#39;;
-    
-    match x {
-        &#39;а&#39; ... &#39;и&#39; =&gt; println!(&quot;ранняя буква&quot;),
-        &#39;к&#39; ... &#39;я&#39; =&gt; println!(&quot;поздняя буква&quot;),
-        _ =&gt; println!(&quot;что-то ещё&quot;),
-    }
+
+match x {
+    &#39;а&#39; ... &#39;и&#39; =&gt; println!(&quot;ранняя буква&quot;),
+    &#39;к&#39; ... &#39;я&#39; =&gt; println!(&quot;поздняя буква&quot;),
+    _ =&gt; println!(&quot;что-то ещё&quot;),
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>let</span> <span class='ident'>x</span> <span class='op'>=</span> <span class='string'>&#39;💅&#39;</span>;
 
@@ -501,16 +501,16 @@
 
 <span class='rusttest'>fn main() {
     let x = 1;
-    
-    match x {
-        e @ 1 ... 5 =&gt; println!(&quot;получили элемент диапазона {}&quot;, e),
-        _ =&gt; println!(&quot;что угодно&quot;),
-    }
+
+match x {
+    e @ 1 ... 5 =&gt; println!(&quot;получили элемент диапазона {}&quot;, e),
+    _ =&gt; println!(&quot;что угодно&quot;),
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>let</span> <span class='ident'>x</span> <span class='op'>=</span> <span class='number'>1</span>;
 
 <span class='kw'>match</span> <span class='ident'>x</span> {
-    <span class='ident'>e</span> <span class='kw-2'>@</span> <span class='number'>1</span> ... <span class='number'>5</span> <span class='op'>=&gt;</span> <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;получили элемент диапазона {}&quot;</span>, <span class='ident'>e</span>),
+    <span class='ident'>e</span> @ <span class='number'>1</span> ... <span class='number'>5</span> <span class='op'>=&gt;</span> <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;получили элемент диапазона {}&quot;</span>, <span class='ident'>e</span>),
     _ <span class='op'>=&gt;</span> <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;что угодно&quot;</span>),
 }</pre>
 
@@ -519,16 +519,16 @@
 
 <span class='rusttest'>fn main() {
     #[derive(Debug)]
-    struct Person {
-        name: Option&lt;String&gt;,
-    }
-    
-    let name = &quot;Steve&quot;.to_string();
-    let mut x: Option&lt;Person&gt; = Some(Person { name: Some(name) });
-    match x {
-        Some(Person { name: ref a @ Some(_), .. }) =&gt; println!(&quot;{:?}&quot;, a),
-        _ =&gt; {}
-    }
+struct Person {
+    name: Option&lt;String&gt;,
+}
+
+let name = &quot;Steve&quot;.to_string();
+let mut x: Option&lt;Person&gt; = Some(Person { name: Some(name) });
+match x {
+    Some(Person { name: ref a @ Some(_), .. }) =&gt; println!(&quot;{:?}&quot;, a),
+    _ =&gt; {}
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Debug</span>)]</span>
 <span class='kw'>struct</span> <span class='ident'>Person</span> {
@@ -538,7 +538,7 @@
 <span class='kw'>let</span> <span class='ident'>name</span> <span class='op'>=</span> <span class='string'>&quot;Steve&quot;</span>.<span class='ident'>to_string</span>();
 <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>x</span>: <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>Person</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='prelude-val'>Some</span>(<span class='ident'>Person</span> { <span class='ident'>name</span>: <span class='prelude-val'>Some</span>(<span class='ident'>name</span>) });
 <span class='kw'>match</span> <span class='ident'>x</span> {
-    <span class='prelude-val'>Some</span>(<span class='ident'>Person</span> { <span class='ident'>name</span>: <span class='kw-2'>ref</span> <span class='ident'>a</span> <span class='kw-2'>@</span> <span class='prelude-val'>Some</span>(_), .. }) <span class='op'>=&gt;</span> <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{:?}&quot;</span>, <span class='ident'>a</span>),
+    <span class='prelude-val'>Some</span>(<span class='ident'>Person</span> { <span class='ident'>name</span>: <span class='kw-2'>ref</span> <span class='ident'>a</span> @ <span class='prelude-val'>Some</span>(_), .. }) <span class='op'>=&gt;</span> <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{:?}&quot;</span>, <span class='ident'>a</span>),
     _ <span class='op'>=&gt;</span> {}
 }</pre>
 
@@ -549,16 +549,16 @@
 
 <span class='rusttest'>fn main() {
     let x = 5;
-    
-    match x {
-        e @ 1 ... 5 | e @ 8 ... 10 =&gt; println!(&quot;получили элемент диапазона {}&quot;, e),
-        _ =&gt; println!(&quot;что угодно&quot;),
-    }
+
+match x {
+    e @ 1 ... 5 | e @ 8 ... 10 =&gt; println!(&quot;получили элемент диапазона {}&quot;, e),
+    _ =&gt; println!(&quot;что угодно&quot;),
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>let</span> <span class='ident'>x</span> <span class='op'>=</span> <span class='number'>5</span>;
 
 <span class='kw'>match</span> <span class='ident'>x</span> {
-    <span class='ident'>e</span> <span class='kw-2'>@</span> <span class='number'>1</span> ... <span class='number'>5</span> <span class='op'>|</span> <span class='ident'>e</span> <span class='kw-2'>@</span> <span class='number'>8</span> ... <span class='number'>10</span> <span class='op'>=&gt;</span> <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;получили элемент диапазона {}&quot;</span>, <span class='ident'>e</span>),
+    <span class='ident'>e</span> @ <span class='number'>1</span> ... <span class='number'>5</span> <span class='op'>|</span> <span class='ident'>e</span> @ <span class='number'>8</span> ... <span class='number'>10</span> <span class='op'>=&gt;</span> <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;получили элемент диапазона {}&quot;</span>, <span class='ident'>e</span>),
     _ <span class='op'>=&gt;</span> <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;что угодно&quot;</span>),
 }</pre>
 
@@ -567,17 +567,17 @@
 
 <span class='rusttest'>fn main() {
     enum OptionalInt {
-        Value(i32),
-        Missing,
-    }
-    
-    let x = OptionalInt::Value(5);
-    
-    match x {
-        OptionalInt::Value(i) if i &gt; 5 =&gt; println!(&quot;Получили целое больше пяти!&quot;),
-        OptionalInt::Value(..) =&gt; println!(&quot;Получили целое!&quot;),
-        OptionalInt::Missing =&gt; println!(&quot;Неудача.&quot;),
-    }
+    Value(i32),
+    Missing,
+}
+
+let x = OptionalInt::Value(5);
+
+match x {
+    OptionalInt::Value(i) if i &gt; 5 =&gt; println!(&quot;Получили целое больше пяти!&quot;),
+    OptionalInt::Value(..) =&gt; println!(&quot;Получили целое!&quot;),
+    OptionalInt::Missing =&gt; println!(&quot;Неудача.&quot;),
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>enum</span> <span class='ident'>OptionalInt</span> {
     <span class='ident'>Value</span>(<span class='ident'>i32</span>),
@@ -598,15 +598,15 @@
 
 <span class='rusttest'>fn main() {
     let x = 4;
-    let y = false;
-    
-    match x {
-        4 | 5 if y =&gt; println!(&quot;да&quot;),
-        _ =&gt; println!(&quot;нет&quot;),
-    }
+let y = false;
+
+match x {
+    4 | 5 if y =&gt; println!(&quot;да&quot;),
+    _ =&gt; println!(&quot;нет&quot;),
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>let</span> <span class='ident'>x</span> <span class='op'>=</span> <span class='number'>4</span>;
-<span class='kw'>let</span> <span class='ident'>y</span> <span class='op'>=</span> <span class='boolval'>false</span>;
+<span class='kw'>let</span> <span class='ident'>y</span> <span class='op'>=</span> <span class='bool-val'>false</span>;
 
 <span class='kw'>match</span> <span class='ident'>x</span> {
     <span class='number'>4</span> <span class='op'>|</span> <span class='number'>5</span> <span class='kw'>if</span> <span class='ident'>y</span> <span class='op'>=&gt;</span> <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;да&quot;</span>),
@@ -631,8 +631,8 @@
 
 <span class='rusttest'>fn main() {
     match x {
-        Foo { x: Some(ref name), y: None } =&gt; ...
-    }
+    Foo { x: Some(ref name), y: None } =&gt; ...
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>match</span> <span class='ident'>x</span> {
     <span class='ident'>Foo</span> { <span class='ident'>x</span>: <span class='prelude-val'>Some</span>(<span class='kw-2'>ref</span> <span class='ident'>name</span>), <span class='ident'>y</span>: <span class='prelude-val'>None</span> } <span class='op'>=&gt;</span> ...
@@ -643,7 +643,7 @@
     <script type="text/javascript">
         window.playgroundUrl = "https://play.rust-lang.org";
     </script>
-    <script src='rustbook.js'></script>
+    <script src='../rustbook.js'></script>
 <script src='playpen.js'></script>
 </div></div>
 

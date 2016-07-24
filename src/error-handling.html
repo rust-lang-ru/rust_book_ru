@@ -366,9 +366,9 @@ fn main() {
 
 <span class='rusttest'>fn main() {
     enum Option&lt;T&gt; {
-        None,
-        Some(T),
-    }
+    None,
+    Some(T),
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>enum</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span> {
     <span class='prelude-val'>None</span>,
@@ -385,15 +385,15 @@ fn main() {
 
 <span class='rusttest'>fn main() {
     // Поиск Unicode-символа `needle` в `haystack`. Когда первый символ найден,
-    // возвращается побайтовое смещение для этого символа. Иначе возвращается `None`.
-    fn find(haystack: &amp;str, needle: char) -&gt; Option&lt;usize&gt; {
-        for (offset, c) in haystack.char_indices() {
-            if c == needle {
-                return Some(offset);
-            }
+// возвращается побайтовое смещение для этого символа. Иначе возвращается `None`.
+fn find(haystack: &amp;str, needle: char) -&gt; Option&lt;usize&gt; {
+    for (offset, c) in haystack.char_indices() {
+        if c == needle {
+            return Some(offset);
         }
-        None
     }
+    None
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='comment'>// Поиск Unicode-символа `needle` в `haystack`. Когда первый символ найден,</span>
 <span class='comment'>// возвращается побайтовое смещение для этого символа. Иначе возвращается `None`.</span>
@@ -450,19 +450,19 @@ fn main() {
 
 <span class='rusttest'>fn main() {
     enum Option&lt;T&gt; {
-        None,
-        Some(T),
-    }
-    
-    impl&lt;T&gt; Option&lt;T&gt; {
-        fn unwrap(self) -&gt; T {
-            match self {
-                Option::Some(val) =&gt; val,
-                Option::None =&gt;
-                  panic!(&quot;called `Option::unwrap()` on a `None` value&quot;),
-            }
+    None,
+    Some(T),
+}
+
+impl&lt;T&gt; Option&lt;T&gt; {
+    fn unwrap(self) -&gt; T {
+        match self {
+            Option::Some(val) =&gt; val,
+            Option::None =&gt;
+              panic!(&quot;called `Option::unwrap()` on a `None` value&quot;),
         }
     }
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>enum</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span> {
     <span class='prelude-val'>None</span>,
@@ -499,15 +499,15 @@ fn main() {
 
 <span class='rusttest'>fn main() {
     fn find(_: &amp;str, _: char) -&gt; Option&lt;usize&gt; { None }
-    // Возвращает расширение заданного имени файла, а именно все символы,
-    // идущие за первым вхождением `.` в имя файла.
-    // Если в `file_name` нет ни одного вхождения `.`, возвращается `None`.
-    fn extension_explicit(file_name: &amp;str) -&gt; Option&lt;&amp;str&gt; {
-        match find(file_name, &#39;.&#39;) {
-            None =&gt; None,
-            Some(i) =&gt; Some(&amp;file_name[i+1..]),
-        }
+// Возвращает расширение заданного имени файла, а именно все символы,
+// идущие за первым вхождением `.` в имя файла.
+// Если в `file_name` нет ни одного вхождения `.`, возвращается `None`.
+fn extension_explicit(file_name: &amp;str) -&gt; Option&lt;&amp;str&gt; {
+    match find(file_name, &#39;.&#39;) {
+        None =&gt; None,
+        Some(i) =&gt; Some(&amp;file_name[i+1..]),
     }
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='comment'>// Возвращает расширение заданного имени файла, а именно все символы,</span>
 <span class='comment'>// идущие за первым вхождением `.` в имя файла.</span>
@@ -542,11 +542,11 @@ fn main() {
 
 <span class='rusttest'>fn main() {
     fn map&lt;F, T, A&gt;(option: Option&lt;T&gt;, f: F) -&gt; Option&lt;A&gt; where F: FnOnce(T) -&gt; A {
-        match option {
-            None =&gt; None,
-            Some(value) =&gt; Some(f(value)),
-        }
+    match option {
+        None =&gt; None,
+        Some(value) =&gt; Some(f(value)),
     }
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>fn</span> <span class='ident'>map</span><span class='op'>&lt;</span><span class='ident'>F</span>, <span class='ident'>T</span>, <span class='ident'>A</span><span class='op'>&gt;</span>(<span class='ident'>option</span>: <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span>, <span class='ident'>f</span>: <span class='ident'>F</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>A</span><span class='op'>&gt;</span> <span class='kw'>where</span> <span class='ident'>F</span>: <span class='ident'>FnOnce</span>(<span class='ident'>T</span>) <span class='op'>-&gt;</span> <span class='ident'>A</span> {
     <span class='kw'>match</span> <span class='ident'>option</span> {
@@ -562,12 +562,12 @@ fn main() {
 
 <span class='rusttest'>fn main() {
     fn find(_: &amp;str, _: char) -&gt; Option&lt;usize&gt; { None }
-    // Возвращает расширение заданного имени файла, а именно все символы,
-    // идущие за первым вхождением `.` в имя файла.
-    // Если в `file_name` нет ни одного вхождения `.`, возвращается `None`.
-    fn extension(file_name: &amp;str) -&gt; Option&lt;&amp;str&gt; {
-        find(file_name, &#39;.&#39;).map(|i| &amp;file_name[i+1..])
-    }
+// Возвращает расширение заданного имени файла, а именно все символы,
+// идущие за первым вхождением `.` в имя файла.
+// Если в `file_name` нет ни одного вхождения `.`, возвращается `None`.
+fn extension(file_name: &amp;str) -&gt; Option&lt;&amp;str&gt; {
+    find(file_name, &#39;.&#39;).map(|i| &amp;file_name[i+1..])
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='comment'>// Возвращает расширение заданного имени файла, а именно все символы,</span>
 <span class='comment'>// идущие за первым вхождением `.` в имя файла.</span>
@@ -586,11 +586,11 @@ fn main() {
 
 <span class='rusttest'>fn main() {
     fn unwrap_or&lt;T&gt;(option: Option&lt;T&gt;, default: T) -&gt; T {
-        match option {
-            None =&gt; default,
-            Some(value) =&gt; value,
-        }
+    match option {
+        None =&gt; default,
+        Some(value) =&gt; value,
     }
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>fn</span> <span class='ident'>unwrap_or</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span>(<span class='ident'>option</span>: <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span>, <span class='ident'>default</span>: <span class='ident'>T</span>) <span class='op'>-&gt;</span> <span class='ident'>T</span> {
     <span class='kw'>match</span> <span class='ident'>option</span> {
@@ -644,19 +644,19 @@ fn main() {
 
 <span class='rusttest'>fn main() {
     fn extension(file_name: &amp;str) -&gt; Option&lt;&amp;str&gt; { None }
-    fn file_path_ext_explicit(file_path: &amp;str) -&gt; Option&lt;&amp;str&gt; {
-        match file_name(file_path) {
+fn file_path_ext_explicit(file_path: &amp;str) -&gt; Option&lt;&amp;str&gt; {
+    match file_name(file_path) {
+        None =&gt; None,
+        Some(name) =&gt; match extension(name) {
             None =&gt; None,
-            Some(name) =&gt; match extension(name) {
-                None =&gt; None,
-                Some(ext) =&gt; Some(ext),
-            }
+            Some(ext) =&gt; Some(ext),
         }
     }
-    
-    fn file_name(file_path: &amp;str) -&gt; Option&lt;&amp;str&gt; {
-      unimplemented!() // опустим реализацию
-    }
+}
+
+fn file_name(file_path: &amp;str) -&gt; Option&lt;&amp;str&gt; {
+  unimplemented!() // опустим реализацию
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>fn</span> <span class='ident'>file_path_ext_explicit</span>(<span class='ident'>file_path</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span><span class='ident'>str</span><span class='op'>&gt;</span> {
     <span class='kw'>match</span> <span class='ident'>file_name</span>(<span class='ident'>file_path</span>) {
@@ -681,12 +681,12 @@ fn main() {
 
 <span class='rusttest'>fn main() {
     fn and_then&lt;F, T, A&gt;(option: Option&lt;T&gt;, f: F) -&gt; Option&lt;A&gt;
-            where F: FnOnce(T) -&gt; Option&lt;A&gt; {
-        match option {
-            None =&gt; None,
-            Some(value) =&gt; f(value),
-        }
+        where F: FnOnce(T) -&gt; Option&lt;A&gt; {
+    match option {
+        None =&gt; None,
+        Some(value) =&gt; f(value),
     }
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>fn</span> <span class='ident'>and_then</span><span class='op'>&lt;</span><span class='ident'>F</span>, <span class='ident'>T</span>, <span class='ident'>A</span><span class='op'>&gt;</span>(<span class='ident'>option</span>: <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span>, <span class='ident'>f</span>: <span class='ident'>F</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>A</span><span class='op'>&gt;</span>
         <span class='kw'>where</span> <span class='ident'>F</span>: <span class='ident'>FnOnce</span>(<span class='ident'>T</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>A</span><span class='op'>&gt;</span> {
@@ -701,10 +701,10 @@ fn main() {
 
 <span class='rusttest'>fn main() {
     fn extension(file_name: &amp;str) -&gt; Option&lt;&amp;str&gt; { None }
-    fn file_name(file_path: &amp;str) -&gt; Option&lt;&amp;str&gt; { None }
-    fn file_path_ext(file_path: &amp;str) -&gt; Option&lt;&amp;str&gt; {
-        file_name(file_path).and_then(extension)
-    }
+fn file_name(file_path: &amp;str) -&gt; Option&lt;&amp;str&gt; { None }
+fn file_path_ext(file_path: &amp;str) -&gt; Option&lt;&amp;str&gt; {
+    file_name(file_path).and_then(extension)
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>fn</span> <span class='ident'>file_path_ext</span>(<span class='ident'>file_path</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span><span class='ident'>str</span><span class='op'>&gt;</span> {
     <span class='ident'>file_name</span>(<span class='ident'>file_path</span>).<span class='ident'>and_then</span>(<span class='ident'>extension</span>)
@@ -733,9 +733,9 @@ fn main() {
 
 <span class='rusttest'>fn main() {
     enum Result&lt;T, E&gt; {
-        Ok(T),
-        Err(E),
-    }
+    Ok(T),
+    Err(E),
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>enum</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>T</span>, <span class='ident'>E</span><span class='op'>&gt;</span> {
     <span class='prelude-val'>Ok</span>(<span class='ident'>T</span>),
@@ -768,15 +768,15 @@ fn main() {
 
 <span class='rusttest'>fn main() {
     enum Result&lt;T, E&gt; { Ok(T), Err(E) }
-    impl&lt;T, E: ::std::fmt::Debug&gt; Result&lt;T, E&gt; {
-        fn unwrap(self) -&gt; T {
-            match self {
-                Result::Ok(val) =&gt; val,
-                Result::Err(err) =&gt;
-                  panic!(&quot;called `Result::unwrap()` on an `Err` value: {:?}&quot;, err),
-            }
+impl&lt;T, E: ::std::fmt::Debug&gt; Result&lt;T, E&gt; {
+    fn unwrap(self) -&gt; T {
+        match self {
+            Result::Ok(val) =&gt; val,
+            Result::Err(err) =&gt;
+              panic!(&quot;called `Result::unwrap()` on an `Err` value: {:?}&quot;, err),
         }
     }
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>T</span>, <span class='ident'>E</span>: ::<span class='ident'>std</span>::<span class='ident'>fmt</span>::<span class='ident'>Debug</span><span class='op'>&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>T</span>, <span class='ident'>E</span><span class='op'>&gt;</span> {
     <span class='kw'>fn</span> <span class='ident'>unwrap</span>(<span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>T</span> {
@@ -840,8 +840,8 @@ fn main() {
 
 <span class='rusttest'>fn main() {
     impl str {
-        fn parse&lt;F: FromStr&gt;(&amp;self) -&gt; Result&lt;F, F::Err&gt;;
-    }
+    fn parse&lt;F: FromStr&gt;(&amp;self) -&gt; Result&lt;F, F::Err&gt;;
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>impl</span> <span class='ident'>str</span> {
     <span class='kw'>fn</span> <span class='ident'>parse</span><span class='op'>&lt;</span><span class='ident'>F</span>: <span class='ident'>FromStr</span><span class='op'>&gt;</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>F</span>, <span class='ident'>F</span>::<span class='prelude-val'>Err</span><span class='op'>&gt;</span>;
@@ -956,13 +956,13 @@ fn main() {
 
 <span class='rusttest'>fn main() {
     use std::num::ParseIntError;
-    use std::result;
-    
-    type Result&lt;T&gt; = result::Result&lt;T, ParseIntError&gt;;
-    
-    fn double_number(number_str: &amp;str) -&gt; Result&lt;i32&gt; {
-        unimplemented!();
-    }
+use std::result;
+
+type Result&lt;T&gt; = result::Result&lt;T, ParseIntError&gt;;
+
+fn double_number(number_str: &amp;str) -&gt; Result&lt;i32&gt; {
+    unimplemented!();
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>num</span>::<span class='ident'>ParseIntError</span>;
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>result</span>;
@@ -1120,11 +1120,11 @@ fn main() {
 
 <span class='rusttest'>fn main() {
     fn ok_or&lt;T, E&gt;(option: Option&lt;T&gt;, err: E) -&gt; Result&lt;T, E&gt; {
-        match option {
-            Some(val) =&gt; Ok(val),
-            None =&gt; Err(err),
-        }
+    match option {
+        Some(val) =&gt; Ok(val),
+        None =&gt; Err(err),
     }
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>fn</span> <span class='ident'>ok_or</span><span class='op'>&lt;</span><span class='ident'>T</span>, <span class='ident'>E</span><span class='op'>&gt;</span>(<span class='ident'>option</span>: <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span>, <span class='ident'>err</span>: <span class='ident'>E</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>T</span>, <span class='ident'>E</span><span class='op'>&gt;</span> {
     <span class='kw'>match</span> <span class='ident'>option</span> {
@@ -1411,11 +1411,11 @@ fn main() {
 
 <span class='rusttest'>fn main() {
     macro_rules! try {
-        ($e:expr) =&gt; (match $e {
-            Ok(val) =&gt; val,
-            Err(err) =&gt; return Err(err),
-        });
-    }
+    ($e:expr) =&gt; (match $e {
+        Ok(val) =&gt; val,
+        Err(err) =&gt; return Err(err),
+    });
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>try</span> {
     (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>e</span>:<span class='ident'>expr</span>) <span class='op'>=&gt;</span> (<span class='kw'>match</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>e</span> {
@@ -1527,15 +1527,15 @@ fn main() {
 
 <span class='rusttest'>fn main() {
     use std::io;
-    use std::num;
-    
-    // Мы реализуем `Debug` поскольку, по всей видимости, все типы должны реализовывать `Debug`.
-    // Это дает нам возможность получить адекватное и читаемое описание значения CliError
-    #[derive(Debug)]
-    enum CliError {
-        Io(io::Error),
-        Parse(num::ParseIntError),
-    }
+use std::num;
+
+// Мы реализуем `Debug` поскольку, по всей видимости, все типы должны реализовывать `Debug`.
+// Это дает нам возможность получить адекватное и читаемое описание значения CliError
+#[derive(Debug)]
+enum CliError {
+    Io(io::Error),
+    Parse(num::ParseIntError),
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>io</span>;
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>num</span>;
@@ -1625,14 +1625,14 @@ fn main() {
 
 <span class='rusttest'>fn main() {
     use std::fmt::{Debug, Display};
-    
-    trait Error: Debug + Display {
-      /// A short description of the error.
-      fn description(&amp;self) -&gt; &amp;str;
-    
-      /// The lower level cause of this error, if any.
-      fn cause(&amp;self) -&gt; Option&lt;&amp;Error&gt; { None }
-    }
+
+trait Error: Debug + Display {
+  /// A short description of the error.
+  fn description(&amp;self) -&gt; &amp;str;
+
+  /// The lower level cause of this error, if any.
+  fn cause(&amp;self) -&gt; Option&lt;&amp;Error&gt; { None }
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>fmt</span>::{<span class='ident'>Debug</span>, <span class='ident'>Display</span>};
 
@@ -1672,15 +1672,15 @@ object). Обычно это выглядит как <code>Box&lt;Error&gt;</cod
 
 <span class='rusttest'>fn main() {
     use std::io;
-    use std::num;
-    
-    // Мы реализуем `Debug` поскольку, по всей видимости, все типы должны реализовывать `Debug`.
-    // Это дает нам возможность получить адекватное и читаемое описание значения CliError
-    #[derive(Debug)]
-    enum CliError {
-        Io(io::Error),
-        Parse(num::ParseIntError),
-    }
+use std::num;
+
+// Мы реализуем `Debug` поскольку, по всей видимости, все типы должны реализовывать `Debug`.
+// Это дает нам возможность получить адекватное и читаемое описание значения CliError
+#[derive(Debug)]
+enum CliError {
+    Io(io::Error),
+    Parse(num::ParseIntError),
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>io</span>;
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>num</span>;
@@ -1703,39 +1703,39 @@ object). Обычно это выглядит как <code>Box&lt;Error&gt;</cod
 
 <span class='rusttest'>fn main() {
     use std::error;
-    use std::fmt;
-    
-    impl fmt::Display for CliError {
-        fn fmt(&amp;self, f: &amp;mut fmt::Formatter) -&gt; fmt::Result {
-            match *self {
-                // Оба изначальных типа ошибок уже реализуют `Display`,
-                // так что мы можем использовать их реализации
-                CliError::Io(ref err) =&gt; write!(f, &quot;IO error: {}&quot;, err),
-                CliError::Parse(ref err) =&gt; write!(f, &quot;Parse error: {}&quot;, err),
-            }
+use std::fmt;
+
+impl fmt::Display for CliError {
+    fn fmt(&amp;self, f: &amp;mut fmt::Formatter) -&gt; fmt::Result {
+        match *self {
+            // Оба изначальных типа ошибок уже реализуют `Display`,
+            // так что мы можем использовать их реализации
+            CliError::Io(ref err) =&gt; write!(f, &quot;IO error: {}&quot;, err),
+            CliError::Parse(ref err) =&gt; write!(f, &quot;Parse error: {}&quot;, err),
         }
     }
-    
-    impl error::Error for CliError {
-        fn description(&amp;self) -&gt; &amp;str {
-            // Оба изначальных типа ошибок уже реализуют `Error`,
-            // так что мы можем использовать их реализацией
-            match *self {
-                CliError::Io(ref err) =&gt; err.description(),
-                CliError::Parse(ref err) =&gt; err.description(),
-            }
-        }
-    
-        fn cause(&amp;self) -&gt; Option&lt;&amp;error::Error&gt; {
-            match *self {
-                // В обоих случаях просходит неявное преобразование значения `err`
-                // из конкретного типа (`&amp;io::Error` или `&amp;num::ParseIntError`)
-                // в типаж-обьект `&amp;Error`. Это работает потому что оба типа реализуют `Error`.
-                CliError::Io(ref err) =&gt; Some(err),
-                CliError::Parse(ref err) =&gt; Some(err),
-            }
+}
+
+impl error::Error for CliError {
+    fn description(&amp;self) -&gt; &amp;str {
+        // Оба изначальных типа ошибок уже реализуют `Error`,
+        // так что мы можем использовать их реализацией
+        match *self {
+            CliError::Io(ref err) =&gt; err.description(),
+            CliError::Parse(ref err) =&gt; err.description(),
         }
     }
+
+    fn cause(&amp;self) -&gt; Option&lt;&amp;error::Error&gt; {
+        match *self {
+            // В обоих случаях просходит неявное преобразование значения `err`
+            // из конкретного типа (`&amp;io::Error` или `&amp;num::ParseIntError`)
+            // в типаж-обьект `&amp;Error`. Это работает потому что оба типа реализуют `Error`.
+            CliError::Io(ref err) =&gt; Some(err),
+            CliError::Parse(ref err) =&gt; Some(err),
+        }
+    }
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>error</span>;
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>fmt</span>;
@@ -1785,11 +1785,11 @@ object). Обычно это выглядит как <code>Box&lt;Error&gt;</cod
 
 <span class='rusttest'>fn main() {
     trait From&lt;T&gt; {
-        fn from(T) -&gt; Self;
-    }
+    fn from(T) -&gt; Self;
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>trait</span> <span class='ident'>From</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span> {
-    <span class='kw'>fn</span> <span class='ident'>from</span>(<span class='ident'>T</span>) <span class='op'>-&gt;</span> <span class='kw'>Self</span>;
+    <span class='kw'>fn</span> <span class='ident'>from</span>(<span class='ident'>T</span>) <span class='op'>-&gt;</span> <span class='self'>Self</span>;
 }</pre>
 
 <p>Очень просто, не правда ли? Типаж <code>From</code> чрезвычайно полезен, поскольку
@@ -1802,8 +1802,8 @@ object). Обычно это выглядит как <code>Box&lt;Error&gt;</cod
 
 <span class='rusttest'>fn main() {
     let string: String = From::from(&quot;foo&quot;);
-    let bytes: Vec&lt;u8&gt; = From::from(&quot;foo&quot;);
-    let cow: ::std::borrow::Cow&lt;str&gt; = From::from(&quot;foo&quot;);
+let bytes: Vec&lt;u8&gt; = From::from(&quot;foo&quot;);
+let cow: ::std::borrow::Cow&lt;str&gt; = From::from(&quot;foo&quot;);
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>let</span> <span class='ident'>string</span>: <span class='ident'>String</span> <span class='op'>=</span> <span class='ident'>From</span>::<span class='ident'>from</span>(<span class='string'>&quot;foo&quot;</span>);
 <span class='kw'>let</span> <span class='ident'>bytes</span>: <span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>u8</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='ident'>From</span>::<span class='ident'>from</span>(<span class='string'>&quot;foo&quot;</span>);
@@ -1827,17 +1827,17 @@ and <code>num::ParseIntError</code>? Поскольку обе они реали
 
 <span class='rusttest'>fn main() {
     use std::error::Error;
-    use std::fs;
-    use std::io;
-    use std::num;
-    
-    // Получаем значения ошибок
-    let io_err: io::Error = io::Error::last_os_error();
-    let parse_err: num::ParseIntError = &quot;not a number&quot;.parse::&lt;i32&gt;().unwrap_err();
-    
-    // Собственно, конвертация
-    let err1: Box&lt;Error&gt; = From::from(io_err);
-    let err2: Box&lt;Error&gt; = From::from(parse_err);
+use std::fs;
+use std::io;
+use std::num;
+
+// Получаем значения ошибок
+let io_err: io::Error = io::Error::last_os_error();
+let parse_err: num::ParseIntError = &quot;not a number&quot;.parse::&lt;i32&gt;().unwrap_err();
+
+// Собственно, конвертация
+let err1: Box&lt;Error&gt; = From::from(io_err);
+let err2: Box&lt;Error&gt; = From::from(parse_err);
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>error</span>::<span class='ident'>Error</span>;
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>fs</span>;
@@ -1872,11 +1872,11 @@ and <code>num::ParseIntError</code>? Поскольку обе они реали
 
 <span class='rusttest'>fn main() {
     macro_rules! try {
-        ($e:expr) =&gt; (match $e {
-            Ok(val) =&gt; val,
-            Err(err) =&gt; return Err(err),
-        });
-    }
+    ($e:expr) =&gt; (match $e {
+        Ok(val) =&gt; val,
+        Err(err) =&gt; return Err(err),
+    });
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>try</span> {
     (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>e</span>:<span class='ident'>expr</span>) <span class='op'>=&gt;</span> (<span class='kw'>match</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>e</span> {
@@ -1892,11 +1892,11 @@ and <code>num::ParseIntError</code>? Поскольку обе они реали
 
 <span class='rusttest'>fn main() {
     macro_rules! try {
-        ($e:expr) =&gt; (match $e {
-            Ok(val) =&gt; val,
-            Err(err) =&gt; return Err(::std::convert::From::from(err)),
-        });
-    }
+    ($e:expr) =&gt; (match $e {
+        Ok(val) =&gt; val,
+        Err(err) =&gt; return Err(::std::convert::From::from(err)),
+    });
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>try</span> {
     (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>e</span>:<span class='ident'>expr</span>) <span class='op'>=&gt;</span> (<span class='kw'>match</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>e</span> {
@@ -1915,16 +1915,16 @@ and <code>num::ParseIntError</code>? Поскольку обе они реали
 
 <span class='rusttest'>fn main() {
     use std::fs::File;
-    use std::io::Read;
-    use std::path::Path;
-    
-    fn file_double&lt;P: AsRef&lt;Path&gt;&gt;(file_path: P) -&gt; Result&lt;i32, String&gt; {
-        let mut file = try!(File::open(file_path).map_err(|e| e.to_string()));
-        let mut contents = String::new();
-        try!(file.read_to_string(&amp;mut contents).map_err(|e| e.to_string()));
-        let n = try!(contents.trim().parse::&lt;i32&gt;().map_err(|e| e.to_string()));
-        Ok(2 * n)
-    }
+use std::io::Read;
+use std::path::Path;
+
+fn file_double&lt;P: AsRef&lt;Path&gt;&gt;(file_path: P) -&gt; Result&lt;i32, String&gt; {
+    let mut file = try!(File::open(file_path).map_err(|e| e.to_string()));
+    let mut contents = String::new();
+    try!(file.read_to_string(&amp;mut contents).map_err(|e| e.to_string()));
+    let n = try!(contents.trim().parse::&lt;i32&gt;().map_err(|e| e.to_string()));
+    Ok(2 * n)
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>fs</span>::<span class='ident'>File</span>;
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>io</span>::<span class='ident'>Read</span>;
@@ -1945,17 +1945,17 @@ and <code>num::ParseIntError</code>? Поскольку обе они реали
 
 <span class='rusttest'>fn main() {
     use std::error::Error;
-    use std::fs::File;
-    use std::io::Read;
-    use std::path::Path;
-    
-    fn file_double&lt;P: AsRef&lt;Path&gt;&gt;(file_path: P) -&gt; Result&lt;i32, Box&lt;Error&gt;&gt; {
-        let mut file = try!(File::open(file_path));
-        let mut contents = String::new();
-        try!(file.read_to_string(&amp;mut contents));
-        let n = try!(contents.trim().parse::&lt;i32&gt;());
-        Ok(2 * n)
-    }
+use std::fs::File;
+use std::io::Read;
+use std::path::Path;
+
+fn file_double&lt;P: AsRef&lt;Path&gt;&gt;(file_path: P) -&gt; Result&lt;i32, Box&lt;Error&gt;&gt; {
+    let mut file = try!(File::open(file_path));
+    let mut contents = String::new();
+    try!(file.read_to_string(&amp;mut contents));
+    let n = try!(contents.trim().parse::&lt;i32&gt;());
+    Ok(2 * n)
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>error</span>::<span class='ident'>Error</span>;
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>fs</span>::<span class='ident'>File</span>;
@@ -2011,25 +2011,25 @@ and <code>num::ParseIntError</code>? Поскольку обе они реали
 
 <span class='rusttest'>fn main() {
     use std::fs::File;
-    use std::io::{self, Read};
-    use std::num;
-    use std::path::Path;
-    
-    // Мы реализуем `Debug` поскольку, по всей видимости, все типы должны реализовывать `Debug`.
-    // Это дает нам возможность получить адекватное и читаемое описание значения CliError
-    #[derive(Debug)]
-    enum CliError {
-        Io(io::Error),
-        Parse(num::ParseIntError),
-    }
-    
-    fn file_double_verbose&lt;P: AsRef&lt;Path&gt;&gt;(file_path: P) -&gt; Result&lt;i32, CliError&gt; {
-        let mut file = try!(File::open(file_path).map_err(CliError::Io));
-        let mut contents = String::new();
-        try!(file.read_to_string(&amp;mut contents).map_err(CliError::Io));
-        let n: i32 = try!(contents.trim().parse().map_err(CliError::Parse));
-        Ok(2 * n)
-    }
+use std::io::{self, Read};
+use std::num;
+use std::path::Path;
+
+// Мы реализуем `Debug` поскольку, по всей видимости, все типы должны реализовывать `Debug`.
+// Это дает нам возможность получить адекватное и читаемое описание значения CliError
+#[derive(Debug)]
+enum CliError {
+    Io(io::Error),
+    Parse(num::ParseIntError),
+}
+
+fn file_double_verbose&lt;P: AsRef&lt;Path&gt;&gt;(file_path: P) -&gt; Result&lt;i32, CliError&gt; {
+    let mut file = try!(File::open(file_path).map_err(CliError::Io));
+    let mut contents = String::new();
+    try!(file.read_to_string(&amp;mut contents).map_err(CliError::Io));
+    let n: i32 = try!(contents.trim().parse().map_err(CliError::Parse));
+    Ok(2 * n)
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>fs</span>::<span class='ident'>File</span>;
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>io</span>::{<span class='self'>self</span>, <span class='ident'>Read</span>};
@@ -2061,21 +2061,21 @@ and <code>num::ParseIntError</code>? Поскольку обе они реали
 
 <span class='rusttest'>fn main() {
     #[derive(Debug)]
-    enum CliError { Io(io::Error), Parse(num::ParseIntError) }
-    use std::io;
-    use std::num;
-    
-    impl From&lt;io::Error&gt; for CliError {
-        fn from(err: io::Error) -&gt; CliError {
-            CliError::Io(err)
-        }
+enum CliError { Io(io::Error), Parse(num::ParseIntError) }
+use std::io;
+use std::num;
+
+impl From&lt;io::Error&gt; for CliError {
+    fn from(err: io::Error) -&gt; CliError {
+        CliError::Io(err)
     }
-    
-    impl From&lt;num::ParseIntError&gt; for CliError {
-        fn from(err: num::ParseIntError) -&gt; CliError {
-            CliError::Parse(err)
-        }
+}
+
+impl From&lt;num::ParseIntError&gt; for CliError {
+    fn from(err: num::ParseIntError) -&gt; CliError {
+        CliError::Parse(err)
     }
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>io</span>;
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>num</span>;
@@ -2100,26 +2100,26 @@ and <code>num::ParseIntError</code>? Поскольку обе они реали
 
 <span class='rusttest'>fn main() {
     use std::io;
-    use std::num;
-    enum CliError { Io(::std::io::Error), Parse(::std::num::ParseIntError) }
-    impl From&lt;io::Error&gt; for CliError {
-        fn from(err: io::Error) -&gt; CliError { CliError::Io(err) }
-    }
-    impl From&lt;num::ParseIntError&gt; for CliError {
-        fn from(err: num::ParseIntError) -&gt; CliError { CliError::Parse(err) }
-    }
-    
-    use std::fs::File;
-    use std::io::Read;
-    use std::path::Path;
-    
-    fn file_double&lt;P: AsRef&lt;Path&gt;&gt;(file_path: P) -&gt; Result&lt;i32, CliError&gt; {
-        let mut file = try!(File::open(file_path));
-        let mut contents = String::new();
-        try!(file.read_to_string(&amp;mut contents));
-        let n: i32 = try!(contents.trim().parse());
-        Ok(2 * n)
-    }
+use std::num;
+enum CliError { Io(::std::io::Error), Parse(::std::num::ParseIntError) }
+impl From&lt;io::Error&gt; for CliError {
+    fn from(err: io::Error) -&gt; CliError { CliError::Io(err) }
+}
+impl From&lt;num::ParseIntError&gt; for CliError {
+    fn from(err: num::ParseIntError) -&gt; CliError { CliError::Parse(err) }
+}
+
+use std::fs::File;
+use std::io::Read;
+use std::path::Path;
+
+fn file_double&lt;P: AsRef&lt;Path&gt;&gt;(file_path: P) -&gt; Result&lt;i32, CliError&gt; {
+    let mut file = try!(File::open(file_path));
+    let mut contents = String::new();
+    try!(file.read_to_string(&amp;mut contents));
+    let n: i32 = try!(contents.trim().parse());
+    Ok(2 * n)
+}
 }</span><pre class='rust rust-example-rendered'>
 
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>fs</span>::<span class='ident'>File</span>;
@@ -2146,13 +2146,13 @@ and <code>num::ParseIntError</code>? Поскольку обе они реали
 
 <span class='rusttest'>fn main() {
     use std::io;
-    use std::num;
-    
-    enum CliError {
-        Io(io::Error),
-        ParseInt(num::ParseIntError),
-        ParseFloat(num::ParseFloatError),
-    }
+use std::num;
+
+enum CliError {
+    Io(io::Error),
+    ParseInt(num::ParseIntError),
+    ParseFloat(num::ParseFloatError),
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>io</span>;
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>num</span>;
@@ -2167,18 +2167,18 @@ and <code>num::ParseIntError</code>? Поскольку обе они реали
 
 <span class='rusttest'>fn main() {
     enum CliError {
-        Io(::std::io::Error),
-        ParseInt(num::ParseIntError),
-        ParseFloat(num::ParseFloatError),
+    Io(::std::io::Error),
+    ParseInt(num::ParseIntError),
+    ParseFloat(num::ParseFloatError),
+}
+
+use std::num;
+
+impl From&lt;num::ParseFloatError&gt; for CliError {
+    fn from(err: num::ParseFloatError) -&gt; CliError {
+        CliError::ParseFloat(err)
     }
-    
-    use std::num;
-    
-    impl From&lt;num::ParseFloatError&gt; for CliError {
-        fn from(err: num::ParseFloatError) -&gt; CliError {
-            CliError::ParseFloat(err)
-        }
-    }
+}
 }</span><pre class='rust rust-example-rendered'>
 
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>num</span>;
@@ -2268,7 +2268,7 @@ and <code>num::ParseIntError</code>? Поскольку обе они реали
     <script type="text/javascript">
         window.playgroundUrl = "https://play.rust-lang.org";
     </script>
-    <script src='rustbook.js'></script>
+    <script src='../rustbook.js'></script>
 <script src='playpen.js'></script>
 </div></div>
 

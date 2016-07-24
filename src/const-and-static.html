@@ -245,12 +245,12 @@ lifetime):</p>
 
 <span class='rusttest'>fn main() {
     static mut N: i32 = 5;
-    
-    unsafe {
-        N += 1;
-    
-        println!(&quot;N: {}&quot;, N);
-    }
+
+unsafe {
+    N += 1;
+
+    println!(&quot;N: {}&quot;, N);
+}
 }</span><pre class='rust rust-example-rendered'>
 
 <span class='kw'>unsafe</span> {
@@ -278,7 +278,7 @@ lifetime):</p>
     <script type="text/javascript">
         window.playgroundUrl = "https://play.rust-lang.org";
     </script>
-    <script src='rustbook.js'></script>
+    <script src='../rustbook.js'></script>
 <script src='playpen.js'></script>
 </div></div>
 

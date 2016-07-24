@@ -235,8 +235,8 @@ Rust отказывается компилировать программу, к�
 
 <span class='rusttest'>fn main() {
     fn foo() {
-        let v = vec![1, 2, 3];
-    }
+    let v = vec![1, 2, 3];
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>fn</span> <span class='ident'>foo</span>() {
     <span class='kw'>let</span> <span class='ident'>v</span> <span class='op'>=</span> <span class='macro'>vec</span><span class='macro'>!</span>[<span class='number'>1</span>, <span class='number'>2</span>, <span class='number'>3</span>];
@@ -257,8 +257,8 @@ Rust отказывается компилировать программу, к�
 
 <span class='rusttest'>fn main() {
     let v = vec![1, 2, 3];
-    
-    let v2 = v;
+
+let v2 = v;
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>let</span> <span class='ident'>v</span> <span class='op'>=</span> <span class='macro'>vec</span><span class='macro'>!</span>[<span class='number'>1</span>, <span class='number'>2</span>, <span class='number'>3</span>];
 
@@ -268,10 +268,10 @@ Rust отказывается компилировать программу, к�
 
 <span class='rusttest'>fn main() {
     let v = vec![1, 2, 3];
-    
-    let v2 = v;
-    
-    println!(&quot;v[0] = {}&quot;, v[0]);
+
+let v2 = v;
+
+println!(&quot;v[0] = {}&quot;, v[0]);
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>let</span> <span class='ident'>v</span> <span class='op'>=</span> <span class='macro'>vec</span><span class='macro'>!</span>[<span class='number'>1</span>, <span class='number'>2</span>, <span class='number'>3</span>];
 
@@ -292,14 +292,14 @@ println!(&quot;v[0] = {}&quot;, v[0]);
 
 <span class='rusttest'>fn main() {
     fn take(v: Vec&lt;i32&gt;) {
-        // что будет здесь не очень важно
-    }
-    
-    let v = vec![1, 2, 3];
-    
-    take(v);
-    
-    println!(&quot;v[0] = {}&quot;, v[0]);
+    // что будет здесь не очень важно
+}
+
+let v = vec![1, 2, 3];
+
+take(v);
+
+println!(&quot;v[0] = {}&quot;, v[0]);
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>fn</span> <span class='ident'>take</span>(<span class='ident'>v</span>: <span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>i32</span><span class='op'>&gt;</span>) {
     <span class='comment'>// что будет здесь не очень важно</span>
@@ -322,8 +322,8 @@ println!(&quot;v[0] = {}&quot;, v[0]);
 
 <span class='rusttest'>fn main() {
     let v = vec![1, 2, 3];
-    
-    let v2 = v;
+
+let v2 = v;
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>let</span> <span class='ident'>v</span> <span class='op'>=</span> <span class='macro'>vec</span><span class='macro'>!</span>[<span class='number'>1</span>, <span class='number'>2</span>, <span class='number'>3</span>];
 
@@ -351,10 +351,10 @@ println!(&quot;v[0] = {}&quot;, v[0]);
 
 <span class='rusttest'>fn main() {
     let v = 1;
-    
-    let v2 = v;
-    
-    println!(&quot;v = {}&quot;, v);
+
+let v2 = v;
+
+println!(&quot;v = {}&quot;, v);
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>let</span> <span class='ident'>v</span> <span class='op'>=</span> <span class='number'>1</span>;
 
@@ -378,11 +378,11 @@ println!(&quot;v[0] = {}&quot;, v[0]);
 
 <span class='rusttest'>fn main() {
     fn foo(v: Vec&lt;i32&gt;) -&gt; Vec&lt;i32&gt; {
-        // делаем что-либо с v
-    
-        // возвращаем владение
-        v
-    }
+    // делаем что-либо с v
+
+    // возвращаем владение
+    v
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>fn</span> <span class='ident'>foo</span>(<span class='ident'>v</span>: <span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>i32</span><span class='op'>&gt;</span>) <span class='op'>-&gt;</span> <span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>i32</span><span class='op'>&gt;</span> {
     <span class='comment'>// делаем что-либо с v</span>
@@ -396,16 +396,16 @@ println!(&quot;v[0] = {}&quot;, v[0]);
 
 <span class='rusttest'>fn main() {
     fn foo(v1: Vec&lt;i32&gt;, v2: Vec&lt;i32&gt;) -&gt; (Vec&lt;i32&gt;, Vec&lt;i32&gt;, i32) {
-        // делаем что-нибудь с v1 и v2
-    
-        // возвращаем владение и результат нашей функции
-        (v1, v2, 42)
-    }
-    
-    let v1 = vec![1, 2, 3];
-    let v2 = vec![1, 2, 3];
-    
-    let (v1, v2, answer) = foo(v1, v2);
+    // делаем что-нибудь с v1 и v2
+
+    // возвращаем владение и результат нашей функции
+    (v1, v2, 42)
+}
+
+let v1 = vec![1, 2, 3];
+let v2 = vec![1, 2, 3];
+
+let (v1, v2, answer) = foo(v1, v2);
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>fn</span> <span class='ident'>foo</span>(<span class='ident'>v1</span>: <span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>i32</span><span class='op'>&gt;</span>, <span class='ident'>v2</span>: <span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>i32</span><span class='op'>&gt;</span>) <span class='op'>-&gt;</span> (<span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>i32</span><span class='op'>&gt;</span>, <span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>i32</span><span class='op'>&gt;</span>, <span class='ident'>i32</span>) {
     <span class='comment'>// делаем что-нибудь с v1 и v2</span>
@@ -428,7 +428,7 @@ println!(&quot;v[0] = {}&quot;, v[0]);
     <script type="text/javascript">
         window.playgroundUrl = "https://play.rust-lang.org";
     </script>
-    <script src='rustbook.js'></script>
+    <script src='../rustbook.js'></script>
 <script src='playpen.js'></script>
 </div></div>
 

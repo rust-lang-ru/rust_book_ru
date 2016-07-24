@@ -257,17 +257,17 @@ fn main() {
 
 <span class='rusttest'>fn main() {
     mod foo {
-    pub trait Add&lt;RHS = Self&gt; {
-        type Output;
-    
-        fn add(self, rhs: RHS) -&gt; Self::Output;
-    }
-    }
+pub trait Add&lt;RHS = Self&gt; {
+    type Output;
+
+    fn add(self, rhs: RHS) -&gt; Self::Output;
+}
+}
 }</span><pre class='rust rust-example-rendered'>
-<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Add</span><span class='op'>&lt;</span><span class='ident'>RHS</span> <span class='op'>=</span> <span class='kw'>Self</span><span class='op'>&gt;</span> {
+<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Add</span><span class='op'>&lt;</span><span class='ident'>RHS</span> <span class='op'>=</span> <span class='self'>Self</span><span class='op'>&gt;</span> {
     <span class='kw'>type</span> <span class='ident'>Output</span>;
 
-    <span class='kw'>fn</span> <span class='ident'>add</span>(<span class='self'>self</span>, <span class='ident'>rhs</span>: <span class='ident'>RHS</span>) <span class='op'>-&gt;</span> <span class='ident'>Self</span>::<span class='ident'>Output</span>;
+    <span class='kw'>fn</span> <span class='ident'>add</span>(<span class='self'>self</span>, <span class='ident'>rhs</span>: <span class='ident'>RHS</span>) <span class='op'>-&gt;</span> <span class='self'>Self</span>::<span class='ident'>Output</span>;
 }</pre>
 
 <p>В общей сложности здесь присутствуют три типа: тип <code>impl Add</code>, который мы
@@ -277,15 +277,15 @@ fn main() {
 
 <span class='rusttest'>fn main() {
     struct Point;
-    use std::ops::Add;
-    impl Add&lt;i32&gt; for Point {
-        type Output = f64;
-    
-        fn add(self, rhs: i32) -&gt; f64 {
-            // add an i32 to a Point and get an f64
-    1.0
-        }
+use std::ops::Add;
+impl Add&lt;i32&gt; for Point {
+    type Output = f64;
+
+    fn add(self, rhs: i32) -&gt; f64 {
+        // add an i32 to a Point and get an f64
+1.0
     }
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>impl</span> <span class='ident'>Add</span><span class='op'>&lt;</span><span class='ident'>i32</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>Point</span> {
     <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>f64</span>;
@@ -299,7 +299,7 @@ fn main() {
 
 <span class='rusttest'>fn main() {
     let p: Point = // ...
-    let x: f64 = p + 2i32;
+let x: f64 = p + 2i32;
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>let</span> <span class='ident'>p</span>: <span class='ident'>Point</span> <span class='op'>=</span> <span class='comment'>// ...</span>
 <span class='kw'>let</span> <span class='ident'>x</span>: <span class='ident'>f64</span> <span class='op'>=</span> <span class='ident'>p</span> <span class='op'>+</span> <span class='number'>2i32</span>;</pre>
@@ -372,7 +372,7 @@ fn main() {
 
 <span class='rusttest'>fn main() {
     impl&lt;T&gt; HasArea&lt;T&gt; for Square&lt;T&gt;
-            where T: Mul&lt;Output=T&gt; + Copy { ... }
+        where T: Mul&lt;Output=T&gt; + Copy { ... }
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span> <span class='ident'>HasArea</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>Square</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span>
         <span class='kw'>where</span> <span class='ident'>T</span>: <span class='ident'>Mul</span><span class='op'>&lt;</span><span class='ident'>Output</span><span class='op'>=</span><span class='ident'>T</span><span class='op'>&gt;</span> <span class='op'>+</span> <span class='ident'>Copy</span> { ... }</pre>
@@ -387,7 +387,7 @@ fn main() {
     <script type="text/javascript">
         window.playgroundUrl = "https://play.rust-lang.org";
     </script>
-    <script src='rustbook.js'></script>
+    <script src='../rustbook.js'></script>
 <script src='playpen.js'></script>
 </div></div>
 

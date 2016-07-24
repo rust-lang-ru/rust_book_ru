@@ -236,16 +236,16 @@ Rust отказывается компилировать программу, к�
 
 <span class='rusttest'>fn main() {
     fn foo(v1: Vec&lt;i32&gt;, v2: Vec&lt;i32&gt;) -&gt; (Vec&lt;i32&gt;, Vec&lt;i32&gt;, i32) {
-        // do stuff with v1 and v2
-    
-        // hand back ownership, and the result of our function
-        (v1, v2, 42)
-    }
-    
-    let v1 = vec![1, 2, 3];
-    let v2 = vec![1, 2, 3];
-    
-    let (v1, v2, answer) = foo(v1, v2);
+    // do stuff with v1 and v2
+
+    // hand back ownership, and the result of our function
+    (v1, v2, 42)
+}
+
+let v1 = vec![1, 2, 3];
+let v2 = vec![1, 2, 3];
+
+let (v1, v2, answer) = foo(v1, v2);
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>fn</span> <span class='ident'>foo</span>(<span class='ident'>v1</span>: <span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>i32</span><span class='op'>&gt;</span>, <span class='ident'>v2</span>: <span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>i32</span><span class='op'>&gt;</span>) <span class='op'>-&gt;</span> (<span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>i32</span><span class='op'>&gt;</span>, <span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>i32</span><span class='op'>&gt;</span>, <span class='ident'>i32</span>) {
     <span class='comment'>// do stuff with v1 and v2</span>
@@ -264,18 +264,18 @@ Rust отказывается компилировать программу, к�
 
 <span class='rusttest'>fn main() {
     fn foo(v1: &amp;Vec&lt;i32&gt;, v2: &amp;Vec&lt;i32&gt;) -&gt; i32 {
-        // do stuff with v1 and v2
-    
-        // return the answer
-        42
-    }
-    
-    let v1 = vec![1, 2, 3];
-    let v2 = vec![1, 2, 3];
-    
-    let answer = foo(&amp;v1, &amp;v2);
-    
-    // we can use v1 and v2 here!
+    // do stuff with v1 and v2
+
+    // return the answer
+    42
+}
+
+let v1 = vec![1, 2, 3];
+let v2 = vec![1, 2, 3];
+
+let answer = foo(&amp;v1, &amp;v2);
+
+// we can use v1 and v2 here!
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>fn</span> <span class='ident'>foo</span>(<span class='ident'>v1</span>: <span class='kw-2'>&amp;</span><span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>i32</span><span class='op'>&gt;</span>, <span class='ident'>v2</span>: <span class='kw-2'>&amp;</span><span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>i32</span><span class='op'>&gt;</span>) <span class='op'>-&gt;</span> <span class='ident'>i32</span> {
     <span class='comment'>// do stuff with v1 and v2</span>
@@ -303,12 +303,12 @@ Rust отказывается компилировать программу, к�
 
 <span class='rusttest'>fn main() {
     fn foo(v: &amp;Vec&lt;i32&gt;) {
-         v.push(5);
-    }
-    
-    let v = vec![];
-    
-    foo(&amp;v);
+     v.push(5);
+}
+
+let v = vec![];
+
+foo(&amp;v);
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>fn</span> <span class='ident'>foo</span>(<span class='ident'>v</span>: <span class='kw-2'>&amp;</span><span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>i32</span><span class='op'>&gt;</span>) {
      <span class='ident'>v</span>.<span class='ident'>push</span>(<span class='number'>5</span>);
@@ -334,11 +334,11 @@ v.push(5);
 
 <span class='rusttest'>fn main() {
     let mut x = 5;
-    {
-        let y = &amp;mut x;
-        *y += 1;
-    }
-    println!(&quot;{}&quot;, x);
+{
+    let y = &amp;mut x;
+    *y += 1;
+}
+println!(&quot;{}&quot;, x);
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>x</span> <span class='op'>=</span> <span class='number'>5</span>;
 {
@@ -410,11 +410,11 @@ fn main() {
 
 <span class='rusttest'>fn main() {
     let mut x = 5;
-    let y = &amp;mut x;
-    
-    *y += 1;
-    
-    println!(&quot;{}&quot;, x);
+let y = &amp;mut x;
+
+*y += 1;
+
+println!(&quot;{}&quot;, x);
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>x</span> <span class='op'>=</span> <span class='number'>5</span>;
 <span class='kw'>let</span> <span class='ident'>y</span> <span class='op'>=</span> <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>x</span>;
@@ -449,13 +449,13 @@ fn main() {
 
 <span class='rusttest'>fn main() {
     let mut x = 5;
-    
-    let y = &amp;mut x;    // -+ заимствование x через &amp;mut начинается здесь
-                       //  |
-    *y += 1;           //  |
-                       //  |
-    println!(&quot;{}&quot;, x); // -+ - пытаемся позаимствовать x здесь
-                       // -+ заимствование x через &amp;mut заканчивается здесь
+
+let y = &amp;mut x;    // -+ заимствование x через &amp;mut начинается здесь
+                   //  |
+*y += 1;           //  |
+                   //  |
+println!(&quot;{}&quot;, x); // -+ - пытаемся позаимствовать x здесь
+                   // -+ заимствование x через &amp;mut заканчивается здесь
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>x</span> <span class='op'>=</span> <span class='number'>5</span>;
 
@@ -473,13 +473,13 @@ fn main() {
 
 <span class='rusttest'>fn main() {
     let mut x = 5;
-    
-    {                   
-        let y = &amp;mut x; // -+ заимствование через &amp;mut начинается здесь
-        *y += 1;        //  |
-    }                   // -+ ... и заканчивается здесь
-    
-    println!(&quot;{}&quot;, x);  // &lt;- пытаемся позаимствовать x здесь
+
+{                   
+    let y = &amp;mut x; // -+ заимствование через &amp;mut начинается здесь
+    *y += 1;        //  |
+}                   // -+ ... и заканчивается здесь
+
+println!(&quot;{}&quot;, x);  // &lt;- пытаемся позаимствовать x здесь
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>x</span> <span class='op'>=</span> <span class='number'>5</span>;
 
@@ -506,10 +506,10 @@ fn main() {
 
 <span class='rusttest'>fn main() {
     let mut v = vec![1, 2, 3];
-    
-    for i in &amp;v {
-        println!(&quot;{}&quot;, i);
-    }
+
+for i in &amp;v {
+    println!(&quot;{}&quot;, i);
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>v</span> <span class='op'>=</span> <span class='macro'>vec</span><span class='macro'>!</span>[<span class='number'>1</span>, <span class='number'>2</span>, <span class='number'>3</span>];
 
@@ -523,11 +523,11 @@ fn main() {
 
 <span class='rusttest'>fn main() {
     let mut v = vec![1, 2, 3];
-    
-    for i in &amp;v {
-        println!(&quot;{}&quot;, i);
-        v.push(34);
-    }
+
+for i in &amp;v {
+    println!(&quot;{}&quot;, i);
+    v.push(34);
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>v</span> <span class='op'>=</span> <span class='macro'>vec</span><span class='macro'>!</span>[<span class='number'>1</span>, <span class='number'>2</span>, <span class='number'>3</span>];
 
@@ -564,12 +564,12 @@ for i in &amp;v {
 
 <span class='rusttest'>fn main() {
     let y: &amp;i32;
-    {
-        let x = 5;
-        y = &amp;x;
-    }
-    
-    println!(&quot;{}&quot;, y);
+{
+    let x = 5;
+    y = &amp;x;
+}
+
+println!(&quot;{}&quot;, y);
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>let</span> <span class='ident'>y</span>: <span class='kw-2'>&amp;</span><span class='ident'>i32</span>;
 {
@@ -611,10 +611,10 @@ statement 0 at 4:18
 
 <span class='rusttest'>fn main() {
     let y: &amp;i32;
-    let x = 5;
-    y = &amp;x;
-    
-    println!(&quot;{}&quot;, y);
+let x = 5;
+y = &amp;x;
+
+println!(&quot;{}&quot;, y);
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>let</span> <span class='ident'>y</span>: <span class='kw-2'>&amp;</span><span class='ident'>i32</span>;
 <span class='kw'>let</span> <span class='ident'>x</span> <span class='op'>=</span> <span class='number'>5</span>;
@@ -650,7 +650,7 @@ statement 1 at 3:14
     <script type="text/javascript">
         window.playgroundUrl = "https://play.rust-lang.org";
     </script>
-    <script src='rustbook.js'></script>
+    <script src='../rustbook.js'></script>
 <script src='playpen.js'></script>
 </div></div>
 

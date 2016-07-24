@@ -199,8 +199,8 @@
 
 <span class='rusttest'>fn main() {
     loop {
-        println!(&quot;Зациклились!&quot;);
-    }
+    println!(&quot;Зациклились!&quot;);
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>loop</span> {
     <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Зациклились!&quot;</span>);
@@ -211,20 +211,20 @@
 
 <span class='rusttest'>fn main() {
     let mut x = 5; // mut x: i32
-    let mut done = false; // mut done: bool
-    
-    while !done {
-        x += x - 3;
-    
-        println!(&quot;{}&quot;, x);
-    
-        if x % 5 == 0 {
-            done = true;
-        }
+let mut done = false; // mut done: bool
+
+while !done {
+    x += x - 3;
+
+    println!(&quot;{}&quot;, x);
+
+    if x % 5 == 0 {
+        done = true;
     }
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>x</span> <span class='op'>=</span> <span class='number'>5</span>; <span class='comment'>// mut x: i32</span>
-<span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>done</span> <span class='op'>=</span> <span class='boolval'>false</span>; <span class='comment'>// mut done: bool</span>
+<span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>done</span> <span class='op'>=</span> <span class='bool-val'>false</span>; <span class='comment'>// mut done: bool</span>
 
 <span class='kw'>while</span> <span class='op'>!</span><span class='ident'>done</span> {
     <span class='ident'>x</span> <span class='op'>+=</span> <span class='ident'>x</span> <span class='op'>-</span> <span class='number'>3</span>;
@@ -232,7 +232,7 @@
     <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>x</span>);
 
     <span class='kw'>if</span> <span class='ident'>x</span> <span class='op'>%</span> <span class='number'>5</span> <span class='op'>==</span> <span class='number'>0</span> {
-        <span class='ident'>done</span> <span class='op'>=</span> <span class='boolval'>true</span>;
+        <span class='ident'>done</span> <span class='op'>=</span> <span class='bool-val'>true</span>;
     }
 }</pre>
 
@@ -245,7 +245,7 @@
 <span class='rusttest'>fn main() {
     while true {
 }</span><pre class='rust rust-example-rendered'>
-<span class='kw'>while</span> <span class='boolval'>true</span> {</pre>
+<span class='kw'>while</span> <span class='bool-val'>true</span> {</pre>
 
 <p>Однако, для такого случая в Rust имеется ключевое слово <code>loop</code>:</p>
 
@@ -276,8 +276,8 @@
 
 <span class='rusttest'>fn main() {
     for x in 0..10 {
-        println!(&quot;{}&quot;, x); // x: i32
-    }
+    println!(&quot;{}&quot;, x); // x: i32
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>for</span> <span class='ident'>x</span> <span class='kw'>in</span> <span class='number'>0</span>..<span class='number'>10</span> {
     <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>x</span>); <span class='comment'>// x: i32</span>
@@ -287,8 +287,8 @@
 
 <span class='rusttest'>fn main() {
     for переменная in выражение {
-        тело_цикла
-    }
+    тело_цикла
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>for</span> <span class='ident'>переменная</span> <span class='kw'>in</span> <span class='ident'>выражение</span> {
     <span class='ident'>тело_цикла</span>
@@ -317,8 +317,8 @@ C.</p>
 <h4 id='С-интервалами' class='section-header'><a href='#С-интервалами'>С интервалами</a></h4>
 <span class='rusttest'>fn main() {
     for (i,j) in (5..10).enumerate() {
-        println!(&quot;i = {} и j = {}&quot;, i, j);
-    }
+    println!(&quot;i = {} и j = {}&quot;, i, j);
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>for</span> (<span class='ident'>i</span>,<span class='ident'>j</span>) <span class='kw'>in</span> (<span class='number'>5</span>..<span class='number'>10</span>).<span class='ident'>enumerate</span>() {
     <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;i = {} и j = {}&quot;</span>, <span class='ident'>i</span>, <span class='ident'>j</span>);
@@ -338,9 +338,9 @@ i = 4 и j = 9
 <h4 id='С-итераторами' class='section-header'><a href='#С-итераторами'>С итераторами</a></h4>
 <span class='rusttest'>fn main() {
     let lines = &quot;привет\nмир\nhello\nworld&quot;.lines();
-    for (linenumber, line) in lines.enumerate() {
-        println!(&quot;{}: {}&quot;, linenumber, line);
-    }
+for (linenumber, line) in lines.enumerate() {
+    println!(&quot;{}: {}&quot;, linenumber, line);
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>for</span> (<span class='ident'>linenumber</span>, <span class='ident'>line</span>) <span class='kw'>in</span> <span class='ident'>lines</span>.<span class='ident'>enumerate</span>() {
     <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}: {}&quot;</span>, <span class='ident'>linenumber</span>, <span class='ident'>line</span>);
@@ -359,20 +359,20 @@ i = 4 и j = 9
 
 <span class='rusttest'>fn main() {
     let mut x = 5;
-    let mut done = false;
-    
-    while !done {
-        x += x - 3;
-    
-        println!(&quot;{}&quot;, x);
-    
-        if x % 5 == 0 {
-            done = true;
-        }
+let mut done = false;
+
+while !done {
+    x += x - 3;
+
+    println!(&quot;{}&quot;, x);
+
+    if x % 5 == 0 {
+        done = true;
     }
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>x</span> <span class='op'>=</span> <span class='number'>5</span>;
-<span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>done</span> <span class='op'>=</span> <span class='boolval'>false</span>;
+<span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>done</span> <span class='op'>=</span> <span class='bool-val'>false</span>;
 
 <span class='kw'>while</span> <span class='op'>!</span><span class='ident'>done</span> {
     <span class='ident'>x</span> <span class='op'>+=</span> <span class='ident'>x</span> <span class='op'>-</span> <span class='number'>3</span>;
@@ -380,7 +380,7 @@ i = 4 и j = 9
     <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>x</span>);
 
     <span class='kw'>if</span> <span class='ident'>x</span> <span class='op'>%</span> <span class='number'>5</span> <span class='op'>==</span> <span class='number'>0</span> {
-        <span class='ident'>done</span> <span class='op'>=</span> <span class='boolval'>true</span>;
+        <span class='ident'>done</span> <span class='op'>=</span> <span class='bool-val'>true</span>;
     }
 }</pre>
 
@@ -393,14 +393,14 @@ i = 4 и j = 9
 
 <span class='rusttest'>fn main() {
     let mut x = 5;
-    
-    loop {
-        x += x - 3;
-    
-        println!(&quot;{}&quot;, x);
-    
-        if x % 5 == 0 { break; }
-    }
+
+loop {
+    x += x - 3;
+
+    println!(&quot;{}&quot;, x);
+
+    if x % 5 == 0 { break; }
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>x</span> <span class='op'>=</span> <span class='number'>5</span>;
 
@@ -420,10 +420,10 @@ i = 4 и j = 9
 
 <span class='rusttest'>fn main() {
     for x in 0..10 {
-        if x % 2 == 0 { continue; }
-    
-        println!(&quot;{}&quot;, x);
-    }
+    if x % 2 == 0 { continue; }
+
+    println!(&quot;{}&quot;, x);
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>for</span> <span class='ident'>x</span> <span class='kw'>in</span> <span class='number'>0</span>..<span class='number'>10</span> {
     <span class='kw'>if</span> <span class='ident'>x</span> <span class='op'>%</span> <span class='number'>2</span> <span class='op'>==</span> <span class='number'>0</span> { <span class='kw'>continue</span>; }
@@ -440,12 +440,12 @@ i = 4 и j = 9
 
 <span class='rusttest'>fn main() {
     &#39;outer: for x in 0..10 {
-        &#39;inner: for y in 0..10 {
-            if x % 2 == 0 { continue &#39;outer; } // продолжает цикл по x
-            if y % 2 == 0 { continue &#39;inner; } // продолжает цикл по y
-            println!(&quot;x: {}, y: {}&quot;, x, y);
-        }
+    &#39;inner: for y in 0..10 {
+        if x % 2 == 0 { continue &#39;outer; } // продолжает цикл по x
+        if y % 2 == 0 { continue &#39;inner; } // продолжает цикл по y
+        println!(&quot;x: {}, y: {}&quot;, x, y);
     }
+}
 }</span><pre class='rust rust-example-rendered'>
 <span class='lifetime'>&#39;outer</span>: <span class='kw'>for</span> <span class='ident'>x</span> <span class='kw'>in</span> <span class='number'>0</span>..<span class='number'>10</span> {
     <span class='lifetime'>&#39;inner</span>: <span class='kw'>for</span> <span class='ident'>y</span> <span class='kw'>in</span> <span class='number'>0</span>..<span class='number'>10</span> {
@@ -458,7 +458,7 @@ i = 4 и j = 9
     <script type="text/javascript">
         window.playgroundUrl = "https://play.rust-lang.org";
     </script>
-    <script src='rustbook.js'></script>
+    <script src='../rustbook.js'></script>
 <script src='playpen.js'></script>
 </div></div>
 
