@@ -206,7 +206,7 @@
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>unsafe</span> <span class='kw'>fn</span> <span class='ident'>beregis_avtomobilya</span>() {
     <span class='comment'>// страшные вещи</span>
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Например, все функции, вызываемые через <a href="ffi.html">FFI</a>, должны быть помечены как
 небезопасные. Другое использование <code>unsafe</code> — это отметка небезопасного блока:</p>
@@ -218,14 +218,14 @@
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>unsafe</span> {
     <span class='comment'>// страшные вещи</span>
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Третье — небезопасные типажи:</p>
 
 <span class='rusttest'>fn main() {
     unsafe trait Scary { }
 }</span><pre class='rust rust-example-rendered'>
-<span class='kw'>unsafe</span> <span class='kw'>trait</span> <span class='ident'>Scary</span> { }</pre>
+<span class='kw'>unsafe</span> <span class='kw'>trait</span> <span class='ident'>Scary</span> { }<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>И четвёртое — реализация (<code>impl</code>) таких типажей:</p>
 
@@ -233,7 +233,7 @@
     unsafe trait Scary { }
 unsafe impl Scary for i32 {}
 }</span><pre class='rust rust-example-rendered'>
-<span class='kw'>unsafe</span> <span class='kw'>impl</span> <span class='ident'>Scary</span> <span class='kw'>for</span> <span class='ident'>i32</span> {}</pre>
+<span class='kw'>unsafe</span> <span class='kw'>impl</span> <span class='ident'>Scary</span> <span class='kw'>for</span> <span class='ident'>i32</span> {}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Важно явно выделить код, ошибки в котором могут вызвать большие проблемы. Если
 программа на Rust падает с &quot;segmentation fault&quot;, можете быть уверены —

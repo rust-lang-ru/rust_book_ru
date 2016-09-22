@@ -218,7 +218,7 @@ impl Circle {
     <span class='kw'>fn</span> <span class='ident'>area</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>f64</span> {
         <span class='ident'>std</span>::<span class='ident'>f64</span>::<span class='ident'>consts</span>::<span class='ident'>PI</span> <span class='op'>*</span> (<span class='self'>self</span>.<span class='ident'>radius</span> <span class='op'>*</span> <span class='self'>self</span>.<span class='ident'>radius</span>)
     }
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Типажи схожи, за исключением того, что мы определяем типаж, содержащий лишь
 сигнатуру метода, а затем реализуем этот типаж для нужной структуры. Например,
@@ -256,7 +256,7 @@ impl HasArea for Circle {
     <span class='kw'>fn</span> <span class='ident'>area</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>f64</span> {
         <span class='ident'>std</span>::<span class='ident'>f64</span>::<span class='ident'>consts</span>::<span class='ident'>PI</span> <span class='op'>*</span> (<span class='self'>self</span>.<span class='ident'>radius</span> <span class='op'>*</span> <span class='self'>self</span>.<span class='ident'>radius</span>)
     }
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Как вы можете видеть, блок <code>trait</code> очень похож на блок <code>impl</code>. Различие состоит
 лишь в том, что тело метода не определяется, а определяется только его
@@ -273,7 +273,7 @@ impl HasArea for Circle {
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>fn</span> <span class='ident'>print_area</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span>(<span class='ident'>shape</span>: <span class='ident'>T</span>) {
     <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;This shape has an area of {}&quot;</span>, <span class='ident'>shape</span>.<span class='ident'>area</span>());
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Rust выводит:</p>
 
@@ -294,7 +294,7 @@ fn print_area&lt;T: HasArea&gt;(shape: T) {
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>fn</span> <span class='ident'>print_area</span><span class='op'>&lt;</span><span class='ident'>T</span>: <span class='ident'>HasArea</span><span class='op'>&gt;</span>(<span class='ident'>shape</span>: <span class='ident'>T</span>) {
     <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;This shape has an area of {}&quot;</span>, <span class='ident'>shape</span>.<span class='ident'>area</span>());
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Синтаксис <code>&lt;T: HasArea&gt;</code> означает «любой тип, реализующий типаж <code>HasArea</code>».
 Так как типажи определяют сигнатуры типов функций, мы можем быть уверены, что
@@ -399,7 +399,7 @@ fn main() {
 
     <span class='ident'>print_area</span>(<span class='ident'>c</span>);
     <span class='ident'>print_area</span>(<span class='ident'>s</span>);
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Ниже показан вывод программы:</p>
 
@@ -414,7 +414,7 @@ fn main() {
 <span class='rusttest'>fn main() {
     print_area(5);
 }</span><pre class='rust rust-example-rendered'>
-<span class='ident'>print_area</span>(<span class='number'>5</span>);</pre>
+<span class='ident'>print_area</span>(<span class='number'>5</span>);<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Мы получим ошибку времени компиляции:</p>
 
@@ -452,7 +452,7 @@ impl HasArea for i32 {
     }
 }
 
-<span class='number'>5</span>.<span class='ident'>area</span>();</pre>
+<span class='number'>5</span>.<span class='ident'>area</span>();<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Хотя технически это возможно, реализация методов для примитивных типов считается
 плохим стилем программирования.</p>
@@ -472,7 +472,7 @@ result.unwrap(); // игнорируем ошибку
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>f</span> <span class='op'>=</span> <span class='ident'>std</span>::<span class='ident'>fs</span>::<span class='ident'>File</span>::<span class='ident'>open</span>(<span class='string'>&quot;foo.txt&quot;</span>).<span class='ident'>ok</span>().<span class='ident'>expect</span>(<span class='string'>&quot;Не могу открыть foo.txt&quot;</span>);
 <span class='kw'>let</span> <span class='ident'>buf</span> <span class='op'>=</span> <span class='string'>b&quot;whatever&quot;</span>; <span class='comment'>// литерал строки байт. buf: &amp;[u8; 8]</span>
-<span class='kw'>let</span> <span class='ident'>result</span> <span class='op'>=</span> <span class='ident'>f</span>.<span class='ident'>write</span>(<span class='ident'>buf</span>);</pre>
+<span class='kw'>let</span> <span class='ident'>result</span> <span class='op'>=</span> <span class='ident'>f</span>.<span class='ident'>write</span>(<span class='ident'>buf</span>);<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Вот ошибка:</p>
 
@@ -495,7 +495,7 @@ result.unwrap(); // игнорируем ошибку
 
 <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>f</span> <span class='op'>=</span> <span class='ident'>std</span>::<span class='ident'>fs</span>::<span class='ident'>File</span>::<span class='ident'>open</span>(<span class='string'>&quot;foo.txt&quot;</span>).<span class='ident'>ok</span>().<span class='ident'>expect</span>(<span class='string'>&quot;Не могу открыть foo.txt&quot;</span>);
 <span class='kw'>let</span> <span class='ident'>buf</span> <span class='op'>=</span> <span class='string'>b&quot;whatever&quot;</span>;
-<span class='kw'>let</span> <span class='ident'>result</span> <span class='op'>=</span> <span class='ident'>f</span>.<span class='ident'>write</span>(<span class='ident'>buf</span>);</pre>
+<span class='kw'>let</span> <span class='ident'>result</span> <span class='op'>=</span> <span class='ident'>f</span>.<span class='ident'>write</span>(<span class='ident'>buf</span>);<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Это скомпилируется без ошибки.</p>
 
@@ -525,7 +525,7 @@ result.unwrap(); // игнорируем ошибку
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>fn</span> <span class='ident'>foo</span><span class='op'>&lt;</span><span class='ident'>T</span>: <span class='ident'>Clone</span><span class='op'>&gt;</span>(<span class='ident'>x</span>: <span class='ident'>T</span>) {
     <span class='ident'>x</span>.<span class='ident'>clone</span>();
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Если вам нужно больше одного ограничения, вы можете использовать <code>+</code>:</p>
 
@@ -542,7 +542,7 @@ fn foo&lt;T: Clone + Debug&gt;(x: T) {
 <span class='kw'>fn</span> <span class='ident'>foo</span><span class='op'>&lt;</span><span class='ident'>T</span>: <span class='ident'>Clone</span> <span class='op'>+</span> <span class='ident'>Debug</span><span class='op'>&gt;</span>(<span class='ident'>x</span>: <span class='ident'>T</span>) {
     <span class='ident'>x</span>.<span class='ident'>clone</span>();
     <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{:?}&quot;</span>, <span class='ident'>x</span>);
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Теперь тип <code>T</code> должен реализовавать как типаж <code>Clone</code>, так и типаж <code>Debug</code>.</p>
 
@@ -566,7 +566,7 @@ fn foo&lt;T: Clone, K: Clone + Debug&gt;(x: T, y: K) {
     <span class='ident'>x</span>.<span class='ident'>clone</span>();
     <span class='ident'>y</span>.<span class='ident'>clone</span>();
     <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{:?}&quot;</span>, <span class='ident'>y</span>);
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Имя функции находится слева, а список параметров — далеко справа. Ограничения
 загромождают место.</p>
@@ -609,7 +609,7 @@ fn main() {
 <span class='kw'>fn</span> <span class='ident'>main</span>() {
     <span class='ident'>foo</span>(<span class='string'>&quot;Привет&quot;</span>, <span class='string'>&quot;мир&quot;</span>);
     <span class='ident'>bar</span>(<span class='string'>&quot;Привет&quot;</span>, <span class='string'>&quot;мир&quot;</span>);
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p><code>foo()</code> использует синтаксис, показанный ранее, а <code>bar()</code> использует утверждение
 <code>where</code>. Все, что нам нужно сделать, это убрать ограничения при определении
@@ -637,7 +637,7 @@ fn bar&lt;T, K&gt;(x: T, y: K)
     <span class='ident'>x</span>.<span class='ident'>clone</span>();
     <span class='ident'>y</span>.<span class='ident'>clone</span>();
     <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{:?}&quot;</span>, <span class='ident'>y</span>);
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Такая гибкость может добавить ясности в сложных ситуациях.</p>
 
@@ -683,7 +683,7 @@ fn inverse&lt;T&gt;() -&gt; T
         <span class='comment'>// использует ConvertTo как если бы это было «ConvertFrom&lt;i32&gt;»</span>
         <span class='kw'>where</span> <span class='ident'>i32</span>: <span class='ident'>ConvertTo</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span> {
     <span class='number'>1i32</span>.<span class='ident'>convert</span>()
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Этот код демонстрирует дополнительные преимущества использования утверждения
 <code>where</code>: оно позволяет задавать ограничение, где с левой стороны располагается
@@ -705,7 +705,7 @@ fn inverse&lt;T&gt;() -&gt; T
     <span class='kw'>fn</span> <span class='ident'>is_valid</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>bool</span>;
 
     <span class='kw'>fn</span> <span class='ident'>is_invalid</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>bool</span> { <span class='op'>!</span><span class='self'>self</span>.<span class='ident'>is_valid</span>() }
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>В типах, реализующих типаж <code>Foo</code>, нужно реализовать метод <code>is_valid()</code>, а
 <code>is_invalid()</code> будет реализован по-умолчанию. Его поведение можно
@@ -773,7 +773,7 @@ assert!(over.is_invalid()); // печатает «Вызван OverrideDefault.i
 <span class='macro'>assert</span><span class='macro'>!</span>(<span class='op'>!</span><span class='ident'>default</span>.<span class='ident'>is_invalid</span>()); <span class='comment'>// печатает «Вызван UseDefault.is_valid.»</span>
 
 <span class='kw'>let</span> <span class='ident'>over</span> <span class='op'>=</span> <span class='ident'>OverrideDefault</span>;
-<span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>over</span>.<span class='ident'>is_invalid</span>()); <span class='comment'>// печатает «Вызван OverrideDefault.is_invalid!»</span></pre>
+<span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>over</span>.<span class='ident'>is_invalid</span>()); <span class='comment'>// печатает «Вызван OverrideDefault.is_invalid!»</span><a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <h1 id='Наследование' class='section-header'><a href='#Наследование'>Наследование</a></h1>
 <p>Иногда чтобы реализовать один типаж, нужно реализовать типажи, от которых он
@@ -794,7 +794,7 @@ trait FooBar : Foo {
 
 <span class='kw'>trait</span> <span class='ident'>FooBar</span> : <span class='ident'>Foo</span> {
     <span class='kw'>fn</span> <span class='ident'>foobar</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>);
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Типы, реализующие <code>FooBar</code>, должны реализовывать <code>Foo</code>:</p>
 
@@ -823,7 +823,7 @@ impl FooBar for Baz {
 
 <span class='kw'>impl</span> <span class='ident'>FooBar</span> <span class='kw'>for</span> <span class='ident'>Baz</span> {
     <span class='kw'>fn</span> <span class='ident'>foobar</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) { <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;foobar&quot;</span>); }
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Если мы забудем реализовать <code>Foo</code>, компилятор скажет нам об этом:</p>
 

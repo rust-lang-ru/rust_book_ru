@@ -324,7 +324,7 @@ fn process() {
         <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Поток завершился со счётом={}&quot;</span>,
         <span class='ident'>h</span>.<span class='ident'>join</span>().<span class='ident'>map_err</span>(<span class='op'>|</span>_<span class='op'>|</span> <span class='string'>&quot;Не удалось соединиться с потоком!&quot;</span>).<span class='ident'>unwrap</span>());
     }
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Мы уже знакомы с частью этого кода из предыдущих примеров. Мы создаём десять
 потоков, собирая их в вектор <code>handles</code>. Внутри каждого потока мы осуществляем
@@ -342,7 +342,7 @@ fn process() {
 pub extern fn process() {
 }</span><pre class='rust rust-example-rendered'>
 <span class='attribute'>#[<span class='ident'>no_mangle</span>]</span>
-<span class='kw'>pub</span> <span class='kw'>extern</span> <span class='kw'>fn</span> <span class='ident'>process</span>() {</pre>
+<span class='kw'>pub</span> <span class='kw'>extern</span> <span class='kw'>fn</span> <span class='ident'>process</span>() {<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Мы добавили новый атрибут, <code>no_mangle</code>. В процессе создания библиотеки Rust, в
 выходном скомпилированном файле происходит изменение имени функции. Причины

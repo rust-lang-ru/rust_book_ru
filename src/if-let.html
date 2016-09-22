@@ -206,7 +206,7 @@ match option {
 <span class='kw'>match</span> <span class='ident'>option</span> {
     <span class='prelude-val'>Some</span>(<span class='ident'>x</span>) <span class='op'>=&gt;</span> { <span class='ident'>foo</span>(<span class='ident'>x</span>) },
     <span class='prelude-val'>None</span> <span class='op'>=&gt;</span> {},
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Здесь необязательно использовать <code>match</code>. <code>if</code> тоже подойдёт:</p>
 
@@ -221,7 +221,7 @@ if option.is_some() {
 <span class='kw'>if</span> <span class='ident'>option</span>.<span class='ident'>is_some</span>() {
     <span class='kw'>let</span> <span class='ident'>x</span> <span class='op'>=</span> <span class='ident'>option</span>.<span class='ident'>unwrap</span>();
     <span class='ident'>foo</span>(<span class='ident'>x</span>);
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Но оба этих варианта выглядят странно. Мы можем исправить это с помощью <code>if let</code>:</p>
 
@@ -234,7 +234,7 @@ if let Some(x) = option {
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>if</span> <span class='kw'>let</span> <span class='prelude-val'>Some</span>(<span class='ident'>x</span>) <span class='op'>=</span> <span class='ident'>option</span> {
     <span class='ident'>foo</span>(<span class='ident'>x</span>);
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Если <a href="patterns.html">сопоставление с образцом</a> успешно, имена в образце связываются с
 соответствующими частями разбираемого значения, и блок исполняется. Если
@@ -257,7 +257,7 @@ if let Some(x) = option {
     <span class='ident'>foo</span>(<span class='ident'>x</span>);
 } <span class='kw'>else</span> {
     <span class='ident'>bar</span>();
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <h2 id='while-let' class='section-header'><a href='#while-let'><code>while let</code></a></h2>
 <p>Похожим образом, <code>while let</code> можно использовать для перебора значений, пока
@@ -277,7 +277,7 @@ loop {
         <span class='prelude-val'>Some</span>(<span class='ident'>x</span>) <span class='op'>=&gt;</span> <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>x</span>),
         _ <span class='op'>=&gt;</span> <span class='kw'>break</span>,
     }
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Превращается в такой:</p>
 
@@ -289,7 +289,7 @@ while let Some(x) = option {
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>while</span> <span class='kw'>let</span> <span class='prelude-val'>Some</span>(<span class='ident'>x</span>) <span class='op'>=</span> <span class='ident'>option</span> {
     <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>x</span>);
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
     <script type="text/javascript">
         window.playgroundUrl = "https://play.rust-lang.org";

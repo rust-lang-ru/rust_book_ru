@@ -195,7 +195,7 @@
     #[test]
 fn foo() {}
 }</span><pre class='rust rust-example-rendered'>
-<span class='attribute'>#[<span class='ident'>test</span>]</span></pre>
+<span class='attribute'>#[<span class='ident'>test</span>]</span><a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>или так:</p>
 
@@ -204,7 +204,7 @@ fn foo() {}
 #![test]
 }
 }</span><pre class='rust rust-example-rendered'>
-<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>test</span>]</span></pre>
+<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>test</span>]</span><a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Разница между ними состоит в символе <code>!</code>, который изменяет его поведение,
 определяющее к какому элементу применяется атрибут:</p>
@@ -222,7 +222,7 @@ mod bar {
 
 <span class='kw'>mod</span> <span class='ident'>bar</span> {
     <span class='attribute'>#<span class='op'>!</span>[<span class='ident'>bar</span>]</span>
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Атрибут <code>#[foo]</code> относится к следующему за ним элементу, который является
 объявлением <code>struct</code>. Атрибут <code>#![bar]</code> относится к элементу охватывающему его,
@@ -240,7 +240,7 @@ fn check() {
 <span class='attribute'>#[<span class='ident'>test</span>]</span>
 <span class='kw'>fn</span> <span class='ident'>check</span>() {
     <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>2</span>, <span class='number'>1</span> <span class='op'>+</span> <span class='number'>1</span>);
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Функция помечена как <code>#[test]</code>. Это означает, что она особенная: эта функция
 будет выполняться при запуске <a href="testing.html">тестов</a>. При компиляции, как правило, она
@@ -254,7 +254,7 @@ fn super_fast_fn() {
 }
 }</span><pre class='rust rust-example-rendered'>
 <span class='attribute'>#[<span class='ident'>inline</span>(<span class='ident'>always</span>)]</span>
-<span class='kw'>fn</span> <span class='ident'>super_fast_fn</span>() {</pre>
+<span class='kw'>fn</span> <span class='ident'>super_fast_fn</span>() {<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Или даже ключи и значения:</p>
 
@@ -264,7 +264,7 @@ mod macos_only {
 }
 }</span><pre class='rust rust-example-rendered'>
 <span class='attribute'>#[<span class='ident'>cfg</span>(<span class='ident'>target_os</span> <span class='op'>=</span> <span class='string'>&quot;macos&quot;</span>)]</span>
-<span class='kw'>mod</span> <span class='ident'>macos_only</span> {</pre>
+<span class='kw'>mod</span> <span class='ident'>macos_only</span> {<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Атрибуты в Rust используются для ряда различных вещей. Вот <a href="https://doc.rust-lang.org/stable/reference.html#attributes">ссылка</a>
 на полный список атрибутов. В настоящее время вы не можете создавать свои

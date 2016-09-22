@@ -257,7 +257,7 @@ let (v1, v2, answer) = foo(v1, v2);
 <span class='kw'>let</span> <span class='ident'>v1</span> <span class='op'>=</span> <span class='macro'>vec</span><span class='macro'>!</span>[<span class='number'>1</span>, <span class='number'>2</span>, <span class='number'>3</span>];
 <span class='kw'>let</span> <span class='ident'>v2</span> <span class='op'>=</span> <span class='macro'>vec</span><span class='macro'>!</span>[<span class='number'>1</span>, <span class='number'>2</span>, <span class='number'>3</span>];
 
-<span class='kw'>let</span> (<span class='ident'>v1</span>, <span class='ident'>v2</span>, <span class='ident'>answer</span>) <span class='op'>=</span> <span class='ident'>foo</span>(<span class='ident'>v1</span>, <span class='ident'>v2</span>);</pre>
+<span class='kw'>let</span> (<span class='ident'>v1</span>, <span class='ident'>v2</span>, <span class='ident'>answer</span>) <span class='op'>=</span> <span class='ident'>foo</span>(<span class='ident'>v1</span>, <span class='ident'>v2</span>);<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Однако, этот код не является идиоматичным с точки зрения Rust, так как он не
 использует заимствование. Вот первый шаг:</p>
@@ -289,7 +289,7 @@ let answer = foo(&amp;v1, &amp;v2);
 
 <span class='kw'>let</span> <span class='ident'>answer</span> <span class='op'>=</span> <span class='ident'>foo</span>(<span class='kw-2'>&amp;</span><span class='ident'>v1</span>, <span class='kw-2'>&amp;</span><span class='ident'>v2</span>);
 
-<span class='comment'>// we can use v1 and v2 here!</span></pre>
+<span class='comment'>// we can use v1 and v2 here!</span><a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Вместо того, чтобы принимать <code>Vec&lt;i32&gt;</code> в качестве аргументов, мы будем
 принимать ссылки: <code>&amp;Vec&lt;i32&gt;</code>. И вместо передачи <code>v1</code> и <code>v2</code> напрямую, мы будем
@@ -316,7 +316,7 @@ foo(&amp;v);
 
 <span class='kw'>let</span> <span class='ident'>v</span> <span class='op'>=</span> <span class='macro'>vec</span><span class='macro'>!</span>[];
 
-<span class='ident'>foo</span>(<span class='kw-2'>&amp;</span><span class='ident'>v</span>);</pre>
+<span class='ident'>foo</span>(<span class='kw-2'>&amp;</span><span class='ident'>v</span>);<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>выдаёт ошибку:</p>
 
@@ -345,7 +345,7 @@ println!(&quot;{}&quot;, x);
     <span class='kw'>let</span> <span class='ident'>y</span> <span class='op'>=</span> <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>x</span>;
     <span class='op'>*</span><span class='ident'>y</span> <span class='op'>+=</span> <span class='number'>1</span>;
 }
-<span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>x</span>);</pre>
+<span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>x</span>);<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Этот код напечатает <code>6</code>. Мы создали <code>y</code>, изменяемую ссылку на <code>x</code>, а затем
 добавили единицу к значению, на которое указывает <code>y</code>. Следует отметить, что <code>x</code>
@@ -421,7 +421,7 @@ println!(&quot;{}&quot;, x);
 
 <span class='op'>*</span><span class='ident'>y</span> <span class='op'>+=</span> <span class='number'>1</span>;
 
-<span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>x</span>);</pre>
+<span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>x</span>);<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Этот код выдает нам такую ошибку:</p>
 
@@ -464,7 +464,7 @@ println!(&quot;{}&quot;, x); // -+ - пытаемся позаимствоват
 <span class='op'>*</span><span class='ident'>y</span> <span class='op'>+=</span> <span class='number'>1</span>;           <span class='comment'>//  |</span>
                    <span class='comment'>//  |</span>
 <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>x</span>); <span class='comment'>// -+ - пытаемся позаимствовать x здесь</span>
-                   <span class='comment'>// -+ заимствование x через &amp;mut заканчивается здесь</span></pre>
+                   <span class='comment'>// -+ заимствование x через &amp;mut заканчивается здесь</span><a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Конфликт областей видимости: мы не можем создать <code>&amp;x</code> до тех пор, пока <code>y</code>
 находится в области видимости.</p>
@@ -488,7 +488,7 @@ println!(&quot;{}&quot;, x);  // &lt;- пытаемся позаимствова
     <span class='op'>*</span><span class='ident'>y</span> <span class='op'>+=</span> <span class='number'>1</span>;        <span class='comment'>//  |</span>
 }                   <span class='comment'>// -+ ... и заканчивается здесь</span>
 
-<span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>x</span>);  <span class='comment'>// &lt;- пытаемся позаимствовать x здесь</span></pre>
+<span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>x</span>);  <span class='comment'>// &lt;- пытаемся позаимствовать x здесь</span><a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Никаких проблем нет. Наша изменяемая ссылка выходит из области видимости до
 создания неизменяемой. Но область видимости является ключом к определению того,
@@ -515,7 +515,7 @@ for i in &amp;v {
 
 <span class='kw'>for</span> <span class='ident'>i</span> <span class='kw'>in</span> <span class='kw-2'>&amp;</span><span class='ident'>v</span> {
     <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>i</span>);
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Этот код печатает числа от одного до трёх. Когда мы обходим вектор, мы получаем
 лишь ссылки на элементы. И сам <code>v</code> заимствован как неизменяемый, что означает,
@@ -534,7 +534,7 @@ for i in &amp;v {
 <span class='kw'>for</span> <span class='ident'>i</span> <span class='kw'>in</span> <span class='kw-2'>&amp;</span><span class='ident'>v</span> {
     <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>i</span>);
     <span class='ident'>v</span>.<span class='ident'>push</span>(<span class='number'>34</span>);
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Вот ошибка:</p>
 
@@ -577,7 +577,7 @@ println!(&quot;{}&quot;, y);
     <span class='ident'>y</span> <span class='op'>=</span> <span class='kw-2'>&amp;</span><span class='ident'>x</span>;
 }
 
-<span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>y</span>);</pre>
+<span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>y</span>);<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Мы получим следующую ошибку:</p>
 
@@ -620,7 +620,7 @@ println!(&quot;{}&quot;, y);
 <span class='kw'>let</span> <span class='ident'>x</span> <span class='op'>=</span> <span class='number'>5</span>;
 <span class='ident'>y</span> <span class='op'>=</span> <span class='kw-2'>&amp;</span><span class='ident'>x</span>;
 
-<span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>y</span>);</pre>
+<span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>y</span>);<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Мы получим такую ошибку:</p>
 

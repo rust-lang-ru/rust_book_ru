@@ -229,7 +229,7 @@ authors = [&quot;Your Name &lt;you@example.com&gt;&quot;]
 </span><pre class='rust rust-example-rendered'>
 <span class='kw'>fn</span> <span class='ident'>main</span>() {
     <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Hello, world!&quot;</span>);
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Давайте попробуем скомпилировать созданный Cargo проект:</p>
 
@@ -287,14 +287,14 @@ fn main() {
         .<span class='ident'>expect</span>(<span class='string'>&quot;Не удалось прочитать строку&quot;</span>);
 
     <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Ваша попытка: {}&quot;</span>, <span class='ident'>guess</span>);
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Здесь много чего! Давайте разберём этот участок по частям.</p>
 
 <span class='rusttest'>fn main() {
     use std::io;
 }</span><pre class='rust rust-example-rendered'>
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>io</span>;</pre>
+<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>io</span>;<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Нам надо получить то, что ввёл пользователь, а затем вывести результат на экран.
 Значит нам понадобится библиотека <code>io</code> из стандартной библиотеки. Изначально
@@ -305,7 +305,7 @@ Rust импортирует в нашу программу лишь самые �
 
 <span class='rusttest'>fn main() {
 </span><pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span> <span class='ident'>main</span>() {</pre>
+<span class='kw'>fn</span> <span class='ident'>main</span>() {<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Как вы уже знаете, функция <code>main()</code> — это точка входа в нашу программу.
 <code>fn</code> объявляет новую функцию. Пустые круглые скобки <code>()</code> показывают, что она не
@@ -320,7 +320,7 @@ Rust импортирует в нашу программу лишь самые �
 }</span><pre class='rust rust-example-rendered'>
     <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Угадайте число!&quot;</span>);
 
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Пожалуйста, введите предположение.&quot;</span>);</pre>
+    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Пожалуйста, введите предположение.&quot;</span>);<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Мы уже изучили, что <code>println!()</code> — это <a href="macros.html">макрос</a>, который выводит
 <a href="strings.html">строки</a> на экран.</p>
@@ -328,7 +328,7 @@ Rust импортирует в нашу программу лишь самые �
 <span class='rusttest'>fn main() {
         let mut guess = String::new();
 }</span><pre class='rust rust-example-rendered'>
-    <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>guess</span> <span class='op'>=</span> <span class='ident'>String</span>::<span class='ident'>new</span>();</pre>
+    <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>guess</span> <span class='op'>=</span> <span class='ident'>String</span>::<span class='ident'>new</span>();<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Теперь интереснее! Как же много всего происходит в этой строке! Первая вещь, на
 которую следует обратить внимание, — <a href="variable-bindings.html">выражение let</a>, которое используется
@@ -337,7 +337,7 @@ Rust импортирует в нашу программу лишь самые �
 <span class='rusttest'>fn main() {
     let foo = bar;
 }</span><pre class='rust rust-example-rendered'>
-<span class='kw'>let</span> <span class='ident'>foo</span> <span class='op'>=</span> <span class='ident'>bar</span>;</pre>
+<span class='kw'>let</span> <span class='ident'>foo</span> <span class='op'>=</span> <span class='ident'>bar</span>;<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Это создаёт новую связь с именем <code>foo</code> и привязывает ей значение <code>bar</code>. Во
 многих языках это называется <em>переменная</em>, но в Rust связывание переменных имеет
@@ -354,7 +354,7 @@ Rust импортирует в нашу программу лишь самые �
 let mut bar = 5; // изменяемая связь
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>let</span> <span class='ident'>foo</span> <span class='op'>=</span> <span class='number'>5</span>; <span class='comment'>// неизменяемая связь</span>
-<span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>bar</span> <span class='op'>=</span> <span class='number'>5</span>; <span class='comment'>// изменяемая связь</span></pre>
+<span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>bar</span> <span class='op'>=</span> <span class='number'>5</span>; <span class='comment'>// изменяемая связь</span><a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Ах да, <code>//</code> начинает комментарий, который заканчивается в конце строки. Rust
 игнорирует всё, что находится в <a href="comments.html">комментариях</a>.</p>
@@ -381,7 +381,7 @@ let mut bar = 5; // изменяемая связь
         .expect(&quot;Не удалось прочитать строку&quot;);
 }</span><pre class='rust rust-example-rendered'>
     <span class='ident'>io</span>::<span class='ident'>stdin</span>().<span class='ident'>read_line</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>guess</span>)
-        .<span class='ident'>expect</span>(<span class='string'>&quot;Не удалось прочитать строку&quot;</span>);</pre>
+        .<span class='ident'>expect</span>(<span class='string'>&quot;Не удалось прочитать строку&quot;</span>);<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Это уже побольше! Давайте это всё разберём. В первой строке есть две части.
 Это первая:</p>
@@ -389,7 +389,7 @@ let mut bar = 5; // изменяемая связь
 <span class='rusttest'>fn main() {
     io::stdin()
 }</span><pre class='rust rust-example-rendered'>
-<span class='ident'>io</span>::<span class='ident'>stdin</span>()</pre>
+<span class='ident'>io</span>::<span class='ident'>stdin</span>()<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Помните, как мы импортировали (<code>use</code>) <code>std::io</code> в самом начале нашей программы?
 Сейчас мы вызвали ассоциированную с ним функцию. Если бы мы не сделали <code>use std::io</code>, нам бы пришлось здесь написать <code>std::io::stdin()</code>.</p>
@@ -403,7 +403,7 @@ let mut bar = 5; // изменяемая связь
 <span class='rusttest'>fn main() {
     .read_line(&amp;mut guess)
 }</span><pre class='rust rust-example-rendered'>
-.<span class='ident'>read_line</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>guess</span>)</pre>
+.<span class='ident'>read_line</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>guess</span>)<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Здесь мы вызвали метод <a href="http://doc.rust-lang.org/std/io/struct.Stdin.html#method.read_line"><code>read_line()</code></a> обработчика. <a href="method-syntax.html">Методы</a>
 похожи на ассоциированные функции, но доступны только у определённого экземпляра
@@ -432,7 +432,7 @@ let mut bar = 5; // изменяемая связь
 <span class='rusttest'>fn main() {
             .expect(&quot;Не удалось прочитать строку&quot;);
 }</span><pre class='rust rust-example-rendered'>
-        .<span class='ident'>expect</span>(<span class='string'>&quot;Не удалось прочитать строку&quot;</span>);</pre>
+        .<span class='ident'>expect</span>(<span class='string'>&quot;Не удалось прочитать строку&quot;</span>);<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Когда мы вызываем метод, используя синтаксис <code>.foo()</code>, мы можем перенести вызов
 в новую строку и сделать для него отступ. Это помогает разбивать длинные строки
@@ -441,7 +441,7 @@ let mut bar = 5; // изменяемая связь
 <span class='rusttest'>fn main() {
         io::stdin().read_line(&amp;mut guess).expect(&quot;Не удалось прочитать строку&quot;);
 }</span><pre class='rust rust-example-rendered'>
-    <span class='ident'>io</span>::<span class='ident'>stdin</span>().<span class='ident'>read_line</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>guess</span>).<span class='ident'>expect</span>(<span class='string'>&quot;Не удалось прочитать строку&quot;</span>);</pre>
+    <span class='ident'>io</span>::<span class='ident'>stdin</span>().<span class='ident'>read_line</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>guess</span>).<span class='ident'>expect</span>(<span class='string'>&quot;Не удалось прочитать строку&quot;</span>);<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Однако это достаточно трудно читать. Поэтому мы разделили строку: по строке на
 каждый вызов метода. Мы уже поговорили о <code>read_line()</code>, но ещё ничего не сказали
@@ -487,7 +487,7 @@ src/main.rs:10     io::stdin().read_line(&amp;mut guess);
 }
 }</span><pre class='rust rust-example-rendered'>
     <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Ваша попытка: {}&quot;</span>, <span class='ident'>guess</span>);
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Здесь выводится на экран строка, которая была получена с нашего ввода. <code>{}</code> —
 это указатель места заполнения. В качестве второго аргумента макроса <code>println!</code>
@@ -504,7 +504,7 @@ println!(&quot;x и y: {} и {}&quot;, x, y);
 <span class='kw'>let</span> <span class='ident'>x</span> <span class='op'>=</span> <span class='number'>5</span>;
 <span class='kw'>let</span> <span class='ident'>y</span> <span class='op'>=</span> <span class='number'>10</span>;
 
-<span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;x и y: {} и {}&quot;</span>, <span class='ident'>x</span>, <span class='ident'>y</span>);</pre>
+<span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;x и y: {} и {}&quot;</span>, <span class='ident'>x</span>, <span class='ident'>y</span>);<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Просто.</p>
 
@@ -667,7 +667,7 @@ fn main() {
         .<span class='ident'>expect</span>(<span class='string'>&quot;Не удалось прочитать строку&quot;</span>);
 
     <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Ваша попытка: {}&quot;</span>, <span class='ident'>guess</span>);
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Первое, что мы сделали, — изменили первую строку. Теперь она выглядит так:
 <code>extern crate rand</code>. Так как мы указали <code>rand</code> в разделе <code>[dependencies]</code>, мы
@@ -692,7 +692,7 @@ fn main() {
 }</span><pre class='rust rust-example-rendered'>
     <span class='kw'>let</span> <span class='ident'>secret_number</span> <span class='op'>=</span> <span class='ident'>rand</span>::<span class='ident'>thread_rng</span>().<span class='ident'>gen_range</span>(<span class='number'>1</span>, <span class='number'>101</span>);
 
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Загаданное число: {}&quot;</span>, <span class='ident'>secret_number</span>);</pre>
+    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Загаданное число: {}&quot;</span>, <span class='ident'>secret_number</span>);<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Мы используем функцию <code>rand::thread_rng()</code> для получения копии генератора
 случайных чисел, которая будет локальной для текущего <a href="concurrency.html">потока</a>
@@ -790,7 +790,7 @@ fn main() {
         <span class='ident'>Ordering</span>::<span class='ident'>Greater</span> <span class='op'>=&gt;</span> <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Слишком большое!&quot;</span>),
         <span class='ident'>Ordering</span>::<span class='ident'>Equal</span>   <span class='op'>=&gt;</span> <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Вы выиграли!&quot;</span>),
     }
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Здесь мы видим что-то новое. Первое — это ещё один <code>use</code>. Мы ввели в область
 видимости тип <code>std::cmp::Ordering</code>. Далее, ещё пять новых строк в конце, которые
@@ -807,7 +807,7 @@ fn main() {
     <span class='ident'>Ordering</span>::<span class='ident'>Less</span>    <span class='op'>=&gt;</span> <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Слишком маленькое!&quot;</span>),
     <span class='ident'>Ordering</span>::<span class='ident'>Greater</span> <span class='op'>=&gt;</span> <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Слишком большое!&quot;</span>),
     <span class='ident'>Ordering</span>::<span class='ident'>Equal</span>   <span class='op'>=&gt;</span> <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Вы выиграли!&quot;</span>),
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Метод <code>cmp()</code> может быть вызван у чего-либо, что может сравниваться, и
 получает в качестве аргумента ссылку на то, с чем мы хотим его сравнить.
@@ -826,7 +826,7 @@ fn main() {
 <span class='kw'>enum</span> <span class='ident'>Foo</span> {
     <span class='ident'>Bar</span>,
     <span class='ident'>Baz</span>,
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>С таким определением всё, что имеет тип <code>Foo</code> может иметь значение либо
 <code>Foo::Bar</code>, либо <code>Foo::Baz</code>. Мы используем <code>::</code> для обозначения пространства
@@ -848,7 +848,7 @@ fn main() {
     <span class='ident'>Ordering</span>::<span class='ident'>Less</span>    <span class='op'>=&gt;</span> <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Слишком маленькое!&quot;</span>),
     <span class='ident'>Ordering</span>::<span class='ident'>Greater</span> <span class='op'>=&gt;</span> <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Слишком большое!&quot;</span>),
     <span class='ident'>Ordering</span>::<span class='ident'>Equal</span>   <span class='op'>=&gt;</span> <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Вы выиграли!&quot;</span>),
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Если результатом сравнения будет значение <code>Less</code>, мы выведем на экран <code>Слишком маленькое!</code>; если будет <code>Greater</code>, то <code>Слишком большое!</code>; и если <code>Equal</code>, то
 <code>Вы выиграли!</code>. <code>match</code> очень удобен, и он часто используется в Rust.</p>
@@ -944,7 +944,7 @@ fn main() {
         <span class='ident'>Ordering</span>::<span class='ident'>Greater</span> <span class='op'>=&gt;</span> <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Слишком большое!&quot;</span>),
         <span class='ident'>Ordering</span>::<span class='ident'>Equal</span>   <span class='op'>=&gt;</span> <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Вы выиграли!&quot;</span>),
     }
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Вот строки, которые мы добавили:</p>
 
@@ -953,7 +953,7 @@ fn main() {
         .expect(&quot;Пожалуйста, введите число!&quot;);
 }</span><pre class='rust rust-example-rendered'>
     <span class='kw'>let</span> <span class='ident'>guess</span>: <span class='ident'>u32</span> <span class='op'>=</span> <span class='ident'>guess</span>.<span class='ident'>trim</span>().<span class='ident'>parse</span>()
-        .<span class='ident'>expect</span>(<span class='string'>&quot;Пожалуйста, введите число!&quot;</span>);</pre>
+        .<span class='ident'>expect</span>(<span class='string'>&quot;Пожалуйста, введите число!&quot;</span>);<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Подождите минутку, у нас ведь уже есть <code>guess</code>? Rust позволил нам «затенить»
 (скрыть) предыдущее <code>guess</code> новым. Это часто используется в подобных случаях,
@@ -967,7 +967,7 @@ fn main() {
 <span class='rusttest'>fn main() {
     guess.trim().parse()
 }</span><pre class='rust rust-example-rendered'>
-<span class='ident'>guess</span>.<span class='ident'>trim</span>().<span class='ident'>parse</span>()</pre>
+<span class='ident'>guess</span>.<span class='ident'>trim</span>().<span class='ident'>parse</span>()<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Здесь <code>guess</code> ссылается на старый <code>guess</code>, который ещё является строкой,
 полученной нами с ввода. Метод <code>trim()</code> у типа <code>String</code> удаляет все пробелы
@@ -1078,7 +1078,7 @@ fn main() {
             <span class='ident'>Ordering</span>::<span class='ident'>Equal</span>   <span class='op'>=&gt;</span> <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Вы выиграли!&quot;</span>),
         }
     }
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>И посмотрим на работу приложения. Но подождите, мы же добавили бесконечный цикл?
 Всё верно. Помните, что мы говорили о <code>parse()</code>? Если мы введём не числовой
@@ -1182,7 +1182,7 @@ fn main() {
             }
         }
     }
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>С добавлением строки <code>break</code> после вывода <code>Вы выиграли!</code> мы получили
 возможность выхода из цикла, когда мы угадали загаданное число. Выход из цикла
@@ -1267,7 +1267,7 @@ fn main() {
             }
         }
     }
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Вот строка, которую мы изменили:</p>
 
@@ -1280,7 +1280,7 @@ fn main() {
 <span class='kw'>let</span> <span class='ident'>guess</span>: <span class='ident'>u32</span> <span class='op'>=</span> <span class='kw'>match</span> <span class='ident'>guess</span>.<span class='ident'>trim</span>().<span class='ident'>parse</span>() {
     <span class='prelude-val'>Ok</span>(<span class='ident'>num</span>) <span class='op'>=&gt;</span> <span class='ident'>num</span>,
     <span class='prelude-val'>Err</span>(_) <span class='op'>=&gt;</span> <span class='kw'>continue</span>,
-};</pre>
+};<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Здесь показано, как мы можем перейти от «сбоя при ошибке» к «обработке ошибки»,
 заменив <code>expect()</code> на инструкцию <code>match</code>. <code>Result</code>, возвращённый функцией
@@ -1394,7 +1394,7 @@ fn main() {
             }
         }
     }
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <h1 id='Готово' class='section-header'><a href='#Готово'>Готово!</a></h1>
 <p>Вы сделали «Угадайку»! Поздравляем!</p>

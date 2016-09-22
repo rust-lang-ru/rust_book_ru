@@ -263,7 +263,7 @@ fn main() {
     <span class='ident'>thread</span>::<span class='ident'>spawn</span>(<span class='op'>||</span> {
         <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Hello from a thread!&quot;</span>);
     });
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Метод <code>thread::spawn()</code> в качестве единственного аргумента принимает замыкание,
 которое выполняется в новом потоке. Он возвращает дескриптор потока, который
@@ -287,7 +287,7 @@ fn main() {
     });
 
     <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>handle</span>.<span class='ident'>join</span>().<span class='ident'>unwrap</span>());
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Многие языки имеют возможность выполнять потоки, но это дико опасно. Есть целые
 книги о том, как избежать ошибок, которые происходят от совместного
@@ -345,7 +345,7 @@ fn main() {
     }
 
     <span class='ident'>thread</span>::<span class='ident'>sleep_ms</span>(<span class='number'>50</span>);
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Она выдает ошибку:</p>
 
@@ -400,7 +400,7 @@ fn main() {
     }
 
     <span class='ident'>thread</span>::<span class='ident'>sleep_ms</span>(<span class='number'>50</span>);
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Вот ошибка:</p>
 
@@ -419,7 +419,7 @@ fn main() {
 <span class='rusttest'>fn main() {
     fn lock(&amp;self) -&gt; LockResult&lt;MutexGuard&lt;T&gt;&gt;
 }</span><pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span> <span class='ident'>lock</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>LockResult</span><span class='op'>&lt;</span><span class='ident'>MutexGuard</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;&gt;</span></pre>
+<span class='kw'>fn</span> <span class='ident'>lock</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>LockResult</span><span class='op'>&lt;</span><span class='ident'>MutexGuard</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;&gt;</span><a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Так как типаж <code>Send</code> не был реализован для <code>MutexGuard&lt;T&gt;</code>, мы не можем
 перемещать охранное значение мьютекса через границы потоков, что и сказано в
@@ -459,7 +459,7 @@ fn main() {
     }
 
     <span class='ident'>thread</span>::<span class='ident'>sleep_ms</span>(<span class='number'>50</span>);
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Теперь мы вызываем <code>clone()</code> для нашего <code>Arc</code>, что увеличивает внутренний
 счетчик. Затем полученная ссылка перемещается в новый поток. Давайте более
@@ -482,7 +482,7 @@ thread::spawn(move || {
 <span class='ident'>thread</span>::<span class='ident'>spawn</span>(<span class='kw'>move</span> <span class='op'>||</span> {
     <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>data</span> <span class='op'>=</span> <span class='ident'>data</span>.<span class='ident'>lock</span>().<span class='ident'>unwrap</span>();
     <span class='ident'>data</span>[<span class='ident'>i</span>] <span class='op'>+=</span> <span class='number'>1</span>;
-});</pre>
+});<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Во-первых, мы вызываем метод <code>lock()</code>, который захватывает блокировку мьютекса.
 Так как вызов данного метода может потерпеть неудачу, он возвращает <code>Result&lt;T, E&gt;</code>, но, поскольку это просто пример, мы используем <code>unwrap()</code>, чтобы получить
@@ -551,7 +551,7 @@ fn main() {
     <span class='kw'>for</span> _ <span class='kw'>in</span> <span class='number'>0</span>..<span class='number'>10</span> {
         <span class='ident'>rx</span>.<span class='ident'>recv</span>();
     }
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Мы используем метод <code>mpsc::channel()</code>, чтобы создать новый канал. В этом примере
 мы в каждом из десяти потоков вызываем метод <code>send</code>, который передает по каналу
@@ -598,7 +598,7 @@ fn main() {
     }
 
    <span class='ident'>rx</span>.<span class='ident'>recv</span>().<span class='ident'>ok</span>().<span class='ident'>expect</span>(<span class='string'>&quot;Could not receive answer&quot;</span>);
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p><code>u32</code> реализует <code>Send</code>, потому что мы можем сделать копию. Итак, создаётся
 поток, в котором вычисляется ответ, а затем этот ответ с помощью метода <code>send()</code>
@@ -623,7 +623,7 @@ assert!(result.is_err());
     <span class='macro'>panic</span><span class='macro'>!</span>(<span class='string'>&quot;oops!&quot;</span>);
 }).<span class='ident'>join</span>();
 
-<span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>result</span>.<span class='ident'>is_err</span>());</pre>
+<span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>result</span>.<span class='ident'>is_err</span>());<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Используемый в коде выше метод <code>join()</code> структуры <code>Thread</code> возвращает <code>Result</code>,
 что позволяет нам проверить, паниковал ли поток, или он завершился нормально.</p>

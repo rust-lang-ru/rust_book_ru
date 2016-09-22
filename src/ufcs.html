@@ -229,7 +229,7 @@ let b = Baz;
     <span class='kw'>fn</span> <span class='ident'>f</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) { <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Baz’s impl of Bar&quot;</span>); }
 }
 
-<span class='kw'>let</span> <span class='ident'>b</span> <span class='op'>=</span> <span class='ident'>Baz</span>;</pre>
+<span class='kw'>let</span> <span class='ident'>b</span> <span class='op'>=</span> <span class='ident'>Baz</span>;<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Если мы попытаемся вызвать <code>b.f()</code>, то получим ошибку:</p>
 
@@ -270,7 +270,7 @@ Foo::f(&amp;b);
 Bar::f(&amp;b);
 }</span><pre class='rust rust-example-rendered'>
 <span class='ident'>Foo</span>::<span class='ident'>f</span>(<span class='kw-2'>&amp;</span><span class='ident'>b</span>);
-<span class='ident'>Bar</span>::<span class='ident'>f</span>(<span class='kw-2'>&amp;</span><span class='ident'>b</span>);</pre>
+<span class='ident'>Bar</span>::<span class='ident'>f</span>(<span class='kw-2'>&amp;</span><span class='ident'>b</span>);<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Давайте разберемся.</p>
 
@@ -279,7 +279,7 @@ Bar::f(&amp;b);
 Bar::
 }</span><pre class='rust rust-example-rendered'>
 <span class='ident'>Foo</span>::
-<span class='ident'>Bar</span>::</pre>
+<span class='ident'>Bar</span>::<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Эти части вызова задают один из двух видов типажей: <code>Foo</code> и <code>Bar</code>. Это то, что
 на самом деле устраняет неоднозначность между двумя методами: Rust вызывает
@@ -288,7 +288,7 @@ Bar::
 <span class='rusttest'>fn main() {
     f(&amp;b)
 }</span><pre class='rust rust-example-rendered'>
-<span class='ident'>f</span>(<span class='kw-2'>&amp;</span><span class='ident'>b</span>)</pre>
+<span class='ident'>f</span>(<span class='kw-2'>&amp;</span><span class='ident'>b</span>)<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Когда мы вызываем метод, используя <a href="method-syntax.html">синтаксис вызова метода</a>, как
 например <code>b.f()</code>, Rust автоматически заимствует <code>b</code>, если <code>f()</code> принимает в
@@ -301,7 +301,7 @@ Bar::
 <span class='rusttest'>fn main() {
     Trait::method(args);
 }</span><pre class='rust rust-example-rendered'>
-<span class='ident'>Trait</span>::<span class='ident'>method</span>(<span class='ident'>args</span>);</pre>
+<span class='ident'>Trait</span>::<span class='ident'>method</span>(<span class='ident'>args</span>);<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Это сокращенная форма записи. Ниже представлена расширенная форма записи,
 которая требуется в некоторых ситуациях:</p>
@@ -309,7 +309,7 @@ Bar::
 <span class='rusttest'>fn main() {
     &lt;Type as Trait&gt;::method(args);
 }</span><pre class='rust rust-example-rendered'>
-<span class='op'>&lt;</span><span class='ident'>Type</span> <span class='kw'>as</span> <span class='ident'>Trait</span><span class='op'>&gt;</span>::<span class='ident'>method</span>(<span class='ident'>args</span>);</pre>
+<span class='op'>&lt;</span><span class='ident'>Type</span> <span class='kw'>as</span> <span class='ident'>Trait</span><span class='op'>&gt;</span>::<span class='ident'>method</span>(<span class='ident'>args</span>);<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Синтаксис <code>&lt;&gt;::</code> является средством предоставления подсказки типа. Тип
 располагается внутри <code>&lt;&gt;</code>. В этом случае типом является <code>Type as Trait</code>,
@@ -348,7 +348,7 @@ impl Foo for Bar {
 
         <span class='op'>&lt;</span><span class='ident'>Bar</span> <span class='kw'>as</span> <span class='ident'>Clone</span><span class='op'>&gt;</span>::<span class='ident'>clone</span>(<span class='self'>self</span>);
     }
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Этот код вызывает метод <code>clone()</code> типажа <code>Clone</code>, а не типажа <code>Foo</code>.</p>
 

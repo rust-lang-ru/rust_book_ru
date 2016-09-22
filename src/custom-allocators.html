@@ -235,7 +235,7 @@ fn main() {
 <span class='kw'>fn</span> <span class='ident'>main</span>() {
     <span class='kw'>let</span> <span class='ident'>a</span> <span class='op'>=</span> <span class='ident'>Box</span>::<span class='ident'>new</span>(<span class='number'>4</span>); <span class='comment'>// выделение памяти с помощью системного менеджера</span>
     <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>a</span>);
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>В этом примере сгенерированный исполняемый файл будет скомпонован с системным
 менеджером, вместо менеджера по умолчанию — jemalloc. И наоборот, чтобы
@@ -261,7 +261,7 @@ fn main() {}
 <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>foo</span>() {
     <span class='kw'>let</span> <span class='ident'>a</span> <span class='op'>=</span> <span class='ident'>Box</span>::<span class='ident'>new</span>(<span class='number'>4</span>); <span class='comment'>// выделение памяти с помощью jemalloc</span>
     <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>a</span>);
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <h1 id='Написание-своего-менеджера-памяти' class='section-header'><a href='#Написание-своего-менеджера-памяти'>Написание своего менеджера памяти</a></h1>
 <p>Иногда даже выбора между jemalloc и системным менеджером недостаточно и
@@ -395,7 +395,7 @@ fn main() {}
 <span class='kw'>pub</span> <span class='kw'>extern</span> <span class='kw'>fn</span> <span class='ident'>__rust_usable_size</span>(<span class='ident'>size</span>: <span class='ident'>usize</span>, <span class='ident'>_align</span>: <span class='ident'>usize</span>) <span class='op'>-&gt;</span> <span class='ident'>usize</span> {
     <span class='ident'>size</span>
 }
-</pre>
+<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>После того как мы скомпилировали этот контейнер, мы можем использовать его
 следующим образом:</p>
@@ -412,7 +412,7 @@ fn main() {
 <span class='kw'>fn</span> <span class='ident'>main</span>() {
     <span class='kw'>let</span> <span class='ident'>a</span> <span class='op'>=</span> <span class='ident'>Box</span>::<span class='ident'>new</span>(<span class='number'>8</span>); <span class='comment'>// выделение памяти с помощью нашего контейнера</span>
     <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>a</span>);
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <h1 id='Ограничения-пользовательских-менеджеров-памяти' class='section-header'><a href='#Ограничения-пользовательских-менеджеров-памяти'>Ограничения пользовательских менеджеров памяти</a></h1>
 <p>Несколько ограничений при работе с пользовательским менеджером памяти, которые

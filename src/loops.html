@@ -204,7 +204,7 @@
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>loop</span> {
     <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Зациклились!&quot;</span>);
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <h2 id='Циклы-while' class='section-header'><a href='#Циклы-while'>Циклы <code>while</code></a></h2>
 <p>Цикл <code>while</code> — это ещё один вид конструкции цикла в Rust. Выглядит он так:</p>
@@ -234,7 +234,7 @@ while !done {
     <span class='kw'>if</span> <span class='ident'>x</span> <span class='op'>%</span> <span class='number'>5</span> <span class='op'>==</span> <span class='number'>0</span> {
         <span class='ident'>done</span> <span class='op'>=</span> <span class='bool-val'>true</span>;
     }
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Он применяется, если неизвестно, сколько раз нужно выполнить тело цикла, чтобы
 получить результат. При каждой итерации цикла проверяется условие, и если оно
@@ -245,14 +245,14 @@ while !done {
 <span class='rusttest'>fn main() {
     while true {
 }</span><pre class='rust rust-example-rendered'>
-<span class='kw'>while</span> <span class='bool-val'>true</span> {</pre>
+<span class='kw'>while</span> <span class='bool-val'>true</span> {<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Однако, для такого случая в Rust имеется ключевое слово <code>loop</code>:</p>
 
 <span class='rusttest'>fn main() {
     loop {
 }</span><pre class='rust rust-example-rendered'>
-<span class='kw'>loop</span> {</pre>
+<span class='kw'>loop</span> {<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>В Rust анализатор потока управления обрабатывает конструкцию <code>loop</code> иначе, чем
 <code>while true</code>, хотя для нас это одно и тоже. На данном этапе изучения Rust нам не
@@ -281,7 +281,7 @@ while !done {
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>for</span> <span class='ident'>x</span> <span class='kw'>in</span> <span class='number'>0</span>..<span class='number'>10</span> {
     <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>x</span>); <span class='comment'>// x: i32</span>
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Можно представить цикл более абстрактно:</p>
 
@@ -292,7 +292,7 @@ while !done {
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>for</span> <span class='ident'>переменная</span> <span class='kw'>in</span> <span class='ident'>выражение</span> {
     <span class='ident'>тело_цикла</span>
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Выражение — это <a href="iterators.html">итератор</a>. Их мы будем рассматривать позже в этом
 руководстве. Итератор возвращает серию элементов, где каждый элемент будет
@@ -322,7 +322,7 @@ C.</p>
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>for</span> (<span class='ident'>i</span>,<span class='ident'>j</span>) <span class='kw'>in</span> (<span class='number'>5</span>..<span class='number'>10</span>).<span class='ident'>enumerate</span>() {
     <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;i = {} и j = {}&quot;</span>, <span class='ident'>i</span>, <span class='ident'>j</span>);
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Выводит:</p>
 
@@ -344,7 +344,7 @@ for (linenumber, line) in lines.enumerate() {
 }</span><pre class='rust rust-example-rendered'>
 <span class='kw'>for</span> (<span class='ident'>linenumber</span>, <span class='ident'>line</span>) <span class='kw'>in</span> <span class='ident'>lines</span>.<span class='ident'>enumerate</span>() {
     <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}: {}&quot;</span>, <span class='ident'>linenumber</span>, <span class='ident'>line</span>);
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Outputs:</p>
 
@@ -382,7 +382,7 @@ while !done {
     <span class='kw'>if</span> <span class='ident'>x</span> <span class='op'>%</span> <span class='number'>5</span> <span class='op'>==</span> <span class='number'>0</span> {
         <span class='ident'>done</span> <span class='op'>=</span> <span class='bool-val'>true</span>;
     }
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>В этом примере в условии для выхода из цикла используется изменяемое имя <code>done</code>
 логического типа. В Rust имеются два ключевых слова, которые помогают работать с
@@ -410,7 +410,7 @@ loop {
     <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>x</span>);
 
     <span class='kw'>if</span> <span class='ident'>x</span> <span class='op'>%</span> <span class='number'>5</span> <span class='op'>==</span> <span class='number'>0</span> { <span class='kw'>break</span>; }
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Теперь мы используем бесконечный цикл <code>loop</code> и <code>break</code> для выхода из цикла.
 Использование явного <code>return</code> также остановит выполнение цикла.</p>
@@ -429,7 +429,7 @@ loop {
     <span class='kw'>if</span> <span class='ident'>x</span> <span class='op'>%</span> <span class='number'>2</span> <span class='op'>==</span> <span class='number'>0</span> { <span class='kw'>continue</span>; }
 
     <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>x</span>);
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <h2 id='Метки-циклов' class='section-header'><a href='#Метки-циклов'>Метки циклов</a></h2>
 <p>Когда у вас много вложенных циклов, вы можете захотеть указать, к какому именно
@@ -453,7 +453,7 @@ loop {
         <span class='kw'>if</span> <span class='ident'>y</span> <span class='op'>%</span> <span class='number'>2</span> <span class='op'>==</span> <span class='number'>0</span> { <span class='kw'>continue</span> <span class='lifetime'>&#39;inner</span>; } <span class='comment'>// продолжает цикл по y</span>
         <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;x: {}, y: {}&quot;</span>, <span class='ident'>x</span>, <span class='ident'>y</span>);
     }
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
     <script type="text/javascript">
         window.playgroundUrl = "https://play.rust-lang.org";

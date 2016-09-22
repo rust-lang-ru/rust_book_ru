@@ -229,7 +229,7 @@ fn main() {
         },
         _ <span class='op'>=&gt;</span> <span class='macro'>unreachable</span><span class='macro'>!</span>()
     }
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Обратите внимание, что эти возможности в настоящее время являются скрытыми:
 <code>box_syntax</code> (создание упаковки) и <code>box_patterns</code> (деструктурирование и
@@ -280,7 +280,7 @@ fn main() {
     });
 
     <span class='kw'>let</span> <span class='ident'>y</span> <span class='op'>=</span> <span class='ident'>foo</span>(<span class='ident'>x</span>);
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Идея состоит в том, что, при передаче упаковки, происходит копирование только
 указателя, а не всех <code>int</code>, из которых состоит <code>BigStruct</code>.</p>
@@ -331,7 +331,7 @@ fn main() {
     });
 
     <span class='kw'>let</span> <span class='ident'>y</span>: <span class='ident'>Box</span><span class='op'>&lt;</span><span class='ident'>BigStruct</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='kw'>box</span> <span class='ident'>foo</span>(<span class='ident'>x</span>);
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Это дает вам гибкость без ущерба для производительности.</p>
 

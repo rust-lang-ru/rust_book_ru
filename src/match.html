@@ -216,7 +216,7 @@ match x {
     <span class='number'>4</span> <span class='op'>=&gt;</span> <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;четыре&quot;</span>),
     <span class='number'>5</span> <span class='op'>=&gt;</span> <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;пять&quot;</span>),
     _ <span class='op'>=&gt;</span> <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;что-то ещё&quot;</span>),
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p><code>match</code> принимает выражение и выбирает одну из ветвей исполнения согласно его
 значению. Каждая <em>ветвь</em> имеет форму <code>значение =&gt; выражение</code>. Выражение ветви
@@ -265,7 +265,7 @@ let numer = match x {
     <span class='number'>4</span> <span class='op'>=&gt;</span> <span class='string'>&quot;four&quot;</span>,
     <span class='number'>5</span> <span class='op'>=&gt;</span> <span class='string'>&quot;five&quot;</span>,
     _ <span class='op'>=&gt;</span> <span class='string'>&quot;something else&quot;</span>,
-};</pre>
+};<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Иногда с помощью <code>match</code> можно удобно преобразовать значения одного типа в
 другой.</p>
@@ -313,7 +313,7 @@ fn process_message(msg: Message) {
         <span class='ident'>Message</span>::<span class='ident'>Move</span> { <span class='ident'>x</span>: <span class='ident'>x</span>, <span class='ident'>y</span>: <span class='ident'>y</span> } <span class='op'>=&gt;</span> <span class='ident'>move_cursor</span>(<span class='ident'>x</span>, <span class='ident'>y</span>),
         <span class='ident'>Message</span>::<span class='ident'>Write</span>(<span class='ident'>s</span>) <span class='op'>=&gt;</span> <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>s</span>),
     };
-}</pre>
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <p>Как обычно, компилятор Rust проверяет полноту, поэтому в <code>match</code> должна быть
 ветвь для каждого варианта перечисления. Если какой-то вариант отсутствует,
