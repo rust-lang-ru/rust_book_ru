@@ -660,7 +660,7 @@ fn normal&lt;T: ConvertTo&lt;i64&gt;&gt;(x: &amp;T) -&gt; i64 {
 
 // может быть вызван с T == i64
 fn inverse&lt;T&gt;() -&gt; T
-        // использует ConvertTo как если бы это было «ConvertFrom&lt;i32&gt;»
+        // использует ConvertTo как если бы это было «ConvertTo&lt;i64&gt;»
         where i32: ConvertTo&lt;T&gt; {
     1i32.convert()
 }
@@ -680,7 +680,7 @@ fn inverse&lt;T&gt;() -&gt; T
 
 <span class='comment'>// может быть вызван с T == i64</span>
 <span class='kw'>fn</span> <span class='ident'>inverse</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span>() <span class='op'>-&gt;</span> <span class='ident'>T</span>
-        <span class='comment'>// использует ConvertTo как если бы это было «ConvertFrom&lt;i32&gt;»</span>
+        <span class='comment'>// использует ConvertTo как если бы это было «ConvertTo&lt;i64&gt;»</span>
         <span class='kw'>where</span> <span class='ident'>i32</span>: <span class='ident'>ConvertTo</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span> {
     <span class='number'>1i32</span>.<span class='ident'>convert</span>()
 }<a class='test-arrow' target='_blank' href=''>Run</a></pre>
