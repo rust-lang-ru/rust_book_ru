@@ -28,7 +28,7 @@
                     </button>
                 </div>
 <div id='toc' class='mobile-hidden'>
-<ul class='chapter'>
+<ol class='chapter'>
 <li><a  href='../README.html'><b>1.</b> Introduction</a>
 </li>
 <li><a  href='../src/INTRODUCTION.html'><b>2.</b> Введение</a>
@@ -36,17 +36,17 @@
 <li><a  href='../src/getting-started.html'><b>3.</b> C чего начать</a>
 </li>
 <li><a  href='../src/learn-rust.html'><b>4.</b> Изучение Rust</a>
-<ul class='section'>
+<ol class='section'>
 <li><a  href='../src/guessing-game.html'><b>4.1.</b> Угадайка</a>
 </li>
 <li><a  href='../src/dining-philosophers.html'><b>4.2.</b> Обедающие философы</a>
 </li>
 <li><a  href='../src/rust-inside-other-languages.html'><b>4.3.</b> Вызов кода на Rust из других языков</a>
 </li>
-</ul>
+</ol>
 </li>
 <li><a  href='../src/syntax-and-semantics.html'><b>5.</b> Синтаксис и семантика</a>
-<ul class='section'>
+<ol class='section'>
 <li><a  href='../src/variable-bindings.html'><b>5.1.</b> Связывание имён</a>
 </li>
 <li><a  href='../src/functions.html'><b>5.2.</b> Функции</a>
@@ -119,10 +119,10 @@
 </li>
 <li><a  href='../src/unsafe.html'><b>5.36.</b> Небезопасный код</a>
 </li>
-</ul>
+</ol>
 </li>
 <li><a  href='../src/effective-rust.html'><b>6.</b> Эффективное использование Rust</a>
-<ul class='section'>
+<ol class='section'>
 <li><a  href='../src/the-stack-and-the-heap.html'><b>6.1.</b> Стек и куча</a>
 </li>
 <li><a class='active' href='../src/testing.html'><b>6.2.</b> Тестирование</a>
@@ -147,10 +147,10 @@
 </li>
 <li><a  href='../src/using-rust-without-the-standard-library.html'><b>6.12.</b> Using Rust without the standard library</a>
 </li>
-</ul>
+</ol>
 </li>
 <li><a  href='../src/nightly-rust.html'><b>7.</b> Нестабильные возможности Rust</a>
-<ul class='section'>
+<ol class='section'>
 <li><a  href='../src/compiler-plugins.html'><b>7.1.</b> Плагины к компилятору</a>
 </li>
 <li><a  href='../src/inline-assembly.html'><b>7.2.</b> Встроенный ассемблерный код</a>
@@ -173,7 +173,7 @@
 </li>
 <li><a  href='../src/custom-allocators.html'><b>7.11.</b> Пользовательские менеджеры памяти</a>
 </li>
-</ul>
+</ol>
 </li>
 <li><a  href='../src/glossary.html'><b>8.</b> Глоссарий</a>
 </li>
@@ -181,7 +181,7 @@
 </li>
 <li><a  href='../src/bibliography.html'><b>10.</b> Библиография</a>
 </li>
-</ul>
+</ol>
 </div>
 <div id='page-wrapper'>
 <div id='page'>
@@ -217,14 +217,10 @@ $ cd adder
 <p>При создании нового проекта, Cargo автоматически сгенерирует простой тест. Ниже
 представлено содержимое <code>src/lib.rs</code>:</p>
 
-<span class='rusttest'>fn main() {
-    #[test]
-fn it_works() {
-}
-}</span><pre class='rust rust-example-rendered'>
+<pre class='rust rust-example-rendered'>
 <span class='attribute'>#[<span class='ident'>test</span>]</span>
 <span class='kw'>fn</span> <span class='ident'>it_works</span>() {
-}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
+}<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0A%23%5Btest%5D%0Afn%20it_works()%20%7B%0A%7D%0A%7D">Run</a></pre>
 
 <p>Обратите внимание на <code>#[test]</code>. Этот атрибут указывает, что это тестовая
 функция. В этом примере она не имеет тела. Но такого вида функции достаточно,
@@ -256,11 +252,8 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
 
 <p>Обратите внимание на <code>it_works</code>. Это название нашей функции:</p>
 
-<span class='rusttest'>fn main() {
-    fn it_works() {
-}
-}</span><pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span> <span class='ident'>it_works</span>() {<a class='test-arrow' target='_blank' href=''>Run</a></pre>
+<pre class='rust rust-example-rendered'>
+<span class='kw'>fn</span> <span class='ident'>it_works</span>() {<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20it_works()%20%7B%0A%7D%0A%7D">Run</a></pre>
 
 <p>Мы также получили итоговую строку:</p>
 
@@ -272,16 +265,11 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
 <code>panic!</code>, выполняется неудачно. Давайте сделаем тест, который выполнится
 неудачно:</p>
 
-<span class='rusttest'>fn main() {
-    #[test]
-fn it_works() {
-    assert!(false);
-}
-}</span><pre class='rust rust-example-rendered'>
+<pre class='rust rust-example-rendered'>
 <span class='attribute'>#[<span class='ident'>test</span>]</span>
 <span class='kw'>fn</span> <span class='ident'>it_works</span>() {
     <span class='macro'>assert</span><span class='macro'>!</span>(<span class='bool-val'>false</span>);
-}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
+}<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0A%23%5Btest%5D%0Afn%20it_works()%20%7B%0A%20%20%20%20assert!(false)%3B%0A%7D%0A%7D">Run</a></pre>
 
 <p><code>assert!</code> — это макрос, определенный в Rust, и принимающий один аргумент: если
 аргумент имеет значение <code>true</code>, то ничего не происходит; если аргумент является
@@ -342,18 +330,12 @@ thread &#39;&lt;main&gt;&#39; panicked at &#39;Some tests failed&#39;, /home/ste
 <p>Можно инвертировать ожидаемый результат теста с помощью атрибута:
 <code>should_panic</code>:</p>
 
-<span class='rusttest'>fn main() {
-    #[test]
-#[should_panic]
-fn it_works() {
-    assert!(false);
-}
-}</span><pre class='rust rust-example-rendered'>
+<pre class='rust rust-example-rendered'>
 <span class='attribute'>#[<span class='ident'>test</span>]</span>
 <span class='attribute'>#[<span class='ident'>should_panic</span>]</span>
 <span class='kw'>fn</span> <span class='ident'>it_works</span>() {
     <span class='macro'>assert</span><span class='macro'>!</span>(<span class='bool-val'>false</span>);
-}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
+}<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0A%23%5Btest%5D%0A%23%5Bshould_panic%5D%0Afn%20it_works()%20%7B%0A%20%20%20%20assert!(false)%3B%0A%7D%0A%7D">Run</a></pre>
 
 <p>Теперь этот тест будет выполнен удачно, если вызывается <code>panic!</code>, и неудачно,
 если <code>panic!</code> не вызывается. Давайте попробуем:</p>
@@ -377,18 +359,12 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
 <p>Rust предоставляет и другой макрос, <code>assert_eq!</code>, который проверяет равенство
 двух аргументов:</p>
 
-<span class='rusttest'>fn main() {
-    #[test]
-#[should_panic]
-fn it_works() {
-    assert_eq!(&quot;Hello&quot;, &quot;world&quot;);
-}
-}</span><pre class='rust rust-example-rendered'>
+<pre class='rust rust-example-rendered'>
 <span class='attribute'>#[<span class='ident'>test</span>]</span>
 <span class='attribute'>#[<span class='ident'>should_panic</span>]</span>
 <span class='kw'>fn</span> <span class='ident'>it_works</span>() {
     <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='string'>&quot;Hello&quot;</span>, <span class='string'>&quot;world&quot;</span>);
-}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
+}<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0A%23%5Btest%5D%0A%23%5Bshould_panic%5D%0Afn%20it_works()%20%7B%0A%20%20%20%20assert_eq!(%22Hello%22%2C%20%22world%22)%3B%0A%7D%0A%7D">Run</a></pre>
 
 <p>А теперь этот тест будет выполнен удачно или неудачно? Из-за атрибута
 <code>should_panic</code> он завершится удачно:</p>
@@ -415,31 +391,16 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
 Тогда тест также будет проверять, что сообщение об ошибке содержит ожидаемый
 текст. Ниже представлен более безопасный вариант приведенного выше примера:</p>
 
-<span class='rusttest'>fn main() {
-    #[test]
-#[should_panic(expected = &quot;assertion failed&quot;)]
-fn it_works() {
-    assert_eq!(&quot;Hello&quot;, &quot;world&quot;);
-}
-}</span><pre class='rust rust-example-rendered'>
+<pre class='rust rust-example-rendered'>
 <span class='attribute'>#[<span class='ident'>test</span>]</span>
 <span class='attribute'>#[<span class='ident'>should_panic</span>(<span class='ident'>expected</span> <span class='op'>=</span> <span class='string'>&quot;assertion failed&quot;</span>)]</span>
 <span class='kw'>fn</span> <span class='ident'>it_works</span>() {
     <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='string'>&quot;Hello&quot;</span>, <span class='string'>&quot;world&quot;</span>);
-}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
+}<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0A%23%5Btest%5D%0A%23%5Bshould_panic(expected%20%3D%20%22assertion%20failed%22)%5D%0Afn%20it_works()%20%7B%0A%20%20%20%20assert_eq!(%22Hello%22%2C%20%22world%22)%3B%0A%7D%0A%7D">Run</a></pre>
 
 <p>Вот и все, что касается основ! Давайте напишем один «настоящий» тест:</p>
 
-<span class='rusttest'>fn main() {
-    pub fn add_two(a: i32) -&gt; i32 {
-    a + 2
-}
-
-#[test]
-fn it_works() {
-    assert_eq!(4, add_two(2));
-}
-}</span><pre class='rust rust-example-rendered'>
+<pre class='rust rust-example-rendered'>
 <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>add_two</span>(<span class='ident'>a</span>: <span class='ident'>i32</span>) <span class='op'>-&gt;</span> <span class='ident'>i32</span> {
     <span class='ident'>a</span> <span class='op'>+</span> <span class='number'>2</span>
 }
@@ -447,7 +408,7 @@ fn it_works() {
 <span class='attribute'>#[<span class='ident'>test</span>]</span>
 <span class='kw'>fn</span> <span class='ident'>it_works</span>() {
     <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>4</span>, <span class='ident'>add_two</span>(<span class='number'>2</span>));
-}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
+}<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Apub%20fn%20add_two(a%3A%20i32)%20-%3E%20i32%20%7B%0A%20%20%20%20a%20%2B%202%0A%7D%0A%0A%23%5Btest%5D%0Afn%20it_works()%20%7B%0A%20%20%20%20assert_eq!(4%2C%20add_two(2))%3B%0A%7D%0A%7D">Run</a></pre>
 
 <p>Это распространенное использование макроса <code>assert_eq!</code>: вызывать некоторую
 функцию с известными аргументами и сравнить результат её вызова с ожидаемым
@@ -457,17 +418,7 @@ fn it_works() {
 <p>Некоторые тесты могу занимать много времени на выполнение. Такие тесты могут
 быть отключены по умолчанию с помощью атрибута <code>ignore</code>:</p>
 
-<span class='rusttest'>fn main() {
-    fn it_works() {
-    assert_eq!(4, add_two(2));
-}
-
-#[test]
-#[ignore]
-fn expensive_test() {
-    // код, который занимает час на выполнение
-}
-}</span><pre class='rust rust-example-rendered'>
+<pre class='rust rust-example-rendered'>
 <span class='kw'>fn</span> <span class='ident'>it_works</span>() {
     <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>4</span>, <span class='ident'>add_two</span>(<span class='number'>2</span>));
 }
@@ -476,7 +427,7 @@ fn expensive_test() {
 <span class='attribute'>#[<span class='ident'>ignore</span>]</span>
 <span class='kw'>fn</span> <span class='ident'>expensive_test</span>() {
     <span class='comment'>// код, который занимает час на выполнение</span>
-}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
+}<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20it_works()%20%7B%0A%20%20%20%20assert_eq!(4%2C%20add_two(2))%3B%0A%7D%0A%0A%23%5Btest%5D%0A%23%5Bignore%5D%0Afn%20expensive_test()%20%7B%0A%20%20%20%20%2F%2F%20%D0%BA%D0%BE%D0%B4%2C%20%D0%BA%D0%BE%D1%82%D0%BE%D1%80%D1%8B%D0%B9%20%D0%B7%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D0%B5%D1%82%20%D1%87%D0%B0%D1%81%20%D0%BD%D0%B0%20%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%0A%7D%0A%7D">Run</a></pre>
 
 <p>Теперь запустим наши тесты и видим, что <code>it_works</code> запускается, а
 <code>expensive_test</code> нет:</p>
@@ -524,21 +475,7 @@ Cargo, именно поэтому команда выглядит так <code>
 отсутствует модуль тестирования. Идиоматичный вариант нашего примера будет
 выглядеть примерно так:</p>
 
-<span class='rusttest'>fn main() {
-    pub fn add_two(a: i32) -&gt; i32 {
-    a + 2
-}
-
-#[cfg(test)]
-mod test {
-    use super::add_two;
-
-    #[test]
-    fn it_works() {
-        assert_eq!(4, add_two(2));
-    }
-}
-}</span><pre class='rust rust-example-rendered'>
+<pre class='rust rust-example-rendered'>
 <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>add_two</span>(<span class='ident'>a</span>: <span class='ident'>i32</span>) <span class='op'>-&gt;</span> <span class='ident'>i32</span> {
     <span class='ident'>a</span> <span class='op'>+</span> <span class='number'>2</span>
 }
@@ -551,7 +488,7 @@ mod test {
     <span class='kw'>fn</span> <span class='ident'>it_works</span>() {
         <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>4</span>, <span class='ident'>add_two</span>(<span class='number'>2</span>));
     }
-}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
+}<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Apub%20fn%20add_two(a%3A%20i32)%20-%3E%20i32%20%7B%0A%20%20%20%20a%20%2B%202%0A%7D%0A%0A%23%5Bcfg(test)%5D%0Amod%20test%20%7B%0A%20%20%20%20use%20super%3A%3Aadd_two%3B%0A%0A%20%20%20%20%23%5Btest%5D%0A%20%20%20%20fn%20it_works()%20%7B%0A%20%20%20%20%20%20%20%20assert_eq!(4%2C%20add_two(2))%3B%0A%20%20%20%20%7D%0A%7D%0A%7D">Run</a></pre>
 
 <p>Здесь есть несколько изменений. Первое — это введение <code>mod test</code> с атрибутом
 <code>cfg</code>. Модуль позволяет сгруппировать все наши тесты вместе, а также, если
@@ -567,21 +504,7 @@ mod test {
 обычно используют возможность <code>glob</code>. Давайте изменим <code>src/lib.rs</code>
 соответствующим образом:</p>
 
-<span class='rusttest'>fn main() {
-    pub fn add_two(a: i32) -&gt; i32 {
-    a + 2
-}
-
-#[cfg(test)]
-mod test {
-    use super::*;
-
-    #[test]
-    fn it_works() {
-        assert_eq!(4, add_two(2));
-    }
-}
-}</span><pre class='rust rust-example-rendered'>
+<pre class='rust rust-example-rendered'>
 
 <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>add_two</span>(<span class='ident'>a</span>: <span class='ident'>i32</span>) <span class='op'>-&gt;</span> <span class='ident'>i32</span> {
     <span class='ident'>a</span> <span class='op'>+</span> <span class='number'>2</span>
@@ -595,7 +518,7 @@ mod test {
     <span class='kw'>fn</span> <span class='ident'>it_works</span>() {
         <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>4</span>, <span class='ident'>add_two</span>(<span class='number'>2</span>));
     }
-}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
+}<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Apub%20fn%20add_two(a%3A%20i32)%20-%3E%20i32%20%7B%0A%20%20%20%20a%20%2B%202%0A%7D%0A%0A%23%5Bcfg(test)%5D%0Amod%20test%20%7B%0A%20%20%20%20use%20super%3A%3A*%3B%0A%0A%20%20%20%20%23%5Btest%5D%0A%20%20%20%20fn%20it_works()%20%7B%0A%20%20%20%20%20%20%20%20assert_eq!(4%2C%20add_two(2))%3B%0A%20%20%20%20%7D%0A%7D%0A%7D">Run</a></pre>
 
 <p>Обратите внимание на различие в строке с <code>use</code>. Теперь запустим наши тесты:</p>
 
@@ -628,20 +551,13 @@ tests)? Для этого следует использовать директо
 <p>Чтобы написать интеграционный тест, давайте создадим директорию <code>tests</code>, и
 положим в нее файл <code>tests/lib.rs</code> со следующим содержимым:</p>
 
-<span class='rusttest'>fn main() {
-    extern crate adder;
-
-#[test]
-fn it_works() {
-    assert_eq!(4, adder::add_two(2));
-}
-}</span><pre class='rust rust-example-rendered'>
+<pre class='rust rust-example-rendered'>
 <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>adder</span>;
 
 <span class='attribute'>#[<span class='ident'>test</span>]</span>
 <span class='kw'>fn</span> <span class='ident'>it_works</span>() {
     <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>4</span>, <span class='ident'>adder</span>::<span class='ident'>add_two</span>(<span class='number'>2</span>));
-}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
+}<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Aextern%20crate%20adder%3B%0A%0A%23%5Btest%5D%0Afn%20it_works()%20%7B%0A%20%20%20%20assert_eq!(4%2C%20adder%3A%3Aadd_two(2))%3B%0A%7D%0A%7D">Run</a></pre>
 
 <p>Выглядит примерно так же, как и наши предыдущие тесты, но есть некоторые
 отличия. Теперь сверху у нас <code>extern crate adder</code>. Это потому, что тесты в
@@ -690,38 +606,7 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
 поддерживает автоматический запуск примеров в документации (имейте ввиду, что
 это работает только с библиотеками). Вот дополненный <code>src/lib.rs</code> с примерами:</p>
 
-<span class='rusttest'>fn main() {
-    //! Контейнер `adder` предоставляет функции сложения чисел.
-//!
-//! # Examples
-//!
-//! ```
-//! assert_eq!(4, adder::add_two(2));
-//! ```
-
-/// Эта функция прибавляет 2 к своему аргументу.
-///
-/// # Examples
-///
-/// ```
-/// use adder::add_two;
-///
-/// assert_eq!(4, add_two(2));
-/// ```
-pub fn add_two(a: i32) -&gt; i32 {
-    a + 2
-}
-
-#[cfg(test)]
-mod test {
-    use super::*;
-
-    #[test]
-    fn it_works() {
-        assert_eq!(4, add_two(2));
-    }
-}
-}</span><pre class='rust rust-example-rendered'>
+<pre class='rust rust-example-rendered'>
 <span class='doccomment'>//! Контейнер `adder` предоставляет функции сложения чисел.</span>
 <span class='doccomment'>//!</span>
 <span class='doccomment'>//! # Examples</span>
@@ -751,7 +636,7 @@ mod test {
     <span class='kw'>fn</span> <span class='ident'>it_works</span>() {
         <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>4</span>, <span class='ident'>add_two</span>(<span class='number'>2</span>));
     }
-}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
+}<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0A%2F%2F!%20%D0%9A%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%20%60adder%60%20%D0%BF%D1%80%D0%B5%D0%B4%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%BB%D1%8F%D0%B5%D1%82%20%D1%84%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D0%B8%20%D1%81%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D1%87%D0%B8%D1%81%D0%B5%D0%BB.%0A%2F%2F!%0A%2F%2F!%20%23%20Examples%0A%2F%2F!%0A%2F%2F!%20%60%60%60%0A%2F%2F!%20assert_eq!(4%2C%20adder%3A%3Aadd_two(2))%3B%0A%2F%2F!%20%60%60%60%0A%0A%2F%2F%2F%20%D0%AD%D1%82%D0%B0%20%D1%84%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D1%8F%20%D0%BF%D1%80%D0%B8%D0%B1%D0%B0%D0%B2%D0%BB%D1%8F%D0%B5%D1%82%202%20%D0%BA%20%D1%81%D0%B2%D0%BE%D0%B5%D0%BC%D1%83%20%D0%B0%D1%80%D0%B3%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D1%83.%0A%2F%2F%2F%0A%2F%2F%2F%20%23%20Examples%0A%2F%2F%2F%0A%2F%2F%2F%20%60%60%60%0A%2F%2F%2F%20use%20adder%3A%3Aadd_two%3B%0A%2F%2F%2F%0A%2F%2F%2F%20assert_eq!(4%2C%20add_two(2))%3B%0A%2F%2F%2F%20%60%60%60%0Apub%20fn%20add_two(a%3A%20i32)%20-%3E%20i32%20%7B%0A%20%20%20%20a%20%2B%202%0A%7D%0A%0A%23%5Bcfg(test)%5D%0Amod%20test%20%7B%0A%20%20%20%20use%20super%3A%3A*%3B%0A%0A%20%20%20%20%23%5Btest%5D%0A%20%20%20%20fn%20it_works()%20%7B%0A%20%20%20%20%20%20%20%20assert_eq!(4%2C%20add_two(2))%3B%0A%20%20%20%20%7D%0A%7D%0A%7D">Run</a></pre>
 
 <p>Обратите внимание на документацию уровня модуля, начинающуюся с <code>//!</code> и на
 документацию уровня функции, начинающуюся с <code>///</code>. Документация Rust
@@ -799,11 +684,7 @@ test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured
 <p>Последнее замечание: тесты в документации <em>не работают</em> для исполняемых файлов.
 Подробнее об организации файлов можно узнать в главе <a href="crates-and-modules.html">Контейнеры и модули</a>.</p>
 
-    <script type="text/javascript">
-        window.playgroundUrl = "https://play.rust-lang.org";
-    </script>
     <script src='../rustbook.js'></script>
-<script src='../playpen.js'></script>
 </div></div>
 
 

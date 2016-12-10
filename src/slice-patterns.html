@@ -28,7 +28,7 @@
                     </button>
                 </div>
 <div id='toc' class='mobile-hidden'>
-<ul class='chapter'>
+<ol class='chapter'>
 <li><a  href='../README.html'><b>1.</b> Introduction</a>
 </li>
 <li><a  href='../src/INTRODUCTION.html'><b>2.</b> Введение</a>
@@ -36,17 +36,17 @@
 <li><a  href='../src/getting-started.html'><b>3.</b> C чего начать</a>
 </li>
 <li><a  href='../src/learn-rust.html'><b>4.</b> Изучение Rust</a>
-<ul class='section'>
+<ol class='section'>
 <li><a  href='../src/guessing-game.html'><b>4.1.</b> Угадайка</a>
 </li>
 <li><a  href='../src/dining-philosophers.html'><b>4.2.</b> Обедающие философы</a>
 </li>
 <li><a  href='../src/rust-inside-other-languages.html'><b>4.3.</b> Вызов кода на Rust из других языков</a>
 </li>
-</ul>
+</ol>
 </li>
 <li><a  href='../src/syntax-and-semantics.html'><b>5.</b> Синтаксис и семантика</a>
-<ul class='section'>
+<ol class='section'>
 <li><a  href='../src/variable-bindings.html'><b>5.1.</b> Связывание имён</a>
 </li>
 <li><a  href='../src/functions.html'><b>5.2.</b> Функции</a>
@@ -119,10 +119,10 @@
 </li>
 <li><a  href='../src/unsafe.html'><b>5.36.</b> Небезопасный код</a>
 </li>
-</ul>
+</ol>
 </li>
 <li><a  href='../src/effective-rust.html'><b>6.</b> Эффективное использование Rust</a>
-<ul class='section'>
+<ol class='section'>
 <li><a  href='../src/the-stack-and-the-heap.html'><b>6.1.</b> Стек и куча</a>
 </li>
 <li><a  href='../src/testing.html'><b>6.2.</b> Тестирование</a>
@@ -147,10 +147,10 @@
 </li>
 <li><a  href='../src/using-rust-without-the-standard-library.html'><b>6.12.</b> Using Rust without the standard library</a>
 </li>
-</ul>
+</ol>
 </li>
 <li><a  href='../src/nightly-rust.html'><b>7.</b> Нестабильные возможности Rust</a>
-<ul class='section'>
+<ol class='section'>
 <li><a  href='../src/compiler-plugins.html'><b>7.1.</b> Плагины к компилятору</a>
 </li>
 <li><a  href='../src/inline-assembly.html'><b>7.2.</b> Встроенный ассемблерный код</a>
@@ -173,7 +173,7 @@
 </li>
 <li><a  href='../src/custom-allocators.html'><b>7.11.</b> Пользовательские менеджеры памяти</a>
 </li>
-</ul>
+</ol>
 </li>
 <li><a  href='../src/glossary.html'><b>8.</b> Глоссарий</a>
 </li>
@@ -181,7 +181,7 @@
 </li>
 <li><a  href='../src/bibliography.html'><b>10.</b> Библиография</a>
 </li>
-</ul>
+</ol>
 </div>
 <div id='page-wrapper'>
 <div id='page'>
@@ -192,17 +192,7 @@
 массив, то вы можете использовать <code>&amp;</code> и активировать возможность
 <code>slice_patterns</code>:</p>
 
-<span class='rusttest'>#![feature(slice_patterns)]
-
-fn main() {
-    let v = vec![&quot;match_this&quot;, &quot;1&quot;];
-
-    match &amp;v[..] {
-        [&quot;match_this&quot;, second] =&gt; println!(&quot;The second element is {}&quot;, second),
-        _ =&gt; {},
-    }
-}
-</span><pre class='rust rust-example-rendered'>
+<pre class='rust rust-example-rendered'>
 <span class='attribute'>#<span class='op'>!</span>[<span class='ident'>feature</span>(<span class='ident'>slice_patterns</span>)]</span>
 
 <span class='kw'>fn</span> <span class='ident'>main</span>() {
@@ -212,31 +202,14 @@ fn main() {
         [<span class='string'>&quot;match_this&quot;</span>, <span class='ident'>second</span>] <span class='op'>=&gt;</span> <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;The second element is {}&quot;</span>, <span class='ident'>second</span>),
         _ <span class='op'>=&gt;</span> {},
     }
-}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
+}<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=%23!%5Bfeature(slice_patterns)%5D%0A%0Afn%20main()%20%7B%0A%20%20%20%20let%20v%20%3D%20vec!%5B%22match_this%22%2C%20%221%22%5D%3B%0A%0A%20%20%20%20match%20%26v%5B..%5D%20%7B%0A%20%20%20%20%20%20%20%20%5B%22match_this%22%2C%20second%5D%20%3D%3E%20println!(%22The%20second%20element%20is%20%7B%7D%22%2C%20second)%2C%0A%20%20%20%20%20%20%20%20_%20%3D%3E%20%7B%7D%2C%0A%20%20%20%20%7D%0A%7D%0A&amp;version=nightly">Run</a></pre>
 
 <p>Отключаемая возможность <code>advanced_slice_patterns</code> позволяет использовать <code>..</code>,
 чтобы обозначить любое число элементов в шаблоне. Этот символ подстановки можно
 использовать в массиве один раз. Если перед <code>..</code> есть идентификатор, результат
 среза будет связан с этим именем. Например:</p>
 
-<span class='rusttest'>#![feature(advanced_slice_patterns, slice_patterns)]
-
-fn is_symmetric(list: &amp;[u32]) -&gt; bool {
-    match list {
-        [] | [_] =&gt; true,
-        [x, inside.., y] if x == y =&gt; is_symmetric(inside),
-        _ =&gt; false
-    }
-}
-
-fn main() {
-    let sym = &amp;[0, 1, 4, 2, 4, 1, 0];
-    assert!(is_symmetric(sym));
-
-    let not_sym = &amp;[0, 1, 7, 2, 4, 1, 0];
-    assert!(!is_symmetric(not_sym));
-}
-</span><pre class='rust rust-example-rendered'>
+<pre class='rust rust-example-rendered'>
 <span class='attribute'>#<span class='op'>!</span>[<span class='ident'>feature</span>(<span class='ident'>advanced_slice_patterns</span>, <span class='ident'>slice_patterns</span>)]</span>
 
 <span class='kw'>fn</span> <span class='ident'>is_symmetric</span>(<span class='ident'>list</span>: <span class='kw-2'>&amp;</span>[<span class='ident'>u32</span>]) <span class='op'>-&gt;</span> <span class='ident'>bool</span> {
@@ -253,13 +226,9 @@ fn main() {
 
     <span class='kw'>let</span> <span class='ident'>not_sym</span> <span class='op'>=</span> <span class='kw-2'>&amp;</span>[<span class='number'>0</span>, <span class='number'>1</span>, <span class='number'>7</span>, <span class='number'>2</span>, <span class='number'>4</span>, <span class='number'>1</span>, <span class='number'>0</span>];
     <span class='macro'>assert</span><span class='macro'>!</span>(<span class='op'>!</span><span class='ident'>is_symmetric</span>(<span class='ident'>not_sym</span>));
-}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
+}<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=%23!%5Bfeature(advanced_slice_patterns%2C%20slice_patterns)%5D%0A%0Afn%20is_symmetric(list%3A%20%26%5Bu32%5D)%20-%3E%20bool%20%7B%0A%20%20%20%20match%20list%20%7B%0A%20%20%20%20%20%20%20%20%5B%5D%20%7C%20%5B_%5D%20%3D%3E%20true%2C%0A%20%20%20%20%20%20%20%20%5Bx%2C%20inside..%2C%20y%5D%20if%20x%20%3D%3D%20y%20%3D%3E%20is_symmetric(inside)%2C%0A%20%20%20%20%20%20%20%20_%20%3D%3E%20false%0A%20%20%20%20%7D%0A%7D%0A%0Afn%20main()%20%7B%0A%20%20%20%20let%20sym%20%3D%20%26%5B0%2C%201%2C%204%2C%202%2C%204%2C%201%2C%200%5D%3B%0A%20%20%20%20assert!(is_symmetric(sym))%3B%0A%0A%20%20%20%20let%20not_sym%20%3D%20%26%5B0%2C%201%2C%207%2C%202%2C%204%2C%201%2C%200%5D%3B%0A%20%20%20%20assert!(!is_symmetric(not_sym))%3B%0A%7D%0A&amp;version=nightly">Run</a></pre>
 
-    <script type="text/javascript">
-        window.playgroundUrl = "https://play.rust-lang.org";
-    </script>
     <script src='../rustbook.js'></script>
-<script src='../playpen.js'></script>
 </div></div>
 
 

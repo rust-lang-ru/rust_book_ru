@@ -28,7 +28,7 @@
                     </button>
                 </div>
 <div id='toc' class='mobile-hidden'>
-<ul class='chapter'>
+<ol class='chapter'>
 <li><a  href='../README.html'><b>1.</b> Introduction</a>
 </li>
 <li><a  href='../src/INTRODUCTION.html'><b>2.</b> Введение</a>
@@ -36,17 +36,17 @@
 <li><a  href='../src/getting-started.html'><b>3.</b> C чего начать</a>
 </li>
 <li><a  href='../src/learn-rust.html'><b>4.</b> Изучение Rust</a>
-<ul class='section'>
+<ol class='section'>
 <li><a  href='../src/guessing-game.html'><b>4.1.</b> Угадайка</a>
 </li>
 <li><a  href='../src/dining-philosophers.html'><b>4.2.</b> Обедающие философы</a>
 </li>
 <li><a  href='../src/rust-inside-other-languages.html'><b>4.3.</b> Вызов кода на Rust из других языков</a>
 </li>
-</ul>
+</ol>
 </li>
 <li><a  href='../src/syntax-and-semantics.html'><b>5.</b> Синтаксис и семантика</a>
-<ul class='section'>
+<ol class='section'>
 <li><a  href='../src/variable-bindings.html'><b>5.1.</b> Связывание имён</a>
 </li>
 <li><a  href='../src/functions.html'><b>5.2.</b> Функции</a>
@@ -119,10 +119,10 @@
 </li>
 <li><a  href='../src/unsafe.html'><b>5.36.</b> Небезопасный код</a>
 </li>
-</ul>
+</ol>
 </li>
 <li><a  href='../src/effective-rust.html'><b>6.</b> Эффективное использование Rust</a>
-<ul class='section'>
+<ol class='section'>
 <li><a  href='../src/the-stack-and-the-heap.html'><b>6.1.</b> Стек и куча</a>
 </li>
 <li><a  href='../src/testing.html'><b>6.2.</b> Тестирование</a>
@@ -147,10 +147,10 @@
 </li>
 <li><a  href='../src/using-rust-without-the-standard-library.html'><b>6.12.</b> Using Rust without the standard library</a>
 </li>
-</ul>
+</ol>
 </li>
 <li><a  href='../src/nightly-rust.html'><b>7.</b> Нестабильные возможности Rust</a>
-<ul class='section'>
+<ol class='section'>
 <li><a  href='../src/compiler-plugins.html'><b>7.1.</b> Плагины к компилятору</a>
 </li>
 <li><a  href='../src/inline-assembly.html'><b>7.2.</b> Встроенный ассемблерный код</a>
@@ -173,7 +173,7 @@
 </li>
 <li><a  href='../src/custom-allocators.html'><b>7.11.</b> Пользовательские менеджеры памяти</a>
 </li>
-</ul>
+</ol>
 </li>
 <li><a  href='../src/glossary.html'><b>8.</b> Глоссарий</a>
 </li>
@@ -181,7 +181,7 @@
 </li>
 <li><a  href='../src/bibliography.html'><b>10.</b> Библиография</a>
 </li>
-</ul>
+</ol>
 </div>
 <div id='page-wrapper'>
 <div id='page'>
@@ -200,20 +200,7 @@
 <p>Ниже приведен минимальный пример вызова внешней функции, который будет
 скомпилирован при условии, что библиотека snappy установлена:</p>
 
-<span class='rusttest'>#![feature(libc)]
-extern crate libc;
-use libc::size_t;
-
-#[link(name = &quot;snappy&quot;)]
-extern {
-    fn snappy_max_compressed_length(source_length: size_t) -&gt; size_t;
-}
-
-fn main() {
-    let x = unsafe { snappy_max_compressed_length(100) };
-    println!(&quot;максимальный размер сжатого буфера длиной 100 байт: {}&quot;, x);
-}
-</span><pre class='rust rust-example-rendered'>
+<pre class='rust rust-example-rendered'>
 <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>libc</span>;
 <span class='kw'>use</span> <span class='ident'>libc</span>::<span class='ident'>size_t</span>;
 
@@ -225,7 +212,7 @@ fn main() {
 <span class='kw'>fn</span> <span class='ident'>main</span>() {
     <span class='kw'>let</span> <span class='ident'>x</span> <span class='op'>=</span> <span class='kw'>unsafe</span> { <span class='ident'>snappy_max_compressed_length</span>(<span class='number'>100</span>) };
     <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;максимальный размер сжатого буфера длиной 100 байт: {}&quot;</span>, <span class='ident'>x</span>);
-}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
+}<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=%23!%5Bfeature(libc)%5D%0Aextern%20crate%20libc%3B%0Ause%20libc%3A%3Asize_t%3B%0A%0A%23%5Blink(name%20%3D%20%22snappy%22)%5D%0Aextern%20%7B%0A%20%20%20%20fn%20snappy_max_compressed_length(source_length%3A%20size_t)%20-%3E%20size_t%3B%0A%7D%0A%0Afn%20main()%20%7B%0A%20%20%20%20let%20x%20%3D%20unsafe%20%7B%20snappy_max_compressed_length(100)%20%7D%3B%0A%20%20%20%20println!(%22%D0%BC%D0%B0%D0%BA%D1%81%D0%B8%D0%BC%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9%20%D1%80%D0%B0%D0%B7%D0%BC%D0%B5%D1%80%20%D1%81%D0%B6%D0%B0%D1%82%D0%BE%D0%B3%D0%BE%20%D0%B1%D1%83%D1%84%D0%B5%D1%80%D0%B0%20%D0%B4%D0%BB%D0%B8%D0%BD%D0%BE%D0%B9%20100%20%D0%B1%D0%B0%D0%B9%D1%82%3A%20%7B%7D%22%2C%20x)%3B%0A%7D%0A&amp;version=nightly">Run</a></pre>
 
 <p>Блок <code>extern</code> содержит список сигнатур функций из внешней библиотеки, в данном
 случае для C ABI (application binary interface; двоичный интерфейс приложений)
@@ -248,29 +235,7 @@ snappy, используется атрибут <code>#[link(...)]</code>. Бл�
 
 <p>Блок <code>extern</code> может быть распространён на весь API snappy:</p>
 
-<span class='rusttest'>#![feature(libc)]
-extern crate libc;
-use libc::{c_int, size_t};
-
-#[link(name = &quot;snappy&quot;)]
-extern {
-    fn snappy_compress(input: *const u8,
-                       input_length: size_t,
-                       compressed: *mut u8,
-                       compressed_length: *mut size_t) -&gt; c_int;
-    fn snappy_uncompress(compressed: *const u8,
-                         compressed_length: size_t,
-                         uncompressed: *mut u8,
-                         uncompressed_length: *mut size_t) -&gt; c_int;
-    fn snappy_max_compressed_length(source_length: size_t) -&gt; size_t;
-    fn snappy_uncompressed_length(compressed: *const u8,
-                                  compressed_length: size_t,
-                                  result: *mut size_t) -&gt; c_int;
-    fn snappy_validate_compressed_buffer(compressed: *const u8,
-                                         compressed_length: size_t) -&gt; c_int;
-}
-fn main() {}
-</span><pre class='rust rust-example-rendered'>
+<pre class='rust rust-example-rendered'>
 <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>libc</span>;
 <span class='kw'>use</span> <span class='ident'>libc</span>::{<span class='ident'>c_int</span>, <span class='ident'>size_t</span>};
 
@@ -290,7 +255,7 @@ fn main() {}
                                   <span class='ident'>result</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>size_t</span>) <span class='op'>-&gt;</span> <span class='ident'>c_int</span>;
     <span class='kw'>fn</span> <span class='ident'>snappy_validate_compressed_buffer</span>(<span class='ident'>compressed</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>u8</span>,
                                          <span class='ident'>compressed_length</span>: <span class='ident'>size_t</span>) <span class='op'>-&gt;</span> <span class='ident'>c_int</span>;
-}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
+}<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=%23!%5Bfeature(libc)%5D%0Aextern%20crate%20libc%3B%0Ause%20libc%3A%3A%7Bc_int%2C%20size_t%7D%3B%0A%0A%23%5Blink(name%20%3D%20%22snappy%22)%5D%0Aextern%20%7B%0A%20%20%20%20fn%20snappy_compress(input%3A%20*const%20u8%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20input_length%3A%20size_t%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20compressed%3A%20*mut%20u8%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20compressed_length%3A%20*mut%20size_t)%20-%3E%20c_int%3B%0A%20%20%20%20fn%20snappy_uncompress(compressed%3A%20*const%20u8%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20compressed_length%3A%20size_t%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20uncompressed%3A%20*mut%20u8%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20uncompressed_length%3A%20*mut%20size_t)%20-%3E%20c_int%3B%0A%20%20%20%20fn%20snappy_max_compressed_length(source_length%3A%20size_t)%20-%3E%20size_t%3B%0A%20%20%20%20fn%20snappy_uncompressed_length(compressed%3A%20*const%20u8%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20compressed_length%3A%20size_t%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20result%3A%20*mut%20size_t)%20-%3E%20c_int%3B%0A%20%20%20%20fn%20snappy_validate_compressed_buffer(compressed%3A%20*const%20u8%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20compressed_length%3A%20size_t)%20-%3E%20c_int%3B%0A%7D%0Afn%20main()%20%7B%7D%0A&amp;version=nightly">Run</a></pre>
 
 <h1 id='Создание-безопасного-интерфейса' class='section-header'><a href='#Создание-безопасного-интерфейса'>Создание безопасного интерфейса</a></h1>
 <p>Сырой C API (application programming interface; интерфейс программирования
@@ -306,22 +271,12 @@ fn main() {}
 время содержится в векторе, а ёмкость — общее количество выделенной памяти в
 элементах. Длина меньше или равна ёмкости.</p>
 
-<span class='rusttest'>#![feature(libc)]
-extern crate libc;
-use libc::{c_int, size_t};
-unsafe fn snappy_validate_compressed_buffer(_: *const u8, _: size_t) -&gt; c_int { 0 }
-fn main() {}
-pub fn validate_compressed_buffer(src: &amp;[u8]) -&gt; bool {
-    unsafe {
-        snappy_validate_compressed_buffer(src.as_ptr(), src.len() as size_t) == 0
-    }
-}
-</span><pre class='rust rust-example-rendered'>
+<pre class='rust rust-example-rendered'>
 <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>validate_compressed_buffer</span>(<span class='ident'>src</span>: <span class='kw-2'>&amp;</span>[<span class='ident'>u8</span>]) <span class='op'>-&gt;</span> <span class='ident'>bool</span> {
     <span class='kw'>unsafe</span> {
         <span class='ident'>snappy_validate_compressed_buffer</span>(<span class='ident'>src</span>.<span class='ident'>as_ptr</span>(), <span class='ident'>src</span>.<span class='ident'>len</span>() <span class='kw'>as</span> <span class='ident'>size_t</span>) <span class='op'>==</span> <span class='number'>0</span>
     }
-}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
+}<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=%23!%5Bfeature(libc)%5D%0Aextern%20crate%20libc%3B%0Ause%20libc%3A%3A%7Bc_int%2C%20size_t%7D%3B%0Aunsafe%20fn%20snappy_validate_compressed_buffer(_%3A%20*const%20u8%2C%20_%3A%20size_t)%20-%3E%20c_int%20%7B%200%20%7D%0Afn%20main()%20%7B%7D%0Apub%20fn%20validate_compressed_buffer(src%3A%20%26%5Bu8%5D)%20-%3E%20bool%20%7B%0A%20%20%20%20unsafe%20%7B%0A%20%20%20%20%20%20%20%20snappy_validate_compressed_buffer(src.as_ptr()%2C%20src.len()%20as%20size_t)%20%3D%3D%200%0A%20%20%20%20%7D%0A%7D%0A&amp;version=nightly">Run</a></pre>
 
 <p>Обёртка <code>validate_compressed_buffer</code> использует блок <code>unsafe</code>, но это
 гарантирует, что её вызов будет безопасен для всех входных данных, поскольку
@@ -337,28 +292,7 @@ pub fn validate_compressed_buffer(src: &amp;[u8]) -&gt; bool {
 выходного параметра. Ещё один параметр передается, чтобы получить настоящую
 длину после сжатия и установить соответствующую длину вектора.</p>
 
-<span class='rusttest'>#![feature(libc)]
-extern crate libc;
-use libc::{size_t, c_int};
-unsafe fn snappy_compress(a: *const u8, b: size_t, c: *mut u8,
-                          d: *mut size_t) -&gt; c_int { 0 }
-unsafe fn snappy_max_compressed_length(a: size_t) -&gt; size_t { a }
-fn main() {}
-pub fn compress(src: &amp;[u8]) -&gt; Vec&lt;u8&gt; {
-    unsafe {
-        let srclen = src.len() as size_t;
-        let psrc = src.as_ptr();
-
-        let mut dstlen = snappy_max_compressed_length(srclen);
-        let mut dst = Vec::with_capacity(dstlen as usize);
-        let pdst = dst.as_mut_ptr();
-
-        snappy_compress(psrc, srclen, pdst, &amp;mut dstlen);
-        dst.set_len(dstlen as usize);
-        dst
-    }
-}
-</span><pre class='rust rust-example-rendered'>
+<pre class='rust rust-example-rendered'>
 <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>compress</span>(<span class='ident'>src</span>: <span class='kw-2'>&amp;</span>[<span class='ident'>u8</span>]) <span class='op'>-&gt;</span> <span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>u8</span><span class='op'>&gt;</span> {
     <span class='kw'>unsafe</span> {
         <span class='kw'>let</span> <span class='ident'>srclen</span> <span class='op'>=</span> <span class='ident'>src</span>.<span class='ident'>len</span>() <span class='kw'>as</span> <span class='ident'>size_t</span>;
@@ -372,43 +306,13 @@ pub fn compress(src: &amp;[u8]) -&gt; Vec&lt;u8&gt; {
         <span class='ident'>dst</span>.<span class='ident'>set_len</span>(<span class='ident'>dstlen</span> <span class='kw'>as</span> <span class='ident'>usize</span>);
         <span class='ident'>dst</span>
     }
-}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
+}<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=%23!%5Bfeature(libc)%5D%0Aextern%20crate%20libc%3B%0Ause%20libc%3A%3A%7Bsize_t%2C%20c_int%7D%3B%0Aunsafe%20fn%20snappy_compress(a%3A%20*const%20u8%2C%20b%3A%20size_t%2C%20c%3A%20*mut%20u8%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20d%3A%20*mut%20size_t)%20-%3E%20c_int%20%7B%200%20%7D%0Aunsafe%20fn%20snappy_max_compressed_length(a%3A%20size_t)%20-%3E%20size_t%20%7B%20a%20%7D%0Afn%20main()%20%7B%7D%0Apub%20fn%20compress(src%3A%20%26%5Bu8%5D)%20-%3E%20Vec%3Cu8%3E%20%7B%0A%20%20%20%20unsafe%20%7B%0A%20%20%20%20%20%20%20%20let%20srclen%20%3D%20src.len()%20as%20size_t%3B%0A%20%20%20%20%20%20%20%20let%20psrc%20%3D%20src.as_ptr()%3B%0A%0A%20%20%20%20%20%20%20%20let%20mut%20dstlen%20%3D%20snappy_max_compressed_length(srclen)%3B%0A%20%20%20%20%20%20%20%20let%20mut%20dst%20%3D%20Vec%3A%3Awith_capacity(dstlen%20as%20usize)%3B%0A%20%20%20%20%20%20%20%20let%20pdst%20%3D%20dst.as_mut_ptr()%3B%0A%0A%20%20%20%20%20%20%20%20snappy_compress(psrc%2C%20srclen%2C%20pdst%2C%20%26mut%20dstlen)%3B%0A%20%20%20%20%20%20%20%20dst.set_len(dstlen%20as%20usize)%3B%0A%20%20%20%20%20%20%20%20dst%0A%20%20%20%20%7D%0A%7D%0A&amp;version=nightly">Run</a></pre>
 
 <p>Распаковка аналогична, потому что snappy хранит размер несжатых данных как часть
 формата сжатия, и <code>snappy_uncompressed_length</code> будет возвращать точный размер
 необходимого буфера.</p>
 
-<span class='rusttest'>#![feature(libc)]
-extern crate libc;
-use libc::{size_t, c_int};
-unsafe fn snappy_uncompress(compressed: *const u8,
-                            compressed_length: size_t,
-                            uncompressed: *mut u8,
-                            uncompressed_length: *mut size_t) -&gt; c_int { 0 }
-unsafe fn snappy_uncompressed_length(compressed: *const u8,
-                                     compressed_length: size_t,
-                                     result: *mut size_t) -&gt; c_int { 0 }
-fn main() {}
-pub fn uncompress(src: &amp;[u8]) -&gt; Option&lt;Vec&lt;u8&gt;&gt; {
-    unsafe {
-        let srclen = src.len() as size_t;
-        let psrc = src.as_ptr();
-
-        let mut dstlen: size_t = 0;
-        snappy_uncompressed_length(psrc, srclen, &amp;mut dstlen);
-
-        let mut dst = Vec::with_capacity(dstlen as usize);
-        let pdst = dst.as_mut_ptr();
-
-        if snappy_uncompress(psrc, srclen, pdst, &amp;mut dstlen) == 0 {
-            dst.set_len(dstlen as usize);
-            Some(dst)
-        } else {
-            None // SNAPPY_INVALID_INPUT
-        }
-    }
-}
-</span><pre class='rust rust-example-rendered'>
+<pre class='rust rust-example-rendered'>
 <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>uncompress</span>(<span class='ident'>src</span>: <span class='kw-2'>&amp;</span>[<span class='ident'>u8</span>]) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>u8</span><span class='op'>&gt;&gt;</span> {
     <span class='kw'>unsafe</span> {
         <span class='kw'>let</span> <span class='ident'>srclen</span> <span class='op'>=</span> <span class='ident'>src</span>.<span class='ident'>len</span>() <span class='kw'>as</span> <span class='ident'>size_t</span>;
@@ -427,7 +331,7 @@ pub fn uncompress(src: &amp;[u8]) -&gt; Option&lt;Vec&lt;u8&gt;&gt; {
             <span class='prelude-val'>None</span> <span class='comment'>// SNAPPY_INVALID_INPUT</span>
         }
     }
-}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
+}<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=%23!%5Bfeature(libc)%5D%0Aextern%20crate%20libc%3B%0Ause%20libc%3A%3A%7Bsize_t%2C%20c_int%7D%3B%0Aunsafe%20fn%20snappy_uncompress(compressed%3A%20*const%20u8%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20compressed_length%3A%20size_t%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20uncompressed%3A%20*mut%20u8%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20uncompressed_length%3A%20*mut%20size_t)%20-%3E%20c_int%20%7B%200%20%7D%0Aunsafe%20fn%20snappy_uncompressed_length(compressed%3A%20*const%20u8%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20compressed_length%3A%20size_t%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20result%3A%20*mut%20size_t)%20-%3E%20c_int%20%7B%200%20%7D%0Afn%20main()%20%7B%7D%0Apub%20fn%20uncompress(src%3A%20%26%5Bu8%5D)%20-%3E%20Option%3CVec%3Cu8%3E%3E%20%7B%0A%20%20%20%20unsafe%20%7B%0A%20%20%20%20%20%20%20%20let%20srclen%20%3D%20src.len()%20as%20size_t%3B%0A%20%20%20%20%20%20%20%20let%20psrc%20%3D%20src.as_ptr()%3B%0A%0A%20%20%20%20%20%20%20%20let%20mut%20dstlen%3A%20size_t%20%3D%200%3B%0A%20%20%20%20%20%20%20%20snappy_uncompressed_length(psrc%2C%20srclen%2C%20%26mut%20dstlen)%3B%0A%0A%20%20%20%20%20%20%20%20let%20mut%20dst%20%3D%20Vec%3A%3Awith_capacity(dstlen%20as%20usize)%3B%0A%20%20%20%20%20%20%20%20let%20pdst%20%3D%20dst.as_mut_ptr()%3B%0A%0A%20%20%20%20%20%20%20%20if%20snappy_uncompress(psrc%2C%20srclen%2C%20pdst%2C%20%26mut%20dstlen)%20%3D%3D%200%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20dst.set_len(dstlen%20as%20usize)%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20Some(dst)%0A%20%20%20%20%20%20%20%20%7D%20else%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20None%20%2F%2F%20SNAPPY_INVALID_INPUT%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%7D%0A&amp;version=nightly">Run</a></pre>
 
 <p>Для справки, примеры, используемые здесь, также доступны в библиотеке на
 <a href="https://github.com/thestinger/rust-snappy">GitHub</a>.</p>
@@ -457,23 +361,7 @@ pub fn uncompress(src: &amp;[u8]) -&gt; Option&lt;Vec&lt;u8&gt;&gt; {
 
 <p>Код на Rust:</p>
 
-<span class='rusttest'>extern fn callback(a: i32) {
-    println!(&quot;Меня вызывают из C со значением {0}&quot;, a);
-}
-
-#[link(name = &quot;extlib&quot;)]
-extern {
-   fn register_callback(cb: extern fn(i32)) -&gt; i32;
-   fn trigger_callback();
-}
-
-fn main() {
-    unsafe {
-        register_callback(callback);
-        trigger_callback(); // Активация функции обратного вызова
-    }
-}
-</span><pre class='rust rust-example-rendered'>
+<pre class='rust rust-example-rendered'>
 <span class='kw'>extern</span> <span class='kw'>fn</span> <span class='ident'>callback</span>(<span class='ident'>a</span>: <span class='ident'>i32</span>) {
     <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Меня вызывают из C со значением {0}&quot;</span>, <span class='ident'>a</span>);
 }
@@ -489,7 +377,7 @@ fn main() {
         <span class='ident'>register_callback</span>(<span class='ident'>callback</span>);
         <span class='ident'>trigger_callback</span>(); <span class='comment'>// Активация функции обратного вызова</span>
     }
-}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
+}<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=extern%20fn%20callback(a%3A%20i32)%20%7B%0A%20%20%20%20println!(%22%D0%9C%D0%B5%D0%BD%D1%8F%20%D0%B2%D1%8B%D0%B7%D1%8B%D0%B2%D0%B0%D1%8E%D1%82%20%D0%B8%D0%B7%20C%20%D1%81%D0%BE%20%D0%B7%D0%BD%D0%B0%D1%87%D0%B5%D0%BD%D0%B8%D0%B5%D0%BC%20%7B0%7D%22%2C%20a)%3B%0A%7D%0A%0A%23%5Blink(name%20%3D%20%22extlib%22)%5D%0Aextern%20%7B%0A%20%20%20fn%20register_callback(cb%3A%20extern%20fn(i32))%20-%3E%20i32%3B%0A%20%20%20fn%20trigger_callback()%3B%0A%7D%0A%0Afn%20main()%20%7B%0A%20%20%20%20unsafe%20%7B%0A%20%20%20%20%20%20%20%20register_callback(callback)%3B%0A%20%20%20%20%20%20%20%20trigger_callback()%3B%20%2F%2F%20%D0%90%D0%BA%D1%82%D0%B8%D0%B2%D0%B0%D1%86%D0%B8%D1%8F%20%D1%84%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D0%B8%20%D0%BE%D0%B1%D1%80%D0%B0%D1%82%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%B2%D1%8B%D0%B7%D0%BE%D0%B2%D0%B0%0A%20%20%20%20%7D%0A%7D%0A">Run</a></pre>
 
 <p>Код на C:</p>
 
@@ -523,37 +411,7 @@ void trigger_callback() {
 
 <p>Код на Rust:</p>
 
-<span class='rusttest'>#[repr(C)]
-struct RustObject {
-    a: i32,
-    // другие поля
-}
-
-extern &quot;C&quot; fn callback(target: *mut RustObject, a: i32) {
-    println!(&quot;Меня вызывают из C со значением {0}&quot;, a);
-    unsafe {
-        // Меняем значение в RustObject на значение, полученное через функцию обратного вызова
-        (*target).a = a;
-    }
-}
-
-#[link(name = &quot;extlib&quot;)]
-extern {
-   fn register_callback(target: *mut RustObject,
-                        cb: extern fn(*mut RustObject, i32)) -&gt; i32;
-   fn trigger_callback();
-}
-
-fn main() {
-    // Создаём объект, на который будем ссылаться в функции обратного вызова
-    let mut rust_object = Box::new(RustObject { a: 5 });
-
-    unsafe {
-        register_callback(&amp;mut *rust_object, callback);
-        trigger_callback();
-    }
-}
-</span><pre class='rust rust-example-rendered'>
+<pre class='rust rust-example-rendered'>
 <span class='attribute'>#[<span class='ident'>repr</span>(<span class='ident'>C</span>)]</span>
 <span class='kw'>struct</span> <span class='ident'>RustObject</span> {
     <span class='ident'>a</span>: <span class='ident'>i32</span>,
@@ -583,7 +441,7 @@ fn main() {
         <span class='ident'>register_callback</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='op'>*</span><span class='ident'>rust_object</span>, <span class='ident'>callback</span>);
         <span class='ident'>trigger_callback</span>();
     }
-}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
+}<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=%23%5Brepr(C)%5D%0Astruct%20RustObject%20%7B%0A%20%20%20%20a%3A%20i32%2C%0A%20%20%20%20%2F%2F%20%D0%B4%D1%80%D1%83%D0%B3%D0%B8%D0%B5%20%D0%BF%D0%BE%D0%BB%D1%8F%0A%7D%0A%0Aextern%20%22C%22%20fn%20callback(target%3A%20*mut%20RustObject%2C%20a%3A%20i32)%20%7B%0A%20%20%20%20println!(%22%D0%9C%D0%B5%D0%BD%D1%8F%20%D0%B2%D1%8B%D0%B7%D1%8B%D0%B2%D0%B0%D1%8E%D1%82%20%D0%B8%D0%B7%20C%20%D1%81%D0%BE%20%D0%B7%D0%BD%D0%B0%D1%87%D0%B5%D0%BD%D0%B8%D0%B5%D0%BC%20%7B0%7D%22%2C%20a)%3B%0A%20%20%20%20unsafe%20%7B%0A%20%20%20%20%20%20%20%20%2F%2F%20%D0%9C%D0%B5%D0%BD%D1%8F%D0%B5%D0%BC%20%D0%B7%D0%BD%D0%B0%D1%87%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20RustObject%20%D0%BD%D0%B0%20%D0%B7%D0%BD%D0%B0%D1%87%D0%B5%D0%BD%D0%B8%D0%B5%2C%20%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B5%D0%BD%D0%BD%D0%BE%D0%B5%20%D1%87%D0%B5%D1%80%D0%B5%D0%B7%20%D1%84%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D1%8E%20%D0%BE%D0%B1%D1%80%D0%B0%D1%82%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%B2%D1%8B%D0%B7%D0%BE%D0%B2%D0%B0%0A%20%20%20%20%20%20%20%20(*target).a%20%3D%20a%3B%0A%20%20%20%20%7D%0A%7D%0A%0A%23%5Blink(name%20%3D%20%22extlib%22)%5D%0Aextern%20%7B%0A%20%20%20fn%20register_callback(target%3A%20*mut%20RustObject%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20cb%3A%20extern%20fn(*mut%20RustObject%2C%20i32))%20-%3E%20i32%3B%0A%20%20%20fn%20trigger_callback()%3B%0A%7D%0A%0Afn%20main()%20%7B%0A%20%20%20%20%2F%2F%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%91%D0%BC%20%D0%BE%D0%B1%D1%8A%D0%B5%D0%BA%D1%82%2C%20%D0%BD%D0%B0%20%D0%BA%D0%BE%D1%82%D0%BE%D1%80%D1%8B%D0%B9%20%D0%B1%D1%83%D0%B4%D0%B5%D0%BC%20%D1%81%D1%81%D1%8B%D0%BB%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%B2%20%D1%84%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D0%B8%20%D0%BE%D0%B1%D1%80%D0%B0%D1%82%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%B2%D1%8B%D0%B7%D0%BE%D0%B2%D0%B0%0A%20%20%20%20let%20mut%20rust_object%20%3D%20Box%3A%3Anew(RustObject%20%7B%20a%3A%205%20%7D)%3B%0A%0A%20%20%20%20unsafe%20%7B%0A%20%20%20%20%20%20%20%20register_callback(%26mut%20*rust_object%2C%20callback)%3B%0A%20%20%20%20%20%20%20%20trigger_callback()%3B%0A%20%20%20%20%7D%0A%7D%0A">Run</a></pre>
 
 <p>Код на C:</p>
 
@@ -687,10 +545,8 @@ Rust, промежуточные артефакты (например, rlib&#39;
 <p>Небезопасные функции же, наоборот, показывают свою опасность всем. Небезопасная
 функция записывается в виде:</p>
 
-<span class='rusttest'>fn main() {
-    unsafe fn kaboom(ptr: *const i32) -&gt; i32 { *ptr }
-}</span><pre class='rust rust-example-rendered'>
-<span class='kw'>unsafe</span> <span class='kw'>fn</span> <span class='ident'>kaboom</span>(<span class='ident'>ptr</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>i32</span>) <span class='op'>-&gt;</span> <span class='ident'>i32</span> { <span class='op'>*</span><span class='ident'>ptr</span> }<a class='test-arrow' target='_blank' href=''>Run</a></pre>
+<pre class='rust rust-example-rendered'>
+<span class='kw'>unsafe</span> <span class='kw'>fn</span> <span class='ident'>kaboom</span>(<span class='ident'>ptr</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>i32</span>) <span class='op'>-&gt;</span> <span class='ident'>i32</span> { <span class='op'>*</span><span class='ident'>ptr</span> }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Aunsafe%20fn%20kaboom(ptr%3A%20*const%20i32)%20-%3E%20i32%20%7B%20*ptr%20%7D%0A%7D">Run</a></pre>
 
 <p>Эта функция может быть вызвана только из блока <code>unsafe</code> или из другой <code>unsafe</code>
 функции.</p>
@@ -701,19 +557,7 @@ Rust, промежуточные артефакты (например, rlib&#39;
 чтобы получить доступ к этим переменным, нужно объявить их в блоке <code>extern</code>,
 используя ключевое слово <code>static</code>:</p>
 
-<span class='rusttest'>#![feature(libc)]
-extern crate libc;
-
-#[link(name = &quot;readline&quot;)]
-extern {
-    static rl_readline_version: libc::c_int;
-}
-
-fn main() {
-    println!(&quot;You have readline version {} installed.&quot;,
-             rl_readline_version as i32);
-}
-</span><pre class='rust rust-example-rendered'>
+<pre class='rust rust-example-rendered'>
 <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>libc</span>;
 
 <span class='attribute'>#[<span class='ident'>link</span>(<span class='ident'>name</span> <span class='op'>=</span> <span class='string'>&quot;readline&quot;</span>)]</span>
@@ -724,35 +568,14 @@ fn main() {
 <span class='kw'>fn</span> <span class='ident'>main</span>() {
     <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;You have readline version {} installed.&quot;</span>,
              <span class='ident'>rl_readline_version</span> <span class='kw'>as</span> <span class='ident'>i32</span>);
-}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
+}<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=%23!%5Bfeature(libc)%5D%0Aextern%20crate%20libc%3B%0A%0A%23%5Blink(name%20%3D%20%22readline%22)%5D%0Aextern%20%7B%0A%20%20%20%20static%20rl_readline_version%3A%20libc%3A%3Ac_int%3B%0A%7D%0A%0Afn%20main()%20%7B%0A%20%20%20%20println!(%22You%20have%20readline%20version%20%7B%7D%20installed.%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20rl_readline_version%20as%20i32)%3B%0A%7D%0A&amp;version=nightly">Run</a></pre>
 
 <p>Кроме того, возможно, вам потребуется изменить глобальное состояние,
 предоставленное внешним интерфейсом. Для этого при объявлении статических
 переменных может быть добавлен модификатор <code>mut</code>, чтобы была возможность
 изменять их.</p>
 
-<span class='rusttest'>#![feature(libc)]
-extern crate libc;
-
-use std::ffi::CString;
-use std::ptr;
-
-#[link(name = &quot;readline&quot;)]
-extern {
-    static mut rl_prompt: *const libc::c_char;
-}
-
-fn main() {
-    let prompt = CString::new(&quot;[my-awesome-shell] $&quot;).unwrap();
-    unsafe {
-        rl_prompt = prompt.as_ptr();
-
-        println!(&quot;{:?}&quot;, rl_prompt);
-
-        rl_prompt = ptr::null();
-    }
-}
-</span><pre class='rust rust-example-rendered'>
+<pre class='rust rust-example-rendered'>
 <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>libc</span>;
 
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>ffi</span>::<span class='ident'>CString</span>;
@@ -772,7 +595,7 @@ fn main() {
 
         <span class='ident'>rl_prompt</span> <span class='op'>=</span> <span class='ident'>ptr</span>::<span class='ident'>null</span>();
     }
-}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
+}<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=%23!%5Bfeature(libc)%5D%0Aextern%20crate%20libc%3B%0A%0Ause%20std%3A%3Affi%3A%3ACString%3B%0Ause%20std%3A%3Aptr%3B%0A%0A%23%5Blink(name%20%3D%20%22readline%22)%5D%0Aextern%20%7B%0A%20%20%20%20static%20mut%20rl_prompt%3A%20*const%20libc%3A%3Ac_char%3B%0A%7D%0A%0Afn%20main()%20%7B%0A%20%20%20%20let%20prompt%20%3D%20CString%3A%3Anew(%22%5Bmy-awesome-shell%5D%20%24%22).unwrap()%3B%0A%20%20%20%20unsafe%20%7B%0A%20%20%20%20%20%20%20%20rl_prompt%20%3D%20prompt.as_ptr()%3B%0A%0A%20%20%20%20%20%20%20%20println!(%22%7B%3A%3F%7D%22%2C%20rl_prompt)%3B%0A%0A%20%20%20%20%20%20%20%20rl_prompt%20%3D%20ptr%3A%3Anull()%3B%0A%20%20%20%20%7D%0A%7D%0A&amp;version=nightly">Run</a></pre>
 
 <p>Обратите внимание, что любое взаимодействие с <code>static mut</code> небезопасно — как
 чтение, так и запись. Работа с изменяемым глобальным состоянием требует
@@ -787,17 +610,7 @@ fn main() {
 вызове. Rust обеспечивает способ указать компилятору, какое именно соглашение
 использовать:</p>
 
-<span class='rusttest'>#![feature(libc)]
-extern crate libc;
-
-#[cfg(all(target_os = &quot;win32&quot;, target_arch = &quot;x86&quot;))]
-#[link(name = &quot;kernel32&quot;)]
-#[allow(non_snake_case)]
-extern &quot;stdcall&quot; {
-    fn SetEnvironmentVariableA(n: *const u8, v: *const u8) -&gt; libc::c_int;
-}
-fn main() { }
-</span><pre class='rust rust-example-rendered'>
+<pre class='rust rust-example-rendered'>
 <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>libc</span>;
 
 <span class='attribute'>#[<span class='ident'>cfg</span>(<span class='ident'>all</span>(<span class='ident'>target_os</span> <span class='op'>=</span> <span class='string'>&quot;win32&quot;</span>, <span class='ident'>target_arch</span> <span class='op'>=</span> <span class='string'>&quot;x86&quot;</span>))]</span>
@@ -805,7 +618,7 @@ fn main() { }
 <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>non_snake_case</span>)]</span>
 <span class='kw'>extern</span> <span class='string'>&quot;stdcall&quot;</span> {
     <span class='kw'>fn</span> <span class='ident'>SetEnvironmentVariableA</span>(<span class='ident'>n</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>u8</span>, <span class='ident'>v</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>u8</span>) <span class='op'>-&gt;</span> <span class='ident'>libc</span>::<span class='ident'>c_int</span>;
-}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
+}<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=%23!%5Bfeature(libc)%5D%0Aextern%20crate%20libc%3B%0A%0A%23%5Bcfg(all(target_os%20%3D%20%22win32%22%2C%20target_arch%20%3D%20%22x86%22))%5D%0A%23%5Blink(name%20%3D%20%22kernel32%22)%5D%0A%23%5Ballow(non_snake_case)%5D%0Aextern%20%22stdcall%22%20%7B%0A%20%20%20%20fn%20SetEnvironmentVariableA(n%3A%20*const%20u8%2C%20v%3A%20*const%20u8)%20-%3E%20libc%3A%3Ac_int%3B%0A%7D%0Afn%20main()%20%7B%20%7D%0A&amp;version=nightly">Run</a></pre>
 
 <p>Это указание относится ко всему блоку <code>extern</code>. Вот список поддерживаемых
 ограничений для ABI:</p>
@@ -878,16 +691,11 @@ win32 с архитектурой x86, это означает, что буде�
 <p>Вы можете скомпилировать код на Rust таким образом, чтобы он мог быть вызван из
 кода на C. Это довольно легко, но требует нескольких вещей:</p>
 
-<span class='rusttest'>#[no_mangle]
-pub extern fn hello_rust() -&gt; *const u8 {
-    &quot;Hello, world!\0&quot;.as_ptr()
-}
-fn main() {}
-</span><pre class='rust rust-example-rendered'>
+<pre class='rust rust-example-rendered'>
 <span class='attribute'>#[<span class='ident'>no_mangle</span>]</span>
 <span class='kw'>pub</span> <span class='kw'>extern</span> <span class='kw'>fn</span> <span class='ident'>hello_rust</span>() <span class='op'>-&gt;</span> <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>u8</span> {
     <span class='string'>&quot;Hello, world!\0&quot;</span>.<span class='ident'>as_ptr</span>()
-}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
+}<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=%23%5Bno_mangle%5D%0Apub%20extern%20fn%20hello_rust()%20-%3E%20*const%20u8%20%7B%0A%20%20%20%20%22Hello%2C%20world!%5C0%22.as_ptr()%0A%7D%0Afn%20main()%20%7B%7D%0A">Run</a></pre>
 
 <p><code>extern</code> указывает, что эта функцию придерживается соглашения о вызове C, как
 описано выше в разделе
@@ -895,11 +703,7 @@ fn main() {}
 Атрибут <code>no_mangle</code> выключает изменение имён, применяемое в Rust, чтобы было
 легче компоноваться с этим кодом.</p>
 
-    <script type="text/javascript">
-        window.playgroundUrl = "https://play.rust-lang.org";
-    </script>
     <script src='../rustbook.js'></script>
-<script src='../playpen.js'></script>
 </div></div>
 
 

@@ -28,7 +28,7 @@
                     </button>
                 </div>
 <div id='toc' class='mobile-hidden'>
-<ul class='chapter'>
+<ol class='chapter'>
 <li><a  href='../README.html'><b>1.</b> Introduction</a>
 </li>
 <li><a  href='../src/INTRODUCTION.html'><b>2.</b> Введение</a>
@@ -36,17 +36,17 @@
 <li><a  href='../src/getting-started.html'><b>3.</b> C чего начать</a>
 </li>
 <li><a  href='../src/learn-rust.html'><b>4.</b> Изучение Rust</a>
-<ul class='section'>
+<ol class='section'>
 <li><a  href='../src/guessing-game.html'><b>4.1.</b> Угадайка</a>
 </li>
 <li><a  href='../src/dining-philosophers.html'><b>4.2.</b> Обедающие философы</a>
 </li>
 <li><a  href='../src/rust-inside-other-languages.html'><b>4.3.</b> Вызов кода на Rust из других языков</a>
 </li>
-</ul>
+</ol>
 </li>
 <li><a  href='../src/syntax-and-semantics.html'><b>5.</b> Синтаксис и семантика</a>
-<ul class='section'>
+<ol class='section'>
 <li><a  href='../src/variable-bindings.html'><b>5.1.</b> Связывание имён</a>
 </li>
 <li><a  href='../src/functions.html'><b>5.2.</b> Функции</a>
@@ -119,10 +119,10 @@
 </li>
 <li><a  href='../src/unsafe.html'><b>5.36.</b> Небезопасный код</a>
 </li>
-</ul>
+</ol>
 </li>
 <li><a  href='../src/effective-rust.html'><b>6.</b> Эффективное использование Rust</a>
-<ul class='section'>
+<ol class='section'>
 <li><a  href='../src/the-stack-and-the-heap.html'><b>6.1.</b> Стек и куча</a>
 </li>
 <li><a  href='../src/testing.html'><b>6.2.</b> Тестирование</a>
@@ -147,10 +147,10 @@
 </li>
 <li><a  href='../src/using-rust-without-the-standard-library.html'><b>6.12.</b> Using Rust without the standard library</a>
 </li>
-</ul>
+</ol>
 </li>
 <li><a  href='../src/nightly-rust.html'><b>7.</b> Нестабильные возможности Rust</a>
-<ul class='section'>
+<ol class='section'>
 <li><a  href='../src/compiler-plugins.html'><b>7.1.</b> Плагины к компилятору</a>
 </li>
 <li><a  href='../src/inline-assembly.html'><b>7.2.</b> Встроенный ассемблерный код</a>
@@ -173,7 +173,7 @@
 </li>
 <li><a  href='../src/custom-allocators.html'><b>7.11.</b> Пользовательские менеджеры памяти</a>
 </li>
-</ul>
+</ol>
 </li>
 <li><a  href='../src/glossary.html'><b>8.</b> Глоссарий</a>
 </li>
@@ -181,7 +181,7 @@
 </li>
 <li><a  href='../src/bibliography.html'><b>10.</b> Библиография</a>
 </li>
-</ul>
+</ol>
 </div>
 <div id='page-wrapper'>
 <div id='page'>
@@ -196,40 +196,19 @@
 
 <p>В Rust есть два вида комментариев: <em>строчные комментарии</em> и <em>doc-комментарии</em>.</p>
 
-<span class='rusttest'>fn main() {
-    // Строчные комментарии — это всё что угодно после &#39;//&#39; и до конца строки.
-
-let x = 5; // это тоже строчный комментарий.
-
-// Если у вас длинное объяснение для чего-либо, вы можете расположить строчные
-// комментарии один за другим. Поместите пробел между &#39;//&#39; и вашим комментарием,
-// так как это более читаемо.
-}</span><pre class='rust rust-example-rendered'>
+<pre class='rust rust-example-rendered'>
 <span class='comment'>// Строчные комментарии — это всё что угодно после &#39;//&#39; и до конца строки.</span>
 
 <span class='kw'>let</span> <span class='ident'>x</span> <span class='op'>=</span> <span class='number'>5</span>; <span class='comment'>// это тоже строчный комментарий.</span>
 
 <span class='comment'>// Если у вас длинное объяснение для чего-либо, вы можете расположить строчные</span>
 <span class='comment'>// комментарии один за другим. Поместите пробел между &#39;//&#39; и вашим комментарием,</span>
-<span class='comment'>// так как это более читаемо.</span><a class='test-arrow' target='_blank' href=''>Run</a></pre>
+<span class='comment'>// так как это более читаемо.</span><a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0A%2F%2F%20%D0%A1%D1%82%D1%80%D0%BE%D1%87%D0%BD%D1%8B%D0%B5%20%D0%BA%D0%BE%D0%BC%D0%BC%D0%B5%D0%BD%D1%82%D0%B0%D1%80%D0%B8%D0%B8%E2%80%AF%E2%80%94%20%D1%8D%D1%82%D0%BE%20%D0%B2%D1%81%D1%91%20%D1%87%D1%82%D0%BE%20%D1%83%D0%B3%D0%BE%D0%B4%D0%BD%D0%BE%20%D0%BF%D0%BE%D1%81%D0%BB%D0%B5%20'%2F%2F'%20%D0%B8%20%D0%B4%D0%BE%20%D0%BA%D0%BE%D0%BD%D1%86%D0%B0%20%D1%81%D1%82%D1%80%D0%BE%D0%BA%D0%B8.%0A%0Alet%20x%20%3D%205%3B%20%2F%2F%20%D1%8D%D1%82%D0%BE%20%D1%82%D0%BE%D0%B6%D0%B5%20%D1%81%D1%82%D1%80%D0%BE%D1%87%D0%BD%D1%8B%D0%B9%20%D0%BA%D0%BE%D0%BC%D0%BC%D0%B5%D0%BD%D1%82%D0%B0%D1%80%D0%B8%D0%B9.%0A%0A%2F%2F%20%D0%95%D1%81%D0%BB%D0%B8%20%D1%83%20%D0%B2%D0%B0%D1%81%20%D0%B4%D0%BB%D0%B8%D0%BD%D0%BD%D0%BE%D0%B5%20%D0%BE%D0%B1%D1%8A%D1%8F%D1%81%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20%D1%87%D0%B5%D0%B3%D0%BE-%D0%BB%D0%B8%D0%B1%D0%BE%2C%20%D0%B2%D1%8B%20%D0%BC%D0%BE%D0%B6%D0%B5%D1%82%D0%B5%20%D1%80%D0%B0%D1%81%D0%BF%D0%BE%D0%BB%D0%BE%D0%B6%D0%B8%D1%82%D1%8C%20%D1%81%D1%82%D1%80%D0%BE%D1%87%D0%BD%D1%8B%D0%B5%0A%2F%2F%20%D0%BA%D0%BE%D0%BC%D0%BC%D0%B5%D0%BD%D1%82%D0%B0%D1%80%D0%B8%D0%B8%20%D0%BE%D0%B4%D0%B8%D0%BD%20%D0%B7%D0%B0%20%D0%B4%D1%80%D1%83%D0%B3%D0%B8%D0%BC.%20%D0%9F%D0%BE%D0%BC%D0%B5%D1%81%D1%82%D0%B8%D1%82%D0%B5%20%D0%BF%D1%80%D0%BE%D0%B1%D0%B5%D0%BB%20%D0%BC%D0%B5%D0%B6%D0%B4%D1%83%20'%2F%2F'%20%D0%B8%20%D0%B2%D0%B0%D1%88%D0%B8%D0%BC%20%D0%BA%D0%BE%D0%BC%D0%BC%D0%B5%D0%BD%D1%82%D0%B0%D1%80%D0%B8%D0%B5%D0%BC%2C%0A%2F%2F%20%D1%82%D0%B0%D0%BA%20%D0%BA%D0%B0%D0%BA%20%D1%8D%D1%82%D0%BE%20%D0%B1%D0%BE%D0%BB%D0%B5%D0%B5%20%D1%87%D0%B8%D1%82%D0%B0%D0%B5%D0%BC%D0%BE.%0A%7D">Run</a></pre>
 
 <p>Другое применение комментария — это doc-комментарий. Doc-комментарий использует
 <code>///</code> вместо <code>//</code>, и поддерживает Markdown-разметку внутри:</p>
 
-<span class='rusttest'>fn main() {
-    /// Прибавляем единицу к заданному числу.
-///
-/// # Examples
-///
-/// ```
-/// let five = 5;
-///
-/// assert_eq!(6, add_one(5));
-/// ```
-fn add_one(x: i32) -&gt; i32 {
-    x + 1
-}
-}</span><pre class='rust rust-example-rendered'>
+<pre class='rust rust-example-rendered'>
 <span class='doccomment'>/// Прибавляем единицу к заданному числу.</span>
 <span class='doccomment'>///</span>
 <span class='doccomment'>/// # Examples</span>
@@ -241,7 +220,7 @@ fn add_one(x: i32) -&gt; i32 {
 <span class='doccomment'>/// ```</span>
 <span class='kw'>fn</span> <span class='ident'>add_one</span>(<span class='ident'>x</span>: <span class='ident'>i32</span>) <span class='op'>-&gt;</span> <span class='ident'>i32</span> {
     <span class='ident'>x</span> <span class='op'>+</span> <span class='number'>1</span>
-}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
+}<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0A%2F%2F%2F%20%D0%9F%D1%80%D0%B8%D0%B1%D0%B0%D0%B2%D0%BB%D1%8F%D0%B5%D0%BC%20%D0%B5%D0%B4%D0%B8%D0%BD%D0%B8%D1%86%D1%83%20%D0%BA%20%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%BD%D0%BE%D0%BC%D1%83%20%D1%87%D0%B8%D1%81%D0%BB%D1%83.%0A%2F%2F%2F%0A%2F%2F%2F%20%23%20Examples%0A%2F%2F%2F%0A%2F%2F%2F%20%60%60%60%0A%2F%2F%2F%20let%20five%20%3D%205%3B%0A%2F%2F%2F%0A%2F%2F%2F%20assert_eq!(6%2C%20add_one(5))%3B%0A%2F%2F%2F%20%60%60%60%0Afn%20add_one(x%3A%20i32)%20-%3E%20i32%20%7B%0A%20%20%20%20x%20%2B%201%0A%7D%0A%7D">Run</a></pre>
 
 <p>При написании doc-комментария очень полезно добавлять разделы для аргументов,
 возвращаемых значений и привести некоторые примеры использования. Заметьте, что
@@ -254,11 +233,7 @@ fn add_one(x: i32) -&gt; i32 {
 документации из этих doc-комментариев, а так же запуска кода из примеров как
 тестов.</p>
 
-    <script type="text/javascript">
-        window.playgroundUrl = "https://play.rust-lang.org";
-    </script>
     <script src='../rustbook.js'></script>
-<script src='../playpen.js'></script>
 </div></div>
 
 
