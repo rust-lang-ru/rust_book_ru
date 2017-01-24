@@ -302,7 +302,7 @@ v.push(5);
 <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>x</span> <span class='op'>=</span> <span class='number'>5</span>;
 {
     <span class='kw'>let</span> <span class='ident'>y</span> <span class='op'>=</span> <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>x</span>;
-    <span class='op'>*</span><span class='ident'>y</span> <span class='op'>+=</span> <span class='number'>1</span>;
+    <span class='kw-2'>*</span><span class='ident'>y</span> <span class='op'>+=</span> <span class='number'>1</span>;
 }
 <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>x</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20mut%20x%20%3D%205%3B%0A%7B%0A%20%20%20%20let%20y%20%3D%20%26mut%20x%3B%0A%20%20%20%20*y%20%2B%3D%201%3B%0A%7D%0Aprintln!(%22%7B%7D%22%2C%20x)%3B%0A%7D">Run</a></pre>
 
@@ -371,7 +371,7 @@ fn main() {
 <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>x</span> <span class='op'>=</span> <span class='number'>5</span>;
 <span class='kw'>let</span> <span class='ident'>y</span> <span class='op'>=</span> <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>x</span>;
 
-<span class='op'>*</span><span class='ident'>y</span> <span class='op'>+=</span> <span class='number'>1</span>;
+<span class='kw-2'>*</span><span class='ident'>y</span> <span class='op'>+=</span> <span class='number'>1</span>;
 
 <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>x</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20mut%20x%20%3D%205%3B%0Alet%20y%20%3D%20%26mut%20x%3B%0A%0A*y%20%2B%3D%201%3B%0A%0Aprintln!(%22%7B%7D%22%2C%20x)%3B%0A%7D">Run</a></pre>
 
@@ -404,7 +404,7 @@ fn main() {
 
 <span class='kw'>let</span> <span class='ident'>y</span> <span class='op'>=</span> <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>x</span>;    <span class='comment'>// -+ заимствование x через &amp;mut начинается здесь</span>
                    <span class='comment'>//  |</span>
-<span class='op'>*</span><span class='ident'>y</span> <span class='op'>+=</span> <span class='number'>1</span>;           <span class='comment'>//  |</span>
+<span class='kw-2'>*</span><span class='ident'>y</span> <span class='op'>+=</span> <span class='number'>1</span>;           <span class='comment'>//  |</span>
                    <span class='comment'>//  |</span>
 <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>x</span>); <span class='comment'>// -+ - пытаемся позаимствовать x здесь</span>
                    <span class='comment'>// -+ заимствование x через &amp;mut заканчивается здесь</span><a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20mut%20x%20%3D%205%3B%0A%0Alet%20y%20%3D%20%26mut%20x%3B%20%20%20%20%2F%2F%20-%2B%20%D0%B7%D0%B0%D0%B8%D0%BC%D1%81%D1%82%D0%B2%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20x%20%D1%87%D0%B5%D1%80%D0%B5%D0%B7%20%26mut%20%D0%BD%D0%B0%D1%87%D0%B8%D0%BD%D0%B0%D0%B5%D1%82%D1%81%D1%8F%20%D0%B7%D0%B4%D0%B5%D1%81%D1%8C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F%20%20%7C%0A*y%20%2B%3D%201%3B%20%20%20%20%20%20%20%20%20%20%20%2F%2F%20%20%7C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F%20%20%7C%0Aprintln!(%22%7B%7D%22%2C%20x)%3B%20%2F%2F%20-%2B%20-%20%D0%BF%D1%8B%D1%82%D0%B0%D0%B5%D0%BC%D1%81%D1%8F%20%D0%BF%D0%BE%D0%B7%D0%B0%D0%B8%D0%BC%D1%81%D1%82%D0%B2%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20x%20%D0%B7%D0%B4%D0%B5%D1%81%D1%8C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F%20-%2B%20%D0%B7%D0%B0%D0%B8%D0%BC%D1%81%D1%82%D0%B2%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20x%20%D1%87%D0%B5%D1%80%D0%B5%D0%B7%20%26mut%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%BD%D1%87%D0%B8%D0%B2%D0%B0%D0%B5%D1%82%D1%81%D1%8F%20%D0%B7%D0%B4%D0%B5%D1%81%D1%8C%0A%7D">Run</a></pre>
@@ -419,7 +419,7 @@ fn main() {
 
 {                   
     <span class='kw'>let</span> <span class='ident'>y</span> <span class='op'>=</span> <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>x</span>; <span class='comment'>// -+ заимствование через &amp;mut начинается здесь</span>
-    <span class='op'>*</span><span class='ident'>y</span> <span class='op'>+=</span> <span class='number'>1</span>;        <span class='comment'>//  |</span>
+    <span class='kw-2'>*</span><span class='ident'>y</span> <span class='op'>+=</span> <span class='number'>1</span>;        <span class='comment'>//  |</span>
 }                   <span class='comment'>// -+ ... и заканчивается здесь</span>
 
 <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>x</span>);  <span class='comment'>// &lt;- пытаемся позаимствовать x здесь</span><a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20mut%20x%20%3D%205%3B%0A%0A%7B%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%0A%20%20%20%20let%20y%20%3D%20%26mut%20x%3B%20%2F%2F%20-%2B%20%D0%B7%D0%B0%D0%B8%D0%BC%D1%81%D1%82%D0%B2%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D1%87%D0%B5%D1%80%D0%B5%D0%B7%20%26mut%20%D0%BD%D0%B0%D1%87%D0%B8%D0%BD%D0%B0%D0%B5%D1%82%D1%81%D1%8F%20%D0%B7%D0%B4%D0%B5%D1%81%D1%8C%0A%20%20%20%20*y%20%2B%3D%201%3B%20%20%20%20%20%20%20%20%2F%2F%20%20%7C%0A%7D%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F%20-%2B%20...%20%D0%B8%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%BD%D1%87%D0%B8%D0%B2%D0%B0%D0%B5%D1%82%D1%81%D1%8F%20%D0%B7%D0%B4%D0%B5%D1%81%D1%8C%0A%0Aprintln!(%22%7B%7D%22%2C%20x)%3B%20%20%2F%2F%20%3C-%20%D0%BF%D1%8B%D1%82%D0%B0%D0%B5%D0%BC%D1%81%D1%8F%20%D0%BF%D0%BE%D0%B7%D0%B0%D0%B8%D0%BC%D1%81%D1%82%D0%B2%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20x%20%D0%B7%D0%B4%D0%B5%D1%81%D1%8C%0A%7D">Run</a></pre>

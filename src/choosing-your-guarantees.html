@@ -336,8 +336,8 @@ refcount), который увеличивается каждый раз, ког
 <span class='kw'>let</span> <span class='ident'>y</span> <span class='op'>=</span> <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>x</span>;
 <span class='kw'>let</span> <span class='ident'>z</span> <span class='op'>=</span> <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>x</span>;
 <span class='ident'>x</span> <span class='op'>=</span> <span class='number'>2</span>;
-<span class='op'>*</span><span class='ident'>y</span> <span class='op'>=</span> <span class='number'>3</span>;
-<span class='op'>*</span><span class='ident'>z</span> <span class='op'>=</span> <span class='number'>4</span>;
+<span class='kw-2'>*</span><span class='ident'>y</span> <span class='op'>=</span> <span class='number'>3</span>;
+<span class='kw-2'>*</span><span class='ident'>z</span> <span class='op'>=</span> <span class='number'>4</span>;
 <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>x</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20mut%20x%20%3D%201%3B%0Alet%20y%20%3D%20%26mut%20x%3B%0Alet%20z%20%3D%20%26mut%20x%3B%0Ax%20%3D%202%3B%0A*y%20%3D%203%3B%0A*z%20%3D%204%3B%0Aprintln!(%22%7B%7D%22%2C%20x)%3B%0A%7D">Run</a></pre>
 
 <p>но имеет преимущество в том, что он действительно компилируется.</p>
@@ -381,7 +381,7 @@ refcount), который увеличивается каждый раз, ког
 
 <span class='kw'>let</span> <span class='ident'>x</span> <span class='op'>=</span> <span class='ident'>RefCell</span>::<span class='ident'>new</span>(<span class='macro'>vec</span><span class='macro'>!</span>[<span class='number'>1</span>,<span class='number'>2</span>,<span class='number'>3</span>,<span class='number'>4</span>]);
 {
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{:?}&quot;</span>, <span class='op'>*</span><span class='ident'>x</span>.<span class='ident'>borrow</span>())
+    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{:?}&quot;</span>, <span class='kw-2'>*</span><span class='ident'>x</span>.<span class='ident'>borrow</span>())
 }
 
 {
@@ -487,7 +487,7 @@ refcount), который увеличивается каждый раз, ког
     <span class='kw'>let</span> <span class='ident'>guard</span> <span class='op'>=</span> <span class='ident'>mutex</span>.<span class='ident'>lock</span>();
     <span class='comment'>// охранное значение разыменовывается в изменяемое значение</span>
     <span class='comment'>// вложенного в мьютекс типа</span>
-    <span class='op'>*</span><span class='ident'>guard</span> <span class='op'>+=</span> <span class='number'>1</span>;
+    <span class='kw-2'>*</span><span class='ident'>guard</span> <span class='op'>+=</span> <span class='number'>1</span>;
 } <span class='comment'>// мьютекс открывается когда выполняется деструктор</span><a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0A%7B%0A%20%20%20%20let%20guard%20%3D%20mutex.lock()%3B%0A%20%20%20%20%2F%2F%20%D0%BE%D1%85%D1%80%D0%B0%D0%BD%D0%BD%D0%BE%D0%B5%20%D0%B7%D0%BD%D0%B0%D1%87%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%80%D0%B0%D0%B7%D1%8B%D0%BC%D0%B5%D0%BD%D0%BE%D0%B2%D1%8B%D0%B2%D0%B0%D0%B5%D1%82%D1%81%D1%8F%20%D0%B2%20%D0%B8%D0%B7%D0%BC%D0%B5%D0%BD%D1%8F%D0%B5%D0%BC%D0%BE%D0%B5%20%D0%B7%D0%BD%D0%B0%D1%87%D0%B5%D0%BD%D0%B8%D0%B5%0A%20%20%20%20%2F%2F%20%D0%B2%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%B2%20%D0%BC%D1%8C%D1%8E%D1%82%D0%B5%D0%BA%D1%81%20%D1%82%D0%B8%D0%BF%D0%B0%0A%20%20%20%20*guard%20%2B%3D%201%3B%0A%7D%20%2F%2F%20%D0%BC%D1%8C%D1%8E%D1%82%D0%B5%D0%BA%D1%81%20%D0%BE%D1%82%D0%BA%D1%80%D1%8B%D0%B2%D0%B0%D0%B5%D1%82%D1%81%D1%8F%20%D0%BA%D0%BE%D0%B3%D0%B4%D0%B0%20%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D1%8F%D0%B5%D1%82%D1%81%D1%8F%20%D0%B4%D0%B5%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D0%BE%D1%80%0A%7D">Run</a></pre>
 
 <p><code>RwLock</code> имеет преимущество — он эффективно работает в случае множественных

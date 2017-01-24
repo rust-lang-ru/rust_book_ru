@@ -232,7 +232,7 @@
 }
 
 <span class='kw'>fn</span> <span class='ident'>foo</span>(<span class='ident'>x</span>: <span class='ident'>Box</span><span class='op'>&lt;</span><span class='ident'>BigStruct</span><span class='op'>&gt;</span>) <span class='op'>-&gt;</span> <span class='ident'>Box</span><span class='op'>&lt;</span><span class='ident'>BigStruct</span><span class='op'>&gt;</span> {
-    <span class='ident'>Box</span>::<span class='ident'>new</span>(<span class='op'>*</span><span class='ident'>x</span>)
+    <span class='ident'>Box</span>::<span class='ident'>new</span>(<span class='kw-2'>*</span><span class='ident'>x</span>)
 }
 
 <span class='kw'>fn</span> <span class='ident'>main</span>() {
@@ -261,7 +261,7 @@
 }
 
 <span class='kw'>fn</span> <span class='ident'>foo</span>(<span class='ident'>x</span>: <span class='ident'>Box</span><span class='op'>&lt;</span><span class='ident'>BigStruct</span><span class='op'>&gt;</span>) <span class='op'>-&gt;</span> <span class='ident'>BigStruct</span> {
-    <span class='op'>*</span><span class='ident'>x</span>
+    <span class='kw-2'>*</span><span class='ident'>x</span>
 }
 
 <span class='kw'>fn</span> <span class='ident'>main</span>() {

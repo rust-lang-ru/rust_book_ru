@@ -342,7 +342,7 @@
     <span class='kw'>fn</span> <span class='ident'>area</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>f64</span> {
         <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;это нелепо&quot;</span>);
 
-        <span class='op'>*</span><span class='self'>self</span> <span class='kw'>as</span> <span class='ident'>f64</span>
+        <span class='kw-2'>*</span><span class='self'>self</span> <span class='kw'>as</span> <span class='ident'>f64</span>
     }
 }
 
@@ -483,7 +483,7 @@ let result = f.write(buf);
 }
 
 <span class='kw'>impl</span> <span class='ident'>ConvertTo</span><span class='op'>&lt;</span><span class='ident'>i64</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>i32</span> {
-    <span class='kw'>fn</span> <span class='ident'>convert</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>i64</span> { <span class='op'>*</span><span class='self'>self</span> <span class='kw'>as</span> <span class='ident'>i64</span> }
+    <span class='kw'>fn</span> <span class='ident'>convert</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>i64</span> { <span class='kw-2'>*</span><span class='self'>self</span> <span class='kw'>as</span> <span class='ident'>i64</span> }
 }
 
 <span class='comment'>// может быть вызван с T == i32</span>

@@ -204,7 +204,7 @@
 <span class='kw'>extern</span> <span class='string'>&quot;rust-intrinsic&quot;</span> {
     <span class='kw'>fn</span> <span class='ident'>transmute</span><span class='op'>&lt;</span><span class='ident'>T</span>, <span class='ident'>U</span><span class='op'>&gt;</span>(<span class='ident'>x</span>: <span class='ident'>T</span>) <span class='op'>-&gt;</span> <span class='ident'>U</span>;
 
-    <span class='kw'>fn</span> <span class='ident'>offset</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span>(<span class='ident'>dst</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>T</span>, <span class='ident'>offset</span>: <span class='ident'>isize</span>) <span class='op'>-&gt;</span> <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>T</span>;
+    <span class='kw'>fn</span> <span class='ident'>offset</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span>(<span class='ident'>dst</span>: <span class='kw-2'>*</span><span class='kw'>const</span> <span class='ident'>T</span>, <span class='ident'>offset</span>: <span class='ident'>isize</span>) <span class='op'>-&gt;</span> <span class='kw-2'>*</span><span class='kw'>const</span> <span class='ident'>T</span>;
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=%23!%5Bfeature(intrinsics)%5D%0Afn%20main()%20%7B%7D%0A%0Aextern%20%22rust-intrinsic%22%20%7B%0A%20%20%20%20fn%20transmute%3CT%2C%20U%3E(x%3A%20T)%20-%3E%20U%3B%0A%0A%20%20%20%20fn%20offset%3CT%3E(dst%3A%20*const%20T%2C%20offset%3A%20isize)%20-%3E%20*const%20T%3B%0A%7D%0A&amp;version=nightly">Run</a></pre>
 
 <p>Как и с любыми другими FFI функциями, их вызов всегда небезопасен и помечен как

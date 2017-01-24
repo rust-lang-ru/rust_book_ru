@@ -283,25 +283,25 @@
 <span class='comment'>// выравнивания, так что эта реализация должна быть улучшена и поддерживать</span>
 <span class='comment'>// выравнивание.</span>
 <span class='attribute'>#[<span class='ident'>no_mangle</span>]</span>
-<span class='kw'>pub</span> <span class='kw'>extern</span> <span class='kw'>fn</span> <span class='ident'>__rust_allocate</span>(<span class='ident'>size</span>: <span class='ident'>usize</span>, <span class='ident'>_align</span>: <span class='ident'>usize</span>) <span class='op'>-&gt;</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>u8</span> {
-    <span class='kw'>unsafe</span> { <span class='ident'>libc</span>::<span class='ident'>malloc</span>(<span class='ident'>size</span> <span class='kw'>as</span> <span class='ident'>libc</span>::<span class='ident'>size_t</span>) <span class='kw'>as</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>u8</span> }
+<span class='kw'>pub</span> <span class='kw'>extern</span> <span class='kw'>fn</span> <span class='ident'>__rust_allocate</span>(<span class='ident'>size</span>: <span class='ident'>usize</span>, <span class='ident'>_align</span>: <span class='ident'>usize</span>) <span class='op'>-&gt;</span> <span class='kw-2'>*</span><span class='kw-2'>mut</span> <span class='ident'>u8</span> {
+    <span class='kw'>unsafe</span> { <span class='ident'>libc</span>::<span class='ident'>malloc</span>(<span class='ident'>size</span> <span class='kw'>as</span> <span class='ident'>libc</span>::<span class='ident'>size_t</span>) <span class='kw'>as</span> <span class='kw-2'>*</span><span class='kw-2'>mut</span> <span class='ident'>u8</span> }
 }
 
 <span class='attribute'>#[<span class='ident'>no_mangle</span>]</span>
-<span class='kw'>pub</span> <span class='kw'>extern</span> <span class='kw'>fn</span> <span class='ident'>__rust_deallocate</span>(<span class='ident'>ptr</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>u8</span>, <span class='ident'>_old_size</span>: <span class='ident'>usize</span>, <span class='ident'>_align</span>: <span class='ident'>usize</span>) {
-    <span class='kw'>unsafe</span> { <span class='ident'>libc</span>::<span class='ident'>free</span>(<span class='ident'>ptr</span> <span class='kw'>as</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>libc</span>::<span class='ident'>c_void</span>) }
+<span class='kw'>pub</span> <span class='kw'>extern</span> <span class='kw'>fn</span> <span class='ident'>__rust_deallocate</span>(<span class='ident'>ptr</span>: <span class='kw-2'>*</span><span class='kw-2'>mut</span> <span class='ident'>u8</span>, <span class='ident'>_old_size</span>: <span class='ident'>usize</span>, <span class='ident'>_align</span>: <span class='ident'>usize</span>) {
+    <span class='kw'>unsafe</span> { <span class='ident'>libc</span>::<span class='ident'>free</span>(<span class='ident'>ptr</span> <span class='kw'>as</span> <span class='kw-2'>*</span><span class='kw-2'>mut</span> <span class='ident'>libc</span>::<span class='ident'>c_void</span>) }
 }
 
 <span class='attribute'>#[<span class='ident'>no_mangle</span>]</span>
-<span class='kw'>pub</span> <span class='kw'>extern</span> <span class='kw'>fn</span> <span class='ident'>__rust_reallocate</span>(<span class='ident'>ptr</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>u8</span>, <span class='ident'>_old_size</span>: <span class='ident'>usize</span>, <span class='ident'>size</span>: <span class='ident'>usize</span>,
-                                <span class='ident'>_align</span>: <span class='ident'>usize</span>) <span class='op'>-&gt;</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>u8</span> {
+<span class='kw'>pub</span> <span class='kw'>extern</span> <span class='kw'>fn</span> <span class='ident'>__rust_reallocate</span>(<span class='ident'>ptr</span>: <span class='kw-2'>*</span><span class='kw-2'>mut</span> <span class='ident'>u8</span>, <span class='ident'>_old_size</span>: <span class='ident'>usize</span>, <span class='ident'>size</span>: <span class='ident'>usize</span>,
+                                <span class='ident'>_align</span>: <span class='ident'>usize</span>) <span class='op'>-&gt;</span> <span class='kw-2'>*</span><span class='kw-2'>mut</span> <span class='ident'>u8</span> {
     <span class='kw'>unsafe</span> {
-        <span class='ident'>libc</span>::<span class='ident'>realloc</span>(<span class='ident'>ptr</span> <span class='kw'>as</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>libc</span>::<span class='ident'>c_void</span>, <span class='ident'>size</span> <span class='kw'>as</span> <span class='ident'>libc</span>::<span class='ident'>size_t</span>) <span class='kw'>as</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>u8</span>
+        <span class='ident'>libc</span>::<span class='ident'>realloc</span>(<span class='ident'>ptr</span> <span class='kw'>as</span> <span class='kw-2'>*</span><span class='kw-2'>mut</span> <span class='ident'>libc</span>::<span class='ident'>c_void</span>, <span class='ident'>size</span> <span class='kw'>as</span> <span class='ident'>libc</span>::<span class='ident'>size_t</span>) <span class='kw'>as</span> <span class='kw-2'>*</span><span class='kw-2'>mut</span> <span class='ident'>u8</span>
     }
 }
 
 <span class='attribute'>#[<span class='ident'>no_mangle</span>]</span>
-<span class='kw'>pub</span> <span class='kw'>extern</span> <span class='kw'>fn</span> <span class='ident'>__rust_reallocate_inplace</span>(<span class='ident'>_ptr</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>u8</span>, <span class='ident'>old_size</span>: <span class='ident'>usize</span>,
+<span class='kw'>pub</span> <span class='kw'>extern</span> <span class='kw'>fn</span> <span class='ident'>__rust_reallocate_inplace</span>(<span class='ident'>_ptr</span>: <span class='kw-2'>*</span><span class='kw-2'>mut</span> <span class='ident'>u8</span>, <span class='ident'>old_size</span>: <span class='ident'>usize</span>,
                                         <span class='ident'>_size</span>: <span class='ident'>usize</span>, <span class='ident'>_align</span>: <span class='ident'>usize</span>) <span class='op'>-&gt;</span> <span class='ident'>usize</span> {
     <span class='ident'>old_size</span> <span class='comment'>// libc не поддерживает этот API</span>
 }
