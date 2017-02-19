@@ -208,7 +208,7 @@ chapter on <code>#![no_std]</code></a></p>
 
 <span class='kw'>fn</span> <span class='ident'>plus_one</span>(<span class='ident'>x</span>: <span class='ident'>i32</span>) <span class='op'>-&gt;</span> <span class='ident'>i32</span> {
     <span class='ident'>x</span> <span class='op'>+</span> <span class='number'>1</span>
-}<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0A%23!%5Bno_std%5D%0A%0Afn%20plus_one(x%3A%20i32)%20-%3E%20i32%20%7B%0A%20%20%20%20x%20%2B%201%0A%7D%0A%7D">Run</a></pre>
+}<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=%23!%5Bno_std%5D%0A%0Afn%20main()%20%7B%0Afn%20plus_one(x%3A%20i32)%20-%3E%20i32%20%7B%0A%20%20%20%20x%20%2B%201%0A%7D%0A%7D">Run</a></pre>
 
 <p>Much of the functionality that’s exposed in the standard library is also
 available via the <a href="(http://doc.rust-lang.org/core/)"><code>core</code> crate</a>. When we’re using the standard
@@ -226,7 +226,7 @@ prelude</a>. This means that a lot of code will Just Work:</p>
     } <span class='kw'>else</span> {
         <span class='prelude-val'>Ok</span>(())
     }
-}<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0A%23!%5Bno_std%5D%0A%0Afn%20may_fail(failure%3A%20bool)%20-%3E%20Result%3C()%2C%20%26'static%20str%3E%20%7B%0A%20%20%20%20if%20failure%20%7B%0A%20%20%20%20%20%20%20%20Err(%22this%20didn%E2%80%99t%20work!%22)%0A%20%20%20%20%7D%20else%20%7B%0A%20%20%20%20%20%20%20%20Ok(())%0A%20%20%20%20%7D%0A%7D%0A%7D">Run</a></pre>
+}<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=%23!%5Bno_std%5D%0A%0Afn%20main()%20%7B%0Afn%20may_fail(failure%3A%20bool)%20-%3E%20Result%3C()%2C%20%26'static%20str%3E%20%7B%0A%20%20%20%20if%20failure%20%7B%0A%20%20%20%20%20%20%20%20Err(%22this%20didn%E2%80%99t%20work!%22)%0A%20%20%20%20%7D%20else%20%7B%0A%20%20%20%20%20%20%20%20Ok(())%0A%20%20%20%20%7D%0A%7D%0A%7D">Run</a></pre>
 
     <script src='../rustbook.js'></script>
 </div></div>

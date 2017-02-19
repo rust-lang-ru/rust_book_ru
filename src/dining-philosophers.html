@@ -458,13 +458,13 @@ $ cd dining_philosophers
 поэтому нам нужно объявить о его использовании.</p>
 
 <pre class='rust rust-example-rendered'>
-    <span class='kw'>fn</span> <span class='ident'>eat</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) {
+<span class='kw'>fn</span> <span class='ident'>eat</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) {
         <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{} начала есть.&quot;</span>, <span class='self'>self</span>.<span class='ident'>name</span>);
 
         <span class='ident'>thread</span>::<span class='ident'>sleep</span>(<span class='ident'>Duration</span>::<span class='ident'>from_millis</span>(<span class='number'>1000</span>));
 
         <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{} закончила есть.&quot;</span>, <span class='self'>self</span>.<span class='ident'>name</span>);
-    }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0A%20%20%20%20fn%20eat(%26self)%20%7B%0A%20%20%20%20%20%20%20%20println!(%22%7B%7D%20%D0%BD%D0%B0%D1%87%D0%B0%D0%BB%D0%B0%20%D0%B5%D1%81%D1%82%D1%8C.%22%2C%20self.name)%3B%0A%0A%20%20%20%20%20%20%20%20thread%3A%3Asleep(Duration%3A%3Afrom_millis(1000))%3B%0A%0A%20%20%20%20%20%20%20%20println!(%22%7B%7D%20%D0%B7%D0%B0%D0%BA%D0%BE%D0%BD%D1%87%D0%B8%D0%BB%D0%B0%20%D0%B5%D1%81%D1%82%D1%8C.%22%2C%20self.name)%3B%0A%20%20%20%20%7D%0A%7D">Run</a></pre>
+    }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20eat(%26self)%20%7B%0A%20%20%20%20%20%20%20%20println!(%22%7B%7D%20%D0%BD%D0%B0%D1%87%D0%B0%D0%BB%D0%B0%20%D0%B5%D1%81%D1%82%D1%8C.%22%2C%20self.name)%3B%0A%0A%20%20%20%20%20%20%20%20thread%3A%3Asleep(Duration%3A%3Afrom_millis(1000))%3B%0A%0A%20%20%20%20%20%20%20%20println!(%22%7B%7D%20%D0%B7%D0%B0%D0%BA%D0%BE%D0%BD%D1%87%D0%B8%D0%BB%D0%B0%20%D0%B5%D1%81%D1%82%D1%8C.%22%2C%20self.name)%3B%0A%20%20%20%20%7D%0A%7D">Run</a></pre>
 
 <p>Здесь мы выводим на экран два сообщения и вызываем функцию <code>sleep</code> между
 ними. Эта функция останавливает рабочий поток на 1000 миллисекунд, что
@@ -566,9 +566,9 @@ $ cd dining_philosophers
 вызывает это замыкание для каждого из элементов итератора.</p>
 
 <pre class='rust rust-example-rendered'>
-    <span class='ident'>thread</span>::<span class='ident'>spawn</span>(<span class='kw'>move</span> <span class='op'>||</span> {
+<span class='ident'>thread</span>::<span class='ident'>spawn</span>(<span class='kw'>move</span> <span class='op'>||</span> {
         <span class='ident'>p</span>.<span class='ident'>eat</span>();
-    })<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0A%20%20%20%20thread%3A%3Aspawn(move%20%7C%7C%20%7B%0A%20%20%20%20%20%20%20%20p.eat()%3B%0A%20%20%20%20%7D)%0A%7D">Run</a></pre>
+    })<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Athread%3A%3Aspawn(move%20%7C%7C%20%7B%0A%20%20%20%20%20%20%20%20p.eat()%3B%0A%20%20%20%20%7D)%0A%7D">Run</a></pre>
 
 <p>Вот здесь происходит сам параллелизм. Функция <code>thread::spawn</code> принимает в
 качестве аргумента замыкание и исполняет это замыкание в новом потоке. Это
@@ -775,13 +775,13 @@ $ cd dining_philosophers
 <code>_right</code> выйдут из области видимости, то есть по окончании работы функции.</p>
 
 <pre class='rust rust-example-rendered'>
-    <span class='kw'>let</span> <span class='ident'>table</span> <span class='op'>=</span> <span class='ident'>Arc</span>::<span class='ident'>new</span>(<span class='ident'>Table</span> { <span class='ident'>forks</span>: <span class='macro'>vec</span><span class='macro'>!</span>[
+<span class='kw'>let</span> <span class='ident'>table</span> <span class='op'>=</span> <span class='ident'>Arc</span>::<span class='ident'>new</span>(<span class='ident'>Table</span> { <span class='ident'>forks</span>: <span class='macro'>vec</span><span class='macro'>!</span>[
         <span class='ident'>Mutex</span>::<span class='ident'>new</span>(()),
         <span class='ident'>Mutex</span>::<span class='ident'>new</span>(()),
         <span class='ident'>Mutex</span>::<span class='ident'>new</span>(()),
         <span class='ident'>Mutex</span>::<span class='ident'>new</span>(()),
         <span class='ident'>Mutex</span>::<span class='ident'>new</span>(()),
-    ]});<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0A%20%20%20%20let%20table%20%3D%20Arc%3A%3Anew(Table%20%7B%20forks%3A%20vec!%5B%0A%20%20%20%20%20%20%20%20Mutex%3A%3Anew(())%2C%0A%20%20%20%20%20%20%20%20Mutex%3A%3Anew(())%2C%0A%20%20%20%20%20%20%20%20Mutex%3A%3Anew(())%2C%0A%20%20%20%20%20%20%20%20Mutex%3A%3Anew(())%2C%0A%20%20%20%20%20%20%20%20Mutex%3A%3Anew(())%2C%0A%20%20%20%20%5D%7D)%3B%0A%7D">Run</a></pre>
+    ]});<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20table%20%3D%20Arc%3A%3Anew(Table%20%7B%20forks%3A%20vec!%5B%0A%20%20%20%20%20%20%20%20Mutex%3A%3Anew(())%2C%0A%20%20%20%20%20%20%20%20Mutex%3A%3Anew(())%2C%0A%20%20%20%20%20%20%20%20Mutex%3A%3Anew(())%2C%0A%20%20%20%20%20%20%20%20Mutex%3A%3Anew(())%2C%0A%20%20%20%20%20%20%20%20Mutex%3A%3Anew(())%2C%0A%20%20%20%20%5D%7D)%3B%0A%7D">Run</a></pre>
 
 <p>Далее в <code>main()</code> мы создаём новый экземпляр структуры <code>Table</code> и оборачиваем его
 в <code>Arc&lt;T&gt;</code>. Это «атомарный счётчик ссылок» (atomic reference count). Он нужен

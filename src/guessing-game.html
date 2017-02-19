@@ -294,15 +294,15 @@ Rust импортирует в нашу программу лишь самые �
 предполагается, что будет возвращаться <code>()</code> — пустой <a href="primitive-types.html#tuples">кортеж</a>.</p>
 
 <pre class='rust rust-example-rendered'>
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Угадайте число!&quot;</span>);
+<span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Угадайте число!&quot;</span>);
 
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Пожалуйста, введите предположение.&quot;</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0A%20%20%20%20println!(%22%D0%A3%D0%B3%D0%B0%D0%B4%D0%B0%D0%B9%D1%82%D0%B5%20%D1%87%D0%B8%D1%81%D0%BB%D0%BE!%22)%3B%0A%0A%20%20%20%20println!(%22%D0%9F%D0%BE%D0%B6%D0%B0%D0%BB%D1%83%D0%B9%D1%81%D1%82%D0%B0%2C%20%D0%B2%D0%B2%D0%B5%D0%B4%D0%B8%D1%82%D0%B5%20%D0%BF%D1%80%D0%B5%D0%B4%D0%BF%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5.%22)%3B%0A%7D">Run</a></pre>
+    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Пожалуйста, введите предположение.&quot;</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Aprintln!(%22%D0%A3%D0%B3%D0%B0%D0%B4%D0%B0%D0%B9%D1%82%D0%B5%20%D1%87%D0%B8%D1%81%D0%BB%D0%BE!%22)%3B%0A%0A%20%20%20%20println!(%22%D0%9F%D0%BE%D0%B6%D0%B0%D0%BB%D1%83%D0%B9%D1%81%D1%82%D0%B0%2C%20%D0%B2%D0%B2%D0%B5%D0%B4%D0%B8%D1%82%D0%B5%20%D0%BF%D1%80%D0%B5%D0%B4%D0%BF%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5.%22)%3B%0A%7D">Run</a></pre>
 
 <p>Мы уже изучили, что <code>println!()</code> — это <a href="macros.html">макрос</a>, который выводит
 <a href="strings.html">строки</a> на экран.</p>
 
 <pre class='rust rust-example-rendered'>
-    <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>guess</span> <span class='op'>=</span> <span class='ident'>String</span>::<span class='ident'>new</span>();<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0A%20%20%20%20let%20mut%20guess%20%3D%20String%3A%3Anew()%3B%0A%7D">Run</a></pre>
+<span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>guess</span> <span class='op'>=</span> <span class='ident'>String</span>::<span class='ident'>new</span>();<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20mut%20guess%20%3D%20String%3A%3Anew()%3B%0A%7D">Run</a></pre>
 
 <p>Теперь интереснее! Как же много всего происходит в этой строке! Первая вещь, на
 которую следует обратить внимание, — <a href="variable-bindings.html">выражение let</a>, которое используется
@@ -346,8 +346,8 @@ Rust импортирует в нашу программу лишь самые �
 <p>Давайте посмотрим дальше:</p>
 
 <pre class='rust rust-example-rendered'>
-    <span class='ident'>io</span>::<span class='ident'>stdin</span>().<span class='ident'>read_line</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>guess</span>)
-        .<span class='ident'>expect</span>(<span class='string'>&quot;Не удалось прочитать строку&quot;</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0A%20%20%20%20io%3A%3Astdin().read_line(%26mut%20guess)%0A%20%20%20%20%20%20%20%20.expect(%22%D0%9D%D0%B5%20%D1%83%D0%B4%D0%B0%D0%BB%D0%BE%D1%81%D1%8C%20%D0%BF%D1%80%D0%BE%D1%87%D0%B8%D1%82%D0%B0%D1%82%D1%8C%20%D1%81%D1%82%D1%80%D0%BE%D0%BA%D1%83%22)%3B%0A%7D">Run</a></pre>
+<span class='ident'>io</span>::<span class='ident'>stdin</span>().<span class='ident'>read_line</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>guess</span>)
+        .<span class='ident'>expect</span>(<span class='string'>&quot;Не удалось прочитать строку&quot;</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Aio%3A%3Astdin().read_line(%26mut%20guess)%0A%20%20%20%20%20%20%20%20.expect(%22%D0%9D%D0%B5%20%D1%83%D0%B4%D0%B0%D0%BB%D0%BE%D1%81%D1%8C%20%D0%BF%D1%80%D0%BE%D1%87%D0%B8%D1%82%D0%B0%D1%82%D1%8C%20%D1%81%D1%82%D1%80%D0%BE%D0%BA%D1%83%22)%3B%0A%7D">Run</a></pre>
 
 <p>Это уже побольше! Давайте это всё разберём. В первой строке есть две части.
 Это первая:</p>
@@ -392,14 +392,14 @@ Rust импортирует в нашу программу лишь самые �
 частью одной <em>логической</em> строки кода. Посмотрим далее:</p>
 
 <pre class='rust rust-example-rendered'>
-        .<span class='ident'>expect</span>(<span class='string'>&quot;Не удалось прочитать строку&quot;</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0A%20%20%20%20%20%20%20%20.expect(%22%D0%9D%D0%B5%20%D1%83%D0%B4%D0%B0%D0%BB%D0%BE%D1%81%D1%8C%20%D0%BF%D1%80%D0%BE%D1%87%D0%B8%D1%82%D0%B0%D1%82%D1%8C%20%D1%81%D1%82%D1%80%D0%BE%D0%BA%D1%83%22)%3B%0A%7D">Run</a></pre>
+.<span class='ident'>expect</span>(<span class='string'>&quot;Не удалось прочитать строку&quot;</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0A.expect(%22%D0%9D%D0%B5%20%D1%83%D0%B4%D0%B0%D0%BB%D0%BE%D1%81%D1%8C%20%D0%BF%D1%80%D0%BE%D1%87%D0%B8%D1%82%D0%B0%D1%82%D1%8C%20%D1%81%D1%82%D1%80%D0%BE%D0%BA%D1%83%22)%3B%0A%7D">Run</a></pre>
 
 <p>Когда мы вызываем метод, используя синтаксис <code>.foo()</code>, мы можем перенести вызов
 в новую строку и сделать для него отступ. Это помогает разбивать длинные строки
 на несколько. Мы <em>могли бы</em> сделать и так:</p>
 
 <pre class='rust rust-example-rendered'>
-    <span class='ident'>io</span>::<span class='ident'>stdin</span>().<span class='ident'>read_line</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>guess</span>).<span class='ident'>expect</span>(<span class='string'>&quot;Не удалось прочитать строку&quot;</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0A%20%20%20%20io%3A%3Astdin().read_line(%26mut%20guess).expect(%22%D0%9D%D0%B5%20%D1%83%D0%B4%D0%B0%D0%BB%D0%BE%D1%81%D1%8C%20%D0%BF%D1%80%D0%BE%D1%87%D0%B8%D1%82%D0%B0%D1%82%D1%8C%20%D1%81%D1%82%D1%80%D0%BE%D0%BA%D1%83%22)%3B%0A%7D">Run</a></pre>
+<span class='ident'>io</span>::<span class='ident'>stdin</span>().<span class='ident'>read_line</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>guess</span>).<span class='ident'>expect</span>(<span class='string'>&quot;Не удалось прочитать строку&quot;</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Aio%3A%3Astdin().read_line(%26mut%20guess).expect(%22%D0%9D%D0%B5%20%D1%83%D0%B4%D0%B0%D0%BB%D0%BE%D1%81%D1%8C%20%D0%BF%D1%80%D0%BE%D1%87%D0%B8%D1%82%D0%B0%D1%82%D1%8C%20%D1%81%D1%82%D1%80%D0%BE%D0%BA%D1%83%22)%3B%0A%7D">Run</a></pre>
 
 <p>Однако это достаточно трудно читать. Поэтому мы разделили строку: по строке на
 каждый вызов метода. Мы уже поговорили о <code>read_line()</code>, но ещё ничего не сказали
@@ -441,8 +441,8 @@ src/main.rs:10     io::stdin().read_line(&amp;mut guess);
 <p>Осталось разобрать всего одну строку из первого примера:</p>
 
 <pre class='rust rust-example-rendered'>
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Ваша попытка: {}&quot;</span>, <span class='ident'>guess</span>);
-}<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0A%20%20%20%20println!(%22%D0%92%D0%B0%D1%88%D0%B0%20%D0%BF%D0%BE%D0%BF%D1%8B%D1%82%D0%BA%D0%B0%3A%20%7B%7D%22%2C%20guess)%3B%0A%7D%0A%7D">Run</a></pre>
+<span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Ваша попытка: {}&quot;</span>, <span class='ident'>guess</span>);
+}<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Aprintln!(%22%D0%92%D0%B0%D1%88%D0%B0%20%D0%BF%D0%BE%D0%BF%D1%8B%D1%82%D0%BA%D0%B0%3A%20%7B%7D%22%2C%20guess)%3B%0A%7D%0A%7D">Run</a></pre>
 
 <p>Здесь выводится на экран строка, которая была получена с нашего ввода. <code>{}</code> —
 это указатель места заполнения. В качестве второго аргумента макроса <code>println!</code>
@@ -615,9 +615,9 @@ rand=&quot;0.3.0&quot;
 <p>Мы добавили две новые строки в середину кода:</p>
 
 <pre class='rust rust-example-rendered'>
-    <span class='kw'>let</span> <span class='ident'>secret_number</span> <span class='op'>=</span> <span class='ident'>rand</span>::<span class='ident'>thread_rng</span>().<span class='ident'>gen_range</span>(<span class='number'>1</span>, <span class='number'>101</span>);
+<span class='kw'>let</span> <span class='ident'>secret_number</span> <span class='op'>=</span> <span class='ident'>rand</span>::<span class='ident'>thread_rng</span>().<span class='ident'>gen_range</span>(<span class='number'>1</span>, <span class='number'>101</span>);
 
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Загаданное число: {}&quot;</span>, <span class='ident'>secret_number</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0A%20%20%20%20let%20secret_number%20%3D%20rand%3A%3Athread_rng().gen_range(1%2C%20101)%3B%0A%0A%20%20%20%20println!(%22%D0%97%D0%B0%D0%B3%D0%B0%D0%B4%D0%B0%D0%BD%D0%BD%D0%BE%D0%B5%20%D1%87%D0%B8%D1%81%D0%BB%D0%BE%3A%20%7B%7D%22%2C%20secret_number)%3B%0A%7D">Run</a></pre>
+    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Загаданное число: {}&quot;</span>, <span class='ident'>secret_number</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20secret_number%20%3D%20rand%3A%3Athread_rng().gen_range(1%2C%20101)%3B%0A%0A%20%20%20%20println!(%22%D0%97%D0%B0%D0%B3%D0%B0%D0%B4%D0%B0%D0%BD%D0%BD%D0%BE%D0%B5%20%D1%87%D0%B8%D1%81%D0%BB%D0%BE%3A%20%7B%7D%22%2C%20secret_number)%3B%0A%7D">Run</a></pre>
 
 <p>Мы используем функцию <code>rand::thread_rng()</code> для получения копии генератора
 случайных чисел, которая будет локальной для текущего <a href="concurrency.html">потока</a>
@@ -798,8 +798,8 @@ types). В Rust строгая статическая система типов.
 <p>Вот строки, которые мы добавили:</p>
 
 <pre class='rust rust-example-rendered'>
-    <span class='kw'>let</span> <span class='ident'>guess</span>: <span class='ident'>u32</span> <span class='op'>=</span> <span class='ident'>guess</span>.<span class='ident'>trim</span>().<span class='ident'>parse</span>()
-        .<span class='ident'>expect</span>(<span class='string'>&quot;Пожалуйста, введите число!&quot;</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0A%20%20%20%20let%20guess%3A%20u32%20%3D%20guess.trim().parse()%0A%20%20%20%20%20%20%20%20.expect(%22%D0%9F%D0%BE%D0%B6%D0%B0%D0%BB%D1%83%D0%B9%D1%81%D1%82%D0%B0%2C%20%D0%B2%D0%B2%D0%B5%D0%B4%D0%B8%D1%82%D0%B5%20%D1%87%D0%B8%D1%81%D0%BB%D0%BE!%22)%3B%0A%7D">Run</a></pre>
+<span class='kw'>let</span> <span class='ident'>guess</span>: <span class='ident'>u32</span> <span class='op'>=</span> <span class='ident'>guess</span>.<span class='ident'>trim</span>().<span class='ident'>parse</span>()
+        .<span class='ident'>expect</span>(<span class='string'>&quot;Пожалуйста, введите число!&quot;</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20guess%3A%20u32%20%3D%20guess.trim().parse()%0A%20%20%20%20%20%20%20%20.expect(%22%D0%9F%D0%BE%D0%B6%D0%B0%D0%BB%D1%83%D0%B9%D1%81%D1%82%D0%B0%2C%20%D0%B2%D0%B2%D0%B5%D0%B4%D0%B8%D1%82%D0%B5%20%D1%87%D0%B8%D1%81%D0%BB%D0%BE!%22)%3B%0A%7D">Run</a></pre>
 
 <p>Подождите минутку, у нас ведь уже есть <code>guess</code>? Rust позволил нам «затенить»
 (скрыть) предыдущее <code>guess</code> новым. Это часто используется в подобных случаях,
