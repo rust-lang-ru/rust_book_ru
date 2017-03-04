@@ -198,29 +198,29 @@
 <p>Например, <a href="http://doc.rust-lang.org/std/collections/struct.HashMap.html"><code>HashMap</code></a> имеет метод <a href="http://doc.rust-lang.org/std/collections/struct.HashMap.html#method.get"><code>get</code></a>, который использует
 <code>Borrow</code>:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span> <span class='ident'>get</span><span class='op'>&lt;</span><span class='ident'>Q</span>: <span class='question-mark'>?</span><span class='ident'>Sized</span><span class='op'>&gt;</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>, <span class='ident'>k</span>: <span class='kw-2'>&amp;</span><span class='ident'>Q</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span><span class='ident'>V</span><span class='op'>&gt;</span>
-    <span class='kw'>where</span> <span class='ident'>K</span>: <span class='ident'>Borrow</span><span class='op'>&lt;</span><span class='ident'>Q</span><span class='op'>&gt;</span>,
-          <span class='ident'>Q</span>: <span class='ident'>Hash</span> <span class='op'>+</span> <span class='ident'>Eq</span><a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20get%3CQ%3A%20%3FSized%3E(%26self%2C%20k%3A%20%26Q)%20-%3E%20Option%3C%26V%3E%0A%20%20%20%20where%20K%3A%20Borrow%3CQ%3E%2C%0A%20%20%20%20%20%20%20%20%20%20Q%3A%20Hash%20%2B%20Eq%0A%7D">Run</a></pre>
+<pre class="rust rust-example-rendered">
+<span class="kw">fn</span> <span class="ident">get</span><span class="op">&lt;</span><span class="ident">Q</span>: <span class="question-mark">?</span><span class="ident">Sized</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">k</span>: <span class="kw-2">&amp;</span><span class="ident">Q</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">V</span><span class="op">&gt;</span>
+    <span class="kw">where</span> <span class="ident">K</span>: <span class="ident">Borrow</span><span class="op">&lt;</span><span class="ident">Q</span><span class="op">&gt;</span>,
+          <span class="ident">Q</span>: <span class="ident">Hash</span> <span class="op">+</span> <span class="ident">Eq</span><a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20get%3CQ%3A%20%3FSized%3E(%26self%2C%20k%3A%20%26Q)%20-%3E%20Option%3C%26V%3E%0A%20%20%20%20where%20K%3A%20Borrow%3CQ%3E%2C%0A%20%20%20%20%20%20%20%20%20%20Q%3A%20Hash%20%2B%20Eq%0A%7D">Run</a></pre>
 
 <p>Эта сигнатура является довольно сложной. Параметр <code>K</code> — это то, что нас здесь
 интересует. Он ссылается на параметр самого <code>HashMap</code>:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>struct</span> <span class='ident'>HashMap</span><span class='op'>&lt;</span><span class='ident'>K</span>, <span class='ident'>V</span>, <span class='ident'>S</span> <span class='op'>=</span> <span class='ident'>RandomState</span><span class='op'>&gt;</span> {<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Astruct%20HashMap%3CK%2C%20V%2C%20S%20%3D%20RandomState%3E%20%7B%0A%7D">Run</a></pre>
+<pre class="rust rust-example-rendered">
+<span class="kw">struct</span> <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">K</span>, <span class="ident">V</span>, <span class="ident">S</span> <span class="op">=</span> <span class="ident">RandomState</span><span class="op">&gt;</span> {<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Astruct%20HashMap%3CK%2C%20V%2C%20S%20%3D%20RandomState%3E%20%7B%0A%7D">Run</a></pre>
 
 <p>Параметр <code>K</code> представляет собой тип <em>ключа</em>, который использует <code>HashMap</code>.
 Взглянем на сигнатуру <code>get()</code> еще раз. Использовать <code>get()</code> возможно, когда ключ
 реализует <code>Borrow&lt;Q&gt;</code>. Таким образом, мы можем сделать <code>HashMap</code>, который
 использует ключи <code>String</code>, но использовать <code>&amp;str</code>, когда мы выполняем поиск:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>collections</span>::<span class='ident'>HashMap</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">collections</span>::<span class="ident">HashMap</span>;
 
-<span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>map</span> <span class='op'>=</span> <span class='ident'>HashMap</span>::<span class='ident'>new</span>();
-<span class='ident'>map</span>.<span class='ident'>insert</span>(<span class='string'>&quot;Foo&quot;</span>.<span class='ident'>to_string</span>(), <span class='number'>42</span>);
+<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">map</span> <span class="op">=</span> <span class="ident">HashMap</span>::<span class="ident">new</span>();
+<span class="ident">map</span>.<span class="ident">insert</span>(<span class="string">&quot;Foo&quot;</span>.<span class="ident">to_string</span>(), <span class="number">42</span>);
 
-<span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>map</span>.<span class='ident'>get</span>(<span class='string'>&quot;Foo&quot;</span>), <span class='prelude-val'>Some</span>(<span class='kw-2'>&amp;</span><span class='number'>42</span>));<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Ause%20std%3A%3Acollections%3A%3AHashMap%3B%0A%0Alet%20mut%20map%20%3D%20HashMap%3A%3Anew()%3B%0Amap.insert(%22Foo%22.to_string()%2C%2042)%3B%0A%0Aassert_eq!(map.get(%22Foo%22)%2C%20Some(%2642))%3B%0A%7D">Run</a></pre>
+<span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">map</span>.<span class="ident">get</span>(<span class="string">&quot;Foo&quot;</span>), <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="number">42</span>));<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Ause%20std%3A%3Acollections%3A%3AHashMap%3B%0A%0Alet%20mut%20map%20%3D%20HashMap%3A%3Anew()%3B%0Amap.insert(%22Foo%22.to_string()%2C%2042)%3B%0A%0Aassert_eq!(map.get(%22Foo%22)%2C%20Some(%2642))%3B%0A%7D">Run</a></pre>
 
 <p>Это возможно, так как стандартная библиотека содержит <code>impl Borrow&lt;str&gt; for String</code>.</p>
 
@@ -230,18 +230,18 @@
 особенно верно для ссылок и срезов: у вас может быть как <code>&amp;T</code>, так и <code>&amp;mut T</code>.
 Если мы хотим принимать оба этих типа, <code>Borrow</code> как раз для этого подходит:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>borrow</span>::<span class='ident'>Borrow</span>;
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>fmt</span>::<span class='ident'>Display</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">borrow</span>::<span class="ident">Borrow</span>;
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fmt</span>::<span class="ident">Display</span>;
 
-<span class='kw'>fn</span> <span class='ident'>foo</span><span class='op'>&lt;</span><span class='ident'>T</span>: <span class='ident'>Borrow</span><span class='op'>&lt;</span><span class='ident'>i32</span><span class='op'>&gt;</span> <span class='op'>+</span> <span class='ident'>Display</span><span class='op'>&gt;</span>(<span class='ident'>a</span>: <span class='ident'>T</span>) {
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;a заимствовано: {}&quot;</span>, <span class='ident'>a</span>);
+<span class="kw">fn</span> <span class="ident">foo</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Borrow</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">Display</span><span class="op">&gt;</span>(<span class="ident">a</span>: <span class="ident">T</span>) {
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;a заимствовано: {}&quot;</span>, <span class="ident">a</span>);
 }
 
-<span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>i</span> <span class='op'>=</span> <span class='number'>5</span>;
+<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">i</span> <span class="op">=</span> <span class="number">5</span>;
 
-<span class='ident'>foo</span>(<span class='kw-2'>&amp;</span><span class='ident'>i</span>);
-<span class='ident'>foo</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>i</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Ause%20std%3A%3Aborrow%3A%3ABorrow%3B%0Ause%20std%3A%3Afmt%3A%3ADisplay%3B%0A%0Afn%20foo%3CT%3A%20Borrow%3Ci32%3E%20%2B%20Display%3E(a%3A%20T)%20%7B%0A%20%20%20%20println!(%22a%20%D0%B7%D0%B0%D0%B8%D0%BC%D1%81%D1%82%D0%B2%D0%BE%D0%B2%D0%B0%D0%BD%D0%BE%3A%20%7B%7D%22%2C%20a)%3B%0A%7D%0A%0Alet%20mut%20i%20%3D%205%3B%0A%0Afoo(%26i)%3B%0Afoo(%26mut%20i)%3B%0A%7D">Run</a></pre>
+<span class="ident">foo</span>(<span class="kw-2">&amp;</span><span class="ident">i</span>);
+<span class="ident">foo</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">i</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Ause%20std%3A%3Aborrow%3A%3ABorrow%3B%0Ause%20std%3A%3Afmt%3A%3ADisplay%3B%0A%0Afn%20foo%3CT%3A%20Borrow%3Ci32%3E%20%2B%20Display%3E(a%3A%20T)%20%7B%0A%20%20%20%20println!(%22a%20%D0%B7%D0%B0%D0%B8%D0%BC%D1%81%D1%82%D0%B2%D0%BE%D0%B2%D0%B0%D0%BD%D0%BE%3A%20%7B%7D%22%2C%20a)%3B%0A%7D%0A%0Alet%20mut%20i%20%3D%205%3B%0A%0Afoo(%26i)%3B%0Afoo(%26mut%20i)%3B%0A%7D">Run</a></pre>
 
 <p>Это выведет <code>a заимствовано: 5</code> дважды.</p>
 
@@ -249,11 +249,11 @@
 <p>Типаж <code>AsRef</code> является преобразующим типажом. Он используется в обобщённом коде
 для преобразования некоторого значения в ссылку. Например:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>let</span> <span class='ident'>s</span> <span class='op'>=</span> <span class='string'>&quot;Hello&quot;</span>.<span class='ident'>to_string</span>();
+<pre class="rust rust-example-rendered">
+<span class="kw">let</span> <span class="ident">s</span> <span class="op">=</span> <span class="string">&quot;Hello&quot;</span>.<span class="ident">to_string</span>();
 
-<span class='kw'>fn</span> <span class='ident'>foo</span><span class='op'>&lt;</span><span class='ident'>T</span>: <span class='ident'>AsRef</span><span class='op'>&lt;</span><span class='ident'>str</span><span class='op'>&gt;&gt;</span>(<span class='ident'>s</span>: <span class='ident'>T</span>) {
-    <span class='kw'>let</span> <span class='ident'>slice</span> <span class='op'>=</span> <span class='ident'>s</span>.<span class='ident'>as_ref</span>();
+<span class="kw">fn</span> <span class="ident">foo</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;&gt;</span>(<span class="ident">s</span>: <span class="ident">T</span>) {
+    <span class="kw">let</span> <span class="ident">slice</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">as_ref</span>();
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20s%20%3D%20%22Hello%22.to_string()%3B%0A%0Afn%20foo%3CT%3A%20AsRef%3Cstr%3E%3E(s%3A%20T)%20%7B%0A%20%20%20%20let%20slice%20%3D%20s.as_ref()%3B%0A%7D%0A%7D">Run</a></pre>
 
 <h1 id='Что-в-каком-случае-следует-использовать' class='section-header'><a href='#Что-в-каком-случае-следует-использовать'>Что в каком случае следует использовать?</a></h1>

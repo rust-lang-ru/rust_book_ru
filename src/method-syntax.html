@@ -191,16 +191,16 @@
     <p>Функции — это хорошо, но если вы хотите вызвать несколько связных функций для
 каких-либо данных, то это может быть неудобно. Рассмотрим этот код:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='ident'>baz</span>(<span class='ident'>bar</span>(<span class='ident'>foo</span>)));<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Abaz(bar(foo)))%3B%0A%7D">Run</a></pre>
+<pre class="rust rust-example-rendered">
+<span class="ident">baz</span>(<span class="ident">bar</span>(<span class="ident">foo</span>));<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Abaz(bar(foo))%3B%0A%7D">Run</a></pre>
 
 <p>Читать данную строку кода следует слева направо, поэтому мы наблюдаем такой
 порядок: «baz bar foo». Но он противоположен порядку, в котором функции будут
 вызываться: «foo bar baz». Было бы классно записать вызовы в том порядке, в
 котором они происходят, не так ли?</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='ident'>foo</span>.<span class='ident'>bar</span>().<span class='ident'>baz</span>();<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afoo.bar().baz()%3B%0A%7D">Run</a></pre>
+<pre class="rust rust-example-rendered">
+<span class="ident">foo</span>.<span class="ident">bar</span>().<span class="ident">baz</span>();<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afoo.bar().baz()%3B%0A%7D">Run</a></pre>
 
 <p>К счастью, это возможно! Rust предоставляет возможность использовать такой
 <em>синтаксис вызова метода</em> с помощью ключевого слова <code>impl</code>.</p>
@@ -208,22 +208,22 @@
 <h1 id='Вызов-методов' class='section-header'><a href='#Вызов-методов'>Вызов методов</a></h1>
 <p>Вот как это работает:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>struct</span> <span class='ident'>Circle</span> {
-    <span class='ident'>x</span>: <span class='ident'>f64</span>,
-    <span class='ident'>y</span>: <span class='ident'>f64</span>,
-    <span class='ident'>radius</span>: <span class='ident'>f64</span>,
+<pre class="rust rust-example-rendered">
+<span class="kw">struct</span> <span class="ident">Circle</span> {
+    <span class="ident">x</span>: <span class="ident">f64</span>,
+    <span class="ident">y</span>: <span class="ident">f64</span>,
+    <span class="ident">radius</span>: <span class="ident">f64</span>,
 }
 
-<span class='kw'>impl</span> <span class='ident'>Circle</span> {
-    <span class='kw'>fn</span> <span class='ident'>area</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>f64</span> {
-        <span class='ident'>std</span>::<span class='ident'>f64</span>::<span class='ident'>consts</span>::<span class='ident'>PI</span> <span class='op'>*</span> (<span class='self'>self</span>.<span class='ident'>radius</span> <span class='op'>*</span> <span class='self'>self</span>.<span class='ident'>radius</span>)
+<span class="kw">impl</span> <span class="ident">Circle</span> {
+    <span class="kw">fn</span> <span class="ident">area</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">f64</span> {
+        <span class="ident">std</span>::<span class="ident">f64</span>::<span class="ident">consts</span>::<span class="ident">PI</span> <span class="op">*</span> (<span class="self">self</span>.<span class="ident">radius</span> <span class="op">*</span> <span class="self">self</span>.<span class="ident">radius</span>)
     }
 }
 
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='kw'>let</span> <span class='ident'>c</span> <span class='op'>=</span> <span class='ident'>Circle</span> { <span class='ident'>x</span>: <span class='number'>0.0</span>, <span class='ident'>y</span>: <span class='number'>0.0</span>, <span class='ident'>radius</span>: <span class='number'>2.0</span> };
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>c</span>.<span class='ident'>area</span>());
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="kw">let</span> <span class="ident">c</span> <span class="op">=</span> <span class="ident">Circle</span> { <span class="ident">x</span>: <span class="number">0.0</span>, <span class="ident">y</span>: <span class="number">0.0</span>, <span class="ident">radius</span>: <span class="number">2.0</span> };
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">c</span>.<span class="ident">area</span>());
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=struct%20Circle%20%7B%0A%20%20%20%20x%3A%20f64%2C%0A%20%20%20%20y%3A%20f64%2C%0A%20%20%20%20radius%3A%20f64%2C%0A%7D%0A%0Aimpl%20Circle%20%7B%0A%20%20%20%20fn%20area(%26self)%20-%3E%20f64%20%7B%0A%20%20%20%20%20%20%20%20std%3A%3Af64%3A%3Aconsts%3A%3API%20*%20(self.radius%20*%20self.radius)%0A%20%20%20%20%7D%0A%7D%0A%0Afn%20main()%20%7B%0A%20%20%20%20let%20c%20%3D%20Circle%20%7B%20x%3A%200.0%2C%20y%3A%200.0%2C%20radius%3A%202.0%20%7D%3B%0A%20%20%20%20println!(%22%7B%7D%22%2C%20c.area())%3B%0A%7D%0A">Run</a></pre>
 
 <p>Этот код напечатает <code>12.566371</code>.</p>
@@ -244,24 +244,24 @@
 заимствование владению, а неизменные ссылки изменяемым. Вот пример, включающий
 все три варианта:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>struct</span> <span class='ident'>Circle</span> {
-    <span class='ident'>x</span>: <span class='ident'>f64</span>,
-    <span class='ident'>y</span>: <span class='ident'>f64</span>,
-    <span class='ident'>radius</span>: <span class='ident'>f64</span>,
+<pre class="rust rust-example-rendered">
+<span class="kw">struct</span> <span class="ident">Circle</span> {
+    <span class="ident">x</span>: <span class="ident">f64</span>,
+    <span class="ident">y</span>: <span class="ident">f64</span>,
+    <span class="ident">radius</span>: <span class="ident">f64</span>,
 }
 
-<span class='kw'>impl</span> <span class='ident'>Circle</span> {
-    <span class='kw'>fn</span> <span class='ident'>reference</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) {
-       <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;принимаем self по ссылке!&quot;</span>);
+<span class="kw">impl</span> <span class="ident">Circle</span> {
+    <span class="kw">fn</span> <span class="ident">reference</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
+       <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;принимаем self по ссылке!&quot;</span>);
     }
 
-    <span class='kw'>fn</span> <span class='ident'>mutable_reference</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>) {
-       <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;принимаем self по изменяемой ссылке!&quot;</span>);
+    <span class="kw">fn</span> <span class="ident">mutable_reference</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) {
+       <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;принимаем self по изменяемой ссылке!&quot;</span>);
     }
 
-    <span class='kw'>fn</span> <span class='ident'>takes_ownership</span>(<span class='self'>self</span>) {
-       <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;принимаем владение self!&quot;</span>);
+    <span class="kw">fn</span> <span class="ident">takes_ownership</span>(<span class="self">self</span>) {
+       <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;принимаем владение self!&quot;</span>);
     }
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Astruct%20Circle%20%7B%0A%20%20%20%20x%3A%20f64%2C%0A%20%20%20%20y%3A%20f64%2C%0A%20%20%20%20radius%3A%20f64%2C%0A%7D%0A%0Aimpl%20Circle%20%7B%0A%20%20%20%20fn%20reference(%26self)%20%7B%0A%20%20%20%20%20%20%20println!(%22%D0%BF%D1%80%D0%B8%D0%BD%D0%B8%D0%BC%D0%B0%D0%B5%D0%BC%20self%20%D0%BF%D0%BE%20%D1%81%D1%81%D1%8B%D0%BB%D0%BA%D0%B5!%22)%3B%0A%20%20%20%20%7D%0A%0A%20%20%20%20fn%20mutable_reference(%26mut%20self)%20%7B%0A%20%20%20%20%20%20%20println!(%22%D0%BF%D1%80%D0%B8%D0%BD%D0%B8%D0%BC%D0%B0%D0%B5%D0%BC%20self%20%D0%BF%D0%BE%20%D0%B8%D0%B7%D0%BC%D0%B5%D0%BD%D1%8F%D0%B5%D0%BC%D0%BE%D0%B9%20%D1%81%D1%81%D1%8B%D0%BB%D0%BA%D0%B5!%22)%3B%0A%20%20%20%20%7D%0A%0A%20%20%20%20fn%20takes_ownership(self)%20%7B%0A%20%20%20%20%20%20%20println!(%22%D0%BF%D1%80%D0%B8%D0%BD%D0%B8%D0%BC%D0%B0%D0%B5%D0%BC%20%D0%B2%D0%BB%D0%B0%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20self!%22)%3B%0A%20%20%20%20%7D%0A%7D%0A%7D">Run</a></pre>
 
@@ -270,35 +270,35 @@
 нашего первоначального примера, <code>foo.bar().baz()</code>? Это называется «цепочка
 вызовов», и мы можем сделать это, вернув <code>self</code>.</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>struct</span> <span class='ident'>Circle</span> {
-    <span class='ident'>x</span>: <span class='ident'>f64</span>,
-    <span class='ident'>y</span>: <span class='ident'>f64</span>,
-    <span class='ident'>radius</span>: <span class='ident'>f64</span>,
+<pre class="rust rust-example-rendered">
+<span class="kw">struct</span> <span class="ident">Circle</span> {
+    <span class="ident">x</span>: <span class="ident">f64</span>,
+    <span class="ident">y</span>: <span class="ident">f64</span>,
+    <span class="ident">radius</span>: <span class="ident">f64</span>,
 }
 
-<span class='kw'>impl</span> <span class='ident'>Circle</span> {
-    <span class='kw'>fn</span> <span class='ident'>area</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>f64</span> {
-        <span class='ident'>std</span>::<span class='ident'>f64</span>::<span class='ident'>consts</span>::<span class='ident'>PI</span> <span class='op'>*</span> (<span class='self'>self</span>.<span class='ident'>radius</span> <span class='op'>*</span> <span class='self'>self</span>.<span class='ident'>radius</span>)
+<span class="kw">impl</span> <span class="ident">Circle</span> {
+    <span class="kw">fn</span> <span class="ident">area</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">f64</span> {
+        <span class="ident">std</span>::<span class="ident">f64</span>::<span class="ident">consts</span>::<span class="ident">PI</span> <span class="op">*</span> (<span class="self">self</span>.<span class="ident">radius</span> <span class="op">*</span> <span class="self">self</span>.<span class="ident">radius</span>)
     }
 
-    <span class='kw'>fn</span> <span class='ident'>grow</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>, <span class='ident'>increment</span>: <span class='ident'>f64</span>) <span class='op'>-&gt;</span> <span class='ident'>Circle</span> {
-        <span class='ident'>Circle</span> { <span class='ident'>x</span>: <span class='self'>self</span>.<span class='ident'>x</span>, <span class='ident'>y</span>: <span class='self'>self</span>.<span class='ident'>y</span>, <span class='ident'>radius</span>: <span class='self'>self</span>.<span class='ident'>radius</span> <span class='op'>+</span> <span class='ident'>increment</span> }
+    <span class="kw">fn</span> <span class="ident">grow</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">increment</span>: <span class="ident">f64</span>) <span class="op">-&gt;</span> <span class="ident">Circle</span> {
+        <span class="ident">Circle</span> { <span class="ident">x</span>: <span class="self">self</span>.<span class="ident">x</span>, <span class="ident">y</span>: <span class="self">self</span>.<span class="ident">y</span>, <span class="ident">radius</span>: <span class="self">self</span>.<span class="ident">radius</span> <span class="op">+</span> <span class="ident">increment</span> }
     }
 }
 
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='kw'>let</span> <span class='ident'>c</span> <span class='op'>=</span> <span class='ident'>Circle</span> { <span class='ident'>x</span>: <span class='number'>0.0</span>, <span class='ident'>y</span>: <span class='number'>0.0</span>, <span class='ident'>radius</span>: <span class='number'>2.0</span> };
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>c</span>.<span class='ident'>area</span>());
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="kw">let</span> <span class="ident">c</span> <span class="op">=</span> <span class="ident">Circle</span> { <span class="ident">x</span>: <span class="number">0.0</span>, <span class="ident">y</span>: <span class="number">0.0</span>, <span class="ident">radius</span>: <span class="number">2.0</span> };
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">c</span>.<span class="ident">area</span>());
 
-    <span class='kw'>let</span> <span class='ident'>d</span> <span class='op'>=</span> <span class='ident'>c</span>.<span class='ident'>grow</span>(<span class='number'>2.0</span>).<span class='ident'>area</span>();
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>d</span>);
+    <span class="kw">let</span> <span class="ident">d</span> <span class="op">=</span> <span class="ident">c</span>.<span class="ident">grow</span>(<span class="number">2.0</span>).<span class="ident">area</span>();
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">d</span>);
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=struct%20Circle%20%7B%0A%20%20%20%20x%3A%20f64%2C%0A%20%20%20%20y%3A%20f64%2C%0A%20%20%20%20radius%3A%20f64%2C%0A%7D%0A%0Aimpl%20Circle%20%7B%0A%20%20%20%20fn%20area(%26self)%20-%3E%20f64%20%7B%0A%20%20%20%20%20%20%20%20std%3A%3Af64%3A%3Aconsts%3A%3API%20*%20(self.radius%20*%20self.radius)%0A%20%20%20%20%7D%0A%0A%20%20%20%20fn%20grow(%26self%2C%20increment%3A%20f64)%20-%3E%20Circle%20%7B%0A%20%20%20%20%20%20%20%20Circle%20%7B%20x%3A%20self.x%2C%20y%3A%20self.y%2C%20radius%3A%20self.radius%20%2B%20increment%20%7D%0A%20%20%20%20%7D%0A%7D%0A%0Afn%20main()%20%7B%0A%20%20%20%20let%20c%20%3D%20Circle%20%7B%20x%3A%200.0%2C%20y%3A%200.0%2C%20radius%3A%202.0%20%7D%3B%0A%20%20%20%20println!(%22%7B%7D%22%2C%20c.area())%3B%0A%0A%20%20%20%20let%20d%20%3D%20c.grow(2.0).area()%3B%0A%20%20%20%20println!(%22%7B%7D%22%2C%20d)%3B%0A%7D%0A">Run</a></pre>
 
 <p>Проверьте тип возвращаемого значения:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span> <span class='ident'>grow</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>Circle</span> {<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Astruct%20Circle%3B%0Aimpl%20Circle%20%7B%0Afn%20grow(%26self)%20-%3E%20Circle%20%7B%0ACircle%20%7D%20%7D%0A%7D">Run</a></pre>
+<pre class="rust rust-example-rendered">
+<span class="kw">fn</span> <span class="ident">grow</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">Circle</span> {<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Astruct%20Circle%3B%0Aimpl%20Circle%20%7B%0Afn%20grow(%26self)%20-%3E%20Circle%20%7B%0ACircle%20%7D%20%7D%0A%7D">Run</a></pre>
 
 <p>Мы просто указываем, что возвращается <code>Circle</code>. С помощью этого метода мы можем
 создать новый круг, площадь которого будет в 100 раз больше, чем у старого.</p>
@@ -307,25 +307,25 @@
 <p>Вы также можете определить методы, которые не принимают параметр <code>self</code>. Вот
 шаблон программирования, который очень распространен в коде на Rust:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>struct</span> <span class='ident'>Circle</span> {
-    <span class='ident'>x</span>: <span class='ident'>f64</span>,
-    <span class='ident'>y</span>: <span class='ident'>f64</span>,
-    <span class='ident'>radius</span>: <span class='ident'>f64</span>,
+<pre class="rust rust-example-rendered">
+<span class="kw">struct</span> <span class="ident">Circle</span> {
+    <span class="ident">x</span>: <span class="ident">f64</span>,
+    <span class="ident">y</span>: <span class="ident">f64</span>,
+    <span class="ident">radius</span>: <span class="ident">f64</span>,
 }
 
-<span class='kw'>impl</span> <span class='ident'>Circle</span> {
-    <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>x</span>: <span class='ident'>f64</span>, <span class='ident'>y</span>: <span class='ident'>f64</span>, <span class='ident'>radius</span>: <span class='ident'>f64</span>) <span class='op'>-&gt;</span> <span class='ident'>Circle</span> {
-        <span class='ident'>Circle</span> {
-            <span class='ident'>x</span>: <span class='ident'>x</span>,
-            <span class='ident'>y</span>: <span class='ident'>y</span>,
-            <span class='ident'>radius</span>: <span class='ident'>radius</span>,
+<span class="kw">impl</span> <span class="ident">Circle</span> {
+    <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">x</span>: <span class="ident">f64</span>, <span class="ident">y</span>: <span class="ident">f64</span>, <span class="ident">radius</span>: <span class="ident">f64</span>) <span class="op">-&gt;</span> <span class="ident">Circle</span> {
+        <span class="ident">Circle</span> {
+            <span class="ident">x</span>: <span class="ident">x</span>,
+            <span class="ident">y</span>: <span class="ident">y</span>,
+            <span class="ident">radius</span>: <span class="ident">radius</span>,
         }
     }
 }
 
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='kw'>let</span> <span class='ident'>c</span> <span class='op'>=</span> <span class='ident'>Circle</span>::<span class='ident'>new</span>(<span class='number'>0.0</span>, <span class='number'>0.0</span>, <span class='number'>2.0</span>);
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="kw">let</span> <span class="ident">c</span> <span class="op">=</span> <span class="ident">Circle</span>::<span class="ident">new</span>(<span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">2.0</span>);
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=struct%20Circle%20%7B%0A%20%20%20%20x%3A%20f64%2C%0A%20%20%20%20y%3A%20f64%2C%0A%20%20%20%20radius%3A%20f64%2C%0A%7D%0A%0Aimpl%20Circle%20%7B%0A%20%20%20%20fn%20new(x%3A%20f64%2C%20y%3A%20f64%2C%20radius%3A%20f64)%20-%3E%20Circle%20%7B%0A%20%20%20%20%20%20%20%20Circle%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20x%3A%20x%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20y%3A%20y%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20radius%3A%20radius%2C%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%7D%0A%0Afn%20main()%20%7B%0A%20%20%20%20let%20c%20%3D%20Circle%3A%3Anew(0.0%2C%200.0%2C%202.0)%3B%0A%7D%0A">Run</a></pre>
 
 <p>Этот <em>статический метод</em>, который создает новый <code>Circle</code>. Обратите внимание, что
@@ -340,60 +340,60 @@
 переменное количество аргументов. Вместо этого мы используем шаблон «строитель».
 Он выглядит следующим образом:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>struct</span> <span class='ident'>Circle</span> {
-    <span class='ident'>x</span>: <span class='ident'>f64</span>,
-    <span class='ident'>y</span>: <span class='ident'>f64</span>,
-    <span class='ident'>radius</span>: <span class='ident'>f64</span>,
+<pre class="rust rust-example-rendered">
+<span class="kw">struct</span> <span class="ident">Circle</span> {
+    <span class="ident">x</span>: <span class="ident">f64</span>,
+    <span class="ident">y</span>: <span class="ident">f64</span>,
+    <span class="ident">radius</span>: <span class="ident">f64</span>,
 }
 
-<span class='kw'>impl</span> <span class='ident'>Circle</span> {
-    <span class='kw'>fn</span> <span class='ident'>area</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>f64</span> {
-        <span class='ident'>std</span>::<span class='ident'>f64</span>::<span class='ident'>consts</span>::<span class='ident'>PI</span> <span class='op'>*</span> (<span class='self'>self</span>.<span class='ident'>radius</span> <span class='op'>*</span> <span class='self'>self</span>.<span class='ident'>radius</span>)
-    }
-}
-
-<span class='kw'>struct</span> <span class='ident'>CircleBuilder</span> {
-    <span class='ident'>x</span>: <span class='ident'>f64</span>,
-    <span class='ident'>y</span>: <span class='ident'>f64</span>,
-    <span class='ident'>radius</span>: <span class='ident'>f64</span>,
-}
-
-<span class='kw'>impl</span> <span class='ident'>CircleBuilder</span> {
-    <span class='kw'>fn</span> <span class='ident'>new</span>() <span class='op'>-&gt;</span> <span class='ident'>CircleBuilder</span> {
-        <span class='ident'>CircleBuilder</span> { <span class='ident'>x</span>: <span class='number'>0.0</span>, <span class='ident'>y</span>: <span class='number'>0.0</span>, <span class='ident'>radius</span>: <span class='number'>1.0</span>, }
-    }
-
-    <span class='kw'>fn</span> <span class='ident'>x</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>, <span class='ident'>coordinate</span>: <span class='ident'>f64</span>) <span class='op'>-&gt;</span> <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>CircleBuilder</span> {
-        <span class='self'>self</span>.<span class='ident'>x</span> <span class='op'>=</span> <span class='ident'>coordinate</span>;
-        <span class='self'>self</span>
-    }
-
-    <span class='kw'>fn</span> <span class='ident'>y</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>, <span class='ident'>coordinate</span>: <span class='ident'>f64</span>) <span class='op'>-&gt;</span> <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>CircleBuilder</span> {
-        <span class='self'>self</span>.<span class='ident'>y</span> <span class='op'>=</span> <span class='ident'>coordinate</span>;
-        <span class='self'>self</span>
-    }
-
-    <span class='kw'>fn</span> <span class='ident'>radius</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>, <span class='ident'>radius</span>: <span class='ident'>f64</span>) <span class='op'>-&gt;</span> <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>CircleBuilder</span> {
-        <span class='self'>self</span>.<span class='ident'>radius</span> <span class='op'>=</span> <span class='ident'>radius</span>;
-        <span class='self'>self</span>
-    }
-
-    <span class='kw'>fn</span> <span class='ident'>finalize</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>Circle</span> {
-        <span class='ident'>Circle</span> { <span class='ident'>x</span>: <span class='self'>self</span>.<span class='ident'>x</span>, <span class='ident'>y</span>: <span class='self'>self</span>.<span class='ident'>y</span>, <span class='ident'>radius</span>: <span class='self'>self</span>.<span class='ident'>radius</span> }
+<span class="kw">impl</span> <span class="ident">Circle</span> {
+    <span class="kw">fn</span> <span class="ident">area</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">f64</span> {
+        <span class="ident">std</span>::<span class="ident">f64</span>::<span class="ident">consts</span>::<span class="ident">PI</span> <span class="op">*</span> (<span class="self">self</span>.<span class="ident">radius</span> <span class="op">*</span> <span class="self">self</span>.<span class="ident">radius</span>)
     }
 }
 
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='kw'>let</span> <span class='ident'>c</span> <span class='op'>=</span> <span class='ident'>CircleBuilder</span>::<span class='ident'>new</span>()
-                .<span class='ident'>x</span>(<span class='number'>1.0</span>)
-                .<span class='ident'>y</span>(<span class='number'>2.0</span>)
-                .<span class='ident'>radius</span>(<span class='number'>2.0</span>)
-                .<span class='ident'>finalize</span>();
+<span class="kw">struct</span> <span class="ident">CircleBuilder</span> {
+    <span class="ident">x</span>: <span class="ident">f64</span>,
+    <span class="ident">y</span>: <span class="ident">f64</span>,
+    <span class="ident">radius</span>: <span class="ident">f64</span>,
+}
 
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;площадь: {}&quot;</span>, <span class='ident'>c</span>.<span class='ident'>area</span>());
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;x: {}&quot;</span>, <span class='ident'>c</span>.<span class='ident'>x</span>);
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;y: {}&quot;</span>, <span class='ident'>c</span>.<span class='ident'>y</span>);
+<span class="kw">impl</span> <span class="ident">CircleBuilder</span> {
+    <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-&gt;</span> <span class="ident">CircleBuilder</span> {
+        <span class="ident">CircleBuilder</span> { <span class="ident">x</span>: <span class="number">0.0</span>, <span class="ident">y</span>: <span class="number">0.0</span>, <span class="ident">radius</span>: <span class="number">1.0</span>, }
+    }
+
+    <span class="kw">fn</span> <span class="ident">x</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">coordinate</span>: <span class="ident">f64</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">CircleBuilder</span> {
+        <span class="self">self</span>.<span class="ident">x</span> <span class="op">=</span> <span class="ident">coordinate</span>;
+        <span class="self">self</span>
+    }
+
+    <span class="kw">fn</span> <span class="ident">y</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">coordinate</span>: <span class="ident">f64</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">CircleBuilder</span> {
+        <span class="self">self</span>.<span class="ident">y</span> <span class="op">=</span> <span class="ident">coordinate</span>;
+        <span class="self">self</span>
+    }
+
+    <span class="kw">fn</span> <span class="ident">radius</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">radius</span>: <span class="ident">f64</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">CircleBuilder</span> {
+        <span class="self">self</span>.<span class="ident">radius</span> <span class="op">=</span> <span class="ident">radius</span>;
+        <span class="self">self</span>
+    }
+
+    <span class="kw">fn</span> <span class="ident">finalize</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">Circle</span> {
+        <span class="ident">Circle</span> { <span class="ident">x</span>: <span class="self">self</span>.<span class="ident">x</span>, <span class="ident">y</span>: <span class="self">self</span>.<span class="ident">y</span>, <span class="ident">radius</span>: <span class="self">self</span>.<span class="ident">radius</span> }
+    }
+}
+
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="kw">let</span> <span class="ident">c</span> <span class="op">=</span> <span class="ident">CircleBuilder</span>::<span class="ident">new</span>()
+                .<span class="ident">x</span>(<span class="number">1.0</span>)
+                .<span class="ident">y</span>(<span class="number">2.0</span>)
+                .<span class="ident">radius</span>(<span class="number">2.0</span>)
+                .<span class="ident">finalize</span>();
+
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;площадь: {}&quot;</span>, <span class="ident">c</span>.<span class="ident">area</span>());
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;x: {}&quot;</span>, <span class="ident">c</span>.<span class="ident">x</span>);
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;y: {}&quot;</span>, <span class="ident">c</span>.<span class="ident">y</span>);
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=struct%20Circle%20%7B%0A%20%20%20%20x%3A%20f64%2C%0A%20%20%20%20y%3A%20f64%2C%0A%20%20%20%20radius%3A%20f64%2C%0A%7D%0A%0Aimpl%20Circle%20%7B%0A%20%20%20%20fn%20area(%26self)%20-%3E%20f64%20%7B%0A%20%20%20%20%20%20%20%20std%3A%3Af64%3A%3Aconsts%3A%3API%20*%20(self.radius%20*%20self.radius)%0A%20%20%20%20%7D%0A%7D%0A%0Astruct%20CircleBuilder%20%7B%0A%20%20%20%20x%3A%20f64%2C%0A%20%20%20%20y%3A%20f64%2C%0A%20%20%20%20radius%3A%20f64%2C%0A%7D%0A%0Aimpl%20CircleBuilder%20%7B%0A%20%20%20%20fn%20new()%20-%3E%20CircleBuilder%20%7B%0A%20%20%20%20%20%20%20%20CircleBuilder%20%7B%20x%3A%200.0%2C%20y%3A%200.0%2C%20radius%3A%201.0%2C%20%7D%0A%20%20%20%20%7D%0A%0A%20%20%20%20fn%20x(%26mut%20self%2C%20coordinate%3A%20f64)%20-%3E%20%26mut%20CircleBuilder%20%7B%0A%20%20%20%20%20%20%20%20self.x%20%3D%20coordinate%3B%0A%20%20%20%20%20%20%20%20self%0A%20%20%20%20%7D%0A%0A%20%20%20%20fn%20y(%26mut%20self%2C%20coordinate%3A%20f64)%20-%3E%20%26mut%20CircleBuilder%20%7B%0A%20%20%20%20%20%20%20%20self.y%20%3D%20coordinate%3B%0A%20%20%20%20%20%20%20%20self%0A%20%20%20%20%7D%0A%0A%20%20%20%20fn%20radius(%26mut%20self%2C%20radius%3A%20f64)%20-%3E%20%26mut%20CircleBuilder%20%7B%0A%20%20%20%20%20%20%20%20self.radius%20%3D%20radius%3B%0A%20%20%20%20%20%20%20%20self%0A%20%20%20%20%7D%0A%0A%20%20%20%20fn%20finalize(%26self)%20-%3E%20Circle%20%7B%0A%20%20%20%20%20%20%20%20Circle%20%7B%20x%3A%20self.x%2C%20y%3A%20self.y%2C%20radius%3A%20self.radius%20%7D%0A%20%20%20%20%7D%0A%7D%0A%0Afn%20main()%20%7B%0A%20%20%20%20let%20c%20%3D%20CircleBuilder%3A%3Anew()%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20.x(1.0)%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20.y(2.0)%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20.radius(2.0)%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20.finalize()%3B%0A%0A%20%20%20%20println!(%22%D0%BF%D0%BB%D0%BE%D1%89%D0%B0%D0%B4%D1%8C%3A%20%7B%7D%22%2C%20c.area())%3B%0A%20%20%20%20println!(%22x%3A%20%7B%7D%22%2C%20c.x)%3B%0A%20%20%20%20println!(%22y%3A%20%7B%7D%22%2C%20c.y)%3B%0A%7D%0A">Run</a></pre>
 
 <p>Всё, что мы сделали здесь, — это создали ещё одну структуру, <code>CircleBuilder</code>. В

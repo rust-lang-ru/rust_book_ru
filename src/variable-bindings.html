@@ -192,9 +192,9 @@
 <em>связывание имён</em>. Они связывают значение с именем, для того чтобы
 воспользоваться им позже. Для связывания используется команда <code>let</code>:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='kw'>let</span> <span class='ident'>x</span> <span class='op'>=</span> <span class='number'>5</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="number">5</span>;
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0A%20%20%20%20let%20x%20%3D%205%3B%0A%7D%0A">Run</a></pre>
 
 <p>Все операции, производимые ниже, будут происходить в функции <code>main()</code>, так как
@@ -208,8 +208,8 @@
 <code>let</code> располагается не просто имя переменной, а &quot;<a href="patterns.html">шаблон</a>&quot;. Это значит,
 что мы можем делать вещи вроде этой:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>let</span> (<span class='ident'>x</span>, <span class='ident'>y</span>) <span class='op'>=</span> (<span class='number'>1</span>, <span class='number'>2</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20(x%2C%20y)%20%3D%20(1%2C%202)%3B%0A%7D">Run</a></pre>
+<pre class="rust rust-example-rendered">
+<span class="kw">let</span> (<span class="ident">x</span>, <span class="ident">y</span>) <span class="op">=</span> (<span class="number">1</span>, <span class="number">2</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20(x%2C%20y)%20%3D%20(1%2C%202)%3B%0A%7D">Run</a></pre>
 
 <p>После завершения этого выражения <code>x</code> будет единицей, a <code>y</code> — двойкой. Шаблоны
 очень мощны, и о них написана отдельная <a href="patterns.html">глава</a>. Но на данный момент
@@ -225,8 +225,8 @@
 
 <p>Тем не менее, мы можем указать желаемый тип. Он следует после двоеточия (<code>:</code>):</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>let</span> <span class='ident'>x</span>: <span class='ident'>i32</span> <span class='op'>=</span> <span class='number'>5</span>;<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20x%3A%20i32%20%3D%205%3B%0A%7D">Run</a></pre>
+<pre class="rust rust-example-rendered">
+<span class="kw">let</span> <span class="ident">x</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">5</span>;<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20x%3A%20i32%20%3D%205%3B%0A%7D">Run</a></pre>
 
 <p>Если бы мы попросили вас прочитать это вслух, вы бы сказали «<code>x</code> — это
 связывание типа <code>int</code> со значением <code>пять</code>».</p>
@@ -239,9 +239,9 @@
 <p>В дальнейших примерах мы будем указывать тип в комментариях. Это будет выглядеть
 вот так:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='kw'>let</span> <span class='ident'>x</span> <span class='op'>=</span> <span class='number'>5</span>; <span class='comment'>// x: i32</span>
+<pre class="rust rust-example-rendered">
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="number">5</span>; <span class="comment">// x: i32</span>
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0A%20%20%20%20let%20x%20%3D%205%3B%20%2F%2F%20x%3A%20i32%0A%7D%0A">Run</a></pre>
 
 <p>Обратите внимание на сходство между этим комментарием и синтаксисом, который вы
@@ -252,9 +252,9 @@
 <h1 id='Изменяемость' class='section-header'><a href='#Изменяемость'>Изменяемость</a></h1>
 <p>По умолчанию, связывание <em>неизменяемо</em>. Этот код не скомпилируется:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>let</span> <span class='ident'>x</span> <span class='op'>=</span> <span class='number'>5</span>;
-<span class='ident'>x</span> <span class='op'>=</span> <span class='number'>10</span>;<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20x%20%3D%205%3B%0Ax%20%3D%2010%3B%0A%7D">Run</a></pre>
+<pre class="rust rust-example-rendered">
+<span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="number">5</span>;
+<span class="ident">x</span> <span class="op">=</span> <span class="number">10</span>;<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20x%20%3D%205%3B%0Ax%20%3D%2010%3B%0A%7D">Run</a></pre>
 
 <p>И вы получите ошибку:</p>
 
@@ -266,9 +266,9 @@
 <p>Если вы хотите, чтобы связывание было изменяемым, вы можете использовать
 модификатор <code>mut</code>:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>x</span> <span class='op'>=</span> <span class='number'>5</span>; <span class='comment'>// mut x: i32</span>
-<span class='ident'>x</span> <span class='op'>=</span> <span class='number'>10</span>;<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20mut%20x%20%3D%205%3B%20%2F%2F%20mut%20x%3A%20i32%0Ax%20%3D%2010%3B%0A%7D">Run</a></pre>
+<pre class="rust rust-example-rendered">
+<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">x</span> <span class="op">=</span> <span class="number">5</span>; <span class="comment">// mut x: i32</span>
+<span class="ident">x</span> <span class="op">=</span> <span class="number">10</span>;<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20mut%20x%20%3D%205%3B%20%2F%2F%20mut%20x%3A%20i32%0Ax%20%3D%2010%3B%0A%7D">Run</a></pre>
 
 <p>Может показаться, что незачем делать связывание неизменяемым по умолчанию. Но
 вспомните, на чём в первую очередь фокусируется Rust: на безопасности. Если вы
@@ -290,11 +290,11 @@
 <p>Давайте приступим к рассмотрению вышесказанного. Измените ваш файл <code>src/main.rs</code>
 так, что бы он выглядел следующим образом:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='kw'>let</span> <span class='ident'>x</span>: <span class='ident'>i32</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="kw">let</span> <span class="ident">x</span>: <span class="ident">i32</span>;
 
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Hello world!&quot;</span>);
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;Hello world!&quot;</span>);
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0A%20%20%20%20let%20x%3A%20i32%3B%0A%0A%20%20%20%20println!(%22Hello%20world!%22)%3B%0A%7D%0A">Run</a></pre>
 
 <p>Используйте команду <code>cargo build</code> в командной строке, чтобы собрать проект. Вы
@@ -313,11 +313,11 @@ src/main.rs:2     let x: i32;
 Однако, всё изменится, если мы попробуем использовать <code>x</code>. Сделаем это. Измените
 вашу программу так, что бы она выглядела следующим образом:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='kw'>let</span> <span class='ident'>x</span>: <span class='ident'>i32</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="kw">let</span> <span class="ident">x</span>: <span class="ident">i32</span>;
 
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;x имеет значение {}&quot;</span>, <span class='ident'>x</span>);
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;x имеет значение {}&quot;</span>, <span class="ident">x</span>);
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0A%20%20%20%20let%20x%3A%20i32%3B%0A%0A%20%20%20%20println!(%22x%20%D0%B8%D0%BC%D0%B5%D0%B5%D1%82%20%D0%B7%D0%BD%D0%B0%D1%87%D0%B5%D0%BD%D0%B8%D0%B5%20%7B%7D%22%2C%20x)%3B%0A%7D%0A">Run</a></pre>
 
 <p>И попробуйте собрать проект. Вы получите ошибку:</p>
@@ -359,15 +359,15 @@ Could not compile `hello_world`.
 существуют в различных блоках. К <code>x</code> можно получить доступ внутри блока
 <code>fn main() {}</code>, в то же время <code>y</code> доступен только во внутреннем блоке:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='kw'>let</span> <span class='ident'>x</span>: <span class='ident'>i32</span> <span class='op'>=</span> <span class='number'>17</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="kw">let</span> <span class="ident">x</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">17</span>;
     {
-        <span class='kw'>let</span> <span class='ident'>y</span>: <span class='ident'>i32</span> <span class='op'>=</span> <span class='number'>3</span>;
-        <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Значение x равно {} и значение y равно {}&quot;</span>, <span class='ident'>x</span>, <span class='ident'>y</span>);
+        <span class="kw">let</span> <span class="ident">y</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">3</span>;
+        <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;Значение x равно {} и значение y равно {}&quot;</span>, <span class="ident">x</span>, <span class="ident">y</span>);
     }
-    <span class='comment'>// Ошибка компиляции</span>
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Значение x равно {} и значение y равно {}&quot;</span>, <span class='ident'>x</span>, <span class='ident'>y</span>);
+    <span class="comment">// Ошибка компиляции</span>
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;Значение x равно {} и значение y равно {}&quot;</span>, <span class="ident">x</span>, <span class="ident">y</span>);
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0A%20%20%20%20let%20x%3A%20i32%20%3D%2017%3B%0A%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20let%20y%3A%20i32%20%3D%203%3B%0A%20%20%20%20%20%20%20%20println!(%22%D0%97%D0%BD%D0%B0%D1%87%D0%B5%D0%BD%D0%B8%D0%B5%20x%20%D1%80%D0%B0%D0%B2%D0%BD%D0%BE%20%7B%7D%20%D0%B8%20%D0%B7%D0%BD%D0%B0%D1%87%D0%B5%D0%BD%D0%B8%D0%B5%20y%20%D1%80%D0%B0%D0%B2%D0%BD%D0%BE%20%7B%7D%22%2C%20x%2C%20y)%3B%0A%20%20%20%20%7D%0A%20%20%20%20%2F%2F%20%D0%9E%D1%88%D0%B8%D0%B1%D0%BA%D0%B0%20%D0%BA%D0%BE%D0%BC%D0%BF%D0%B8%D0%BB%D1%8F%D1%86%D0%B8%D0%B8%0A%20%20%20%20println!(%22%D0%97%D0%BD%D0%B0%D1%87%D0%B5%D0%BD%D0%B8%D0%B5%20x%20%D1%80%D0%B0%D0%B2%D0%BD%D0%BE%20%7B%7D%20%D0%B8%20%D0%B7%D0%BD%D0%B0%D1%87%D0%B5%D0%BD%D0%B8%D0%B5%20y%20%D1%80%D0%B0%D0%B2%D0%BD%D0%BE%20%7B%7D%22%2C%20x%2C%20y)%3B%0A%7D%0A">Run</a></pre>
 
 <p>Первый <code>println!</code> выведет &quot;Значение x равно 17 и значение y равно 3&quot;, но этот
@@ -393,29 +393,29 @@ To learn more, run the command again with --verbose.
 объявить связывание с именем, которое уже существует, то оно переопределит
 предыдущее.</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>let</span> <span class='ident'>x</span>: <span class='ident'>i32</span> <span class='op'>=</span> <span class='number'>8</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">let</span> <span class="ident">x</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">8</span>;
 {
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>x</span>); <span class='comment'>// Выводит &quot;8&quot;</span>
-    <span class='kw'>let</span> <span class='ident'>x</span> <span class='op'>=</span> <span class='number'>12</span>;
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>x</span>); <span class='comment'>// Выводит &quot;12&quot;</span>
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">x</span>); <span class="comment">// Выводит &quot;8&quot;</span>
+    <span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="number">12</span>;
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">x</span>); <span class="comment">// Выводит &quot;12&quot;</span>
 }
-<span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>x</span>); <span class='comment'>// Выводит &quot;8&quot;</span>
-<span class='kw'>let</span> <span class='ident'>x</span> <span class='op'>=</span>  <span class='number'>42</span>;
-<span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>x</span>); <span class='comment'>// Выводит &quot;42&quot;</span><a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20x%3A%20i32%20%3D%208%3B%0A%7B%0A%20%20%20%20println!(%22%7B%7D%22%2C%20x)%3B%20%2F%2F%20%D0%92%D1%8B%D0%B2%D0%BE%D0%B4%D0%B8%D1%82%20%228%22%0A%20%20%20%20let%20x%20%3D%2012%3B%0A%20%20%20%20println!(%22%7B%7D%22%2C%20x)%3B%20%2F%2F%20%D0%92%D1%8B%D0%B2%D0%BE%D0%B4%D0%B8%D1%82%20%2212%22%0A%7D%0Aprintln!(%22%7B%7D%22%2C%20x)%3B%20%2F%2F%20%D0%92%D1%8B%D0%B2%D0%BE%D0%B4%D0%B8%D1%82%20%228%22%0Alet%20x%20%3D%20%2042%3B%0Aprintln!(%22%7B%7D%22%2C%20x)%3B%20%2F%2F%20%D0%92%D1%8B%D0%B2%D0%BE%D0%B4%D0%B8%D1%82%20%2242%22%0A%7D">Run</a></pre>
+<span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">x</span>); <span class="comment">// Выводит &quot;8&quot;</span>
+<span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span>  <span class="number">42</span>;
+<span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">x</span>); <span class="comment">// Выводит &quot;42&quot;</span><a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20x%3A%20i32%20%3D%208%3B%0A%7B%0A%20%20%20%20println!(%22%7B%7D%22%2C%20x)%3B%20%2F%2F%20%D0%92%D1%8B%D0%B2%D0%BE%D0%B4%D0%B8%D1%82%20%228%22%0A%20%20%20%20let%20x%20%3D%2012%3B%0A%20%20%20%20println!(%22%7B%7D%22%2C%20x)%3B%20%2F%2F%20%D0%92%D1%8B%D0%B2%D0%BE%D0%B4%D0%B8%D1%82%20%2212%22%0A%7D%0Aprintln!(%22%7B%7D%22%2C%20x)%3B%20%2F%2F%20%D0%92%D1%8B%D0%B2%D0%BE%D0%B4%D0%B8%D1%82%20%228%22%0Alet%20x%20%3D%20%2042%3B%0Aprintln!(%22%7B%7D%22%2C%20x)%3B%20%2F%2F%20%D0%92%D1%8B%D0%B2%D0%BE%D0%B4%D0%B8%D1%82%20%2242%22%0A%7D">Run</a></pre>
 
 <p>Затенение и изменяемое связывание могут казаться двумя сторонами одной монеты, но
 они являются двумя отдельными концепциями, которые не всегда взаимозаменяемы.
 Например, затенение позволяет связать имя с другим типом или изменить связь с
 изменяемой на неизменяемую.</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>x</span>: <span class='ident'>i32</span> <span class='op'>=</span> <span class='number'>1</span>;
-<span class='ident'>x</span> <span class='op'>=</span> <span class='number'>7</span>;
-<span class='kw'>let</span> <span class='ident'>x</span> <span class='op'>=</span> <span class='ident'>x</span>; <span class='comment'>// теперь X неизменяемое и связанно с 7</span>
+<pre class="rust rust-example-rendered">
+<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">x</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span>;
+<span class="ident">x</span> <span class="op">=</span> <span class="number">7</span>;
+<span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="ident">x</span>; <span class="comment">// теперь X неизменяемое и связанно с 7</span>
 
-<span class='kw'>let</span> <span class='ident'>y</span> <span class='op'>=</span> <span class='number'>4</span>;
-<span class='kw'>let</span> <span class='ident'>y</span> <span class='op'>=</span> <span class='string'>&quot;Я так же могу быть связан с текстом!&quot;</span>; <span class='comment'>// теперь Y другого типа</span><a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20mut%20x%3A%20i32%20%3D%201%3B%0Ax%20%3D%207%3B%0Alet%20x%20%3D%20x%3B%20%2F%2F%20%D1%82%D0%B5%D0%BF%D0%B5%D1%80%D1%8C%20X%20%D0%BD%D0%B5%D0%B8%D0%B7%D0%BC%D0%B5%D0%BD%D1%8F%D0%B5%D0%BC%D0%BE%D0%B5%20%D0%B8%20%D1%81%D0%B2%D1%8F%D0%B7%D0%B0%D0%BD%D0%BD%D0%BE%20%D1%81%207%0A%0Alet%20y%20%3D%204%3B%0Alet%20y%20%3D%20%22%D0%AF%20%D1%82%D0%B0%D0%BA%20%D0%B6%D0%B5%20%D0%BC%D0%BE%D0%B3%D1%83%20%D0%B1%D1%8B%D1%82%D1%8C%20%D1%81%D0%B2%D1%8F%D0%B7%D0%B0%D0%BD%20%D1%81%20%D1%82%D0%B5%D0%BA%D1%81%D1%82%D0%BE%D0%BC!%22%3B%20%2F%2F%20%D1%82%D0%B5%D0%BF%D0%B5%D1%80%D1%8C%20Y%20%D0%B4%D1%80%D1%83%D0%B3%D0%BE%D0%B3%D0%BE%20%D1%82%D0%B8%D0%BF%D0%B0%0A%7D">Run</a></pre>
+<span class="kw">let</span> <span class="ident">y</span> <span class="op">=</span> <span class="number">4</span>;
+<span class="kw">let</span> <span class="ident">y</span> <span class="op">=</span> <span class="string">&quot;Я так же могу быть связан с текстом!&quot;</span>; <span class="comment">// теперь Y другого типа</span><a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20mut%20x%3A%20i32%20%3D%201%3B%0Ax%20%3D%207%3B%0Alet%20x%20%3D%20x%3B%20%2F%2F%20%D1%82%D0%B5%D0%BF%D0%B5%D1%80%D1%8C%20X%20%D0%BD%D0%B5%D0%B8%D0%B7%D0%BC%D0%B5%D0%BD%D1%8F%D0%B5%D0%BC%D0%BE%D0%B5%20%D0%B8%20%D1%81%D0%B2%D1%8F%D0%B7%D0%B0%D0%BD%D0%BD%D0%BE%20%D1%81%207%0A%0Alet%20y%20%3D%204%3B%0Alet%20y%20%3D%20%22%D0%AF%20%D1%82%D0%B0%D0%BA%20%D0%B6%D0%B5%20%D0%BC%D0%BE%D0%B3%D1%83%20%D0%B1%D1%8B%D1%82%D1%8C%20%D1%81%D0%B2%D1%8F%D0%B7%D0%B0%D0%BD%20%D1%81%20%D1%82%D0%B5%D0%BA%D1%81%D1%82%D0%BE%D0%BC!%22%3B%20%2F%2F%20%D1%82%D0%B5%D0%BF%D0%B5%D1%80%D1%8C%20Y%20%D0%B4%D1%80%D1%83%D0%B3%D0%BE%D0%B3%D0%BE%20%D1%82%D0%B8%D0%BF%D0%B0%0A%7D">Run</a></pre>
 
     <script src='../rustbook.js'></script>
 </div></div>

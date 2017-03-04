@@ -190,8 +190,8 @@
     <h1 class="title">Функции</h1>
     <p>Каждая программа на Rust имеет по крайней мере одну функцию — <code>main</code>:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
+<pre class="rust rust-example-rendered">
+<span class="kw">fn</span> <span class="ident">main</span>() {
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0A%7D%0A">Run</a></pre>
 
 <p>Это простейшее объявление функции. Как мы упоминали ранее, ключевое слово <code>fn</code>
@@ -199,27 +199,27 @@
 функция не принимает аргументов), а затем тело функции, заключённое в фигурные
 скобки. Вот функция <code>foo</code>:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span> <span class='ident'>foo</span>() {
+<pre class="rust rust-example-rendered">
+<span class="kw">fn</span> <span class="ident">foo</span>() {
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20foo()%20%7B%0A%7D%0A%7D">Run</a></pre>
 
 <p>Итак, что насчёт аргументов, принимаемых функцией? Вот функция, печатающая
 число:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span> <span class='ident'>print_number</span>(<span class='ident'>x</span>: <span class='ident'>i32</span>) {
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;x равен: {}&quot;</span>, <span class='ident'>x</span>);
+<pre class="rust rust-example-rendered">
+<span class="kw">fn</span> <span class="ident">print_number</span>(<span class="ident">x</span>: <span class="ident">i32</span>) {
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;x равен: {}&quot;</span>, <span class="ident">x</span>);
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20print_number(x%3A%20i32)%20%7B%0A%20%20%20%20println!(%22x%20%D1%80%D0%B0%D0%B2%D0%B5%D0%BD%3A%20%7B%7D%22%2C%20x)%3B%0A%7D%0A%7D">Run</a></pre>
 
 <p>Вот полная программа, использующая функцию <code>print_number</code>:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='ident'>print_number</span>(<span class='number'>5</span>);
+<pre class="rust rust-example-rendered">
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="ident">print_number</span>(<span class="number">5</span>);
 }
 
-<span class='kw'>fn</span> <span class='ident'>print_number</span>(<span class='ident'>x</span>: <span class='ident'>i32</span>) {
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;x равен: {}&quot;</span>, <span class='ident'>x</span>);
+<span class="kw">fn</span> <span class="ident">print_number</span>(<span class="ident">x</span>: <span class="ident">i32</span>) {
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;x равен: {}&quot;</span>, <span class="ident">x</span>);
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0A%20%20%20%20print_number(5)%3B%0A%7D%0A%0Afn%20print_number(x%3A%20i32)%20%7B%0A%20%20%20%20println!(%22x%20%D1%80%D0%B0%D0%B2%D0%B5%D0%BD%3A%20%7B%7D%22%2C%20x)%3B%0A%7D%0A">Run</a></pre>
 
 <p>Как видите, аргументы функций похожи на операторы <code>let</code>: вы можете объявить тип
@@ -227,13 +227,13 @@
 
 <p>Вот полная программа, которая складывает два числа и печатает их:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='ident'>print_sum</span>(<span class='number'>5</span>, <span class='number'>6</span>);
+<pre class="rust rust-example-rendered">
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="ident">print_sum</span>(<span class="number">5</span>, <span class="number">6</span>);
 }
 
-<span class='kw'>fn</span> <span class='ident'>print_sum</span>(<span class='ident'>x</span>: <span class='ident'>i32</span>, <span class='ident'>y</span>: <span class='ident'>i32</span>) {
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;сумма чисел: {}&quot;</span>, <span class='ident'>x</span> <span class='op'>+</span> <span class='ident'>y</span>);
+<span class="kw">fn</span> <span class="ident">print_sum</span>(<span class="ident">x</span>: <span class="ident">i32</span>, <span class="ident">y</span>: <span class="ident">i32</span>) {
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;сумма чисел: {}&quot;</span>, <span class="ident">x</span> <span class="op">+</span> <span class="ident">y</span>);
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0A%20%20%20%20print_sum(5%2C%206)%3B%0A%7D%0A%0Afn%20print_sum(x%3A%20i32%2C%20y%3A%20i32)%20%7B%0A%20%20%20%20println!(%22%D1%81%D1%83%D0%BC%D0%BC%D0%B0%20%D1%87%D0%B8%D1%81%D0%B5%D0%BB%3A%20%7B%7D%22%2C%20x%20%2B%20y)%3B%0A%7D%0A">Run</a></pre>
 
 <p>Аргументы разделяются запятой — и при вызове функции, и при её объявлении.</p>
@@ -241,9 +241,9 @@
 <p>В отличие от <code>let</code>, вы <em>должны</em> объявлять типы аргументов функции. Этот код не
 скомпилируется:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span> <span class='ident'>print_sum</span>(<span class='ident'>x</span>, <span class='ident'>y</span>) {
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;сумма чисел: {}&quot;</span>, <span class='ident'>x</span> <span class='op'>+</span> <span class='ident'>y</span>);
+<pre class="rust rust-example-rendered">
+<span class="kw">fn</span> <span class="ident">print_sum</span>(<span class="ident">x</span>, <span class="ident">y</span>) {
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;сумма чисел: {}&quot;</span>, <span class="ident">x</span> <span class="op">+</span> <span class="ident">y</span>);
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20print_sum(x%2C%20y)%20%7B%0A%20%20%20%20println!(%22%D1%81%D1%83%D0%BC%D0%BC%D0%B0%20%D1%87%D0%B8%D1%81%D0%B5%D0%BB%3A%20%7B%7D%22%2C%20x%20%2B%20y)%3B%0A%7D%0A%7D">Run</a></pre>
 
 <p>Вы увидите такую ошибку:</p>
@@ -261,9 +261,9 @@ fn print_number(x, y) {
 <p>Как насчёт возвращаемого значения? Вот функция, которая прибавляет один к
 целому:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span> <span class='ident'>add_one</span>(<span class='ident'>x</span>: <span class='ident'>i32</span>) <span class='op'>-&gt;</span> <span class='ident'>i32</span> {
-    <span class='ident'>x</span> <span class='op'>+</span> <span class='number'>1</span>
+<pre class="rust rust-example-rendered">
+<span class="kw">fn</span> <span class="ident">add_one</span>(<span class="ident">x</span>: <span class="ident">i32</span>) <span class="op">-&gt;</span> <span class="ident">i32</span> {
+    <span class="ident">x</span> <span class="op">+</span> <span class="number">1</span>
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20add_one(x%3A%20i32)%20-%3E%20i32%20%7B%0A%20%20%20%20x%20%2B%201%0A%7D%0A%7D">Run</a></pre>
 
 <p>Функции в Rust возвращают ровно одно значение, тип которого объявляется после
@@ -271,9 +271,9 @@ fn print_number(x, y) {
 «больше» (<code>&gt;</code>). Заметьте, что в функции выше нет точки с запятой. Если бы мы
 добавили её:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span> <span class='ident'>add_one</span>(<span class='ident'>x</span>: <span class='ident'>i32</span>) <span class='op'>-&gt;</span> <span class='ident'>i32</span> {
-    <span class='ident'>x</span> <span class='op'>+</span> <span class='number'>1</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">fn</span> <span class="ident">add_one</span>(<span class="ident">x</span>: <span class="ident">i32</span>) <span class="op">-&gt;</span> <span class="ident">i32</span> {
+    <span class="ident">x</span> <span class="op">+</span> <span class="number">1</span>;
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20add_one(x%3A%20i32)%20-%3E%20i32%20%7B%0A%20%20%20%20x%20%2B%201%3B%0A%7D%0A%7D">Run</a></pre>
 
 <p>мы бы получили ошибку:</p>
@@ -314,8 +314,8 @@ help: consider removing this semicolon:
 <p>Однако, в Rust использование <code>let</code> для связывания <em>не является</em> выражением.
 Следующий код вызовет ошибку компиляции:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>let</span> <span class='ident'>x</span> <span class='op'>=</span> (<span class='kw'>let</span> <span class='ident'>y</span> <span class='op'>=</span> <span class='number'>5</span>); <span class='comment'>// expected identifier, found keyword `let`</span><a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20x%20%3D%20(let%20y%20%3D%205)%3B%20%2F%2F%20expected%20identifier%2C%20found%20keyword%20%60let%60%0A%7D">Run</a></pre>
+<pre class="rust rust-example-rendered">
+<span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> (<span class="kw">let</span> <span class="ident">y</span> <span class="op">=</span> <span class="number">5</span>); <span class="comment">// expected identifier, found keyword `let`</span><a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20x%20%3D%20(let%20y%20%3D%205)%3B%20%2F%2F%20expected%20identifier%2C%20found%20keyword%20%60let%60%0A%7D">Run</a></pre>
 
 <p>Здесь компилятор сообщил нам, что ожидал увидеть выражение, но <code>let</code> является
 оператором, а не выражением.</p>
@@ -326,10 +326,10 @@ help: consider removing this semicolon:
 <code>5</code> из предыдущего примера), в Rust значением присваивания является пустой
 кортеж <code>()</code>.</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>y</span> <span class='op'>=</span> <span class='number'>5</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">y</span> <span class="op">=</span> <span class="number">5</span>;
 
-<span class='kw'>let</span> <span class='ident'>x</span> <span class='op'>=</span> (<span class='ident'>y</span> <span class='op'>=</span> <span class='number'>6</span>);  <span class='comment'>// x будет присвоено значение `()`, а не `6`</span><a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20mut%20y%20%3D%205%3B%0A%0Alet%20x%20%3D%20(y%20%3D%206)%3B%20%20%2F%2F%20x%20%D0%B1%D1%83%D0%B4%D0%B5%D1%82%20%D0%BF%D1%80%D0%B8%D1%81%D0%B2%D0%BE%D0%B5%D0%BD%D0%BE%20%D0%B7%D0%BD%D0%B0%D1%87%D0%B5%D0%BD%D0%B8%D0%B5%20%60()%60%2C%20%D0%B0%20%D0%BD%D0%B5%20%606%60%0A%7D">Run</a></pre>
+<span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> (<span class="ident">y</span> <span class="op">=</span> <span class="number">6</span>);  <span class="comment">// x будет присвоено значение `()`, а не `6`</span><a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20mut%20y%20%3D%205%3B%0A%0Alet%20x%20%3D%20(y%20%3D%206)%3B%20%20%2F%2F%20x%20%D0%B1%D1%83%D0%B4%D0%B5%D1%82%20%D0%BF%D1%80%D0%B8%D1%81%D0%B2%D0%BE%D0%B5%D0%BD%D0%BE%20%D0%B7%D0%BD%D0%B0%D1%87%D0%B5%D0%BD%D0%B8%D0%B5%20%60()%60%2C%20%D0%B0%20%D0%BD%D0%B5%20%606%60%0A%7D">Run</a></pre>
 
 <p>Вторым типом операторов в Rust является <em>оператор выражения</em>. Его цель -
 превратить любое выражение в оператор. В практическом плане, грамматика Rust
@@ -340,9 +340,9 @@ help: consider removing this semicolon:
 
 <p>Из-за чего мы говорим «почти»? Вы это уже видели в этом примере:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span> <span class='ident'>add_one</span>(<span class='ident'>x</span>: <span class='ident'>i32</span>) <span class='op'>-&gt;</span> <span class='ident'>i32</span> {
-    <span class='ident'>x</span> <span class='op'>+</span> <span class='number'>1</span>
+<pre class="rust rust-example-rendered">
+<span class="kw">fn</span> <span class="ident">add_one</span>(<span class="ident">x</span>: <span class="ident">i32</span>) <span class="op">-&gt;</span> <span class="ident">i32</span> {
+    <span class="ident">x</span> <span class="op">+</span> <span class="number">1</span>
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20add_one(x%3A%20i32)%20-%3E%20i32%20%7B%0A%20%20%20%20x%20%2B%201%0A%7D%0A%7D">Run</a></pre>
 
 <p>Наша функция объявлена как возвращающая <code>i32</code>. Но если в конце есть точка с
@@ -353,20 +353,20 @@ help: consider removing this semicolon:
 <p>А что насчёт досрочного возврата из функции? У нас есть для этого ключевое слово
 <code>return</code>:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span> <span class='ident'>foo</span>(<span class='ident'>x</span>: <span class='ident'>i32</span>) <span class='op'>-&gt;</span> <span class='ident'>i32</span> {
-    <span class='kw'>return</span> <span class='ident'>x</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">fn</span> <span class="ident">foo</span>(<span class="ident">x</span>: <span class="ident">i32</span>) <span class="op">-&gt;</span> <span class="ident">i32</span> {
+    <span class="kw">return</span> <span class="ident">x</span>;
 
-    <span class='comment'>// дальнейший код не будет исполнен!</span>
-    <span class='ident'>x</span> <span class='op'>+</span> <span class='number'>1</span>
+    <span class="comment">// дальнейший код не будет исполнен!</span>
+    <span class="ident">x</span> <span class="op">+</span> <span class="number">1</span>
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20foo(x%3A%20i32)%20-%3E%20i32%20%7B%0A%20%20%20%20return%20x%3B%0A%0A%20%20%20%20%2F%2F%20%D0%B4%D0%B0%D0%BB%D1%8C%D0%BD%D0%B5%D0%B9%D1%88%D0%B8%D0%B9%20%D0%BA%D0%BE%D0%B4%20%D0%BD%D0%B5%20%D0%B1%D1%83%D0%B4%D0%B5%D1%82%20%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD!%0A%20%20%20%20x%20%2B%201%0A%7D%0A%7D">Run</a></pre>
 
 <p><code>return</code> можно написать в последней строке тела функции, но это считается
 плохим стилем:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span> <span class='ident'>foo</span>(<span class='ident'>x</span>: <span class='ident'>i32</span>) <span class='op'>-&gt;</span> <span class='ident'>i32</span> {
-    <span class='kw'>return</span> <span class='ident'>x</span> <span class='op'>+</span> <span class='number'>1</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">fn</span> <span class="ident">foo</span>(<span class="ident">x</span>: <span class="ident">i32</span>) <span class="op">-&gt;</span> <span class="ident">i32</span> {
+    <span class="kw">return</span> <span class="ident">x</span> <span class="op">+</span> <span class="number">1</span>;
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20foo(x%3A%20i32)%20-%3E%20i32%20%7B%0A%20%20%20%20return%20x%20%2B%201%3B%0A%7D%0A%7D">Run</a></pre>
 
 <p>Если вы никогда не работали с языком, в котором операторы являются выражениями,
@@ -377,9 +377,9 @@ help: consider removing this semicolon:
 <p>Для функций, которые не возвращают управление («расходящихся»), в Rust есть
 специальный синтаксис:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span> <span class='ident'>diverges</span>() <span class='op'>-&gt;</span> <span class='op'>!</span> {
-    <span class='macro'>panic</span><span class='macro'>!</span>(<span class='string'>&quot;Эта функция не возвращает управление!&quot;</span>);
+<pre class="rust rust-example-rendered">
+<span class="kw">fn</span> <span class="ident">diverges</span>() <span class="op">-&gt;</span> <span class="op">!</span> {
+    <span class="macro">panic</span><span class="macro">!</span>(<span class="string">&quot;Эта функция не возвращает управление!&quot;</span>);
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20diverges()%20-%3E%20!%20%7B%0A%20%20%20%20panic!(%22%D0%AD%D1%82%D0%B0%20%D1%84%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D1%8F%20%D0%BD%D0%B5%20%D0%B2%D0%BE%D0%B7%D0%B2%D1%80%D0%B0%D1%89%D0%B0%D0%B5%D1%82%20%D1%83%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5!%22)%3B%0A%7D%0A%7D">Run</a></pre>
 
 <p><code>panic!</code> — это макрос, как и <code>println!()</code>, который мы встречали ранее. В отличие
@@ -438,34 +438,34 @@ stack backtrace:
 
 <p>Значение расходящейся функции может быть использовано как значение любого типа:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>let</span> <span class='ident'>x</span>: <span class='ident'>i32</span> <span class='op'>=</span> <span class='ident'>diverges</span>();
-<span class='kw'>let</span> <span class='ident'>x</span>: <span class='ident'>String</span> <span class='op'>=</span> <span class='ident'>diverges</span>();<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20diverges()%20-%3E%20!%20%7B%0A%20%20%20panic!(%22%D0%AD%D1%82%D0%B0%20%D1%84%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D1%8F%20%D0%BD%D0%B8%D0%BA%D0%BE%D0%B3%D0%B4%D0%B0%20%D0%BD%D0%B5%20%D0%B2%D1%8B%D1%85%D0%BE%D0%B4%D0%B8%D1%82!%22)%3B%0A%7D%0Alet%20x%3A%20i32%20%3D%20diverges()%3B%0Alet%20x%3A%20String%20%3D%20diverges()%3B%0A%7D">Run</a></pre>
+<pre class="rust rust-example-rendered">
+<span class="kw">let</span> <span class="ident">x</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="ident">diverges</span>();
+<span class="kw">let</span> <span class="ident">x</span>: <span class="ident">String</span> <span class="op">=</span> <span class="ident">diverges</span>();<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20diverges()%20-%3E%20!%20%7B%0A%20%20%20panic!(%22%D0%AD%D1%82%D0%B0%20%D1%84%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D1%8F%20%D0%BD%D0%B8%D0%BA%D0%BE%D0%B3%D0%B4%D0%B0%20%D0%BD%D0%B5%20%D0%B2%D1%8B%D1%85%D0%BE%D0%B4%D0%B8%D1%82!%22)%3B%0A%7D%0Alet%20x%3A%20i32%20%3D%20diverges()%3B%0Alet%20x%3A%20String%20%3D%20diverges()%3B%0A%7D">Run</a></pre>
 
 <h2 id='Указатели-на-функции' class='section-header'><a href='#Указатели-на-функции'>Указатели на функции</a></h2>
 <p>Можно объявить имя, связанное с функцией:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>let</span> <span class='ident'>f</span>: <span class='kw'>fn</span>(<span class='ident'>i32</span>) <span class='op'>-&gt;</span> <span class='ident'>i32</span>;<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20f%3A%20fn(i32)%20-%3E%20i32%3B%0A%7D">Run</a></pre>
+<pre class="rust rust-example-rendered">
+<span class="kw">let</span> <span class="ident">f</span>: <span class="kw">fn</span>(<span class="ident">i32</span>) <span class="op">-&gt;</span> <span class="ident">i32</span>;<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20f%3A%20fn(i32)%20-%3E%20i32%3B%0A%7D">Run</a></pre>
 
 <p><code>f</code> — это имя, связанное с указателем на функцию, которая принимает в качестве
 аргумента <code>i32</code> и возвращает <code>i32</code>. Например:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span> <span class='ident'>plus_one</span>(<span class='ident'>i</span>: <span class='ident'>i32</span>) <span class='op'>-&gt;</span> <span class='ident'>i32</span> {
-    <span class='ident'>i</span> <span class='op'>+</span> <span class='number'>1</span>
+<pre class="rust rust-example-rendered">
+<span class="kw">fn</span> <span class="ident">plus_one</span>(<span class="ident">i</span>: <span class="ident">i32</span>) <span class="op">-&gt;</span> <span class="ident">i32</span> {
+    <span class="ident">i</span> <span class="op">+</span> <span class="number">1</span>
 }
 
-<span class='comment'>// без вывода типа</span>
-<span class='kw'>let</span> <span class='ident'>f</span>: <span class='kw'>fn</span>(<span class='ident'>i32</span>) <span class='op'>-&gt;</span> <span class='ident'>i32</span> <span class='op'>=</span> <span class='ident'>plus_one</span>;
+<span class="comment">// без вывода типа</span>
+<span class="kw">let</span> <span class="ident">f</span>: <span class="kw">fn</span>(<span class="ident">i32</span>) <span class="op">-&gt;</span> <span class="ident">i32</span> <span class="op">=</span> <span class="ident">plus_one</span>;
 
-<span class='comment'>// с выводом типа</span>
-<span class='kw'>let</span> <span class='ident'>f</span> <span class='op'>=</span> <span class='ident'>plus_one</span>;<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20plus_one(i%3A%20i32)%20-%3E%20i32%20%7B%0A%20%20%20%20i%20%2B%201%0A%7D%0A%0A%2F%2F%20%D0%B1%D0%B5%D0%B7%20%D0%B2%D1%8B%D0%B2%D0%BE%D0%B4%D0%B0%20%D1%82%D0%B8%D0%BF%D0%B0%0Alet%20f%3A%20fn(i32)%20-%3E%20i32%20%3D%20plus_one%3B%0A%0A%2F%2F%20%D1%81%20%D0%B2%D1%8B%D0%B2%D0%BE%D0%B4%D0%BE%D0%BC%20%D1%82%D0%B8%D0%BF%D0%B0%0Alet%20f%20%3D%20plus_one%3B%0A%7D">Run</a></pre>
+<span class="comment">// с выводом типа</span>
+<span class="kw">let</span> <span class="ident">f</span> <span class="op">=</span> <span class="ident">plus_one</span>;<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20plus_one(i%3A%20i32)%20-%3E%20i32%20%7B%0A%20%20%20%20i%20%2B%201%0A%7D%0A%0A%2F%2F%20%D0%B1%D0%B5%D0%B7%20%D0%B2%D1%8B%D0%B2%D0%BE%D0%B4%D0%B0%20%D1%82%D0%B8%D0%BF%D0%B0%0Alet%20f%3A%20fn(i32)%20-%3E%20i32%20%3D%20plus_one%3B%0A%0A%2F%2F%20%D1%81%20%D0%B2%D1%8B%D0%B2%D0%BE%D0%B4%D0%BE%D0%BC%20%D1%82%D0%B8%D0%BF%D0%B0%0Alet%20f%20%3D%20plus_one%3B%0A%7D">Run</a></pre>
 
 <p>Теперь мы можем использовать <code>f</code>, чтобы вызвать функцию:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>let</span> <span class='ident'>six</span> <span class='op'>=</span> <span class='ident'>f</span>(<span class='number'>5</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20plus_one(i%3A%20i32)%20-%3E%20i32%20%7B%20i%20%2B%201%20%7D%0Alet%20f%20%3D%20plus_one%3B%0Alet%20six%20%3D%20f(5)%3B%0A%7D">Run</a></pre>
+<pre class="rust rust-example-rendered">
+<span class="kw">let</span> <span class="ident">six</span> <span class="op">=</span> <span class="ident">f</span>(<span class="number">5</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20plus_one(i%3A%20i32)%20-%3E%20i32%20%7B%20i%20%2B%201%20%7D%0Alet%20f%20%3D%20plus_one%3B%0Alet%20six%20%3D%20f(5)%3B%0A%7D">Run</a></pre>
 
     <script src='../rustbook.js'></script>
 </div></div>

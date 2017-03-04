@@ -198,11 +198,11 @@
 Этот атрибут применяется к блокам <code>extern</code>, и указывает сырые аргументы, которые
 должны быть переданы компоновщику при создании артефакта. Например:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>feature</span>(<span class='ident'>link_args</span>)]</span>
+<pre class="rust rust-example-rendered">
+<span class="attribute">#<span class="op">!</span>[<span class="ident">feature</span>(<span class="ident">link_args</span>)]</span>
 
-<span class='attribute'>#[<span class='ident'>link_args</span> <span class='op'>=</span> <span class='string'>&quot;-foo -bar -baz&quot;</span>]</span>
-<span class='kw'>extern</span> {}<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=%23!%5Bfeature(link_args)%5D%0A%0A%23%5Blink_args%20%3D%20%22-foo%20-bar%20-baz%22%5D%0Aextern%20%7B%7D%0Afn%20main()%20%7B%7D%0A&amp;version=nightly">Run</a></pre>
+<span class="attribute">#[<span class="ident">link_args</span> <span class="op">=</span> <span class="string">&quot;-foo -bar -baz&quot;</span>]</span>
+<span class="kw">extern</span> {}<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=%23!%5Bfeature(link_args)%5D%0A%0A%23%5Blink_args%20%3D%20%22-foo%20-bar%20-baz%22%5D%0Aextern%20%7B%7D%0Afn%20main()%20%7B%7D%0A&amp;version=nightly">Run</a></pre>
 
 <p>Обратите внимание, что эта возможность скрыта за <code>feature(link_args)</code>, так как
 это нештатный способ компоновки. В данный момент <code>rustc</code> вызывает системный

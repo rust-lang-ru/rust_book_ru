@@ -249,12 +249,12 @@ Rust, вы всегда можете создать альтернативную
 позволяет запускать код на Rust параллельно. Вот простой пример использования
 <code>std::thread</code>:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>thread</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">thread</span>;
 
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='ident'>thread</span>::<span class='ident'>spawn</span>(<span class='op'>||</span> {
-        <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Hello from a thread!&quot;</span>);
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="ident">thread</span>::<span class="ident">spawn</span>(<span class="op">||</span> {
+        <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;Hello from a thread!&quot;</span>);
     });
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=use%20std%3A%3Athread%3B%0A%0Afn%20main()%20%7B%0A%20%20%20%20thread%3A%3Aspawn(%7C%7C%20%7B%0A%20%20%20%20%20%20%20%20println!(%22Hello%20from%20a%20thread!%22)%3B%0A%20%20%20%20%7D)%3B%0A%7D%0A">Run</a></pre>
 
@@ -262,15 +262,15 @@ Rust, вы всегда можете создать альтернативную
 которое выполняется в новом потоке. Он возвращает дескриптор потока, который
 используется для ожидания завершения этого потока и извлечения его результата:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>thread</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">thread</span>;
 
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='kw'>let</span> <span class='ident'>handle</span> <span class='op'>=</span> <span class='ident'>thread</span>::<span class='ident'>spawn</span>(<span class='op'>||</span> {
-        <span class='string'>&quot;Hello from a thread!&quot;</span>
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="kw">let</span> <span class="ident">handle</span> <span class="op">=</span> <span class="ident">thread</span>::<span class="ident">spawn</span>(<span class="op">||</span> {
+        <span class="string">&quot;Hello from a thread!&quot;</span>
     });
 
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>handle</span>.<span class='ident'>join</span>().<span class='ident'>unwrap</span>());
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">handle</span>.<span class="ident">join</span>().<span class="ident">unwrap</span>());
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=use%20std%3A%3Athread%3B%0A%0Afn%20main()%20%7B%0A%20%20%20%20let%20handle%20%3D%20thread%3A%3Aspawn(%7C%7C%20%7B%0A%20%20%20%20%20%20%20%20%22Hello%20from%20a%20thread!%22%0A%20%20%20%20%7D)%3B%0A%0A%20%20%20%20println!(%22%7B%7D%22%2C%20handle.join().unwrap())%3B%0A%7D%0A">Run</a></pre>
 
 <p>Многие языки имеют возможность выполнять потоки, но это дико опасно. Есть целые
@@ -303,19 +303,19 @@ Rust, вы всегда можете создать альтернативную
 <p>В качестве примера приведем программу на Rust, которая входила бы в состояние
 гонки по данным на многих языках. На Rust она не скомпилируется:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>thread</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">thread</span>;
 
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>data</span> <span class='op'>=</span> <span class='macro'>vec</span><span class='macro'>!</span>[<span class='number'>1u32</span>, <span class='number'>2</span>, <span class='number'>3</span>];
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">data</span> <span class="op">=</span> <span class="macro">vec</span><span class="macro">!</span>[<span class="number">1u32</span>, <span class="number">2</span>, <span class="number">3</span>];
 
-    <span class='kw'>for</span> <span class='ident'>i</span> <span class='kw'>in</span> <span class='number'>0</span>..<span class='number'>3</span> {
-        <span class='ident'>thread</span>::<span class='ident'>spawn</span>(<span class='kw'>move</span> <span class='op'>||</span> {
-            <span class='ident'>data</span>[<span class='ident'>i</span>] <span class='op'>+=</span> <span class='number'>1</span>;
+    <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="number">3</span> {
+        <span class="ident">thread</span>::<span class="ident">spawn</span>(<span class="kw">move</span> <span class="op">||</span> {
+            <span class="ident">data</span>[<span class="ident">i</span>] <span class="op">+=</span> <span class="number">1</span>;
         });
     }
 
-    <span class='ident'>thread</span>::<span class='ident'>sleep_ms</span>(<span class='number'>50</span>);
+    <span class="ident">thread</span>::<span class="ident">sleep_ms</span>(<span class="number">50</span>);
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=use%20std%3A%3Athread%3B%0A%0Afn%20main()%20%7B%0A%20%20%20%20let%20mut%20data%20%3D%20vec!%5B1u32%2C%202%2C%203%5D%3B%0A%0A%20%20%20%20for%20i%20in%200..3%20%7B%0A%20%20%20%20%20%20%20%20thread%3A%3Aspawn(move%20%7C%7C%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20data%5Bi%5D%20%2B%3D%201%3B%0A%20%20%20%20%20%20%20%20%7D)%3B%0A%20%20%20%20%7D%0A%0A%20%20%20%20thread%3A%3Asleep_ms(50)%3B%0A%7D%0A">Run</a></pre>
 
 <p>Она выдает ошибку:</p>
@@ -341,21 +341,21 @@ Rust, вы всегда можете создать альтернативную
 Для этого мы можем использовать тип <code>Mutex&lt;T&gt;</code>. Вот вторая версия нашего кода.
 Она по-прежнему не работает, но по другой причине:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>thread</span>;
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>sync</span>::<span class='ident'>Mutex</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">thread</span>;
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">sync</span>::<span class="ident">Mutex</span>;
 
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>data</span> <span class='op'>=</span> <span class='ident'>Mutex</span>::<span class='ident'>new</span>(<span class='macro'>vec</span><span class='macro'>!</span>[<span class='number'>1u32</span>, <span class='number'>2</span>, <span class='number'>3</span>]);
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">Mutex</span>::<span class="ident">new</span>(<span class="macro">vec</span><span class="macro">!</span>[<span class="number">1u32</span>, <span class="number">2</span>, <span class="number">3</span>]);
 
-    <span class='kw'>for</span> <span class='ident'>i</span> <span class='kw'>in</span> <span class='number'>0</span>..<span class='number'>3</span> {
-        <span class='kw'>let</span> <span class='ident'>data</span> <span class='op'>=</span> <span class='ident'>data</span>.<span class='ident'>lock</span>().<span class='ident'>unwrap</span>();
-        <span class='ident'>thread</span>::<span class='ident'>spawn</span>(<span class='kw'>move</span> <span class='op'>||</span> {
-            <span class='ident'>data</span>[<span class='ident'>i</span>] <span class='op'>+=</span> <span class='number'>1</span>;
+    <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="number">3</span> {
+        <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">lock</span>().<span class="ident">unwrap</span>();
+        <span class="ident">thread</span>::<span class="ident">spawn</span>(<span class="kw">move</span> <span class="op">||</span> {
+            <span class="ident">data</span>[<span class="ident">i</span>] <span class="op">+=</span> <span class="number">1</span>;
         });
     }
 
-    <span class='ident'>thread</span>::<span class='ident'>sleep_ms</span>(<span class='number'>50</span>);
+    <span class="ident">thread</span>::<span class="ident">sleep_ms</span>(<span class="number">50</span>);
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=use%20std%3A%3Athread%3B%0Ause%20std%3A%3Async%3A%3AMutex%3B%0A%0Afn%20main()%20%7B%0A%20%20%20%20let%20mut%20data%20%3D%20Mutex%3A%3Anew(vec!%5B1u32%2C%202%2C%203%5D)%3B%0A%0A%20%20%20%20for%20i%20in%200..3%20%7B%0A%20%20%20%20%20%20%20%20let%20data%20%3D%20data.lock().unwrap()%3B%0A%20%20%20%20%20%20%20%20thread%3A%3Aspawn(move%20%7C%7C%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20data%5Bi%5D%20%2B%3D%201%3B%0A%20%20%20%20%20%20%20%20%7D)%3B%0A%20%20%20%20%7D%0A%0A%20%20%20%20thread%3A%3Asleep_ms(50)%3B%0A%7D%0A">Run</a></pre>
 
 <p>Вот ошибка:</p>
@@ -372,8 +372,8 @@ Rust, вы всегда можете создать альтернативную
 <a href="http://doc.rust-lang.org/std/sync/struct.Mutex.html#method.lock"><code>lock</code></a>, который имеет следующую
 сигнатуру:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span> <span class='ident'>lock</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>LockResult</span><span class='op'>&lt;</span><span class='ident'>MutexGuard</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;&gt;</span><a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20lock(%26self)%20-%3E%20LockResult%3CMutexGuard%3CT%3E%3E%0A%7D">Run</a></pre>
+<pre class="rust rust-example-rendered">
+<span class="kw">fn</span> <span class="ident">lock</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">LockResult</span><span class="op">&lt;</span><span class="ident">MutexGuard</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;&gt;</span><a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20lock(%26self)%20-%3E%20LockResult%3CMutexGuard%3CT%3E%3E%0A%7D">Run</a></pre>
 
 <p>Так как типаж <code>Send</code> не был реализован для <code>MutexGuard&lt;T&gt;</code>, мы не можем
 перемещать охранное значение мьютекса через границы потоков, что и сказано в
@@ -381,32 +381,32 @@ Rust, вы всегда можете создать альтернативную
 
 <p>Мы можем использовать <code>Arc&lt;T&gt;</code>, чтобы исправить это. Вот рабочая версия:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>sync</span>::{<span class='ident'>Arc</span>, <span class='ident'>Mutex</span>};
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>thread</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">sync</span>::{<span class="ident">Arc</span>, <span class="ident">Mutex</span>};
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">thread</span>;
 
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='kw'>let</span> <span class='ident'>data</span> <span class='op'>=</span> <span class='ident'>Arc</span>::<span class='ident'>new</span>(<span class='ident'>Mutex</span>::<span class='ident'>new</span>(<span class='macro'>vec</span><span class='macro'>!</span>[<span class='number'>1u32</span>, <span class='number'>2</span>, <span class='number'>3</span>]));
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">Arc</span>::<span class="ident">new</span>(<span class="ident">Mutex</span>::<span class="ident">new</span>(<span class="macro">vec</span><span class="macro">!</span>[<span class="number">1u32</span>, <span class="number">2</span>, <span class="number">3</span>]));
 
-    <span class='kw'>for</span> <span class='ident'>i</span> <span class='kw'>in</span> <span class='number'>0</span>..<span class='number'>3</span> {
-        <span class='kw'>let</span> <span class='ident'>data</span> <span class='op'>=</span> <span class='ident'>data</span>.<span class='ident'>clone</span>();
-        <span class='ident'>thread</span>::<span class='ident'>spawn</span>(<span class='kw'>move</span> <span class='op'>||</span> {
-            <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>data</span> <span class='op'>=</span> <span class='ident'>data</span>.<span class='ident'>lock</span>().<span class='ident'>unwrap</span>();
-            <span class='ident'>data</span>[<span class='ident'>i</span>] <span class='op'>+=</span> <span class='number'>1</span>;
+    <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="number">3</span> {
+        <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">clone</span>();
+        <span class="ident">thread</span>::<span class="ident">spawn</span>(<span class="kw">move</span> <span class="op">||</span> {
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">lock</span>().<span class="ident">unwrap</span>();
+            <span class="ident">data</span>[<span class="ident">i</span>] <span class="op">+=</span> <span class="number">1</span>;
         });
     }
 
-    <span class='ident'>thread</span>::<span class='ident'>sleep_ms</span>(<span class='number'>50</span>);
+    <span class="ident">thread</span>::<span class="ident">sleep_ms</span>(<span class="number">50</span>);
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=use%20std%3A%3Async%3A%3A%7BArc%2C%20Mutex%7D%3B%0Ause%20std%3A%3Athread%3B%0A%0Afn%20main()%20%7B%0A%20%20%20%20let%20data%20%3D%20Arc%3A%3Anew(Mutex%3A%3Anew(vec!%5B1u32%2C%202%2C%203%5D))%3B%0A%0A%20%20%20%20for%20i%20in%200..3%20%7B%0A%20%20%20%20%20%20%20%20let%20data%20%3D%20data.clone()%3B%0A%20%20%20%20%20%20%20%20thread%3A%3Aspawn(move%20%7C%7C%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20let%20mut%20data%20%3D%20data.lock().unwrap()%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20data%5Bi%5D%20%2B%3D%201%3B%0A%20%20%20%20%20%20%20%20%7D)%3B%0A%20%20%20%20%7D%0A%0A%20%20%20%20thread%3A%3Asleep_ms(50)%3B%0A%7D%0A">Run</a></pre>
 
 <p>Теперь мы вызываем <code>clone()</code> для нашего <code>Arc</code>, что увеличивает внутренний
 счетчик. Затем полученная ссылка перемещается в новый поток. Давайте более
 подробно рассмотрим тело потока:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='ident'>thread</span>::<span class='ident'>spawn</span>(<span class='kw'>move</span> <span class='op'>||</span> {
-    <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>data</span> <span class='op'>=</span> <span class='ident'>data</span>.<span class='ident'>lock</span>().<span class='ident'>unwrap</span>();
-    <span class='ident'>data</span>[<span class='ident'>i</span>] <span class='op'>+=</span> <span class='number'>1</span>;
+<pre class="rust rust-example-rendered">
+<span class="ident">thread</span>::<span class="ident">spawn</span>(<span class="kw">move</span> <span class="op">||</span> {
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">lock</span>().<span class="ident">unwrap</span>();
+    <span class="ident">data</span>[<span class="ident">i</span>] <span class="op">+=</span> <span class="number">1</span>;
 });<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=use%20std%3A%3Async%3A%3A%7BArc%2C%20Mutex%7D%3B%0Ause%20std%3A%3Athread%3B%0Afn%20main()%20%7B%0A%20%20%20%20let%20data%20%3D%20Arc%3A%3Anew(Mutex%3A%3Anew(vec!%5B1u32%2C%202%2C%203%5D))%3B%0A%20%20%20%20for%20i%20in%200..3%20%7B%0A%20%20%20%20%20%20%20%20let%20data%20%3D%20data.clone()%3B%0Athread%3A%3Aspawn(move%20%7C%7C%20%7B%0A%20%20%20%20let%20mut%20data%20%3D%20data.lock().unwrap()%3B%0A%20%20%20%20data%5Bi%5D%20%2B%3D%201%3B%0A%7D)%3B%0A%20%20%20%20%7D%0A%20%20%20%20thread%3A%3Asleep_ms(50)%3B%0A%7D%0A">Run</a></pre>
 
 <p>Во-первых, мы вызываем метод <code>lock()</code>, который захватывает блокировку мьютекса.
@@ -428,29 +428,29 @@ Rust, вы всегда можете создать альтернативную
 <p>Вот версия нашего кода, которая использует для синхронизации каналы, вместо
 того, чтобы ждать в течение определенного времени:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>sync</span>::{<span class='ident'>Arc</span>, <span class='ident'>Mutex</span>};
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>thread</span>;
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>sync</span>::<span class='ident'>mpsc</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">sync</span>::{<span class="ident">Arc</span>, <span class="ident">Mutex</span>};
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">thread</span>;
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">sync</span>::<span class="ident">mpsc</span>;
 
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='kw'>let</span> <span class='ident'>data</span> <span class='op'>=</span> <span class='ident'>Arc</span>::<span class='ident'>new</span>(<span class='ident'>Mutex</span>::<span class='ident'>new</span>(<span class='number'>0u32</span>));
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">Arc</span>::<span class="ident">new</span>(<span class="ident">Mutex</span>::<span class="ident">new</span>(<span class="number">0u32</span>));
 
-    <span class='kw'>let</span> (<span class='ident'>tx</span>, <span class='ident'>rx</span>) <span class='op'>=</span> <span class='ident'>mpsc</span>::<span class='ident'>channel</span>();
+    <span class="kw">let</span> (<span class="ident">tx</span>, <span class="ident">rx</span>) <span class="op">=</span> <span class="ident">mpsc</span>::<span class="ident">channel</span>();
 
-    <span class='kw'>for</span> _ <span class='kw'>in</span> <span class='number'>0</span>..<span class='number'>10</span> {
-        <span class='kw'>let</span> (<span class='ident'>data</span>, <span class='ident'>tx</span>) <span class='op'>=</span> (<span class='ident'>data</span>.<span class='ident'>clone</span>(), <span class='ident'>tx</span>.<span class='ident'>clone</span>());
+    <span class="kw">for</span> _ <span class="kw">in</span> <span class="number">0</span>..<span class="number">10</span> {
+        <span class="kw">let</span> (<span class="ident">data</span>, <span class="ident">tx</span>) <span class="op">=</span> (<span class="ident">data</span>.<span class="ident">clone</span>(), <span class="ident">tx</span>.<span class="ident">clone</span>());
 
-        <span class='ident'>thread</span>::<span class='ident'>spawn</span>(<span class='kw'>move</span> <span class='op'>||</span> {
-            <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>data</span> <span class='op'>=</span> <span class='ident'>data</span>.<span class='ident'>lock</span>().<span class='ident'>unwrap</span>();
-            <span class='kw-2'>*</span><span class='ident'>data</span> <span class='op'>+=</span> <span class='number'>1</span>;
+        <span class="ident">thread</span>::<span class="ident">spawn</span>(<span class="kw">move</span> <span class="op">||</span> {
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">lock</span>().<span class="ident">unwrap</span>();
+            <span class="kw-2">*</span><span class="ident">data</span> <span class="op">+=</span> <span class="number">1</span>;
 
-            <span class='ident'>tx</span>.<span class='ident'>send</span>(());
+            <span class="ident">tx</span>.<span class="ident">send</span>(());
         });
     }
 
-    <span class='kw'>for</span> _ <span class='kw'>in</span> <span class='number'>0</span>..<span class='number'>10</span> {
-        <span class='ident'>rx</span>.<span class='ident'>recv</span>();
+    <span class="kw">for</span> _ <span class="kw">in</span> <span class="number">0</span>..<span class="number">10</span> {
+        <span class="ident">rx</span>.<span class="ident">recv</span>();
     }
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=use%20std%3A%3Async%3A%3A%7BArc%2C%20Mutex%7D%3B%0Ause%20std%3A%3Athread%3B%0Ause%20std%3A%3Async%3A%3Ampsc%3B%0A%0Afn%20main()%20%7B%0A%20%20%20%20let%20data%20%3D%20Arc%3A%3Anew(Mutex%3A%3Anew(0u32))%3B%0A%0A%20%20%20%20let%20(tx%2C%20rx)%20%3D%20mpsc%3A%3Achannel()%3B%0A%0A%20%20%20%20for%20_%20in%200..10%20%7B%0A%20%20%20%20%20%20%20%20let%20(data%2C%20tx)%20%3D%20(data.clone()%2C%20tx.clone())%3B%0A%0A%20%20%20%20%20%20%20%20thread%3A%3Aspawn(move%20%7C%7C%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20let%20mut%20data%20%3D%20data.lock().unwrap()%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20*data%20%2B%3D%201%3B%0A%0A%20%20%20%20%20%20%20%20%20%20%20%20tx.send(())%3B%0A%20%20%20%20%20%20%20%20%7D)%3B%0A%20%20%20%20%7D%0A%0A%20%20%20%20for%20_%20in%200..10%20%7B%0A%20%20%20%20%20%20%20%20rx.recv()%3B%0A%20%20%20%20%7D%0A%7D%0A">Run</a></pre>
 
@@ -463,24 +463,24 @@ Rust, вы всегда можете создать альтернативную
 никаких данных), в общем случае мы можем отправить по каналу любое значение,
 которое реализует типаж <code>Send</code>!</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>thread</span>;
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>sync</span>::<span class='ident'>mpsc</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">thread</span>;
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">sync</span>::<span class="ident">mpsc</span>;
 
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='kw'>let</span> (<span class='ident'>tx</span>, <span class='ident'>rx</span>) <span class='op'>=</span> <span class='ident'>mpsc</span>::<span class='ident'>channel</span>();
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="kw">let</span> (<span class="ident">tx</span>, <span class="ident">rx</span>) <span class="op">=</span> <span class="ident">mpsc</span>::<span class="ident">channel</span>();
 
-    <span class='kw'>for</span> _ <span class='kw'>in</span> <span class='number'>0</span>..<span class='number'>10</span> {
-        <span class='kw'>let</span> <span class='ident'>tx</span> <span class='op'>=</span> <span class='ident'>tx</span>.<span class='ident'>clone</span>();
+    <span class="kw">for</span> _ <span class="kw">in</span> <span class="number">0</span>..<span class="number">10</span> {
+        <span class="kw">let</span> <span class="ident">tx</span> <span class="op">=</span> <span class="ident">tx</span>.<span class="ident">clone</span>();
 
-        <span class='ident'>thread</span>::<span class='ident'>spawn</span>(<span class='kw'>move</span> <span class='op'>||</span> {
-            <span class='kw'>let</span> <span class='ident'>answer</span> <span class='op'>=</span> <span class='number'>42u32</span>;
+        <span class="ident">thread</span>::<span class="ident">spawn</span>(<span class="kw">move</span> <span class="op">||</span> {
+            <span class="kw">let</span> <span class="ident">answer</span> <span class="op">=</span> <span class="number">42u32</span>;
 
-            <span class='ident'>tx</span>.<span class='ident'>send</span>(<span class='ident'>answer</span>);
+            <span class="ident">tx</span>.<span class="ident">send</span>(<span class="ident">answer</span>);
         });
     }
 
-   <span class='ident'>rx</span>.<span class='ident'>recv</span>().<span class='ident'>ok</span>().<span class='ident'>expect</span>(<span class='string'>&quot;Could not receive answer&quot;</span>);
+   <span class="ident">rx</span>.<span class="ident">recv</span>().<span class="ident">ok</span>().<span class="ident">expect</span>(<span class="string">&quot;Could not receive answer&quot;</span>);
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=use%20std%3A%3Athread%3B%0Ause%20std%3A%3Async%3A%3Ampsc%3B%0A%0Afn%20main()%20%7B%0A%20%20%20%20let%20(tx%2C%20rx)%20%3D%20mpsc%3A%3Achannel()%3B%0A%0A%20%20%20%20for%20_%20in%200..10%20%7B%0A%20%20%20%20%20%20%20%20let%20tx%20%3D%20tx.clone()%3B%0A%0A%20%20%20%20%20%20%20%20thread%3A%3Aspawn(move%20%7C%7C%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20let%20answer%20%3D%2042u32%3B%0A%0A%20%20%20%20%20%20%20%20%20%20%20%20tx.send(answer)%3B%0A%20%20%20%20%20%20%20%20%7D)%3B%0A%20%20%20%20%7D%0A%0A%20%20%20rx.recv().ok().expect(%22Could%20not%20receive%20answer%22)%3B%0A%7D%0A">Run</a></pre>
 
 <p><code>u32</code> реализует <code>Send</code>, потому что мы можем сделать копию. Итак, создаётся
@@ -491,14 +491,14 @@ Rust, вы всегда можете создать альтернативную
 <p><code>panic!</code> аварийно завершает выполняемый в данный момент поток. Вы можете
 использовать потоки Rust как простой механизм изоляции:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>thread</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">thread</span>;
 
-<span class='kw'>let</span> <span class='ident'>result</span> <span class='op'>=</span> <span class='ident'>thread</span>::<span class='ident'>spawn</span>(<span class='kw'>move</span> <span class='op'>||</span> {
-    <span class='macro'>panic</span><span class='macro'>!</span>(<span class='string'>&quot;oops!&quot;</span>);
-}).<span class='ident'>join</span>();
+<span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="ident">thread</span>::<span class="ident">spawn</span>(<span class="kw">move</span> <span class="op">||</span> {
+    <span class="macro">panic</span><span class="macro">!</span>(<span class="string">&quot;oops!&quot;</span>);
+}).<span class="ident">join</span>();
 
-<span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>result</span>.<span class='ident'>is_err</span>());<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Ause%20std%3A%3Athread%3B%0A%0Alet%20result%20%3D%20thread%3A%3Aspawn(move%20%7C%7C%20%7B%0A%20%20%20%20panic!(%22oops!%22)%3B%0A%7D).join()%3B%0A%0Aassert!(result.is_err())%3B%0A%7D">Run</a></pre>
+<span class="macro">assert</span><span class="macro">!</span>(<span class="ident">result</span>.<span class="ident">is_err</span>());<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Ause%20std%3A%3Athread%3B%0A%0Alet%20result%20%3D%20thread%3A%3Aspawn(move%20%7C%7C%20%7B%0A%20%20%20%20panic!(%22oops!%22)%3B%0A%7D).join()%3B%0A%0Aassert!(result.is_err())%3B%0A%7D">Run</a></pre>
 
 <p>Используемый в коде выше метод <code>join()</code> структуры <code>Thread</code> возвращает <code>Result</code>,
 что позволяет нам проверить, паниковал ли поток, или он завершился нормально.</p>

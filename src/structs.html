@@ -192,23 +192,23 @@
 Например, если мы рассчитываем что-то с использованием координат 2D пространства,
 то нам понадобятся оба значения — <code>x</code> и <code>y</code>:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>let</span> <span class='ident'>origin_x</span> <span class='op'>=</span> <span class='number'>0</span>;
-<span class='kw'>let</span> <span class='ident'>origin_y</span> <span class='op'>=</span> <span class='number'>0</span>;<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20origin_x%20%3D%200%3B%0Alet%20origin_y%20%3D%200%3B%0A%7D">Run</a></pre>
+<pre class="rust rust-example-rendered">
+<span class="kw">let</span> <span class="ident">origin_x</span> <span class="op">=</span> <span class="number">0</span>;
+<span class="kw">let</span> <span class="ident">origin_y</span> <span class="op">=</span> <span class="number">0</span>;<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20origin_x%20%3D%200%3B%0Alet%20origin_y%20%3D%200%3B%0A%7D">Run</a></pre>
 
 <p>Структура позволяет нам объединить эти два значения в один тип с <code>x</code> и <code>y</code> в
 качестве имен полей:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>struct</span> <span class='ident'>Point</span> {
-    <span class='ident'>x</span>: <span class='ident'>i32</span>,
-    <span class='ident'>y</span>: <span class='ident'>i32</span>,
+<pre class="rust rust-example-rendered">
+<span class="kw">struct</span> <span class="ident">Point</span> {
+    <span class="ident">x</span>: <span class="ident">i32</span>,
+    <span class="ident">y</span>: <span class="ident">i32</span>,
 }
 
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='kw'>let</span> <span class='ident'>origin</span> <span class='op'>=</span> <span class='ident'>Point</span> { <span class='ident'>x</span>: <span class='number'>0</span>, <span class='ident'>y</span>: <span class='number'>0</span> }; <span class='comment'>// origin: Point</span>
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="kw">let</span> <span class="ident">origin</span> <span class="op">=</span> <span class="ident">Point</span> { <span class="ident">x</span>: <span class="number">0</span>, <span class="ident">y</span>: <span class="number">0</span> }; <span class="comment">// origin: Point</span>
 
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Начало координат находится в ({}, {})&quot;</span>, <span class='ident'>origin</span>.<span class='ident'>x</span>, <span class='ident'>origin</span>.<span class='ident'>y</span>);
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;Начало координат находится в ({}, {})&quot;</span>, <span class="ident">origin</span>.<span class="ident">x</span>, <span class="ident">origin</span>.<span class="ident">y</span>);
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=struct%20Point%20%7B%0A%20%20%20%20x%3A%20i32%2C%0A%20%20%20%20y%3A%20i32%2C%0A%7D%0A%0Afn%20main()%20%7B%0A%20%20%20%20let%20origin%20%3D%20Point%20%7B%20x%3A%200%2C%20y%3A%200%20%7D%3B%20%2F%2F%20origin%3A%20Point%0A%0A%20%20%20%20println!(%22%D0%9D%D0%B0%D1%87%D0%B0%D0%BB%D0%BE%20%D0%BA%D0%BE%D0%BE%D1%80%D0%B4%D0%B8%D0%BD%D0%B0%D1%82%20%D0%BD%D0%B0%D1%85%D0%BE%D0%B4%D0%B8%D1%82%D1%81%D1%8F%20%D0%B2%20(%7B%7D%2C%20%7B%7D)%22%2C%20origin.x%2C%20origin.y)%3B%0A%7D%0A">Run</a></pre>
 
 <p>Этот код делает много разных вещей, поэтому давайте разберём его по порядку. Мы
@@ -229,18 +229,18 @@
 отличаются от других именованных сущностей. Чтобы они стали изменяемы,
 используйте ключевое слово <code>mut</code>:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>struct</span> <span class='ident'>Point</span> {
-    <span class='ident'>x</span>: <span class='ident'>i32</span>,
-    <span class='ident'>y</span>: <span class='ident'>i32</span>,
+<pre class="rust rust-example-rendered">
+<span class="kw">struct</span> <span class="ident">Point</span> {
+    <span class="ident">x</span>: <span class="ident">i32</span>,
+    <span class="ident">y</span>: <span class="ident">i32</span>,
 }
 
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>point</span> <span class='op'>=</span> <span class='ident'>Point</span> { <span class='ident'>x</span>: <span class='number'>0</span>, <span class='ident'>y</span>: <span class='number'>0</span> };
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">point</span> <span class="op">=</span> <span class="ident">Point</span> { <span class="ident">x</span>: <span class="number">0</span>, <span class="ident">y</span>: <span class="number">0</span> };
 
-    <span class='ident'>point</span>.<span class='ident'>x</span> <span class='op'>=</span> <span class='number'>5</span>;
+    <span class="ident">point</span>.<span class="ident">x</span> <span class="op">=</span> <span class="number">5</span>;
 
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Точка находится в ({}, {})&quot;</span>, <span class='ident'>point</span>.<span class='ident'>x</span>, <span class='ident'>point</span>.<span class='ident'>y</span>);
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;Точка находится в ({}, {})&quot;</span>, <span class="ident">point</span>.<span class="ident">x</span>, <span class="ident">point</span>.<span class="ident">y</span>);
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=struct%20Point%20%7B%0A%20%20%20%20x%3A%20i32%2C%0A%20%20%20%20y%3A%20i32%2C%0A%7D%0A%0Afn%20main()%20%7B%0A%20%20%20%20let%20mut%20point%20%3D%20Point%20%7B%20x%3A%200%2C%20y%3A%200%20%7D%3B%0A%0A%20%20%20%20point.x%20%3D%205%3B%0A%0A%20%20%20%20println!(%22%D0%A2%D0%BE%D1%87%D0%BA%D0%B0%20%D0%BD%D0%B0%D1%85%D0%BE%D0%B4%D0%B8%D1%82%D1%81%D1%8F%20%D0%B2%20(%7B%7D%2C%20%7B%7D)%22%2C%20point.x%2C%20point.y)%3B%0A%7D%0A">Run</a></pre>
 
 <p>Этот код напечатает <code>Точка находится в (5, 0)</code>.</p>
@@ -248,10 +248,10 @@
 <p>Rust не поддерживает изменяемость отдельных полей, поэтому вы не можете написать
 что-то вроде такого:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>struct</span> <span class='ident'>Point</span> {
-    <span class='kw-2'>mut</span> <span class='ident'>x</span>: <span class='ident'>i32</span>,
-    <span class='ident'>y</span>: <span class='ident'>i32</span>,
+<pre class="rust rust-example-rendered">
+<span class="kw">struct</span> <span class="ident">Point</span> {
+    <span class="kw-2">mut</span> <span class="ident">x</span>: <span class="ident">i32</span>,
+    <span class="ident">y</span>: <span class="ident">i32</span>,
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Astruct%20Point%20%7B%0A%20%20%20%20mut%20x%3A%20i32%2C%0A%20%20%20%20y%3A%20i32%2C%0A%7D%0A%7D">Run</a></pre>
 
 <p>Изменяемость — это свойство имени, а не самой структуры. Если вы привыкли к
@@ -259,101 +259,101 @@
 непривычным, но на самом деле такое решение сильно упрощает вещи. Оно даже
 позволяет вам делать имена изменяемыми только на короткое время:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>struct</span> <span class='ident'>Point</span> {
-    <span class='ident'>x</span>: <span class='ident'>i32</span>,
-    <span class='ident'>y</span>: <span class='ident'>i32</span>,
+<pre class="rust rust-example-rendered">
+<span class="kw">struct</span> <span class="ident">Point</span> {
+    <span class="ident">x</span>: <span class="ident">i32</span>,
+    <span class="ident">y</span>: <span class="ident">i32</span>,
 }
 
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>point</span> <span class='op'>=</span> <span class='ident'>Point</span> { <span class='ident'>x</span>: <span class='number'>0</span>, <span class='ident'>y</span>: <span class='number'>0</span> };
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">point</span> <span class="op">=</span> <span class="ident">Point</span> { <span class="ident">x</span>: <span class="number">0</span>, <span class="ident">y</span>: <span class="number">0</span> };
 
-    <span class='ident'>point</span>.<span class='ident'>x</span> <span class='op'>=</span> <span class='number'>5</span>;
+    <span class="ident">point</span>.<span class="ident">x</span> <span class="op">=</span> <span class="number">5</span>;
 
-    <span class='kw'>let</span> <span class='ident'>point</span> <span class='op'>=</span> <span class='ident'>point</span>; <span class='comment'>// это новое имя неизменяемо</span>
+    <span class="kw">let</span> <span class="ident">point</span> <span class="op">=</span> <span class="ident">point</span>; <span class="comment">// это новое имя неизменяемо</span>
 
-    <span class='ident'>point</span>.<span class='ident'>y</span> <span class='op'>=</span> <span class='number'>6</span>; <span class='comment'>// это вызывает ошибку</span>
+    <span class="ident">point</span>.<span class="ident">y</span> <span class="op">=</span> <span class="number">6</span>; <span class="comment">// это вызывает ошибку</span>
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=struct%20Point%20%7B%0A%20%20%20%20x%3A%20i32%2C%0A%20%20%20%20y%3A%20i32%2C%0A%7D%0A%0Afn%20main()%20%7B%0A%20%20%20%20let%20mut%20point%20%3D%20Point%20%7B%20x%3A%200%2C%20y%3A%200%20%7D%3B%0A%0A%20%20%20%20point.x%20%3D%205%3B%0A%0A%20%20%20%20let%20point%20%3D%20point%3B%20%2F%2F%20%D1%8D%D1%82%D0%BE%20%D0%BD%D0%BE%D0%B2%D0%BE%D0%B5%20%D0%B8%D0%BC%D1%8F%20%D0%BD%D0%B5%D0%B8%D0%B7%D0%BC%D0%B5%D0%BD%D1%8F%D0%B5%D0%BC%D0%BE%0A%0A%20%20%20%20point.y%20%3D%206%3B%20%2F%2F%20%D1%8D%D1%82%D0%BE%20%D0%B2%D1%8B%D0%B7%D1%8B%D0%B2%D0%B0%D0%B5%D1%82%20%D0%BE%D1%88%D0%B8%D0%B1%D0%BA%D1%83%0A%7D%0A">Run</a></pre>
 
 <p>Структуры так же могут содержать <code>&amp;mut</code> ссылки, это позволяет вам производить
 подобные преобразования:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>struct</span> <span class='ident'>Point</span> {
-    <span class='ident'>x</span>: <span class='ident'>i32</span>,
-    <span class='ident'>y</span>: <span class='ident'>i32</span>,
+<pre class="rust rust-example-rendered">
+<span class="kw">struct</span> <span class="ident">Point</span> {
+    <span class="ident">x</span>: <span class="ident">i32</span>,
+    <span class="ident">y</span>: <span class="ident">i32</span>,
 }
 
-<span class='kw'>struct</span> <span class='ident'>PointRef</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span><span class='op'>&gt;</span> {
-    <span class='ident'>x</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;a</span> <span class='kw-2'>mut</span> <span class='ident'>i32</span>,
-    <span class='ident'>y</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;a</span> <span class='kw-2'>mut</span> <span class='ident'>i32</span>,
+<span class="kw">struct</span> <span class="ident">PointRef</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
+    <span class="ident">x</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="kw-2">mut</span> <span class="ident">i32</span>,
+    <span class="ident">y</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="kw-2">mut</span> <span class="ident">i32</span>,
 }
 
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>point</span> <span class='op'>=</span> <span class='ident'>Point</span> { <span class='ident'>x</span>: <span class='number'>0</span>, <span class='ident'>y</span>: <span class='number'>0</span> };
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">point</span> <span class="op">=</span> <span class="ident">Point</span> { <span class="ident">x</span>: <span class="number">0</span>, <span class="ident">y</span>: <span class="number">0</span> };
 
     {
-        <span class='kw'>let</span> <span class='ident'>r</span> <span class='op'>=</span> <span class='ident'>PointRef</span> { <span class='ident'>x</span>: <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>point</span>.<span class='ident'>x</span>, <span class='ident'>y</span>: <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>point</span>.<span class='ident'>y</span> };
+        <span class="kw">let</span> <span class="ident">r</span> <span class="op">=</span> <span class="ident">PointRef</span> { <span class="ident">x</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">point</span>.<span class="ident">x</span>, <span class="ident">y</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">point</span>.<span class="ident">y</span> };
 
-        <span class='kw-2'>*</span><span class='ident'>r</span>.<span class='ident'>x</span> <span class='op'>=</span> <span class='number'>5</span>;
-        <span class='kw-2'>*</span><span class='ident'>r</span>.<span class='ident'>y</span> <span class='op'>=</span> <span class='number'>6</span>;
+        <span class="kw-2">*</span><span class="ident">r</span>.<span class="ident">x</span> <span class="op">=</span> <span class="number">5</span>;
+        <span class="kw-2">*</span><span class="ident">r</span>.<span class="ident">y</span> <span class="op">=</span> <span class="number">6</span>;
     }
 
-    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>5</span>, <span class='ident'>point</span>.<span class='ident'>x</span>);
-    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>6</span>, <span class='ident'>point</span>.<span class='ident'>y</span>);
+    <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="number">5</span>, <span class="ident">point</span>.<span class="ident">x</span>);
+    <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="number">6</span>, <span class="ident">point</span>.<span class="ident">y</span>);
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=struct%20Point%20%7B%0A%20%20%20%20x%3A%20i32%2C%0A%20%20%20%20y%3A%20i32%2C%0A%7D%0A%0Astruct%20PointRef%3C'a%3E%20%7B%0A%20%20%20%20x%3A%20%26'a%20mut%20i32%2C%0A%20%20%20%20y%3A%20%26'a%20mut%20i32%2C%0A%7D%0A%0Afn%20main()%20%7B%0A%20%20%20%20let%20mut%20point%20%3D%20Point%20%7B%20x%3A%200%2C%20y%3A%200%20%7D%3B%0A%0A%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20let%20r%20%3D%20PointRef%20%7B%20x%3A%20%26mut%20point.x%2C%20y%3A%20%26mut%20point.y%20%7D%3B%0A%0A%20%20%20%20%20%20%20%20*r.x%20%3D%205%3B%0A%20%20%20%20%20%20%20%20*r.y%20%3D%206%3B%0A%20%20%20%20%7D%0A%0A%20%20%20%20assert_eq!(5%2C%20point.x)%3B%0A%20%20%20%20assert_eq!(6%2C%20point.y)%3B%0A%7D%0A">Run</a></pre>
 
 <h1 id='Синтаксис-обновления-update-syntax' class='section-header'><a href='#Синтаксис-обновления-update-syntax'>Синтаксис обновления (update syntax)</a></h1>
 <p>Вы можете включить в описание структуры <code>..</code> чтобы показать, что вы хотите
 использовать значения полей какой-то другой структуры. Например:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>struct</span> <span class='ident'>Point3d</span> {
-    <span class='ident'>x</span>: <span class='ident'>i32</span>,
-    <span class='ident'>y</span>: <span class='ident'>i32</span>,
-    <span class='ident'>z</span>: <span class='ident'>i32</span>,
+<pre class="rust rust-example-rendered">
+<span class="kw">struct</span> <span class="ident">Point3d</span> {
+    <span class="ident">x</span>: <span class="ident">i32</span>,
+    <span class="ident">y</span>: <span class="ident">i32</span>,
+    <span class="ident">z</span>: <span class="ident">i32</span>,
 }
 
-<span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>point</span> <span class='op'>=</span> <span class='ident'>Point3d</span> { <span class='ident'>x</span>: <span class='number'>0</span>, <span class='ident'>y</span>: <span class='number'>0</span>, <span class='ident'>z</span>: <span class='number'>0</span> };
-<span class='ident'>point</span> <span class='op'>=</span> <span class='ident'>Point3d</span> { <span class='ident'>y</span>: <span class='number'>1</span>, .. <span class='ident'>point</span> };<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Astruct%20Point3d%20%7B%0A%20%20%20%20x%3A%20i32%2C%0A%20%20%20%20y%3A%20i32%2C%0A%20%20%20%20z%3A%20i32%2C%0A%7D%0A%0Alet%20mut%20point%20%3D%20Point3d%20%7B%20x%3A%200%2C%20y%3A%200%2C%20z%3A%200%20%7D%3B%0Apoint%20%3D%20Point3d%20%7B%20y%3A%201%2C%20..%20point%20%7D%3B%0A%7D">Run</a></pre>
+<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">point</span> <span class="op">=</span> <span class="ident">Point3d</span> { <span class="ident">x</span>: <span class="number">0</span>, <span class="ident">y</span>: <span class="number">0</span>, <span class="ident">z</span>: <span class="number">0</span> };
+<span class="ident">point</span> <span class="op">=</span> <span class="ident">Point3d</span> { <span class="ident">y</span>: <span class="number">1</span>, .. <span class="ident">point</span> };<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Astruct%20Point3d%20%7B%0A%20%20%20%20x%3A%20i32%2C%0A%20%20%20%20y%3A%20i32%2C%0A%20%20%20%20z%3A%20i32%2C%0A%7D%0A%0Alet%20mut%20point%20%3D%20Point3d%20%7B%20x%3A%200%2C%20y%3A%200%2C%20z%3A%200%20%7D%3B%0Apoint%20%3D%20Point3d%20%7B%20y%3A%201%2C%20..%20point%20%7D%3B%0A%7D">Run</a></pre>
 
 <p>Этот код присваивает <code>point</code> новое <code>y</code>, но оставляет старые <code>x</code> и <code>z</code>. Это не
 обязательно должна быть та же самая структура — вы можете использовать этот
 синтаксис когда создаёте новые структуры, чтобы скопировать значения неуказанных
 полей:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>let</span> <span class='ident'>origin</span> <span class='op'>=</span> <span class='ident'>Point3d</span> { <span class='ident'>x</span>: <span class='number'>0</span>, <span class='ident'>y</span>: <span class='number'>0</span>, <span class='ident'>z</span>: <span class='number'>0</span> };
-<span class='kw'>let</span> <span class='ident'>point</span> <span class='op'>=</span> <span class='ident'>Point3d</span> { <span class='ident'>z</span>: <span class='number'>1</span>, <span class='ident'>x</span>: <span class='number'>2</span>, .. <span class='ident'>origin</span> };<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Astruct%20Point3d%20%7B%0A%20%20%20%20x%3A%20i32%2C%0A%20%20%20%20y%3A%20i32%2C%0A%20%20%20%20z%3A%20i32%2C%0A%7D%0Alet%20origin%20%3D%20Point3d%20%7B%20x%3A%200%2C%20y%3A%200%2C%20z%3A%200%20%7D%3B%0Alet%20point%20%3D%20Point3d%20%7B%20z%3A%201%2C%20x%3A%202%2C%20..%20origin%20%7D%3B%0A%7D">Run</a></pre>
+<pre class="rust rust-example-rendered">
+<span class="kw">let</span> <span class="ident">origin</span> <span class="op">=</span> <span class="ident">Point3d</span> { <span class="ident">x</span>: <span class="number">0</span>, <span class="ident">y</span>: <span class="number">0</span>, <span class="ident">z</span>: <span class="number">0</span> };
+<span class="kw">let</span> <span class="ident">point</span> <span class="op">=</span> <span class="ident">Point3d</span> { <span class="ident">z</span>: <span class="number">1</span>, <span class="ident">x</span>: <span class="number">2</span>, .. <span class="ident">origin</span> };<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Astruct%20Point3d%20%7B%0A%20%20%20%20x%3A%20i32%2C%0A%20%20%20%20y%3A%20i32%2C%0A%20%20%20%20z%3A%20i32%2C%0A%7D%0Alet%20origin%20%3D%20Point3d%20%7B%20x%3A%200%2C%20y%3A%200%2C%20z%3A%200%20%7D%3B%0Alet%20point%20%3D%20Point3d%20%7B%20z%3A%201%2C%20x%3A%202%2C%20..%20origin%20%7D%3B%0A%7D">Run</a></pre>
 
 <h1 id='Кортежные-структуры' class='section-header'><a href='#Кортежные-структуры'>Кортежные структуры</a></h1>
 <p>В Rust есть ещё один тип данных, который представляет собой нечто среднее между
 <a href="primitive-types.html#tuples">кортежем</a> и структурой. Он называется <em>кортежной структурой</em>. Кортежные
 структуры именуются, а вот у их полей имён нет:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>struct</span> <span class='ident'>Color</span>(<span class='ident'>i32</span>, <span class='ident'>i32</span>, <span class='ident'>i32</span>);
-<span class='kw'>struct</span> <span class='ident'>Point</span>(<span class='ident'>i32</span>, <span class='ident'>i32</span>, <span class='ident'>i32</span>);
+<pre class="rust rust-example-rendered">
+<span class="kw">struct</span> <span class="ident">Color</span>(<span class="ident">i32</span>, <span class="ident">i32</span>, <span class="ident">i32</span>);
+<span class="kw">struct</span> <span class="ident">Point</span>(<span class="ident">i32</span>, <span class="ident">i32</span>, <span class="ident">i32</span>);
 
-<span class='kw'>let</span> <span class='ident'>black</span> <span class='op'>=</span> <span class='ident'>Color</span>(<span class='number'>0</span>, <span class='number'>0</span>, <span class='number'>0</span>);
-<span class='kw'>let</span> <span class='ident'>origin</span> <span class='op'>=</span> <span class='ident'>Point</span>(<span class='number'>0</span>, <span class='number'>0</span>, <span class='number'>0</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Astruct%20Color(i32%2C%20i32%2C%20i32)%3B%0Astruct%20Point(i32%2C%20i32%2C%20i32)%3B%0A%0Alet%20black%20%3D%20Color(0%2C%200%2C%200)%3B%0Alet%20origin%20%3D%20Point(0%2C%200%2C%200)%3B%0A%7D">Run</a></pre>
+<span class="kw">let</span> <span class="ident">black</span> <span class="op">=</span> <span class="ident">Color</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);
+<span class="kw">let</span> <span class="ident">origin</span> <span class="op">=</span> <span class="ident">Point</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Astruct%20Color(i32%2C%20i32%2C%20i32)%3B%0Astruct%20Point(i32%2C%20i32%2C%20i32)%3B%0A%0Alet%20black%20%3D%20Color(0%2C%200%2C%200)%3B%0Alet%20origin%20%3D%20Point(0%2C%200%2C%200)%3B%0A%7D">Run</a></pre>
 
 <p>Эти два объекта различны, несмотря на то, что у них одинаковые значения.</p>
 
 <p>Почти всегда, вместо кортежной структуры лучше использовать обычную структуру.
 Мы бы скорее объявили типы <code>Color</code> и <code>Point</code> вот так:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>struct</span> <span class='ident'>Color</span> {
-    <span class='ident'>red</span>: <span class='ident'>i32</span>,
-    <span class='ident'>blue</span>: <span class='ident'>i32</span>,
-    <span class='ident'>green</span>: <span class='ident'>i32</span>,
+<pre class="rust rust-example-rendered">
+<span class="kw">struct</span> <span class="ident">Color</span> {
+    <span class="ident">red</span>: <span class="ident">i32</span>,
+    <span class="ident">blue</span>: <span class="ident">i32</span>,
+    <span class="ident">green</span>: <span class="ident">i32</span>,
 }
 
-<span class='kw'>struct</span> <span class='ident'>Point</span> {
-    <span class='ident'>x</span>: <span class='ident'>i32</span>,
-    <span class='ident'>y</span>: <span class='ident'>i32</span>,
-    <span class='ident'>z</span>: <span class='ident'>i32</span>,
+<span class="kw">struct</span> <span class="ident">Point</span> {
+    <span class="ident">x</span>: <span class="ident">i32</span>,
+    <span class="ident">y</span>: <span class="ident">i32</span>,
+    <span class="ident">z</span>: <span class="ident">i32</span>,
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Astruct%20Color%20%7B%0A%20%20%20%20red%3A%20i32%2C%0A%20%20%20%20blue%3A%20i32%2C%0A%20%20%20%20green%3A%20i32%2C%0A%7D%0A%0Astruct%20Point%20%7B%0A%20%20%20%20x%3A%20i32%2C%0A%20%20%20%20y%3A%20i32%2C%0A%20%20%20%20z%3A%20i32%2C%0A%7D%0A%7D">Run</a></pre>
 
 <p>Хорошие имена важны, и хотя значения в кортежной структуре могут быть так же
@@ -366,13 +366,13 @@
 значения, содержащегося в кортежной структуре. При этом новый тип обозначает
 что-то другое:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>struct</span> <span class='ident'>Inches</span>(<span class='ident'>i32</span>);
+<pre class="rust rust-example-rendered">
+<span class="kw">struct</span> <span class="ident">Inches</span>(<span class="ident">i32</span>);
 
-<span class='kw'>let</span> <span class='ident'>length</span> <span class='op'>=</span> <span class='ident'>Inches</span>(<span class='number'>10</span>);
+<span class="kw">let</span> <span class="ident">length</span> <span class="op">=</span> <span class="ident">Inches</span>(<span class="number">10</span>);
 
-<span class='kw'>let</span> <span class='ident'>Inches</span>(<span class='ident'>integer_length</span>) <span class='op'>=</span> <span class='ident'>length</span>;
-<span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Длина в дюймах: {}&quot;</span>, <span class='ident'>integer_length</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Astruct%20Inches(i32)%3B%0A%0Alet%20length%20%3D%20Inches(10)%3B%0A%0Alet%20Inches(integer_length)%20%3D%20length%3B%0Aprintln!(%22%D0%94%D0%BB%D0%B8%D0%BD%D0%B0%20%D0%B2%20%D0%B4%D1%8E%D0%B9%D0%BC%D0%B0%D1%85%3A%20%7B%7D%22%2C%20integer_length)%3B%0A%7D">Run</a></pre>
+<span class="kw">let</span> <span class="ident">Inches</span>(<span class="ident">integer_length</span>) <span class="op">=</span> <span class="ident">length</span>;
+<span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;Длина в дюймах: {}&quot;</span>, <span class="ident">integer_length</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Astruct%20Inches(i32)%3B%0A%0Alet%20length%20%3D%20Inches(10)%3B%0A%0Alet%20Inches(integer_length)%20%3D%20length%3B%0Aprintln!(%22%D0%94%D0%BB%D0%B8%D0%BD%D0%B0%20%D0%B2%20%D0%B4%D1%8E%D0%B9%D0%BC%D0%B0%D1%85%3A%20%7B%7D%22%2C%20integer_length)%3B%0A%7D">Run</a></pre>
 
 <p>Как вы можете видеть в данном примере, извлечь вложенный целый тип можно с
 помощью деконструирующего <code>let</code>. Мы обсуждали это выше, в разделе «кортежи». В
@@ -382,10 +382,10 @@
 <h1 id='unit-подобные-структуры' class='section-header'><a href='#unit-подобные-структуры'>Unit-подобные структуры</a></h1>
 <p>Вы можете объявить структуру без полей вообще:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>struct</span> <span class='ident'>Electron</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">struct</span> <span class="ident">Electron</span>;
 
-<span class='kw'>let</span> <span class='ident'>x</span> <span class='op'>=</span> <span class='ident'>Electron</span>;<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Astruct%20Electron%3B%0A%0Alet%20x%20%3D%20Electron%3B%0A%7D">Run</a></pre>
+<span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="ident">Electron</span>;<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Astruct%20Electron%3B%0A%0Alet%20x%20%3D%20Electron%3B%0A%7D">Run</a></pre>
 
 <p>Такие структуры называют «unit-подобные» («unit-like»), потому что они похожи
 на пустой кортеж <code>()</code>, иногда называемый «unit». Как и кортежные структуры, их

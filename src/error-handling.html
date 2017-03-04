@@ -281,19 +281,19 @@
 текущего потока и, в большинстве случаев, приводит к завершению всей программы.)
 Вот пример:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='comment'>// Попробуйте угадать число от 1 до 10.</span>
-<span class='comment'>// Если заданное число соответствует тому, что мы загадали, возвращается true.</span>
-<span class='comment'>// В противном случае возвращается false.</span>
-<span class='kw'>fn</span> <span class='ident'>guess</span>(<span class='ident'>n</span>: <span class='ident'>i32</span>) <span class='op'>-&gt;</span> <span class='ident'>bool</span> {
-    <span class='kw'>if</span> <span class='ident'>n</span> <span class='op'>&lt;</span> <span class='number'>1</span> <span class='op'>||</span> <span class='ident'>n</span> <span class='op'>&gt;</span> <span class='number'>10</span> {
-        <span class='macro'>panic</span><span class='macro'>!</span>(<span class='string'>&quot;Неверное число: {}&quot;</span>, <span class='ident'>n</span>);
+<pre class="rust rust-example-rendered">
+<span class="comment">// Попробуйте угадать число от 1 до 10.</span>
+<span class="comment">// Если заданное число соответствует тому, что мы загадали, возвращается true.</span>
+<span class="comment">// В противном случае возвращается false.</span>
+<span class="kw">fn</span> <span class="ident">guess</span>(<span class="ident">n</span>: <span class="ident">i32</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">if</span> <span class="ident">n</span> <span class="op">&lt;</span> <span class="number">1</span> <span class="op">||</span> <span class="ident">n</span> <span class="op">&gt;</span> <span class="number">10</span> {
+        <span class="macro">panic</span><span class="macro">!</span>(<span class="string">&quot;Неверное число: {}&quot;</span>, <span class="ident">n</span>);
     }
-    <span class='ident'>n</span> <span class='op'>==</span> <span class='number'>5</span>
+    <span class="ident">n</span> <span class="op">==</span> <span class="number">5</span>
 }
 
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='ident'>guess</span>(<span class='number'>11</span>);
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="ident">guess</span>(<span class="number">11</span>);
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=%2F%2F%20%D0%9F%D0%BE%D0%BF%D1%80%D0%BE%D0%B1%D1%83%D0%B9%D1%82%D0%B5%20%D1%83%D0%B3%D0%B0%D0%B4%D0%B0%D1%82%D1%8C%20%D1%87%D0%B8%D1%81%D0%BB%D0%BE%20%D0%BE%D1%82%201%20%D0%B4%D0%BE%2010.%0A%2F%2F%20%D0%95%D1%81%D0%BB%D0%B8%20%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%BD%D0%BE%D0%B5%20%D1%87%D0%B8%D1%81%D0%BB%D0%BE%20%D1%81%D0%BE%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D1%81%D1%82%D0%B2%D1%83%D0%B5%D1%82%20%D1%82%D0%BE%D0%BC%D1%83%2C%20%D1%87%D1%82%D0%BE%20%D0%BC%D1%8B%20%D0%B7%D0%B0%D0%B3%D0%B0%D0%B4%D0%B0%D0%BB%D0%B8%2C%20%D0%B2%D0%BE%D0%B7%D0%B2%D1%80%D0%B0%D1%89%D0%B0%D0%B5%D1%82%D1%81%D1%8F%20true.%0A%2F%2F%20%D0%92%20%D0%BF%D1%80%D0%BE%D1%82%D0%B8%D0%B2%D0%BD%D0%BE%D0%BC%20%D1%81%D0%BB%D1%83%D1%87%D0%B0%D0%B5%20%D0%B2%D0%BE%D0%B7%D0%B2%D1%80%D0%B0%D1%89%D0%B0%D0%B5%D1%82%D1%81%D1%8F%20false.%0Afn%20guess(n%3A%20i32)%20-%3E%20bool%20%7B%0A%20%20%20%20if%20n%20%3C%201%20%7C%7C%20n%20%3E%2010%20%7B%0A%20%20%20%20%20%20%20%20panic!(%22%D0%9D%D0%B5%D0%B2%D0%B5%D1%80%D0%BD%D0%BE%D0%B5%20%D1%87%D0%B8%D1%81%D0%BB%D0%BE%3A%20%7B%7D%22%2C%20n)%3B%0A%20%20%20%20%7D%0A%20%20%20%20n%20%3D%3D%205%0A%7D%0A%0Afn%20main()%20%7B%0A%20%20%20%20guess(11)%3B%0A%7D%0A">Run</a></pre>
 
 <p>Если попробовать запустить этот код, то программа аварийно завершится с
@@ -307,14 +307,14 @@
 
 <p><a name="code-unwrap-double"></a></p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>env</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">env</span>;
 
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>argv</span> <span class='op'>=</span> <span class='ident'>env</span>::<span class='ident'>args</span>();
-    <span class='kw'>let</span> <span class='ident'>arg</span>: <span class='ident'>String</span> <span class='op'>=</span> <span class='ident'>argv</span>.<span class='ident'>nth</span>(<span class='number'>1</span>).<span class='ident'>unwrap</span>(); <span class='comment'>// ошибка 1</span>
-    <span class='kw'>let</span> <span class='ident'>n</span>: <span class='ident'>i32</span> <span class='op'>=</span> <span class='ident'>arg</span>.<span class='ident'>parse</span>().<span class='ident'>unwrap</span>();      <span class='comment'>// ошибка 2</span>
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='number'>2</span> <span class='op'>*</span> <span class='ident'>n</span>);
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">argv</span> <span class="op">=</span> <span class="ident">env</span>::<span class="ident">args</span>();
+    <span class="kw">let</span> <span class="ident">arg</span>: <span class="ident">String</span> <span class="op">=</span> <span class="ident">argv</span>.<span class="ident">nth</span>(<span class="number">1</span>).<span class="ident">unwrap</span>(); <span class="comment">// ошибка 1</span>
+    <span class="kw">let</span> <span class="ident">n</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="ident">arg</span>.<span class="ident">parse</span>().<span class="ident">unwrap</span>();      <span class="comment">// ошибка 2</span>
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="number">2</span> <span class="op">*</span> <span class="ident">n</span>);
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=use%20std%3A%3Aenv%3B%0A%0Afn%20main()%20%7B%0A%20%20%20%20let%20mut%20argv%20%3D%20env%3A%3Aargs()%3B%0A%20%20%20%20let%20arg%3A%20String%20%3D%20argv.nth(1).unwrap()%3B%20%2F%2F%20%D0%BE%D1%88%D0%B8%D0%B1%D0%BA%D0%B0%201%0A%20%20%20%20let%20n%3A%20i32%20%3D%20arg.parse().unwrap()%3B%20%20%20%20%20%20%2F%2F%20%D0%BE%D1%88%D0%B8%D0%B1%D0%BA%D0%B0%202%0A%20%20%20%20println!(%22%7B%7D%22%2C%202%20*%20n)%3B%0A%7D%0A">Run</a></pre>
 
 <p>Если вы запустите эту программу без параметров (ошибка 1) или если первый
@@ -343,10 +343,10 @@
 <h3 id='Тип-option' class='section-header'><a href='#Тип-option'>Тип <code>Option</code></a></h3>
 <p>Тип <code>Option</code> <a href="http://doc.rust-lang.org/std/option/enum.Option.html">объявлен в стандартной библиотеке</a>:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>enum</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span> {
-    <span class='prelude-val'>None</span>,
-    <span class='prelude-val'>Some</span>(<span class='ident'>T</span>),
+<pre class="rust rust-example-rendered">
+<span class="kw">enum</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
+    <span class="prelude-val">None</span>,
+    <span class="prelude-val">Some</span>(<span class="ident">T</span>),
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Aenum%20Option%3CT%3E%20%7B%0A%20%20%20%20None%2C%0A%20%20%20%20Some(T)%2C%0A%7D%0A%7D">Run</a></pre>
 
 <p>Тип <code>Option</code> — это способ выразить <em>возможность отсутствия</em> чего бы то ни было,
@@ -357,16 +357,16 @@
 
 <p><a name="code-option-ex-string-find"></a></p>
 
-<pre class='rust rust-example-rendered'>
-<span class='comment'>// Поиск Unicode-символа `needle` в `haystack`. Когда первый символ найден,</span>
-<span class='comment'>// возвращается побайтовое смещение для этого символа. Иначе возвращается `None`.</span>
-<span class='kw'>fn</span> <span class='ident'>find</span>(<span class='ident'>haystack</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span>, <span class='ident'>needle</span>: <span class='ident'>char</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>usize</span><span class='op'>&gt;</span> {
-    <span class='kw'>for</span> (<span class='ident'>offset</span>, <span class='ident'>c</span>) <span class='kw'>in</span> <span class='ident'>haystack</span>.<span class='ident'>char_indices</span>() {
-        <span class='kw'>if</span> <span class='ident'>c</span> <span class='op'>==</span> <span class='ident'>needle</span> {
-            <span class='kw'>return</span> <span class='prelude-val'>Some</span>(<span class='ident'>offset</span>);
+<pre class="rust rust-example-rendered">
+<span class="comment">// Поиск Unicode-символа `needle` в `haystack`. Когда первый символ найден,</span>
+<span class="comment">// возвращается побайтовое смещение для этого символа. Иначе возвращается `None`.</span>
+<span class="kw">fn</span> <span class="ident">find</span>(<span class="ident">haystack</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">needle</span>: <span class="ident">char</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
+    <span class="kw">for</span> (<span class="ident">offset</span>, <span class="ident">c</span>) <span class="kw">in</span> <span class="ident">haystack</span>.<span class="ident">char_indices</span>() {
+        <span class="kw">if</span> <span class="ident">c</span> <span class="op">==</span> <span class="ident">needle</span> {
+            <span class="kw">return</span> <span class="prelude-val">Some</span>(<span class="ident">offset</span>);
         }
     }
-    <span class='prelude-val'>None</span>
+    <span class="prelude-val">None</span>
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0A%2F%2F%20%D0%9F%D0%BE%D0%B8%D1%81%D0%BA%20Unicode-%D1%81%D0%B8%D0%BC%D0%B2%D0%BE%D0%BB%D0%B0%20%60needle%60%20%D0%B2%20%60haystack%60.%20%D0%9A%D0%BE%D0%B3%D0%B4%D0%B0%20%D0%BF%D0%B5%D1%80%D0%B2%D1%8B%D0%B9%20%D1%81%D0%B8%D0%BC%D0%B2%D0%BE%D0%BB%20%D0%BD%D0%B0%D0%B9%D0%B4%D0%B5%D0%BD%2C%0A%2F%2F%20%D0%B2%D0%BE%D0%B7%D0%B2%D1%80%D0%B0%D1%89%D0%B0%D0%B5%D1%82%D1%81%D1%8F%20%D0%BF%D0%BE%D0%B1%D0%B0%D0%B9%D1%82%D0%BE%D0%B2%D0%BE%D0%B5%20%D1%81%D0%BC%D0%B5%D1%89%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20%D1%8D%D1%82%D0%BE%D0%B3%D0%BE%20%D1%81%D0%B8%D0%BC%D0%B2%D0%BE%D0%BB%D0%B0.%20%D0%98%D0%BD%D0%B0%D1%87%D0%B5%20%D0%B2%D0%BE%D0%B7%D0%B2%D1%80%D0%B0%D1%89%D0%B0%D0%B5%D1%82%D1%81%D1%8F%20%60None%60.%0Afn%20find(haystack%3A%20%26str%2C%20needle%3A%20char)%20-%3E%20Option%3Cusize%3E%20%7B%0A%20%20%20%20for%20(offset%2C%20c)%20in%20haystack.char_indices()%20%7B%0A%20%20%20%20%20%20%20%20if%20c%20%3D%3D%20needle%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20return%20Some(offset)%3B%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%20%20None%0A%7D%0A%7D">Run</a></pre>
 
 <p>Обратите внимание, что когда эта функция находит соответствующий символ, она
@@ -381,12 +381,12 @@
 написали. Давайте попробуем использовать ее, чтобы найти расширение
 в имени файла.</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='kw'>let</span> <span class='ident'>file_name</span> <span class='op'>=</span> <span class='string'>&quot;foobar.rs&quot;</span>;
-    <span class='kw'>match</span> <span class='ident'>find</span>(<span class='ident'>file_name</span>, <span class='string'>&#39;.&#39;</span>) {
-        <span class='prelude-val'>None</span> <span class='op'>=&gt;</span> <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Расширение файла не найдено.&quot;</span>),
-        <span class='prelude-val'>Some</span>(<span class='ident'>i</span>) <span class='op'>=&gt;</span> <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Расширение файла: {}&quot;</span>, <span class='kw-2'>&amp;</span><span class='ident'>file_name</span>[<span class='ident'>i</span><span class='op'>+</span><span class='number'>1</span>..]),
+<pre class="rust rust-example-rendered">
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="kw">let</span> <span class="ident">file_name</span> <span class="op">=</span> <span class="string">&quot;foobar.rs&quot;</span>;
+    <span class="kw">match</span> <span class="ident">find</span>(<span class="ident">file_name</span>, <span class="string">&#39;.&#39;</span>) {
+        <span class="prelude-val">None</span> <span class="op">=&gt;</span> <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;Расширение файла не найдено.&quot;</span>),
+        <span class="prelude-val">Some</span>(<span class="ident">i</span>) <span class="op">=&gt;</span> <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;Расширение файла: {}&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">file_name</span>[<span class="ident">i</span><span class="op">+</span><span class="number">1</span>..]),
     }
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20find(_%3A%20%26str%2C%20_%3A%20char)%20-%3E%20Option%3Cusize%3E%20%7B%20None%20%7D%0Afn%20main()%20%7B%0A%20%20%20%20let%20file_name%20%3D%20%22foobar.rs%22%3B%0A%20%20%20%20match%20find(file_name%2C%20'.')%20%7B%0A%20%20%20%20%20%20%20%20None%20%3D%3E%20println!(%22%D0%A0%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%84%D0%B0%D0%B9%D0%BB%D0%B0%20%D0%BD%D0%B5%20%D0%BD%D0%B0%D0%B9%D0%B4%D0%B5%D0%BD%D0%BE.%22)%2C%0A%20%20%20%20%20%20%20%20Some(i)%20%3D%3E%20println!(%22%D0%A0%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%84%D0%B0%D0%B9%D0%BB%D0%B0%3A%20%7B%7D%22%2C%20%26file_name%5Bi%2B1..%5D)%2C%0A%20%20%20%20%7D%0A%7D%0A">Run</a></pre>
 
@@ -403,18 +403,18 @@
 
 <p><a name="code-option-def-unwrap"></a></p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>enum</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span> {
-    <span class='prelude-val'>None</span>,
-    <span class='prelude-val'>Some</span>(<span class='ident'>T</span>),
+<pre class="rust rust-example-rendered">
+<span class="kw">enum</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
+    <span class="prelude-val">None</span>,
+    <span class="prelude-val">Some</span>(<span class="ident">T</span>),
 }
 
-<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span> {
-    <span class='kw'>fn</span> <span class='ident'>unwrap</span>(<span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>T</span> {
-        <span class='kw'>match</span> <span class='self'>self</span> {
-            <span class='prelude-ty'>Option</span>::<span class='prelude-val'>Some</span>(<span class='ident'>val</span>) <span class='op'>=&gt;</span> <span class='ident'>val</span>,
-            <span class='prelude-ty'>Option</span>::<span class='prelude-val'>None</span> <span class='op'>=&gt;</span>
-              <span class='macro'>panic</span><span class='macro'>!</span>(<span class='string'>&quot;called `Option::unwrap()` on a `None` value&quot;</span>),
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">unwrap</span>(<span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">T</span> {
+        <span class="kw">match</span> <span class="self">self</span> {
+            <span class="prelude-ty">Option</span>::<span class="prelude-val">Some</span>(<span class="ident">val</span>) <span class="op">=&gt;</span> <span class="ident">val</span>,
+            <span class="prelude-ty">Option</span>::<span class="prelude-val">None</span> <span class="op">=&gt;</span>
+              <span class="macro">panic</span><span class="macro">!</span>(<span class="string">&quot;called `Option::unwrap()` on a `None` value&quot;</span>),
         }
     }
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Aenum%20Option%3CT%3E%20%7B%0A%20%20%20%20None%2C%0A%20%20%20%20Some(T)%2C%0A%7D%0A%0Aimpl%3CT%3E%20Option%3CT%3E%20%7B%0A%20%20%20%20fn%20unwrap(self)%20-%3E%20T%20%7B%0A%20%20%20%20%20%20%20%20match%20self%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20Option%3A%3ASome(val)%20%3D%3E%20val%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20Option%3A%3ANone%20%3D%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20panic!(%22called%20%60Option%3A%3Aunwrap()%60%20on%20a%20%60None%60%20value%22)%2C%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%7D%0A%7D">Run</a></pre>
@@ -437,14 +437,14 @@
 <p>Получение расширения имени файла — довольно распространенная операция,
 так что имеет смысл вынести код в отдельную функцию:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='comment'>// Возвращает расширение заданного имени файла, а именно все символы,</span>
-<span class='comment'>// идущие за первым вхождением `.` в имя файла.</span>
-<span class='comment'>// Если в `file_name` нет ни одного вхождения `.`, возвращается `None`.</span>
-<span class='kw'>fn</span> <span class='ident'>extension_explicit</span>(<span class='ident'>file_name</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span><span class='ident'>str</span><span class='op'>&gt;</span> {
-    <span class='kw'>match</span> <span class='ident'>find</span>(<span class='ident'>file_name</span>, <span class='string'>&#39;.&#39;</span>) {
-        <span class='prelude-val'>None</span> <span class='op'>=&gt;</span> <span class='prelude-val'>None</span>,
-        <span class='prelude-val'>Some</span>(<span class='ident'>i</span>) <span class='op'>=&gt;</span> <span class='prelude-val'>Some</span>(<span class='kw-2'>&amp;</span><span class='ident'>file_name</span>[<span class='ident'>i</span><span class='op'>+</span><span class='number'>1</span>..]),
+<pre class="rust rust-example-rendered">
+<span class="comment">// Возвращает расширение заданного имени файла, а именно все символы,</span>
+<span class="comment">// идущие за первым вхождением `.` в имя файла.</span>
+<span class="comment">// Если в `file_name` нет ни одного вхождения `.`, возвращается `None`.</span>
+<span class="kw">fn</span> <span class="ident">extension_explicit</span>(<span class="ident">file_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span> {
+    <span class="kw">match</span> <span class="ident">find</span>(<span class="ident">file_name</span>, <span class="string">&#39;.&#39;</span>) {
+        <span class="prelude-val">None</span> <span class="op">=&gt;</span> <span class="prelude-val">None</span>,
+        <span class="prelude-val">Some</span>(<span class="ident">i</span>) <span class="op">=&gt;</span> <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="ident">file_name</span>[<span class="ident">i</span><span class="op">+</span><span class="number">1</span>..]),
     }
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20find(_%3A%20%26str%2C%20_%3A%20char)%20-%3E%20Option%3Cusize%3E%20%7B%20None%20%7D%0A%2F%2F%20%D0%92%D0%BE%D0%B7%D0%B2%D1%80%D0%B0%D1%89%D0%B0%D0%B5%D1%82%20%D1%80%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%B8%D0%BC%D0%B5%D0%BD%D0%B8%20%D1%84%D0%B0%D0%B9%D0%BB%D0%B0%2C%20%D0%B0%20%D0%B8%D0%BC%D0%B5%D0%BD%D0%BD%D0%BE%20%D0%B2%D1%81%D0%B5%20%D1%81%D0%B8%D0%BC%D0%B2%D0%BE%D0%BB%D1%8B%2C%0A%2F%2F%20%D0%B8%D0%B4%D1%83%D1%89%D0%B8%D0%B5%20%D0%B7%D0%B0%20%D0%BF%D0%B5%D1%80%D0%B2%D1%8B%D0%BC%20%D0%B2%D1%85%D0%BE%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%D0%BC%20%60.%60%20%D0%B2%20%D0%B8%D0%BC%D1%8F%20%D1%84%D0%B0%D0%B9%D0%BB%D0%B0.%0A%2F%2F%20%D0%95%D1%81%D0%BB%D0%B8%20%D0%B2%20%60file_name%60%20%D0%BD%D0%B5%D1%82%20%D0%BD%D0%B8%20%D0%BE%D0%B4%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%B2%D1%85%D0%BE%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D1%8F%20%60.%60%2C%20%D0%B2%D0%BE%D0%B7%D0%B2%D1%80%D0%B0%D1%89%D0%B0%D0%B5%D1%82%D1%81%D1%8F%20%60None%60.%0Afn%20extension_explicit(file_name%3A%20%26str)%20-%3E%20Option%3C%26str%3E%20%7B%0A%20%20%20%20match%20find(file_name%2C%20'.')%20%7B%0A%20%20%20%20%20%20%20%20None%20%3D%3E%20None%2C%0A%20%20%20%20%20%20%20%20Some(i)%20%3D%3E%20Some(%26file_name%5Bi%2B1..%5D)%2C%0A%20%20%20%20%7D%0A%7D%0A%7D">Run</a></pre>
 
@@ -469,11 +469,11 @@
 
 <p><a name="code-option-map"></a></p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span> <span class='ident'>map</span><span class='op'>&lt;</span><span class='ident'>F</span>, <span class='ident'>T</span>, <span class='ident'>A</span><span class='op'>&gt;</span>(<span class='ident'>option</span>: <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span>, <span class='ident'>f</span>: <span class='ident'>F</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>A</span><span class='op'>&gt;</span> <span class='kw'>where</span> <span class='ident'>F</span>: <span class='ident'>FnOnce</span>(<span class='ident'>T</span>) <span class='op'>-&gt;</span> <span class='ident'>A</span> {
-    <span class='kw'>match</span> <span class='ident'>option</span> {
-        <span class='prelude-val'>None</span> <span class='op'>=&gt;</span> <span class='prelude-val'>None</span>,
-        <span class='prelude-val'>Some</span>(<span class='ident'>value</span>) <span class='op'>=&gt;</span> <span class='prelude-val'>Some</span>(<span class='ident'>f</span>(<span class='ident'>value</span>)),
+<pre class="rust rust-example-rendered">
+<span class="kw">fn</span> <span class="ident">map</span><span class="op">&lt;</span><span class="ident">F</span>, <span class="ident">T</span>, <span class="ident">A</span><span class="op">&gt;</span>(<span class="ident">option</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">A</span><span class="op">&gt;</span> <span class="kw">where</span> <span class="ident">F</span>: <span class="ident">FnOnce</span>(<span class="ident">T</span>) <span class="op">-&gt;</span> <span class="ident">A</span> {
+    <span class="kw">match</span> <span class="ident">option</span> {
+        <span class="prelude-val">None</span> <span class="op">=&gt;</span> <span class="prelude-val">None</span>,
+        <span class="prelude-val">Some</span>(<span class="ident">value</span>) <span class="op">=&gt;</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>(<span class="ident">value</span>)),
     }
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20map%3CF%2C%20T%2C%20A%3E(option%3A%20Option%3CT%3E%2C%20f%3A%20F)%20-%3E%20Option%3CA%3E%20where%20F%3A%20FnOnce(T)%20-%3E%20A%20%7B%0A%20%20%20%20match%20option%20%7B%0A%20%20%20%20%20%20%20%20None%20%3D%3E%20None%2C%0A%20%20%20%20%20%20%20%20Some(value)%20%3D%3E%20Some(f(value))%2C%0A%20%20%20%20%7D%0A%7D%0A%7D">Run</a></pre>
 
@@ -482,12 +482,12 @@
 <p>Вооружившись нашим новым комбинатором, мы можем переписать наш метод
 <code>extension_explicit</code> так, чтобы избавиться от вариативного анализа:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='comment'>// Возвращает расширение заданного имени файла, а именно все символы,</span>
-<span class='comment'>// идущие за первым вхождением `.` в имя файла.</span>
-<span class='comment'>// Если в `file_name` нет ни одного вхождения `.`, возвращается `None`.</span>
-<span class='kw'>fn</span> <span class='ident'>extension</span>(<span class='ident'>file_name</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span><span class='ident'>str</span><span class='op'>&gt;</span> {
-    <span class='ident'>find</span>(<span class='ident'>file_name</span>, <span class='string'>&#39;.&#39;</span>).<span class='ident'>map</span>(<span class='op'>|</span><span class='ident'>i</span><span class='op'>|</span> <span class='kw-2'>&amp;</span><span class='ident'>file_name</span>[<span class='ident'>i</span><span class='op'>+</span><span class='number'>1</span>..])
+<pre class="rust rust-example-rendered">
+<span class="comment">// Возвращает расширение заданного имени файла, а именно все символы,</span>
+<span class="comment">// идущие за первым вхождением `.` в имя файла.</span>
+<span class="comment">// Если в `file_name` нет ни одного вхождения `.`, возвращается `None`.</span>
+<span class="kw">fn</span> <span class="ident">extension</span>(<span class="ident">file_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span> {
+    <span class="ident">find</span>(<span class="ident">file_name</span>, <span class="string">&#39;.&#39;</span>).<span class="ident">map</span>(<span class="op">|</span><span class="ident">i</span><span class="op">|</span> <span class="kw-2">&amp;</span><span class="ident">file_name</span>[<span class="ident">i</span><span class="op">+</span><span class="number">1</span>..])
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20find(_%3A%20%26str%2C%20_%3A%20char)%20-%3E%20Option%3Cusize%3E%20%7B%20None%20%7D%0A%2F%2F%20%D0%92%D0%BE%D0%B7%D0%B2%D1%80%D0%B0%D1%89%D0%B0%D0%B5%D1%82%20%D1%80%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%B8%D0%BC%D0%B5%D0%BD%D0%B8%20%D1%84%D0%B0%D0%B9%D0%BB%D0%B0%2C%20%D0%B0%20%D0%B8%D0%BC%D0%B5%D0%BD%D0%BD%D0%BE%20%D0%B2%D1%81%D0%B5%20%D1%81%D0%B8%D0%BC%D0%B2%D0%BE%D0%BB%D1%8B%2C%0A%2F%2F%20%D0%B8%D0%B4%D1%83%D1%89%D0%B8%D0%B5%20%D0%B7%D0%B0%20%D0%BF%D0%B5%D1%80%D0%B2%D1%8B%D0%BC%20%D0%B2%D1%85%D0%BE%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%D0%BC%20%60.%60%20%D0%B2%20%D0%B8%D0%BC%D1%8F%20%D1%84%D0%B0%D0%B9%D0%BB%D0%B0.%0A%2F%2F%20%D0%95%D1%81%D0%BB%D0%B8%20%D0%B2%20%60file_name%60%20%D0%BD%D0%B5%D1%82%20%D0%BD%D0%B8%20%D0%BE%D0%B4%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%B2%D1%85%D0%BE%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D1%8F%20%60.%60%2C%20%D0%B2%D0%BE%D0%B7%D0%B2%D1%80%D0%B0%D1%89%D0%B0%D0%B5%D1%82%D1%81%D1%8F%20%60None%60.%0Afn%20extension(file_name%3A%20%26str)%20-%3E%20Option%3C%26str%3E%20%7B%0A%20%20%20%20find(file_name%2C%20'.').map(%7Ci%7C%20%26file_name%5Bi%2B1..%5D)%0A%7D%0A%7D">Run</a></pre>
 
 <p>Есть еще одно поведение, которое можно часто встретить — это использование
@@ -498,11 +498,11 @@
 <p>Легко представить, что этот случай вариативного анализа не специфичен
 только для расширений файлов — такой подход может работать с любым <code>Option&lt;T&gt;</code>:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span> <span class='ident'>unwrap_or</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span>(<span class='ident'>option</span>: <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span>, <span class='ident'>default</span>: <span class='ident'>T</span>) <span class='op'>-&gt;</span> <span class='ident'>T</span> {
-    <span class='kw'>match</span> <span class='ident'>option</span> {
-        <span class='prelude-val'>None</span> <span class='op'>=&gt;</span> <span class='ident'>default</span>,
-        <span class='prelude-val'>Some</span>(<span class='ident'>value</span>) <span class='op'>=&gt;</span> <span class='ident'>value</span>,
+<pre class="rust rust-example-rendered">
+<span class="kw">fn</span> <span class="ident">unwrap_or</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">option</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>, <span class="ident">default</span>: <span class="ident">T</span>) <span class="op">-&gt;</span> <span class="ident">T</span> {
+    <span class="kw">match</span> <span class="ident">option</span> {
+        <span class="prelude-val">None</span> <span class="op">=&gt;</span> <span class="ident">default</span>,
+        <span class="prelude-val">Some</span>(<span class="ident">value</span>) <span class="op">=&gt;</span> <span class="ident">value</span>,
     }
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20unwrap_or%3CT%3E(option%3A%20Option%3CT%3E%2C%20default%3A%20T)%20-%3E%20T%20%7B%0A%20%20%20%20match%20option%20%7B%0A%20%20%20%20%20%20%20%20None%20%3D%3E%20default%2C%0A%20%20%20%20%20%20%20%20Some(value)%20%3D%3E%20value%2C%0A%20%20%20%20%7D%0A%7D%0A%7D">Run</a></pre>
 
@@ -510,10 +510,10 @@
 значение, которое может находится внутри  <code>Option&lt;T&gt;</code>. Использование этого
 метода элементарно:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>extension</span>(<span class='string'>&quot;foobar.csv&quot;</span>).<span class='ident'>unwrap_or</span>(<span class='string'>&quot;rs&quot;</span>), <span class='string'>&quot;csv&quot;</span>);
-    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>extension</span>(<span class='string'>&quot;foobar&quot;</span>).<span class='ident'>unwrap_or</span>(<span class='string'>&quot;rs&quot;</span>), <span class='string'>&quot;rs&quot;</span>);
+<pre class="rust rust-example-rendered">
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">extension</span>(<span class="string">&quot;foobar.csv&quot;</span>).<span class="ident">unwrap_or</span>(<span class="string">&quot;rs&quot;</span>), <span class="string">&quot;csv&quot;</span>);
+    <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">extension</span>(<span class="string">&quot;foobar&quot;</span>).<span class="ident">unwrap_or</span>(<span class="string">&quot;rs&quot;</span>), <span class="string">&quot;rs&quot;</span>);
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20find(haystack%3A%20%26str%2C%20needle%3A%20char)%20-%3E%20Option%3Cusize%3E%20%7B%0A%20%20%20%20for%20(offset%2C%20c)%20in%20haystack.char_indices()%20%7B%0A%20%20%20%20%20%20%20%20if%20c%20%3D%3D%20needle%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20return%20Some(offset)%3B%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%20%20None%0A%7D%0A%0Afn%20extension(file_name%3A%20%26str)%20-%3E%20Option%3C%26str%3E%20%7B%0A%20%20%20%20find(file_name%2C%20'.').map(%7Ci%7C%20%26file_name%5Bi%2B1..%5D)%0A%7D%0Afn%20main()%20%7B%0A%20%20%20%20assert_eq!(extension(%22foobar.csv%22).unwrap_or(%22rs%22)%2C%20%22csv%22)%3B%0A%20%20%20%20assert_eq!(extension(%22foobar%22).unwrap_or(%22rs%22)%2C%20%22rs%22)%3B%0A%7D%0A">Run</a></pre>
 
 <p>(Обратите внимание, что <code>unwrap_or</code> <a href="http://doc.rust-lang.org/std/option/enum.Option.html#method.unwrap_or">объявлен как метод</a> <code>Option&lt;T&gt;</code> в
@@ -533,19 +533,19 @@
 <p>Таким образом, мы определили задачу нахождения расширения заданного <em>файлового
 пути</em>. Начнем с явного вариативного анализа:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span> <span class='ident'>file_path_ext_explicit</span>(<span class='ident'>file_path</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span><span class='ident'>str</span><span class='op'>&gt;</span> {
-    <span class='kw'>match</span> <span class='ident'>file_name</span>(<span class='ident'>file_path</span>) {
-        <span class='prelude-val'>None</span> <span class='op'>=&gt;</span> <span class='prelude-val'>None</span>,
-        <span class='prelude-val'>Some</span>(<span class='ident'>name</span>) <span class='op'>=&gt;</span> <span class='kw'>match</span> <span class='ident'>extension</span>(<span class='ident'>name</span>) {
-            <span class='prelude-val'>None</span> <span class='op'>=&gt;</span> <span class='prelude-val'>None</span>,
-            <span class='prelude-val'>Some</span>(<span class='ident'>ext</span>) <span class='op'>=&gt;</span> <span class='prelude-val'>Some</span>(<span class='ident'>ext</span>),
+<pre class="rust rust-example-rendered">
+<span class="kw">fn</span> <span class="ident">file_path_ext_explicit</span>(<span class="ident">file_path</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span> {
+    <span class="kw">match</span> <span class="ident">file_name</span>(<span class="ident">file_path</span>) {
+        <span class="prelude-val">None</span> <span class="op">=&gt;</span> <span class="prelude-val">None</span>,
+        <span class="prelude-val">Some</span>(<span class="ident">name</span>) <span class="op">=&gt;</span> <span class="kw">match</span> <span class="ident">extension</span>(<span class="ident">name</span>) {
+            <span class="prelude-val">None</span> <span class="op">=&gt;</span> <span class="prelude-val">None</span>,
+            <span class="prelude-val">Some</span>(<span class="ident">ext</span>) <span class="op">=&gt;</span> <span class="prelude-val">Some</span>(<span class="ident">ext</span>),
         }
     }
 }
 
-<span class='kw'>fn</span> <span class='ident'>file_name</span>(<span class='ident'>file_path</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span><span class='ident'>str</span><span class='op'>&gt;</span> {
-  <span class='macro'>unimplemented</span><span class='macro'>!</span>() <span class='comment'>// опустим реализацию</span>
+<span class="kw">fn</span> <span class="ident">file_name</span>(<span class="ident">file_path</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span> {
+  <span class="macro">unimplemented</span><span class="macro">!</span>() <span class="comment">// опустим реализацию</span>
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20extension(file_name%3A%20%26str)%20-%3E%20Option%3C%26str%3E%20%7B%20None%20%7D%0Afn%20file_path_ext_explicit(file_path%3A%20%26str)%20-%3E%20Option%3C%26str%3E%20%7B%0A%20%20%20%20match%20file_name(file_path)%20%7B%0A%20%20%20%20%20%20%20%20None%20%3D%3E%20None%2C%0A%20%20%20%20%20%20%20%20Some(name)%20%3D%3E%20match%20extension(name)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20None%20%3D%3E%20None%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20Some(ext)%20%3D%3E%20Some(ext)%2C%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%7D%0A%0Afn%20file_name(file_path%3A%20%26str)%20-%3E%20Option%3C%26str%3E%20%7B%0A%20%20unimplemented!()%20%2F%2F%20%D0%BE%D0%BF%D1%83%D1%81%D1%82%D0%B8%D0%BC%20%D1%80%D0%B5%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8E%0A%7D%0A%7D">Run</a></pre>
 
 <p>Можно подумать, мы могли бы просто использовать комбинатор <code>map</code>, чтобы
@@ -555,21 +555,21 @@
 Вместо этого, нам нужен метод, похожий <code>map</code>, но который позволяет вызывающему
 передать еще один <code>Option</code>. Его общая реализация даже проще, чем <code>map</code>:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span> <span class='ident'>and_then</span><span class='op'>&lt;</span><span class='ident'>F</span>, <span class='ident'>T</span>, <span class='ident'>A</span><span class='op'>&gt;</span>(<span class='ident'>option</span>: <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span>, <span class='ident'>f</span>: <span class='ident'>F</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>A</span><span class='op'>&gt;</span>
-        <span class='kw'>where</span> <span class='ident'>F</span>: <span class='ident'>FnOnce</span>(<span class='ident'>T</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>A</span><span class='op'>&gt;</span> {
-    <span class='kw'>match</span> <span class='ident'>option</span> {
-        <span class='prelude-val'>None</span> <span class='op'>=&gt;</span> <span class='prelude-val'>None</span>,
-        <span class='prelude-val'>Some</span>(<span class='ident'>value</span>) <span class='op'>=&gt;</span> <span class='ident'>f</span>(<span class='ident'>value</span>),
+<pre class="rust rust-example-rendered">
+<span class="kw">fn</span> <span class="ident">and_then</span><span class="op">&lt;</span><span class="ident">F</span>, <span class="ident">T</span>, <span class="ident">A</span><span class="op">&gt;</span>(<span class="ident">option</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">A</span><span class="op">&gt;</span>
+        <span class="kw">where</span> <span class="ident">F</span>: <span class="ident">FnOnce</span>(<span class="ident">T</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">A</span><span class="op">&gt;</span> {
+    <span class="kw">match</span> <span class="ident">option</span> {
+        <span class="prelude-val">None</span> <span class="op">=&gt;</span> <span class="prelude-val">None</span>,
+        <span class="prelude-val">Some</span>(<span class="ident">value</span>) <span class="op">=&gt;</span> <span class="ident">f</span>(<span class="ident">value</span>),
     }
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20and_then%3CF%2C%20T%2C%20A%3E(option%3A%20Option%3CT%3E%2C%20f%3A%20F)%20-%3E%20Option%3CA%3E%0A%20%20%20%20%20%20%20%20where%20F%3A%20FnOnce(T)%20-%3E%20Option%3CA%3E%20%7B%0A%20%20%20%20match%20option%20%7B%0A%20%20%20%20%20%20%20%20None%20%3D%3E%20None%2C%0A%20%20%20%20%20%20%20%20Some(value)%20%3D%3E%20f(value)%2C%0A%20%20%20%20%7D%0A%7D%0A%7D">Run</a></pre>
 
 <p>Теперь мы можем переписать нашу функцию <code>file_path_ext</code> без явного вариативного
 анализа:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span> <span class='ident'>file_path_ext</span>(<span class='ident'>file_path</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span><span class='ident'>str</span><span class='op'>&gt;</span> {
-    <span class='ident'>file_name</span>(<span class='ident'>file_path</span>).<span class='ident'>and_then</span>(<span class='ident'>extension</span>)
+<pre class="rust rust-example-rendered">
+<span class="kw">fn</span> <span class="ident">file_path_ext</span>(<span class="ident">file_path</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span> {
+    <span class="ident">file_name</span>(<span class="ident">file_path</span>).<span class="ident">and_then</span>(<span class="ident">extension</span>)
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20extension(file_name%3A%20%26str)%20-%3E%20Option%3C%26str%3E%20%7B%20None%20%7D%0Afn%20file_name(file_path%3A%20%26str)%20-%3E%20Option%3C%26str%3E%20%7B%20None%20%7D%0Afn%20file_path_ext(file_path%3A%20%26str)%20-%3E%20Option%3C%26str%3E%20%7B%0A%20%20%20%20file_name(file_path).and_then(extension)%0A%7D%0A%7D">Run</a></pre>
 
 <p>Тип <code>Option</code> имеет много других комбинаторов <a href="http://doc.rust-lang.org/std/option/enum.Option.html">определенных в стандартной
@@ -593,10 +593,10 @@
 
 <p><a name="code-result-def"></a></p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>enum</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>T</span>, <span class='ident'>E</span><span class='op'>&gt;</span> {
-    <span class='prelude-val'>Ok</span>(<span class='ident'>T</span>),
-    <span class='prelude-val'>Err</span>(<span class='ident'>E</span>),
+<pre class="rust rust-example-rendered">
+<span class="kw">enum</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">E</span><span class="op">&gt;</span> {
+    <span class="prelude-val">Ok</span>(<span class="ident">T</span>),
+    <span class="prelude-val">Err</span>(<span class="ident">E</span>),
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Aenum%20Result%3CT%2C%20E%3E%20%7B%0A%20%20%20%20Ok(T)%2C%0A%20%20%20%20Err(E)%2C%0A%7D%0A%7D">Run</a></pre>
 
 <p>Тип <code>Result</code> — это продвинутая версия <code>Option</code>. Вместо того, чтобы выражать
@@ -606,8 +606,8 @@
 общая форма <code>Option</code>. Рассмотрим следующий псевдоним типа, который во всех
 смыслах семантически эквивалентен реальному <code>Option&lt;T&gt;</code>:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>type</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>T</span>, ()<span class='op'>&gt;</span>;<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Atype%20Option%3CT%3E%20%3D%20Result%3CT%2C%20()%3E%3B%0A%7D">Run</a></pre>
+<pre class="rust rust-example-rendered">
+<span class="kw">type</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">T</span>, ()<span class="op">&gt;</span>;<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Atype%20Option%3CT%3E%20%3D%20Result%3CT%2C%20()%3E%3B%0A%7D">Run</a></pre>
 
 <p>Здесь второй параметр типа <code>Result</code> фиксируется и определяется через <code>()</code>
 (произносится как &quot;unit&quot; или &quot;пустой кортеж&quot;). Тип <code>()</code> имеет ровно одно
@@ -621,13 +621,13 @@
 <p>Подобно <code>Option</code>, тип <code>Result</code> имеет метод <code>unwrap</code>,
 <a href="http://doc.rust-lang.org/std/result/enum.Result.html#method.unwrap">определенный в стандартной библиотеке</a>. Давайте объявим его самостоятельно:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>T</span>, <span class='ident'>E</span>: ::<span class='ident'>std</span>::<span class='ident'>fmt</span>::<span class='ident'>Debug</span><span class='op'>&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>T</span>, <span class='ident'>E</span><span class='op'>&gt;</span> {
-    <span class='kw'>fn</span> <span class='ident'>unwrap</span>(<span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>T</span> {
-        <span class='kw'>match</span> <span class='self'>self</span> {
-            <span class='prelude-ty'>Result</span>::<span class='prelude-val'>Ok</span>(<span class='ident'>val</span>) <span class='op'>=&gt;</span> <span class='ident'>val</span>,
-            <span class='prelude-ty'>Result</span>::<span class='prelude-val'>Err</span>(<span class='ident'>err</span>) <span class='op'>=&gt;</span>
-              <span class='macro'>panic</span><span class='macro'>!</span>(<span class='string'>&quot;called `Result::unwrap()` on an `Err` value: {:?}&quot;</span>, <span class='ident'>err</span>),
+<pre class="rust rust-example-rendered">
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">E</span>: ::<span class="ident">std</span>::<span class="ident">fmt</span>::<span class="ident">Debug</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">E</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">unwrap</span>(<span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">T</span> {
+        <span class="kw">match</span> <span class="self">self</span> {
+            <span class="prelude-ty">Result</span>::<span class="prelude-val">Ok</span>(<span class="ident">val</span>) <span class="op">=&gt;</span> <span class="ident">val</span>,
+            <span class="prelude-ty">Result</span>::<span class="prelude-val">Err</span>(<span class="ident">err</span>) <span class="op">=&gt;</span>
+              <span class="macro">panic</span><span class="macro">!</span>(<span class="string">&quot;called `Result::unwrap()` on an `Err` value: {:?}&quot;</span>, <span class="ident">err</span>),
         }
     }
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Aenum%20Result%3CT%2C%20E%3E%20%7B%20Ok(T)%2C%20Err(E)%20%7D%0Aimpl%3CT%2C%20E%3A%20%3A%3Astd%3A%3Afmt%3A%3ADebug%3E%20Result%3CT%2C%20E%3E%20%7B%0A%20%20%20%20fn%20unwrap(self)%20-%3E%20T%20%7B%0A%20%20%20%20%20%20%20%20match%20self%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20Result%3A%3AOk(val)%20%3D%3E%20val%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20Result%3A%3AErr(err)%20%3D%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20panic!(%22called%20%60Result%3A%3Aunwrap()%60%20on%20an%20%60Err%60%20value%3A%20%7B%3A%3F%7D%22%2C%20err)%2C%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%7D%0A%7D">Run</a></pre>
@@ -651,14 +651,14 @@
 в целые числа. На самом деле это настолько просто, что возникает соблазн написать
 что-то вроде:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span> <span class='ident'>double_number</span>(<span class='ident'>number_str</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span>) <span class='op'>-&gt;</span> <span class='ident'>i32</span> {
-    <span class='number'>2</span> <span class='op'>*</span> <span class='ident'>number_str</span>.<span class='ident'>parse</span>::<span class='op'>&lt;</span><span class='ident'>i32</span><span class='op'>&gt;</span>().<span class='ident'>unwrap</span>()
+<pre class="rust rust-example-rendered">
+<span class="kw">fn</span> <span class="ident">double_number</span>(<span class="ident">number_str</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-&gt;</span> <span class="ident">i32</span> {
+    <span class="number">2</span> <span class="op">*</span> <span class="ident">number_str</span>.<span class="ident">parse</span>::<span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>().<span class="ident">unwrap</span>()
 }
 
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='kw'>let</span> <span class='ident'>n</span>: <span class='ident'>i32</span> <span class='op'>=</span> <span class='ident'>double_number</span>(<span class='string'>&quot;10&quot;</span>);
-    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>n</span>, <span class='number'>20</span>);
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="kw">let</span> <span class="ident">n</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="ident">double_number</span>(<span class="string">&quot;10&quot;</span>);
+    <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">n</span>, <span class="number">20</span>);
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20double_number(number_str%3A%20%26str)%20-%3E%20i32%20%7B%0A%20%20%20%202%20*%20number_str.parse%3A%3A%3Ci32%3E().unwrap()%0A%7D%0A%0Afn%20main()%20%7B%0A%20%20%20%20let%20n%3A%20i32%20%3D%20double_number(%2210%22)%3B%0A%20%20%20%20assert_eq!(n%2C%2020)%3B%0A%7D%0A">Run</a></pre>
 
 <p>Здесь вы должны быть скептически настроены по-поводу вызова <code>unwrap</code>.
@@ -674,9 +674,9 @@
 <code>double_number</code>. Но на какой? Чтобы понять это, необходимо посмотреть на
 сигнатуру <a href="http://doc.rust-lang.org/std/primitive.str.html#method.parse"><code>метода parse</code></a> из стандартной библиотеки:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>impl</span> <span class='ident'>str</span> {
-    <span class='kw'>fn</span> <span class='ident'>parse</span><span class='op'>&lt;</span><span class='ident'>F</span>: <span class='ident'>FromStr</span><span class='op'>&gt;</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>F</span>, <span class='ident'>F</span>::<span class='prelude-val'>Err</span><span class='op'>&gt;</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">impl</span> <span class="ident">str</span> {
+    <span class="kw">fn</span> <span class="ident">parse</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">FromStr</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">F</span>, <span class="ident">F</span>::<span class="prelude-val">Err</span><span class="op">&gt;</span>;
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Aimpl%20str%20%7B%0A%20%20%20%20fn%20parse%3CF%3A%20FromStr%3E(%26self)%20-%3E%20Result%3CF%2C%20F%3A%3AErr%3E%3B%0A%7D%0A%7D">Run</a></pre>
 
 <p>Хмм. По крайней мере мы знаем, что должны использовать <code>Result</code>. Вполне
@@ -702,20 +702,20 @@
 случае, это <a href="http://doc.rust-lang.org/std/num/struct.ParseIntError.html"><code>std::num::ParseIntError</code></a>.
 Наконец, мы можем переписать нашу функцию:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>num</span>::<span class='ident'>ParseIntError</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">num</span>::<span class="ident">ParseIntError</span>;
 
-<span class='kw'>fn</span> <span class='ident'>double_number</span>(<span class='ident'>number_str</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>i32</span>, <span class='ident'>ParseIntError</span><span class='op'>&gt;</span> {
-    <span class='kw'>match</span> <span class='ident'>number_str</span>.<span class='ident'>parse</span>::<span class='op'>&lt;</span><span class='ident'>i32</span><span class='op'>&gt;</span>() {
-        <span class='prelude-val'>Ok</span>(<span class='ident'>n</span>) <span class='op'>=&gt;</span> <span class='prelude-val'>Ok</span>(<span class='number'>2</span> <span class='op'>*</span> <span class='ident'>n</span>),
-        <span class='prelude-val'>Err</span>(<span class='ident'>err</span>) <span class='op'>=&gt;</span> <span class='prelude-val'>Err</span>(<span class='ident'>err</span>),
+<span class="kw">fn</span> <span class="ident">double_number</span>(<span class="ident">number_str</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">i32</span>, <span class="ident">ParseIntError</span><span class="op">&gt;</span> {
+    <span class="kw">match</span> <span class="ident">number_str</span>.<span class="ident">parse</span>::<span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>() {
+        <span class="prelude-val">Ok</span>(<span class="ident">n</span>) <span class="op">=&gt;</span> <span class="prelude-val">Ok</span>(<span class="number">2</span> <span class="op">*</span> <span class="ident">n</span>),
+        <span class="prelude-val">Err</span>(<span class="ident">err</span>) <span class="op">=&gt;</span> <span class="prelude-val">Err</span>(<span class="ident">err</span>),
     }
 }
 
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='kw'>match</span> <span class='ident'>double_number</span>(<span class='string'>&quot;10&quot;</span>) {
-        <span class='prelude-val'>Ok</span>(<span class='ident'>n</span>) <span class='op'>=&gt;</span> <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>n</span>, <span class='number'>20</span>),
-        <span class='prelude-val'>Err</span>(<span class='ident'>err</span>) <span class='op'>=&gt;</span> <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Error: {:?}&quot;</span>, <span class='ident'>err</span>),
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="kw">match</span> <span class="ident">double_number</span>(<span class="string">&quot;10&quot;</span>) {
+        <span class="prelude-val">Ok</span>(<span class="ident">n</span>) <span class="op">=&gt;</span> <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">n</span>, <span class="number">20</span>),
+        <span class="prelude-val">Err</span>(<span class="ident">err</span>) <span class="op">=&gt;</span> <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;Error: {:?}&quot;</span>, <span class="ident">err</span>),
     }
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=use%20std%3A%3Anum%3A%3AParseIntError%3B%0A%0Afn%20double_number(number_str%3A%20%26str)%20-%3E%20Result%3Ci32%2C%20ParseIntError%3E%20%7B%0A%20%20%20%20match%20number_str.parse%3A%3A%3Ci32%3E()%20%7B%0A%20%20%20%20%20%20%20%20Ok(n)%20%3D%3E%20Ok(2%20*%20n)%2C%0A%20%20%20%20%20%20%20%20Err(err)%20%3D%3E%20Err(err)%2C%0A%20%20%20%20%7D%0A%7D%0A%0Afn%20main()%20%7B%0A%20%20%20%20match%20double_number(%2210%22)%20%7B%0A%20%20%20%20%20%20%20%20Ok(n)%20%3D%3E%20assert_eq!(n%2C%2020)%2C%0A%20%20%20%20%20%20%20%20Err(err)%20%3D%3E%20println!(%22Error%3A%20%7B%3A%3F%7D%22%2C%20err)%2C%0A%20%20%20%20%7D%0A%7D%0A">Run</a></pre>
 
@@ -727,17 +727,17 @@
 список комбинаторов, общих между <code>Result</code> и <code>Option</code>. И <code>map</code> входит в этот
 список:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>num</span>::<span class='ident'>ParseIntError</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">num</span>::<span class="ident">ParseIntError</span>;
 
-<span class='kw'>fn</span> <span class='ident'>double_number</span>(<span class='ident'>number_str</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>i32</span>, <span class='ident'>ParseIntError</span><span class='op'>&gt;</span> {
-    <span class='ident'>number_str</span>.<span class='ident'>parse</span>::<span class='op'>&lt;</span><span class='ident'>i32</span><span class='op'>&gt;</span>().<span class='ident'>map</span>(<span class='op'>|</span><span class='ident'>n</span><span class='op'>|</span> <span class='number'>2</span> <span class='op'>*</span> <span class='ident'>n</span>)
+<span class="kw">fn</span> <span class="ident">double_number</span>(<span class="ident">number_str</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">i32</span>, <span class="ident">ParseIntError</span><span class="op">&gt;</span> {
+    <span class="ident">number_str</span>.<span class="ident">parse</span>::<span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">n</span><span class="op">|</span> <span class="number">2</span> <span class="op">*</span> <span class="ident">n</span>)
 }
 
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='kw'>match</span> <span class='ident'>double_number</span>(<span class='string'>&quot;10&quot;</span>) {
-        <span class='prelude-val'>Ok</span>(<span class='ident'>n</span>) <span class='op'>=&gt;</span> <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>n</span>, <span class='number'>20</span>),
-        <span class='prelude-val'>Err</span>(<span class='ident'>err</span>) <span class='op'>=&gt;</span> <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Error: {:?}&quot;</span>, <span class='ident'>err</span>),
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="kw">match</span> <span class="ident">double_number</span>(<span class="string">&quot;10&quot;</span>) {
+        <span class="prelude-val">Ok</span>(<span class="ident">n</span>) <span class="op">=&gt;</span> <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">n</span>, <span class="number">20</span>),
+        <span class="prelude-val">Err</span>(<span class="ident">err</span>) <span class="op">=&gt;</span> <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;Error: {:?}&quot;</span>, <span class="ident">err</span>),
     }
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=use%20std%3A%3Anum%3A%3AParseIntError%3B%0A%0Afn%20double_number(number_str%3A%20%26str)%20-%3E%20Result%3Ci32%2C%20ParseIntError%3E%20%7B%0A%20%20%20%20number_str.parse%3A%3A%3Ci32%3E().map(%7Cn%7C%202%20*%20n)%0A%7D%0A%0Afn%20main()%20%7B%0A%20%20%20%20match%20double_number(%2210%22)%20%7B%0A%20%20%20%20%20%20%20%20Ok(n)%20%3D%3E%20assert_eq!(n%2C%2020)%2C%0A%20%20%20%20%20%20%20%20Err(err)%20%3D%3E%20println!(%22Error%3A%20%7B%3A%3F%7D%22%2C%20err)%2C%0A%20%20%20%20%7D%0A%7D%0A">Run</a></pre>
 
@@ -759,14 +759,14 @@
 параметров конкретным типом. Обычно фиксируется тип ошибки. Например, наш
 предыдущий пример с преобразованием строк в числа можно переписать так:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>num</span>::<span class='ident'>ParseIntError</span>;
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>result</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">num</span>::<span class="ident">ParseIntError</span>;
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">result</span>;
 
-<span class='kw'>type</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='ident'>result</span>::<span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>T</span>, <span class='ident'>ParseIntError</span><span class='op'>&gt;</span>;
+<span class="kw">type</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">result</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">ParseIntError</span><span class="op">&gt;</span>;
 
-<span class='kw'>fn</span> <span class='ident'>double_number</span>(<span class='ident'>number_str</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>i32</span><span class='op'>&gt;</span> {
-    <span class='macro'>unimplemented</span><span class='macro'>!</span>();
+<span class="kw">fn</span> <span class="ident">double_number</span>(<span class="ident">number_str</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span> {
+    <span class="macro">unimplemented</span><span class="macro">!</span>();
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Ause%20std%3A%3Anum%3A%3AParseIntError%3B%0Ause%20std%3A%3Aresult%3B%0A%0Atype%20Result%3CT%3E%20%3D%20result%3A%3AResult%3CT%2C%20ParseIntError%3E%3B%0A%0Afn%20double_number(number_str%3A%20%26str)%20-%3E%20Result%3Ci32%3E%20%7B%0A%20%20%20%20unimplemented!()%3B%0A%7D%0A%7D">Run</a></pre>
 
 <p>Зачем мы это делаем? Что ж, если у нас есть много функций, которые могут вернуть
@@ -845,14 +845,14 @@ value&quot;.</p>
 
 <p>Давайте на время вернемся к одному из первых примеров в этой главе:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>env</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">env</span>;
 
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>argv</span> <span class='op'>=</span> <span class='ident'>env</span>::<span class='ident'>args</span>();
-    <span class='kw'>let</span> <span class='ident'>arg</span>: <span class='ident'>String</span> <span class='op'>=</span> <span class='ident'>argv</span>.<span class='ident'>nth</span>(<span class='number'>1</span>).<span class='ident'>unwrap</span>(); <span class='comment'>// ошибка 1</span>
-    <span class='kw'>let</span> <span class='ident'>n</span>: <span class='ident'>i32</span> <span class='op'>=</span> <span class='ident'>arg</span>.<span class='ident'>parse</span>().<span class='ident'>unwrap</span>(); <span class='comment'>// ошибка 2</span>
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='number'>2</span> <span class='op'>*</span> <span class='ident'>n</span>);
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">argv</span> <span class="op">=</span> <span class="ident">env</span>::<span class="ident">args</span>();
+    <span class="kw">let</span> <span class="ident">arg</span>: <span class="ident">String</span> <span class="op">=</span> <span class="ident">argv</span>.<span class="ident">nth</span>(<span class="number">1</span>).<span class="ident">unwrap</span>(); <span class="comment">// ошибка 1</span>
+    <span class="kw">let</span> <span class="ident">n</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="ident">arg</span>.<span class="ident">parse</span>().<span class="ident">unwrap</span>(); <span class="comment">// ошибка 2</span>
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="number">2</span> <span class="op">*</span> <span class="ident">n</span>);
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=use%20std%3A%3Aenv%3B%0A%0Afn%20main()%20%7B%0A%20%20%20%20let%20mut%20argv%20%3D%20env%3A%3Aargs()%3B%0A%20%20%20%20let%20arg%3A%20String%20%3D%20argv.nth(1).unwrap()%3B%20%2F%2F%20%D0%BE%D1%88%D0%B8%D0%B1%D0%BA%D0%B0%201%0A%20%20%20%20let%20n%3A%20i32%20%3D%20arg.parse().unwrap()%3B%20%2F%2F%20%D0%BE%D1%88%D0%B8%D0%B1%D0%BA%D0%B0%202%0A%20%20%20%20println!(%22%7B%7D%22%2C%202%20*%20n)%3B%0A%7D%0A">Run</a></pre>
 
 <p>Учитывая наши знания о типах <code>Option</code> и <code>Result</code>, а также их различных
@@ -869,19 +869,19 @@ value&quot;.</p>
 
 <p><a name="code-error-double-string"></a></p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>env</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">env</span>;
 
-<span class='kw'>fn</span> <span class='ident'>double_arg</span>(<span class='kw-2'>mut</span> <span class='ident'>argv</span>: <span class='ident'>env</span>::<span class='ident'>Args</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>i32</span>, <span class='ident'>String</span><span class='op'>&gt;</span> {
-    <span class='ident'>argv</span>.<span class='ident'>nth</span>(<span class='number'>1</span>)
-        .<span class='ident'>ok_or</span>(<span class='string'>&quot;Please give at least one argument&quot;</span>.<span class='ident'>to_owned</span>())
-        .<span class='ident'>and_then</span>(<span class='op'>|</span><span class='ident'>arg</span><span class='op'>|</span> <span class='ident'>arg</span>.<span class='ident'>parse</span>::<span class='op'>&lt;</span><span class='ident'>i32</span><span class='op'>&gt;</span>().<span class='ident'>map_err</span>(<span class='op'>|</span><span class='ident'>err</span><span class='op'>|</span> <span class='ident'>err</span>.<span class='ident'>to_string</span>()))
+<span class="kw">fn</span> <span class="ident">double_arg</span>(<span class="kw-2">mut</span> <span class="ident">argv</span>: <span class="ident">env</span>::<span class="ident">Args</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">i32</span>, <span class="ident">String</span><span class="op">&gt;</span> {
+    <span class="ident">argv</span>.<span class="ident">nth</span>(<span class="number">1</span>)
+        .<span class="ident">ok_or</span>(<span class="string">&quot;Please give at least one argument&quot;</span>.<span class="ident">to_owned</span>())
+        .<span class="ident">and_then</span>(<span class="op">|</span><span class="ident">arg</span><span class="op">|</span> <span class="ident">arg</span>.<span class="ident">parse</span>::<span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>().<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">err</span><span class="op">|</span> <span class="ident">err</span>.<span class="ident">to_string</span>()))
 }
 
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='kw'>match</span> <span class='ident'>double_arg</span>(<span class='ident'>env</span>::<span class='ident'>args</span>()) {
-        <span class='prelude-val'>Ok</span>(<span class='ident'>n</span>) <span class='op'>=&gt;</span> <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>n</span>),
-        <span class='prelude-val'>Err</span>(<span class='ident'>err</span>) <span class='op'>=&gt;</span> <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Error: {}&quot;</span>, <span class='ident'>err</span>),
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="kw">match</span> <span class="ident">double_arg</span>(<span class="ident">env</span>::<span class="ident">args</span>()) {
+        <span class="prelude-val">Ok</span>(<span class="ident">n</span>) <span class="op">=&gt;</span> <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">n</span>),
+        <span class="prelude-val">Err</span>(<span class="ident">err</span>) <span class="op">=&gt;</span> <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;Error: {}&quot;</span>, <span class="ident">err</span>),
     }
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=use%20std%3A%3Aenv%3B%0A%0Afn%20double_arg(mut%20argv%3A%20env%3A%3AArgs)%20-%3E%20Result%3Ci32%2C%20String%3E%20%7B%0A%20%20%20%20argv.nth(1)%0A%20%20%20%20%20%20%20%20.ok_or(%22Please%20give%20at%20least%20one%20argument%22.to_owned())%0A%20%20%20%20%20%20%20%20.and_then(%7Carg%7C%20arg.parse%3A%3A%3Ci32%3E().map_err(%7Cerr%7C%20err.to_string()))%0A%7D%0A%0Afn%20main()%20%7B%0A%20%20%20%20match%20double_arg(env%3A%3Aargs())%20%7B%0A%20%20%20%20%20%20%20%20Ok(n)%20%3D%3E%20println!(%22%7B%7D%22%2C%20n)%2C%0A%20%20%20%20%20%20%20%20Err(err)%20%3D%3E%20println!(%22Error%3A%20%7B%7D%22%2C%20err)%2C%0A%20%20%20%20%7D%0A%7D%0A">Run</a></pre>
 
@@ -892,11 +892,11 @@ value&quot;.</p>
 значение <code>Option</code> равно <code>None</code>. Как и для всех комбинаторов, которые мы
 рассматривали, его объявление очень простое:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span> <span class='ident'>ok_or</span><span class='op'>&lt;</span><span class='ident'>T</span>, <span class='ident'>E</span><span class='op'>&gt;</span>(<span class='ident'>option</span>: <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span>, <span class='ident'>err</span>: <span class='ident'>E</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>T</span>, <span class='ident'>E</span><span class='op'>&gt;</span> {
-    <span class='kw'>match</span> <span class='ident'>option</span> {
-        <span class='prelude-val'>Some</span>(<span class='ident'>val</span>) <span class='op'>=&gt;</span> <span class='prelude-val'>Ok</span>(<span class='ident'>val</span>),
-        <span class='prelude-val'>None</span> <span class='op'>=&gt;</span> <span class='prelude-val'>Err</span>(<span class='ident'>err</span>),
+<pre class="rust rust-example-rendered">
+<span class="kw">fn</span> <span class="ident">ok_or</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">E</span><span class="op">&gt;</span>(<span class="ident">option</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>, <span class="ident">err</span>: <span class="ident">E</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">E</span><span class="op">&gt;</span> {
+    <span class="kw">match</span> <span class="ident">option</span> {
+        <span class="prelude-val">Some</span>(<span class="ident">val</span>) <span class="op">=&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">val</span>),
+        <span class="prelude-val">None</span> <span class="op">=&gt;</span> <span class="prelude-val">Err</span>(<span class="ident">err</span>),
     }
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20ok_or%3CT%2C%20E%3E(option%3A%20Option%3CT%3E%2C%20err%3A%20E)%20-%3E%20Result%3CT%2C%20E%3E%20%7B%0A%20%20%20%20match%20option%20%7B%0A%20%20%20%20%20%20%20%20Some(val)%20%3D%3E%20Ok(val)%2C%0A%20%20%20%20%20%20%20%20None%20%3D%3E%20Err(err)%2C%0A%20%20%20%20%7D%0A%7D%0A%7D">Run</a></pre>
 
@@ -928,22 +928,22 @@ value&quot;.</p>
 обработка ошибок необходима. Давайте начнем с того, что напишем просто
 работающий код, а затем отрефакторим его для лучшей обработки ошибок.</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>fs</span>::<span class='ident'>File</span>;
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>io</span>::<span class='ident'>Read</span>;
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>path</span>::<span class='ident'>Path</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fs</span>::<span class="ident">File</span>;
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">io</span>::<span class="ident">Read</span>;
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">path</span>::<span class="ident">Path</span>;
 
-<span class='kw'>fn</span> <span class='ident'>file_double</span><span class='op'>&lt;</span><span class='ident'>P</span>: <span class='ident'>AsRef</span><span class='op'>&lt;</span><span class='ident'>Path</span><span class='op'>&gt;&gt;</span>(<span class='ident'>file_path</span>: <span class='ident'>P</span>) <span class='op'>-&gt;</span> <span class='ident'>i32</span> {
-    <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>file</span> <span class='op'>=</span> <span class='ident'>File</span>::<span class='ident'>open</span>(<span class='ident'>file_path</span>).<span class='ident'>unwrap</span>(); <span class='comment'>// ошибка 1</span>
-    <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>contents</span> <span class='op'>=</span> <span class='ident'>String</span>::<span class='ident'>new</span>();
-    <span class='ident'>file</span>.<span class='ident'>read_to_string</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>contents</span>).<span class='ident'>unwrap</span>();   <span class='comment'>// ошибка 2</span>
-    <span class='kw'>let</span> <span class='ident'>n</span>: <span class='ident'>i32</span> <span class='op'>=</span> <span class='ident'>contents</span>.<span class='ident'>trim</span>().<span class='ident'>parse</span>().<span class='ident'>unwrap</span>(); <span class='comment'>// ошибка 3</span>
-    <span class='number'>2</span> <span class='op'>*</span> <span class='ident'>n</span>
+<span class="kw">fn</span> <span class="ident">file_double</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;&gt;</span>(<span class="ident">file_path</span>: <span class="ident">P</span>) <span class="op">-&gt;</span> <span class="ident">i32</span> {
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">file</span> <span class="op">=</span> <span class="ident">File</span>::<span class="ident">open</span>(<span class="ident">file_path</span>).<span class="ident">unwrap</span>(); <span class="comment">// ошибка 1</span>
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">contents</span> <span class="op">=</span> <span class="ident">String</span>::<span class="ident">new</span>();
+    <span class="ident">file</span>.<span class="ident">read_to_string</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">contents</span>).<span class="ident">unwrap</span>();   <span class="comment">// ошибка 2</span>
+    <span class="kw">let</span> <span class="ident">n</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="ident">contents</span>.<span class="ident">trim</span>().<span class="ident">parse</span>().<span class="ident">unwrap</span>(); <span class="comment">// ошибка 3</span>
+    <span class="number">2</span> <span class="op">*</span> <span class="ident">n</span>
 }
 
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='kw'>let</span> <span class='ident'>doubled</span> <span class='op'>=</span> <span class='ident'>file_double</span>(<span class='string'>&quot;foobar&quot;</span>);
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>doubled</span>);
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="kw">let</span> <span class="ident">doubled</span> <span class="op">=</span> <span class="ident">file_double</span>(<span class="string">&quot;foobar&quot;</span>);
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">doubled</span>);
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=use%20std%3A%3Afs%3A%3AFile%3B%0Ause%20std%3A%3Aio%3A%3ARead%3B%0Ause%20std%3A%3Apath%3A%3APath%3B%0A%0Afn%20file_double%3CP%3A%20AsRef%3CPath%3E%3E(file_path%3A%20P)%20-%3E%20i32%20%7B%0A%20%20%20%20let%20mut%20file%20%3D%20File%3A%3Aopen(file_path).unwrap()%3B%20%2F%2F%20%D0%BE%D1%88%D0%B8%D0%B1%D0%BA%D0%B0%201%0A%20%20%20%20let%20mut%20contents%20%3D%20String%3A%3Anew()%3B%0A%20%20%20%20file.read_to_string(%26mut%20contents).unwrap()%3B%20%20%20%2F%2F%20%D0%BE%D1%88%D0%B8%D0%B1%D0%BA%D0%B0%202%0A%20%20%20%20let%20n%3A%20i32%20%3D%20contents.trim().parse().unwrap()%3B%20%2F%2F%20%D0%BE%D1%88%D0%B8%D0%B1%D0%BA%D0%B0%203%0A%20%20%20%202%20*%20n%0A%7D%0A%0Afn%20main()%20%7B%0A%20%20%20%20let%20doubled%20%3D%20file_double(%22foobar%22)%3B%0A%20%20%20%20println!(%22%7B%7D%22%2C%20doubled)%3B%0A%7D%0A">Run</a></pre>
 
 <p>(Замечание: Мы используем <code>AsRef</code> по <a href="http://doc.rust-lang.org/std/fs/struct.File.html#method.open">тем же причинам, почему он используется в
@@ -992,31 +992,31 @@ value&quot;.</p>
 Одним из таких типов является <code>String</code>. Давайте посмотрим, как это отразится на
 нашем коде:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>fs</span>::<span class='ident'>File</span>;
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>io</span>::<span class='ident'>Read</span>;
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>path</span>::<span class='ident'>Path</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fs</span>::<span class="ident">File</span>;
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">io</span>::<span class="ident">Read</span>;
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">path</span>::<span class="ident">Path</span>;
 
-<span class='kw'>fn</span> <span class='ident'>file_double</span><span class='op'>&lt;</span><span class='ident'>P</span>: <span class='ident'>AsRef</span><span class='op'>&lt;</span><span class='ident'>Path</span><span class='op'>&gt;&gt;</span>(<span class='ident'>file_path</span>: <span class='ident'>P</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>i32</span>, <span class='ident'>String</span><span class='op'>&gt;</span> {
-    <span class='ident'>File</span>::<span class='ident'>open</span>(<span class='ident'>file_path</span>)
-         .<span class='ident'>map_err</span>(<span class='op'>|</span><span class='ident'>err</span><span class='op'>|</span> <span class='ident'>err</span>.<span class='ident'>to_string</span>())
-         .<span class='ident'>and_then</span>(<span class='op'>|</span><span class='kw-2'>mut</span> <span class='ident'>file</span><span class='op'>|</span> {
-              <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>contents</span> <span class='op'>=</span> <span class='ident'>String</span>::<span class='ident'>new</span>();
-              <span class='ident'>file</span>.<span class='ident'>read_to_string</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>contents</span>)
-                  .<span class='ident'>map_err</span>(<span class='op'>|</span><span class='ident'>err</span><span class='op'>|</span> <span class='ident'>err</span>.<span class='ident'>to_string</span>())
-                  .<span class='ident'>map</span>(<span class='op'>|</span>_<span class='op'>|</span> <span class='ident'>contents</span>)
+<span class="kw">fn</span> <span class="ident">file_double</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;&gt;</span>(<span class="ident">file_path</span>: <span class="ident">P</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">i32</span>, <span class="ident">String</span><span class="op">&gt;</span> {
+    <span class="ident">File</span>::<span class="ident">open</span>(<span class="ident">file_path</span>)
+         .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">err</span><span class="op">|</span> <span class="ident">err</span>.<span class="ident">to_string</span>())
+         .<span class="ident">and_then</span>(<span class="op">|</span><span class="kw-2">mut</span> <span class="ident">file</span><span class="op">|</span> {
+              <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">contents</span> <span class="op">=</span> <span class="ident">String</span>::<span class="ident">new</span>();
+              <span class="ident">file</span>.<span class="ident">read_to_string</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">contents</span>)
+                  .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">err</span><span class="op">|</span> <span class="ident">err</span>.<span class="ident">to_string</span>())
+                  .<span class="ident">map</span>(<span class="op">|</span>_<span class="op">|</span> <span class="ident">contents</span>)
          })
-         .<span class='ident'>and_then</span>(<span class='op'>|</span><span class='ident'>contents</span><span class='op'>|</span> {
-              <span class='ident'>contents</span>.<span class='ident'>trim</span>().<span class='ident'>parse</span>::<span class='op'>&lt;</span><span class='ident'>i32</span><span class='op'>&gt;</span>()
-                      .<span class='ident'>map_err</span>(<span class='op'>|</span><span class='ident'>err</span><span class='op'>|</span> <span class='ident'>err</span>.<span class='ident'>to_string</span>())
+         .<span class="ident">and_then</span>(<span class="op">|</span><span class="ident">contents</span><span class="op">|</span> {
+              <span class="ident">contents</span>.<span class="ident">trim</span>().<span class="ident">parse</span>::<span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>()
+                      .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">err</span><span class="op">|</span> <span class="ident">err</span>.<span class="ident">to_string</span>())
          })
-         .<span class='ident'>map</span>(<span class='op'>|</span><span class='ident'>n</span><span class='op'>|</span> <span class='number'>2</span> <span class='op'>*</span> <span class='ident'>n</span>)
+         .<span class="ident">map</span>(<span class="op">|</span><span class="ident">n</span><span class="op">|</span> <span class="number">2</span> <span class="op">*</span> <span class="ident">n</span>)
 }
 
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='kw'>match</span> <span class='ident'>file_double</span>(<span class='string'>&quot;foobar&quot;</span>) {
-        <span class='prelude-val'>Ok</span>(<span class='ident'>n</span>) <span class='op'>=&gt;</span> <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>n</span>),
-        <span class='prelude-val'>Err</span>(<span class='ident'>err</span>) <span class='op'>=&gt;</span> <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Ошибка: {}&quot;</span>, <span class='ident'>err</span>),
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="kw">match</span> <span class="ident">file_double</span>(<span class="string">&quot;foobar&quot;</span>) {
+        <span class="prelude-val">Ok</span>(<span class="ident">n</span>) <span class="op">=&gt;</span> <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">n</span>),
+        <span class="prelude-val">Err</span>(<span class="ident">err</span>) <span class="op">=&gt;</span> <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;Ошибка: {}&quot;</span>, <span class="ident">err</span>),
     }
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=use%20std%3A%3Afs%3A%3AFile%3B%0Ause%20std%3A%3Aio%3A%3ARead%3B%0Ause%20std%3A%3Apath%3A%3APath%3B%0A%0Afn%20file_double%3CP%3A%20AsRef%3CPath%3E%3E(file_path%3A%20P)%20-%3E%20Result%3Ci32%2C%20String%3E%20%7B%0A%20%20%20%20File%3A%3Aopen(file_path)%0A%20%20%20%20%20%20%20%20%20.map_err(%7Cerr%7C%20err.to_string())%0A%20%20%20%20%20%20%20%20%20.and_then(%7Cmut%20file%7C%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20let%20mut%20contents%20%3D%20String%3A%3Anew()%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20file.read_to_string(%26mut%20contents)%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20.map_err(%7Cerr%7C%20err.to_string())%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20.map(%7C_%7C%20contents)%0A%20%20%20%20%20%20%20%20%20%7D)%0A%20%20%20%20%20%20%20%20%20.and_then(%7Ccontents%7C%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20contents.trim().parse%3A%3A%3Ci32%3E()%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20.map_err(%7Cerr%7C%20err.to_string())%0A%20%20%20%20%20%20%20%20%20%7D)%0A%20%20%20%20%20%20%20%20%20.map(%7Cn%7C%202%20*%20n)%0A%7D%0A%0Afn%20main()%20%7B%0A%20%20%20%20match%20file_double(%22foobar%22)%20%7B%0A%20%20%20%20%20%20%20%20Ok(n)%20%3D%3E%20println!(%22%7B%7D%22%2C%20n)%2C%0A%20%20%20%20%20%20%20%20Err(err)%20%3D%3E%20println!(%22%D0%9E%D1%88%D0%B8%D0%B1%D0%BA%D0%B0%3A%20%7B%7D%22%2C%20err)%2C%0A%20%20%20%20%7D%0A%7D%0A">Run</a></pre>
 
@@ -1056,31 +1056,31 @@ value&quot;.</p>
 можем выполнить <code>return</code> для <code>file_double</code> внутри замыкания, поэтому нам
 необходимо вернуться к явному вариативному анализу.</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>fs</span>::<span class='ident'>File</span>;
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>io</span>::<span class='ident'>Read</span>;
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>path</span>::<span class='ident'>Path</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fs</span>::<span class="ident">File</span>;
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">io</span>::<span class="ident">Read</span>;
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">path</span>::<span class="ident">Path</span>;
 
-<span class='kw'>fn</span> <span class='ident'>file_double</span><span class='op'>&lt;</span><span class='ident'>P</span>: <span class='ident'>AsRef</span><span class='op'>&lt;</span><span class='ident'>Path</span><span class='op'>&gt;&gt;</span>(<span class='ident'>file_path</span>: <span class='ident'>P</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>i32</span>, <span class='ident'>String</span><span class='op'>&gt;</span> {
-    <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>file</span> <span class='op'>=</span> <span class='kw'>match</span> <span class='ident'>File</span>::<span class='ident'>open</span>(<span class='ident'>file_path</span>) {
-        <span class='prelude-val'>Ok</span>(<span class='ident'>file</span>) <span class='op'>=&gt;</span> <span class='ident'>file</span>,
-        <span class='prelude-val'>Err</span>(<span class='ident'>err</span>) <span class='op'>=&gt;</span> <span class='kw'>return</span> <span class='prelude-val'>Err</span>(<span class='ident'>err</span>.<span class='ident'>to_string</span>()),
+<span class="kw">fn</span> <span class="ident">file_double</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;&gt;</span>(<span class="ident">file_path</span>: <span class="ident">P</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">i32</span>, <span class="ident">String</span><span class="op">&gt;</span> {
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">file</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">File</span>::<span class="ident">open</span>(<span class="ident">file_path</span>) {
+        <span class="prelude-val">Ok</span>(<span class="ident">file</span>) <span class="op">=&gt;</span> <span class="ident">file</span>,
+        <span class="prelude-val">Err</span>(<span class="ident">err</span>) <span class="op">=&gt;</span> <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">err</span>.<span class="ident">to_string</span>()),
     };
-    <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>contents</span> <span class='op'>=</span> <span class='ident'>String</span>::<span class='ident'>new</span>();
-    <span class='kw'>if</span> <span class='kw'>let</span> <span class='prelude-val'>Err</span>(<span class='ident'>err</span>) <span class='op'>=</span> <span class='ident'>file</span>.<span class='ident'>read_to_string</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>contents</span>) {
-        <span class='kw'>return</span> <span class='prelude-val'>Err</span>(<span class='ident'>err</span>.<span class='ident'>to_string</span>());
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">contents</span> <span class="op">=</span> <span class="ident">String</span>::<span class="ident">new</span>();
+    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Err</span>(<span class="ident">err</span>) <span class="op">=</span> <span class="ident">file</span>.<span class="ident">read_to_string</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">contents</span>) {
+        <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">err</span>.<span class="ident">to_string</span>());
     }
-    <span class='kw'>let</span> <span class='ident'>n</span>: <span class='ident'>i32</span> <span class='op'>=</span> <span class='kw'>match</span> <span class='ident'>contents</span>.<span class='ident'>trim</span>().<span class='ident'>parse</span>() {
-        <span class='prelude-val'>Ok</span>(<span class='ident'>n</span>) <span class='op'>=&gt;</span> <span class='ident'>n</span>,
-        <span class='prelude-val'>Err</span>(<span class='ident'>err</span>) <span class='op'>=&gt;</span> <span class='kw'>return</span> <span class='prelude-val'>Err</span>(<span class='ident'>err</span>.<span class='ident'>to_string</span>()),
+    <span class="kw">let</span> <span class="ident">n</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">contents</span>.<span class="ident">trim</span>().<span class="ident">parse</span>() {
+        <span class="prelude-val">Ok</span>(<span class="ident">n</span>) <span class="op">=&gt;</span> <span class="ident">n</span>,
+        <span class="prelude-val">Err</span>(<span class="ident">err</span>) <span class="op">=&gt;</span> <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">err</span>.<span class="ident">to_string</span>()),
     };
-    <span class='prelude-val'>Ok</span>(<span class='number'>2</span> <span class='op'>*</span> <span class='ident'>n</span>)
+    <span class="prelude-val">Ok</span>(<span class="number">2</span> <span class="op">*</span> <span class="ident">n</span>)
 }
 
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='kw'>match</span> <span class='ident'>file_double</span>(<span class='string'>&quot;foobar&quot;</span>) {
-        <span class='prelude-val'>Ok</span>(<span class='ident'>n</span>) <span class='op'>=&gt;</span> <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>n</span>),
-        <span class='prelude-val'>Err</span>(<span class='ident'>err</span>) <span class='op'>=&gt;</span> <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Ошибка: {}&quot;</span>, <span class='ident'>err</span>),
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="kw">match</span> <span class="ident">file_double</span>(<span class="string">&quot;foobar&quot;</span>) {
+        <span class="prelude-val">Ok</span>(<span class="ident">n</span>) <span class="op">=&gt;</span> <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">n</span>),
+        <span class="prelude-val">Err</span>(<span class="ident">err</span>) <span class="op">=&gt;</span> <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;Ошибка: {}&quot;</span>, <span class="ident">err</span>),
     }
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=use%20std%3A%3Afs%3A%3AFile%3B%0Ause%20std%3A%3Aio%3A%3ARead%3B%0Ause%20std%3A%3Apath%3A%3APath%3B%0A%0Afn%20file_double%3CP%3A%20AsRef%3CPath%3E%3E(file_path%3A%20P)%20-%3E%20Result%3Ci32%2C%20String%3E%20%7B%0A%20%20%20%20let%20mut%20file%20%3D%20match%20File%3A%3Aopen(file_path)%20%7B%0A%20%20%20%20%20%20%20%20Ok(file)%20%3D%3E%20file%2C%0A%20%20%20%20%20%20%20%20Err(err)%20%3D%3E%20return%20Err(err.to_string())%2C%0A%20%20%20%20%7D%3B%0A%20%20%20%20let%20mut%20contents%20%3D%20String%3A%3Anew()%3B%0A%20%20%20%20if%20let%20Err(err)%20%3D%20file.read_to_string(%26mut%20contents)%20%7B%0A%20%20%20%20%20%20%20%20return%20Err(err.to_string())%3B%0A%20%20%20%20%7D%0A%20%20%20%20let%20n%3A%20i32%20%3D%20match%20contents.trim().parse()%20%7B%0A%20%20%20%20%20%20%20%20Ok(n)%20%3D%3E%20n%2C%0A%20%20%20%20%20%20%20%20Err(err)%20%3D%3E%20return%20Err(err.to_string())%2C%0A%20%20%20%20%7D%3B%0A%20%20%20%20Ok(2%20*%20n)%0A%7D%0A%0Afn%20main()%20%7B%0A%20%20%20%20match%20file_double(%22foobar%22)%20%7B%0A%20%20%20%20%20%20%20%20Ok(n)%20%3D%3E%20println!(%22%7B%7D%22%2C%20n)%2C%0A%20%20%20%20%20%20%20%20Err(err)%20%3D%3E%20println!(%22%D0%9E%D1%88%D0%B8%D0%B1%D0%BA%D0%B0%3A%20%7B%7D%22%2C%20err)%2C%0A%20%20%20%20%7D%0A%7D%0A">Run</a></pre>
 
@@ -1108,11 +1108,11 @@ value&quot;.</p>
 
 <p><a name="code-try-def-simple"></a></p>
 
-<pre class='rust rust-example-rendered'>
-<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>try</span> {
-    (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>e</span>:<span class='ident'>expr</span>) <span class='op'>=&gt;</span> (<span class='kw'>match</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>e</span> {
-        <span class='prelude-val'>Ok</span>(<span class='ident'>val</span>) <span class='op'>=&gt;</span> <span class='ident'>val</span>,
-        <span class='prelude-val'>Err</span>(<span class='ident'>err</span>) <span class='op'>=&gt;</span> <span class='kw'>return</span> <span class='prelude-val'>Err</span>(<span class='ident'>err</span>),
+<pre class="rust rust-example-rendered">
+<span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">try</span> {
+    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">e</span>:<span class="ident">expr</span>) <span class="op">=&gt;</span> (<span class="kw">match</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">e</span> {
+        <span class="prelude-val">Ok</span>(<span class="ident">val</span>) <span class="op">=&gt;</span> <span class="ident">val</span>,
+        <span class="prelude-val">Err</span>(<span class="ident">err</span>) <span class="op">=&gt;</span> <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">err</span>),
     });
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Amacro_rules!%20try%20%7B%0A%20%20%20%20(%24e%3Aexpr)%20%3D%3E%20(match%20%24e%20%7B%0A%20%20%20%20%20%20%20%20Ok(val)%20%3D%3E%20val%2C%0A%20%20%20%20%20%20%20%20Err(err)%20%3D%3E%20return%20Err(err)%2C%0A%20%20%20%20%7D)%3B%0A%7D%0A%7D">Run</a></pre>
 
@@ -1123,23 +1123,23 @@ value&quot;.</p>
 пример. Поскольку он выполняет анализ вариантов и досрочной возврат из функции,
 мы получаем более плотный код, который легче читать:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>fs</span>::<span class='ident'>File</span>;
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>io</span>::<span class='ident'>Read</span>;
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>path</span>::<span class='ident'>Path</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fs</span>::<span class="ident">File</span>;
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">io</span>::<span class="ident">Read</span>;
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">path</span>::<span class="ident">Path</span>;
 
-<span class='kw'>fn</span> <span class='ident'>file_double</span><span class='op'>&lt;</span><span class='ident'>P</span>: <span class='ident'>AsRef</span><span class='op'>&lt;</span><span class='ident'>Path</span><span class='op'>&gt;&gt;</span>(<span class='ident'>file_path</span>: <span class='ident'>P</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>i32</span>, <span class='ident'>String</span><span class='op'>&gt;</span> {
-    <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>file</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>File</span>::<span class='ident'>open</span>(<span class='ident'>file_path</span>).<span class='ident'>map_err</span>(<span class='op'>|</span><span class='ident'>e</span><span class='op'>|</span> <span class='ident'>e</span>.<span class='ident'>to_string</span>()));
-    <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>contents</span> <span class='op'>=</span> <span class='ident'>String</span>::<span class='ident'>new</span>();
-    <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>file</span>.<span class='ident'>read_to_string</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>contents</span>).<span class='ident'>map_err</span>(<span class='op'>|</span><span class='ident'>e</span><span class='op'>|</span> <span class='ident'>e</span>.<span class='ident'>to_string</span>()));
-    <span class='kw'>let</span> <span class='ident'>n</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>contents</span>.<span class='ident'>trim</span>().<span class='ident'>parse</span>::<span class='op'>&lt;</span><span class='ident'>i32</span><span class='op'>&gt;</span>().<span class='ident'>map_err</span>(<span class='op'>|</span><span class='ident'>e</span><span class='op'>|</span> <span class='ident'>e</span>.<span class='ident'>to_string</span>()));
-    <span class='prelude-val'>Ok</span>(<span class='number'>2</span> <span class='op'>*</span> <span class='ident'>n</span>)
+<span class="kw">fn</span> <span class="ident">file_double</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;&gt;</span>(<span class="ident">file_path</span>: <span class="ident">P</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">i32</span>, <span class="ident">String</span><span class="op">&gt;</span> {
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">file</span> <span class="op">=</span> <span class="macro">try</span><span class="macro">!</span>(<span class="ident">File</span>::<span class="ident">open</span>(<span class="ident">file_path</span>).<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="ident">e</span>.<span class="ident">to_string</span>()));
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">contents</span> <span class="op">=</span> <span class="ident">String</span>::<span class="ident">new</span>();
+    <span class="macro">try</span><span class="macro">!</span>(<span class="ident">file</span>.<span class="ident">read_to_string</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">contents</span>).<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="ident">e</span>.<span class="ident">to_string</span>()));
+    <span class="kw">let</span> <span class="ident">n</span> <span class="op">=</span> <span class="macro">try</span><span class="macro">!</span>(<span class="ident">contents</span>.<span class="ident">trim</span>().<span class="ident">parse</span>::<span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>().<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="ident">e</span>.<span class="ident">to_string</span>()));
+    <span class="prelude-val">Ok</span>(<span class="number">2</span> <span class="op">*</span> <span class="ident">n</span>)
 }
 
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='kw'>match</span> <span class='ident'>file_double</span>(<span class='string'>&quot;foobar&quot;</span>) {
-        <span class='prelude-val'>Ok</span>(<span class='ident'>n</span>) <span class='op'>=&gt;</span> <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>n</span>),
-        <span class='prelude-val'>Err</span>(<span class='ident'>err</span>) <span class='op'>=&gt;</span> <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Ошибка: {}&quot;</span>, <span class='ident'>err</span>),
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="kw">match</span> <span class="ident">file_double</span>(<span class="string">&quot;foobar&quot;</span>) {
+        <span class="prelude-val">Ok</span>(<span class="ident">n</span>) <span class="op">=&gt;</span> <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">n</span>),
+        <span class="prelude-val">Err</span>(<span class="ident">err</span>) <span class="op">=&gt;</span> <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;Ошибка: {}&quot;</span>, <span class="ident">err</span>),
     }
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=use%20std%3A%3Afs%3A%3AFile%3B%0Ause%20std%3A%3Aio%3A%3ARead%3B%0Ause%20std%3A%3Apath%3A%3APath%3B%0A%0Afn%20file_double%3CP%3A%20AsRef%3CPath%3E%3E(file_path%3A%20P)%20-%3E%20Result%3Ci32%2C%20String%3E%20%7B%0A%20%20%20%20let%20mut%20file%20%3D%20try!(File%3A%3Aopen(file_path).map_err(%7Ce%7C%20e.to_string()))%3B%0A%20%20%20%20let%20mut%20contents%20%3D%20String%3A%3Anew()%3B%0A%20%20%20%20try!(file.read_to_string(%26mut%20contents).map_err(%7Ce%7C%20e.to_string()))%3B%0A%20%20%20%20let%20n%20%3D%20try!(contents.trim().parse%3A%3A%3Ci32%3E().map_err(%7Ce%7C%20e.to_string()))%3B%0A%20%20%20%20Ok(2%20*%20n)%0A%7D%0A%0Afn%20main()%20%7B%0A%20%20%20%20match%20file_double(%22foobar%22)%20%7B%0A%20%20%20%20%20%20%20%20Ok(n)%20%3D%3E%20println!(%22%7B%7D%22%2C%20n)%2C%0A%20%20%20%20%20%20%20%20Err(err)%20%3D%3E%20println!(%22%D0%9E%D1%88%D0%B8%D0%B1%D0%BA%D0%B0%3A%20%7B%7D%22%2C%20err)%2C%0A%20%20%20%20%7D%0A%7D%0A">Run</a></pre>
 
@@ -1199,39 +1199,39 @@ value&quot;.</p>
 ошибка представляет собой либо <code>io::Error</code>, либо <code>num::ParseIntError</code>, из чего
 естественным образом вытекает определение:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>io</span>;
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>num</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">io</span>;
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">num</span>;
 
-<span class='comment'>// Мы реализуем `Debug` поскольку, по всей видимости, все типы должны реализовывать `Debug`.</span>
-<span class='comment'>// Это дает нам возможность получить адекватное и читаемое описание значения CliError</span>
-<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Debug</span>)]</span>
-<span class='kw'>enum</span> <span class='ident'>CliError</span> {
-    <span class='ident'>Io</span>(<span class='ident'>io</span>::<span class='ident'>Error</span>),
-    <span class='ident'>Parse</span>(<span class='ident'>num</span>::<span class='ident'>ParseIntError</span>),
+<span class="comment">// Мы реализуем `Debug` поскольку, по всей видимости, все типы должны реализовывать `Debug`.</span>
+<span class="comment">// Это дает нам возможность получить адекватное и читаемое описание значения CliError</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
+<span class="kw">enum</span> <span class="ident">CliError</span> {
+    <span class="ident">Io</span>(<span class="ident">io</span>::<span class="ident">Error</span>),
+    <span class="ident">Parse</span>(<span class="ident">num</span>::<span class="ident">ParseIntError</span>),
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Ause%20std%3A%3Aio%3B%0Ause%20std%3A%3Anum%3B%0A%0A%2F%2F%20%D0%9C%D1%8B%20%D1%80%D0%B5%D0%B0%D0%BB%D0%B8%D0%B7%D1%83%D0%B5%D0%BC%20%60Debug%60%20%D0%BF%D0%BE%D1%81%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D1%83%2C%20%D0%BF%D0%BE%20%D0%B2%D1%81%D0%B5%D0%B9%20%D0%B2%D0%B8%D0%B4%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D0%B8%2C%20%D0%B2%D1%81%D0%B5%20%D1%82%D0%B8%D0%BF%D1%8B%20%D0%B4%D0%BE%D0%BB%D0%B6%D0%BD%D1%8B%20%D1%80%D0%B5%D0%B0%D0%BB%D0%B8%D0%B7%D0%BE%D0%B2%D1%8B%D0%B2%D0%B0%D1%82%D1%8C%20%60Debug%60.%0A%2F%2F%20%D0%AD%D1%82%D0%BE%20%D0%B4%D0%B0%D0%B5%D1%82%20%D0%BD%D0%B0%D0%BC%20%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D1%8C%20%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D1%82%D1%8C%20%D0%B0%D0%B4%D0%B5%D0%BA%D0%B2%D0%B0%D1%82%D0%BD%D0%BE%D0%B5%20%D0%B8%20%D1%87%D0%B8%D1%82%D0%B0%D0%B5%D0%BC%D0%BE%D0%B5%20%D0%BE%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B7%D0%BD%D0%B0%D1%87%D0%B5%D0%BD%D0%B8%D1%8F%20CliError%0A%23%5Bderive(Debug)%5D%0Aenum%20CliError%20%7B%0A%20%20%20%20Io(io%3A%3AError)%2C%0A%20%20%20%20Parse(num%3A%3AParseIntError)%2C%0A%7D%0A%7D">Run</a></pre>
 
 <p>Осталось только немного подогнать наш код из примера. Вместо преобразования
 ошибок в строки, мы будем просто конвертировать их в наш тип <code>CliError</code>,
 используя соответствующий конструктор значения:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>fs</span>::<span class='ident'>File</span>;
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>io</span>::<span class='ident'>Read</span>;
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>path</span>::<span class='ident'>Path</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fs</span>::<span class="ident">File</span>;
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">io</span>::<span class="ident">Read</span>;
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">path</span>::<span class="ident">Path</span>;
 
-<span class='kw'>fn</span> <span class='ident'>file_double</span><span class='op'>&lt;</span><span class='ident'>P</span>: <span class='ident'>AsRef</span><span class='op'>&lt;</span><span class='ident'>Path</span><span class='op'>&gt;&gt;</span>(<span class='ident'>file_path</span>: <span class='ident'>P</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>i32</span>, <span class='ident'>CliError</span><span class='op'>&gt;</span> {
-    <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>file</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>File</span>::<span class='ident'>open</span>(<span class='ident'>file_path</span>).<span class='ident'>map_err</span>(<span class='ident'>CliError</span>::<span class='ident'>Io</span>));
-    <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>contents</span> <span class='op'>=</span> <span class='ident'>String</span>::<span class='ident'>new</span>();
-    <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>file</span>.<span class='ident'>read_to_string</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>contents</span>).<span class='ident'>map_err</span>(<span class='ident'>CliError</span>::<span class='ident'>Io</span>));
-    <span class='kw'>let</span> <span class='ident'>n</span>: <span class='ident'>i32</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>contents</span>.<span class='ident'>trim</span>().<span class='ident'>parse</span>().<span class='ident'>map_err</span>(<span class='ident'>CliError</span>::<span class='ident'>Parse</span>));
-    <span class='prelude-val'>Ok</span>(<span class='number'>2</span> <span class='op'>*</span> <span class='ident'>n</span>)
+<span class="kw">fn</span> <span class="ident">file_double</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;&gt;</span>(<span class="ident">file_path</span>: <span class="ident">P</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">i32</span>, <span class="ident">CliError</span><span class="op">&gt;</span> {
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">file</span> <span class="op">=</span> <span class="macro">try</span><span class="macro">!</span>(<span class="ident">File</span>::<span class="ident">open</span>(<span class="ident">file_path</span>).<span class="ident">map_err</span>(<span class="ident">CliError</span>::<span class="ident">Io</span>));
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">contents</span> <span class="op">=</span> <span class="ident">String</span>::<span class="ident">new</span>();
+    <span class="macro">try</span><span class="macro">!</span>(<span class="ident">file</span>.<span class="ident">read_to_string</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">contents</span>).<span class="ident">map_err</span>(<span class="ident">CliError</span>::<span class="ident">Io</span>));
+    <span class="kw">let</span> <span class="ident">n</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="macro">try</span><span class="macro">!</span>(<span class="ident">contents</span>.<span class="ident">trim</span>().<span class="ident">parse</span>().<span class="ident">map_err</span>(<span class="ident">CliError</span>::<span class="ident">Parse</span>));
+    <span class="prelude-val">Ok</span>(<span class="number">2</span> <span class="op">*</span> <span class="ident">n</span>)
 }
 
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='kw'>match</span> <span class='ident'>file_double</span>(<span class='string'>&quot;foobar&quot;</span>) {
-        <span class='prelude-val'>Ok</span>(<span class='ident'>n</span>) <span class='op'>=&gt;</span> <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>n</span>),
-        <span class='prelude-val'>Err</span>(<span class='ident'>err</span>) <span class='op'>=&gt;</span> <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Ошибка: {:?}&quot;</span>, <span class='ident'>err</span>),
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="kw">match</span> <span class="ident">file_double</span>(<span class="string">&quot;foobar&quot;</span>) {
+        <span class="prelude-val">Ok</span>(<span class="ident">n</span>) <span class="op">=&gt;</span> <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">n</span>),
+        <span class="prelude-val">Err</span>(<span class="ident">err</span>) <span class="op">=&gt;</span> <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;Ошибка: {:?}&quot;</span>, <span class="ident">err</span>),
     }
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=%23%5Bderive(Debug)%5D%0Aenum%20CliError%20%7B%20Io(%3A%3Astd%3A%3Aio%3A%3AError)%2C%20Parse(%3A%3Astd%3A%3Anum%3A%3AParseIntError)%20%7D%0Ause%20std%3A%3Afs%3A%3AFile%3B%0Ause%20std%3A%3Aio%3A%3ARead%3B%0Ause%20std%3A%3Apath%3A%3APath%3B%0A%0Afn%20file_double%3CP%3A%20AsRef%3CPath%3E%3E(file_path%3A%20P)%20-%3E%20Result%3Ci32%2C%20CliError%3E%20%7B%0A%20%20%20%20let%20mut%20file%20%3D%20try!(File%3A%3Aopen(file_path).map_err(CliError%3A%3AIo))%3B%0A%20%20%20%20let%20mut%20contents%20%3D%20String%3A%3Anew()%3B%0A%20%20%20%20try!(file.read_to_string(%26mut%20contents).map_err(CliError%3A%3AIo))%3B%0A%20%20%20%20let%20n%3A%20i32%20%3D%20try!(contents.trim().parse().map_err(CliError%3A%3AParse))%3B%0A%20%20%20%20Ok(2%20*%20n)%0A%7D%0A%0Afn%20main()%20%7B%0A%20%20%20%20match%20file_double(%22foobar%22)%20%7B%0A%20%20%20%20%20%20%20%20Ok(n)%20%3D%3E%20println!(%22%7B%7D%22%2C%20n)%2C%0A%20%20%20%20%20%20%20%20Err(err)%20%3D%3E%20println!(%22%D0%9E%D1%88%D0%B8%D0%B1%D0%BA%D0%B0%3A%20%7B%3A%3F%7D%22%2C%20err)%2C%0A%20%20%20%20%7D%0A%7D%0A">Run</a></pre>
 
@@ -1266,15 +1266,15 @@ value&quot;.</p>
 <p>Типаж <code>Error</code>
 <a href="http://doc.rust-lang.org/std/error/trait.Error.html">объявлен в стандартной библиотеке</a>:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>fmt</span>::{<span class='ident'>Debug</span>, <span class='ident'>Display</span>};
+<pre class="rust rust-example-rendered">
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fmt</span>::{<span class="ident">Debug</span>, <span class="ident">Display</span>};
 
-<span class='kw'>trait</span> <span class='ident'>Error</span>: <span class='ident'>Debug</span> <span class='op'>+</span> <span class='ident'>Display</span> {
-  <span class='doccomment'>/// A short description of the error.</span>
-  <span class='kw'>fn</span> <span class='ident'>description</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='kw-2'>&amp;</span><span class='ident'>str</span>;
+<span class="kw">trait</span> <span class="ident">Error</span>: <span class="ident">Debug</span> <span class="op">+</span> <span class="ident">Display</span> {
+  <span class="doccomment">/// A short description of the error.</span>
+  <span class="kw">fn</span> <span class="ident">description</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">str</span>;
 
-  <span class='doccomment'>/// The lower level cause of this error, if any.</span>
-  <span class='kw'>fn</span> <span class='ident'>cause</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span><span class='ident'>Error</span><span class='op'>&gt;</span> { <span class='prelude-val'>None</span> }
+  <span class="doccomment">/// The lower level cause of this error, if any.</span>
+  <span class="kw">fn</span> <span class="ident">cause</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">Error</span><span class="op">&gt;</span> { <span class="prelude-val">None</span> }
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Ause%20std%3A%3Afmt%3A%3A%7BDebug%2C%20Display%7D%3B%0A%0Atrait%20Error%3A%20Debug%20%2B%20Display%20%7B%0A%20%20%2F%2F%2F%20A%20short%20description%20of%20the%20error.%0A%20%20fn%20description(%26self)%20-%3E%20%26str%3B%0A%0A%20%20%2F%2F%2F%20The%20lower%20level%20cause%20of%20this%20error%2C%20if%20any.%0A%20%20fn%20cause(%26self)%20-%3E%20Option%3C%26Error%3E%20%7B%20None%20%7D%0A%7D%0A%7D">Run</a></pre>
 
 <p>Этот типаж очень обобщенный, поскольку предполагается, что он должен быть
@@ -1303,16 +1303,16 @@ object). Обычно это выглядит как <code>Box&lt;Error&gt;</cod
 Давайте воспользуемся для этого типом ошибки, который мы определили в
 <a href="#defining-your-own-error-type">предыдущем разделе</a>:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>io</span>;
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>num</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">io</span>;
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">num</span>;
 
-<span class='comment'>// Мы реализуем `Debug` поскольку, по всей видимости, все типы должны реализовывать `Debug`.</span>
-<span class='comment'>// Это дает нам возможность получить адекватное и читаемое описание значения CliError</span>
-<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Debug</span>)]</span>
-<span class='kw'>enum</span> <span class='ident'>CliError</span> {
-    <span class='ident'>Io</span>(<span class='ident'>io</span>::<span class='ident'>Error</span>),
-    <span class='ident'>Parse</span>(<span class='ident'>num</span>::<span class='ident'>ParseIntError</span>),
+<span class="comment">// Мы реализуем `Debug` поскольку, по всей видимости, все типы должны реализовывать `Debug`.</span>
+<span class="comment">// Это дает нам возможность получить адекватное и читаемое описание значения CliError</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
+<span class="kw">enum</span> <span class="ident">CliError</span> {
+    <span class="ident">Io</span>(<span class="ident">io</span>::<span class="ident">Error</span>),
+    <span class="ident">Parse</span>(<span class="ident">num</span>::<span class="ident">ParseIntError</span>),
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Ause%20std%3A%3Aio%3B%0Ause%20std%3A%3Anum%3B%0A%0A%2F%2F%20%D0%9C%D1%8B%20%D1%80%D0%B5%D0%B0%D0%BB%D0%B8%D0%B7%D1%83%D0%B5%D0%BC%20%60Debug%60%20%D0%BF%D0%BE%D1%81%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D1%83%2C%20%D0%BF%D0%BE%20%D0%B2%D1%81%D0%B5%D0%B9%20%D0%B2%D0%B8%D0%B4%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D0%B8%2C%20%D0%B2%D1%81%D0%B5%20%D1%82%D0%B8%D0%BF%D1%8B%20%D0%B4%D0%BE%D0%BB%D0%B6%D0%BD%D1%8B%20%D1%80%D0%B5%D0%B0%D0%BB%D0%B8%D0%B7%D0%BE%D0%B2%D1%8B%D0%B2%D0%B0%D1%82%D1%8C%20%60Debug%60.%0A%2F%2F%20%D0%AD%D1%82%D0%BE%20%D0%B4%D0%B0%D0%B5%D1%82%20%D0%BD%D0%B0%D0%BC%20%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D1%8C%20%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D1%82%D1%8C%20%D0%B0%D0%B4%D0%B5%D0%BA%D0%B2%D0%B0%D1%82%D0%BD%D0%BE%D0%B5%20%D0%B8%20%D1%87%D0%B8%D1%82%D0%B0%D0%B5%D0%BC%D0%BE%D0%B5%20%D0%BE%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B7%D0%BD%D0%B0%D1%87%D0%B5%D0%BD%D0%B8%D1%8F%20CliError%0A%23%5Bderive(Debug)%5D%0Aenum%20CliError%20%7B%0A%20%20%20%20Io(io%3A%3AError)%2C%0A%20%20%20%20Parse(num%3A%3AParseIntError)%2C%0A%7D%0A%7D">Run</a></pre>
 
 <p>Данный тип ошибки отражает возможность возникновения двух других типов ошибок:
@@ -1323,38 +1323,38 @@ object). Обычно это выглядит как <code>Box&lt;Error&gt;</cod
 <p>Реализация <code>Error</code> довольно прямолинейна и главным образом состоит из явного
 анализа вариантов:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>error</span>;
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>fmt</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">error</span>;
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fmt</span>;
 
-<span class='kw'>impl</span> <span class='ident'>fmt</span>::<span class='ident'>Display</span> <span class='kw'>for</span> <span class='ident'>CliError</span> {
-    <span class='kw'>fn</span> <span class='ident'>fmt</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>, <span class='ident'>f</span>: <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>fmt</span>::<span class='ident'>Formatter</span>) <span class='op'>-&gt;</span> <span class='ident'>fmt</span>::<span class='prelude-ty'>Result</span> {
-        <span class='kw'>match</span> <span class='kw-2'>*</span><span class='self'>self</span> {
-            <span class='comment'>// Оба изначальных типа ошибок уже реализуют `Display`,</span>
-            <span class='comment'>// так что мы можем использовать их реализации</span>
-            <span class='ident'>CliError</span>::<span class='ident'>Io</span>(<span class='kw-2'>ref</span> <span class='ident'>err</span>) <span class='op'>=&gt;</span> <span class='macro'>write</span><span class='macro'>!</span>(<span class='ident'>f</span>, <span class='string'>&quot;IO error: {}&quot;</span>, <span class='ident'>err</span>),
-            <span class='ident'>CliError</span>::<span class='ident'>Parse</span>(<span class='kw-2'>ref</span> <span class='ident'>err</span>) <span class='op'>=&gt;</span> <span class='macro'>write</span><span class='macro'>!</span>(<span class='ident'>f</span>, <span class='string'>&quot;Parse error: {}&quot;</span>, <span class='ident'>err</span>),
+<span class="kw">impl</span> <span class="ident">fmt</span>::<span class="ident">Display</span> <span class="kw">for</span> <span class="ident">CliError</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
+        <span class="kw">match</span> <span class="kw-2">*</span><span class="self">self</span> {
+            <span class="comment">// Оба изначальных типа ошибок уже реализуют `Display`,</span>
+            <span class="comment">// так что мы можем использовать их реализации</span>
+            <span class="ident">CliError</span>::<span class="ident">Io</span>(<span class="kw-2">ref</span> <span class="ident">err</span>) <span class="op">=&gt;</span> <span class="macro">write</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;IO error: {}&quot;</span>, <span class="ident">err</span>),
+            <span class="ident">CliError</span>::<span class="ident">Parse</span>(<span class="kw-2">ref</span> <span class="ident">err</span>) <span class="op">=&gt;</span> <span class="macro">write</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;Parse error: {}&quot;</span>, <span class="ident">err</span>),
         }
     }
 }
 
-<span class='kw'>impl</span> <span class='ident'>error</span>::<span class='ident'>Error</span> <span class='kw'>for</span> <span class='ident'>CliError</span> {
-    <span class='kw'>fn</span> <span class='ident'>description</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='kw-2'>&amp;</span><span class='ident'>str</span> {
-        <span class='comment'>// Оба изначальных типа ошибок уже реализуют `Error`,</span>
-        <span class='comment'>// так что мы можем использовать их реализацией</span>
-        <span class='kw'>match</span> <span class='kw-2'>*</span><span class='self'>self</span> {
-            <span class='ident'>CliError</span>::<span class='ident'>Io</span>(<span class='kw-2'>ref</span> <span class='ident'>err</span>) <span class='op'>=&gt;</span> <span class='ident'>err</span>.<span class='ident'>description</span>(),
-            <span class='ident'>CliError</span>::<span class='ident'>Parse</span>(<span class='kw-2'>ref</span> <span class='ident'>err</span>) <span class='op'>=&gt;</span> <span class='ident'>err</span>.<span class='ident'>description</span>(),
+<span class="kw">impl</span> <span class="ident">error</span>::<span class="ident">Error</span> <span class="kw">for</span> <span class="ident">CliError</span> {
+    <span class="kw">fn</span> <span class="ident">description</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">str</span> {
+        <span class="comment">// Оба изначальных типа ошибок уже реализуют `Error`,</span>
+        <span class="comment">// так что мы можем использовать их реализацией</span>
+        <span class="kw">match</span> <span class="kw-2">*</span><span class="self">self</span> {
+            <span class="ident">CliError</span>::<span class="ident">Io</span>(<span class="kw-2">ref</span> <span class="ident">err</span>) <span class="op">=&gt;</span> <span class="ident">err</span>.<span class="ident">description</span>(),
+            <span class="ident">CliError</span>::<span class="ident">Parse</span>(<span class="kw-2">ref</span> <span class="ident">err</span>) <span class="op">=&gt;</span> <span class="ident">err</span>.<span class="ident">description</span>(),
         }
     }
 
-    <span class='kw'>fn</span> <span class='ident'>cause</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span><span class='ident'>error</span>::<span class='ident'>Error</span><span class='op'>&gt;</span> {
-        <span class='kw'>match</span> <span class='kw-2'>*</span><span class='self'>self</span> {
-            <span class='comment'>// В обоих случаях происходит неявное преобразование значения `err`</span>
-            <span class='comment'>// из конкретного типа (`&amp;io::Error` или `&amp;num::ParseIntError`)</span>
-            <span class='comment'>// в типаж-обьект `&amp;Error`. Это работает потому что оба типа реализуют `Error`.</span>
-            <span class='ident'>CliError</span>::<span class='ident'>Io</span>(<span class='kw-2'>ref</span> <span class='ident'>err</span>) <span class='op'>=&gt;</span> <span class='prelude-val'>Some</span>(<span class='ident'>err</span>),
-            <span class='ident'>CliError</span>::<span class='ident'>Parse</span>(<span class='kw-2'>ref</span> <span class='ident'>err</span>) <span class='op'>=&gt;</span> <span class='prelude-val'>Some</span>(<span class='ident'>err</span>),
+    <span class="kw">fn</span> <span class="ident">cause</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">error</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
+        <span class="kw">match</span> <span class="kw-2">*</span><span class="self">self</span> {
+            <span class="comment">// В обоих случаях происходит неявное преобразование значения `err`</span>
+            <span class="comment">// из конкретного типа (`&amp;io::Error` или `&amp;num::ParseIntError`)</span>
+            <span class="comment">// в типаж-обьект `&amp;Error`. Это работает потому что оба типа реализуют `Error`.</span>
+            <span class="ident">CliError</span>::<span class="ident">Io</span>(<span class="kw-2">ref</span> <span class="ident">err</span>) <span class="op">=&gt;</span> <span class="prelude-val">Some</span>(<span class="ident">err</span>),
+            <span class="ident">CliError</span>::<span class="ident">Parse</span>(<span class="kw-2">ref</span> <span class="ident">err</span>) <span class="op">=&gt;</span> <span class="prelude-val">Some</span>(<span class="ident">err</span>),
         }
     }
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Ause%20std%3A%3Aerror%3B%0Ause%20std%3A%3Afmt%3B%0A%0Aimpl%20fmt%3A%3ADisplay%20for%20CliError%20%7B%0A%20%20%20%20fn%20fmt(%26self%2C%20f%3A%20%26mut%20fmt%3A%3AFormatter)%20-%3E%20fmt%3A%3AResult%20%7B%0A%20%20%20%20%20%20%20%20match%20*self%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F%20%D0%9E%D0%B1%D0%B0%20%D0%B8%D0%B7%D0%BD%D0%B0%D1%87%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D1%85%20%D1%82%D0%B8%D0%BF%D0%B0%20%D0%BE%D1%88%D0%B8%D0%B1%D0%BE%D0%BA%20%D1%83%D0%B6%D0%B5%20%D1%80%D0%B5%D0%B0%D0%BB%D0%B8%D0%B7%D1%83%D1%8E%D1%82%20%60Display%60%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F%20%D1%82%D0%B0%D0%BA%20%D1%87%D1%82%D0%BE%20%D0%BC%D1%8B%20%D0%BC%D0%BE%D0%B6%D0%B5%D0%BC%20%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20%D0%B8%D1%85%20%D1%80%D0%B5%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D0%B8%0A%20%20%20%20%20%20%20%20%20%20%20%20CliError%3A%3AIo(ref%20err)%20%3D%3E%20write!(f%2C%20%22IO%20error%3A%20%7B%7D%22%2C%20err)%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20CliError%3A%3AParse(ref%20err)%20%3D%3E%20write!(f%2C%20%22Parse%20error%3A%20%7B%7D%22%2C%20err)%2C%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%7D%0A%0Aimpl%20error%3A%3AError%20for%20CliError%20%7B%0A%20%20%20%20fn%20description(%26self)%20-%3E%20%26str%20%7B%0A%20%20%20%20%20%20%20%20%2F%2F%20%D0%9E%D0%B1%D0%B0%20%D0%B8%D0%B7%D0%BD%D0%B0%D1%87%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D1%85%20%D1%82%D0%B8%D0%BF%D0%B0%20%D0%BE%D1%88%D0%B8%D0%B1%D0%BE%D0%BA%20%D1%83%D0%B6%D0%B5%20%D1%80%D0%B5%D0%B0%D0%BB%D0%B8%D0%B7%D1%83%D1%8E%D1%82%20%60Error%60%2C%0A%20%20%20%20%20%20%20%20%2F%2F%20%D1%82%D0%B0%D0%BA%20%D1%87%D1%82%D0%BE%20%D0%BC%D1%8B%20%D0%BC%D0%BE%D0%B6%D0%B5%D0%BC%20%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20%D0%B8%D1%85%20%D1%80%D0%B5%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D0%B5%D0%B9%0A%20%20%20%20%20%20%20%20match%20*self%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20CliError%3A%3AIo(ref%20err)%20%3D%3E%20err.description()%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20CliError%3A%3AParse(ref%20err)%20%3D%3E%20err.description()%2C%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%0A%20%20%20%20fn%20cause(%26self)%20-%3E%20Option%3C%26error%3A%3AError%3E%20%7B%0A%20%20%20%20%20%20%20%20match%20*self%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F%20%D0%92%20%D0%BE%D0%B1%D0%BE%D0%B8%D1%85%20%D1%81%D0%BB%D1%83%D1%87%D0%B0%D1%8F%D1%85%20%D0%BF%D1%80%D0%BE%D0%B8%D1%81%D1%85%D0%BE%D0%B4%D0%B8%D1%82%20%D0%BD%D0%B5%D1%8F%D0%B2%D0%BD%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B5%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B7%D0%BD%D0%B0%D1%87%D0%B5%D0%BD%D0%B8%D1%8F%20%60err%60%0A%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F%20%D0%B8%D0%B7%20%D0%BA%D0%BE%D0%BD%D0%BA%D1%80%D0%B5%D1%82%D0%BD%D0%BE%D0%B3%D0%BE%20%D1%82%D0%B8%D0%BF%D0%B0%20(%60%26io%3A%3AError%60%20%D0%B8%D0%BB%D0%B8%20%60%26num%3A%3AParseIntError%60)%0A%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F%20%D0%B2%20%D1%82%D0%B8%D0%BF%D0%B0%D0%B6-%D0%BE%D0%B1%D1%8C%D0%B5%D0%BA%D1%82%20%60%26Error%60.%20%D0%AD%D1%82%D0%BE%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D1%82%20%D0%BF%D0%BE%D1%82%D0%BE%D0%BC%D1%83%20%D1%87%D1%82%D0%BE%20%D0%BE%D0%B1%D0%B0%20%D1%82%D0%B8%D0%BF%D0%B0%20%D1%80%D0%B5%D0%B0%D0%BB%D0%B8%D0%B7%D1%83%D1%8E%D1%82%20%60Error%60.%0A%20%20%20%20%20%20%20%20%20%20%20%20CliError%3A%3AIo(ref%20err)%20%3D%3E%20Some(err)%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20CliError%3A%3AParse(ref%20err)%20%3D%3E%20Some(err)%2C%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%7D%0A%7D">Run</a></pre>
@@ -1370,9 +1370,9 @@ object). Обычно это выглядит как <code>Box&lt;Error&gt;</cod
 
 <p><a name="code-from-def"></a></p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>trait</span> <span class='ident'>From</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span> {
-    <span class='kw'>fn</span> <span class='ident'>from</span>(<span class='ident'>T</span>) <span class='op'>-&gt;</span> <span class='self'>Self</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">trait</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">T</span>) <span class="op">-&gt;</span> <span class="self">Self</span>;
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Atrait%20From%3CT%3E%20%7B%0A%20%20%20%20fn%20from(T)%20-%3E%20Self%3B%0A%7D%0A%7D">Run</a></pre>
 
 <p>Очень просто, не правда ли? Типаж <code>From</code> чрезвычайно полезен, поскольку
@@ -1383,16 +1383,16 @@ object). Обычно это выглядит как <code>Box&lt;Error&gt;</cod
 
 <p>Вот несколько простых примеров, демонстрирующих работу <code>From</code>:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>let</span> <span class='ident'>string</span>: <span class='ident'>String</span> <span class='op'>=</span> <span class='ident'>From</span>::<span class='ident'>from</span>(<span class='string'>&quot;foo&quot;</span>);
-<span class='kw'>let</span> <span class='ident'>bytes</span>: <span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>u8</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='ident'>From</span>::<span class='ident'>from</span>(<span class='string'>&quot;foo&quot;</span>);
-<span class='kw'>let</span> <span class='ident'>cow</span>: ::<span class='ident'>std</span>::<span class='ident'>borrow</span>::<span class='ident'>Cow</span><span class='op'>&lt;</span><span class='ident'>str</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='ident'>From</span>::<span class='ident'>from</span>(<span class='string'>&quot;foo&quot;</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20string%3A%20String%20%3D%20From%3A%3Afrom(%22foo%22)%3B%0Alet%20bytes%3A%20Vec%3Cu8%3E%20%3D%20From%3A%3Afrom(%22foo%22)%3B%0Alet%20cow%3A%20%3A%3Astd%3A%3Aborrow%3A%3ACow%3Cstr%3E%20%3D%20From%3A%3Afrom(%22foo%22)%3B%0A%7D">Run</a></pre>
+<pre class="rust rust-example-rendered">
+<span class="kw">let</span> <span class="ident">string</span>: <span class="ident">String</span> <span class="op">=</span> <span class="ident">From</span>::<span class="ident">from</span>(<span class="string">&quot;foo&quot;</span>);
+<span class="kw">let</span> <span class="ident">bytes</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">From</span>::<span class="ident">from</span>(<span class="string">&quot;foo&quot;</span>);
+<span class="kw">let</span> <span class="ident">cow</span>: ::<span class="ident">std</span>::<span class="ident">borrow</span>::<span class="ident">Cow</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">From</span>::<span class="ident">from</span>(<span class="string">&quot;foo&quot;</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20string%3A%20String%20%3D%20From%3A%3Afrom(%22foo%22)%3B%0Alet%20bytes%3A%20Vec%3Cu8%3E%20%3D%20From%3A%3Afrom(%22foo%22)%3B%0Alet%20cow%3A%20%3A%3Astd%3A%3Aborrow%3A%3ACow%3Cstr%3E%20%3D%20From%3A%3Afrom(%22foo%22)%3B%0A%7D">Run</a></pre>
 
 <p>Итак, <code>From</code> полезен для выполнения преобразований между строками. Но как
 насчет ошибок? Оказывается, существует одна важная реализация:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>impl</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span>, <span class='ident'>E</span>: <span class='ident'>Error</span> <span class='op'>+</span> <span class='lifetime'>&#39;a</span><span class='op'>&gt;</span> <span class='ident'>From</span><span class='op'>&lt;</span><span class='ident'>E</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>Box</span><span class='op'>&lt;</span><span class='ident'>Error</span> <span class='op'>+</span> <span class='lifetime'>&#39;a</span><span class='op'>&gt;</span><a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Aimpl%3C'a%2C%20E%3A%20Error%20%2B%20'a%3E%20From%3CE%3E%20for%20Box%3CError%20%2B%20'a%3E%0A%7D">Run</a></pre>
+<pre class="rust rust-example-rendered">
+<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">E</span>: <span class="ident">Error</span> <span class="op">+</span> <span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">E</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Error</span> <span class="op">+</span> <span class="lifetime">&#39;a</span><span class="op">&gt;</span><a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Aimpl%3C'a%2C%20E%3A%20Error%20%2B%20'a%3E%20From%3CE%3E%20for%20Box%3CError%20%2B%20'a%3E%0A%7D">Run</a></pre>
 
 <p>Эта реализация говорит, что <em>любой</em> тип, который реализует <code>Error</code>, можно
 конвертировать в типаж-объект <code>Box&lt;Error&gt;</code>. Выглядит не слишком впечатляюще, но
@@ -1402,19 +1402,19 @@ object). Обычно это выглядит как <code>Box&lt;Error&gt;</cod
 and <code>num::ParseIntError</code>? Поскольку обе они реализуют <code>Error</code>, они также
 работают с <code>From</code>:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>error</span>::<span class='ident'>Error</span>;
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>fs</span>;
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>io</span>;
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>num</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">error</span>::<span class="ident">Error</span>;
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fs</span>;
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">io</span>;
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">num</span>;
 
-<span class='comment'>// Получаем значения ошибок</span>
-<span class='kw'>let</span> <span class='ident'>io_err</span>: <span class='ident'>io</span>::<span class='ident'>Error</span> <span class='op'>=</span> <span class='ident'>io</span>::<span class='ident'>Error</span>::<span class='ident'>last_os_error</span>();
-<span class='kw'>let</span> <span class='ident'>parse_err</span>: <span class='ident'>num</span>::<span class='ident'>ParseIntError</span> <span class='op'>=</span> <span class='string'>&quot;not a number&quot;</span>.<span class='ident'>parse</span>::<span class='op'>&lt;</span><span class='ident'>i32</span><span class='op'>&gt;</span>().<span class='ident'>unwrap_err</span>();
+<span class="comment">// Получаем значения ошибок</span>
+<span class="kw">let</span> <span class="ident">io_err</span>: <span class="ident">io</span>::<span class="ident">Error</span> <span class="op">=</span> <span class="ident">io</span>::<span class="ident">Error</span>::<span class="ident">last_os_error</span>();
+<span class="kw">let</span> <span class="ident">parse_err</span>: <span class="ident">num</span>::<span class="ident">ParseIntError</span> <span class="op">=</span> <span class="string">&quot;not a number&quot;</span>.<span class="ident">parse</span>::<span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>().<span class="ident">unwrap_err</span>();
 
-<span class='comment'>// Собственно, конвертация</span>
-<span class='kw'>let</span> <span class='ident'>err1</span>: <span class='ident'>Box</span><span class='op'>&lt;</span><span class='ident'>Error</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='ident'>From</span>::<span class='ident'>from</span>(<span class='ident'>io_err</span>);
-<span class='kw'>let</span> <span class='ident'>err2</span>: <span class='ident'>Box</span><span class='op'>&lt;</span><span class='ident'>Error</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='ident'>From</span>::<span class='ident'>from</span>(<span class='ident'>parse_err</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Ause%20std%3A%3Aerror%3A%3AError%3B%0Ause%20std%3A%3Afs%3B%0Ause%20std%3A%3Aio%3B%0Ause%20std%3A%3Anum%3B%0A%0A%2F%2F%20%D0%9F%D0%BE%D0%BB%D1%83%D1%87%D0%B0%D0%B5%D0%BC%20%D0%B7%D0%BD%D0%B0%D1%87%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%BE%D1%88%D0%B8%D0%B1%D0%BE%D0%BA%0Alet%20io_err%3A%20io%3A%3AError%20%3D%20io%3A%3AError%3A%3Alast_os_error()%3B%0Alet%20parse_err%3A%20num%3A%3AParseIntError%20%3D%20%22not%20a%20number%22.parse%3A%3A%3Ci32%3E().unwrap_err()%3B%0A%0A%2F%2F%20%D0%A1%D0%BE%D0%B1%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%BD%D0%BE%2C%20%D0%BA%D0%BE%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%B0%D1%86%D0%B8%D1%8F%0Alet%20err1%3A%20Box%3CError%3E%20%3D%20From%3A%3Afrom(io_err)%3B%0Alet%20err2%3A%20Box%3CError%3E%20%3D%20From%3A%3Afrom(parse_err)%3B%0A%7D">Run</a></pre>
+<span class="comment">// Собственно, конвертация</span>
+<span class="kw">let</span> <span class="ident">err1</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Error</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">From</span>::<span class="ident">from</span>(<span class="ident">io_err</span>);
+<span class="kw">let</span> <span class="ident">err2</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Error</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">From</span>::<span class="ident">from</span>(<span class="ident">parse_err</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Ause%20std%3A%3Aerror%3A%3AError%3B%0Ause%20std%3A%3Afs%3B%0Ause%20std%3A%3Aio%3B%0Ause%20std%3A%3Anum%3B%0A%0A%2F%2F%20%D0%9F%D0%BE%D0%BB%D1%83%D1%87%D0%B0%D0%B5%D0%BC%20%D0%B7%D0%BD%D0%B0%D1%87%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%BE%D1%88%D0%B8%D0%B1%D0%BE%D0%BA%0Alet%20io_err%3A%20io%3A%3AError%20%3D%20io%3A%3AError%3A%3Alast_os_error()%3B%0Alet%20parse_err%3A%20num%3A%3AParseIntError%20%3D%20%22not%20a%20number%22.parse%3A%3A%3Ci32%3E().unwrap_err()%3B%0A%0A%2F%2F%20%D0%A1%D0%BE%D0%B1%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%BD%D0%BE%2C%20%D0%BA%D0%BE%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%B0%D1%86%D0%B8%D1%8F%0Alet%20err1%3A%20Box%3CError%3E%20%3D%20From%3A%3Afrom(io_err)%3B%0Alet%20err2%3A%20Box%3CError%3E%20%3D%20From%3A%3Afrom(parse_err)%3B%0A%7D">Run</a></pre>
 
 <p>Здесь нужно разобрать очень важный паттерн. Переменные <code>err1</code> и <code>err2</code> имеют
 <em>одинаковый тип</em> — типаж-объект. Это означает, что их реальные типы
@@ -1434,11 +1434,11 @@ and <code>num::ParseIntError</code>? Поскольку обе они реали
 <h2 id='Настоящий-макрос-try' class='section-header'><a href='#Настоящий-макрос-try'>Настоящий макрос <code>try!</code></a></h2>
 <p>До этого мы привели такое определение <code>try!</code>:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>try</span> {
-    (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>e</span>:<span class='ident'>expr</span>) <span class='op'>=&gt;</span> (<span class='kw'>match</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>e</span> {
-        <span class='prelude-val'>Ok</span>(<span class='ident'>val</span>) <span class='op'>=&gt;</span> <span class='ident'>val</span>,
-        <span class='prelude-val'>Err</span>(<span class='ident'>err</span>) <span class='op'>=&gt;</span> <span class='kw'>return</span> <span class='prelude-val'>Err</span>(<span class='ident'>err</span>),
+<pre class="rust rust-example-rendered">
+<span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">try</span> {
+    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">e</span>:<span class="ident">expr</span>) <span class="op">=&gt;</span> (<span class="kw">match</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">e</span> {
+        <span class="prelude-val">Ok</span>(<span class="ident">val</span>) <span class="op">=&gt;</span> <span class="ident">val</span>,
+        <span class="prelude-val">Err</span>(<span class="ident">err</span>) <span class="op">=&gt;</span> <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">err</span>),
     });
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Amacro_rules!%20try%20%7B%0A%20%20%20%20(%24e%3Aexpr)%20%3D%3E%20(match%20%24e%20%7B%0A%20%20%20%20%20%20%20%20Ok(val)%20%3D%3E%20val%2C%0A%20%20%20%20%20%20%20%20Err(err)%20%3D%3E%20return%20Err(err)%2C%0A%20%20%20%20%7D)%3B%0A%7D%0A%7D">Run</a></pre>
 
@@ -1447,11 +1447,11 @@ and <code>num::ParseIntError</code>? Поскольку обе они реали
 
 <p><a name="code-try-def"></a></p>
 
-<pre class='rust rust-example-rendered'>
-<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>try</span> {
-    (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>e</span>:<span class='ident'>expr</span>) <span class='op'>=&gt;</span> (<span class='kw'>match</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>e</span> {
-        <span class='prelude-val'>Ok</span>(<span class='ident'>val</span>) <span class='op'>=&gt;</span> <span class='ident'>val</span>,
-        <span class='prelude-val'>Err</span>(<span class='ident'>err</span>) <span class='op'>=&gt;</span> <span class='kw'>return</span> <span class='prelude-val'>Err</span>(::<span class='ident'>std</span>::<span class='ident'>convert</span>::<span class='ident'>From</span>::<span class='ident'>from</span>(<span class='ident'>err</span>)),
+<pre class="rust rust-example-rendered">
+<span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">try</span> {
+    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">e</span>:<span class="ident">expr</span>) <span class="op">=&gt;</span> (<span class="kw">match</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">e</span> {
+        <span class="prelude-val">Ok</span>(<span class="ident">val</span>) <span class="op">=&gt;</span> <span class="ident">val</span>,
+        <span class="prelude-val">Err</span>(<span class="ident">err</span>) <span class="op">=&gt;</span> <span class="kw">return</span> <span class="prelude-val">Err</span>(::<span class="ident">std</span>::<span class="ident">convert</span>::<span class="ident">From</span>::<span class="ident">from</span>(<span class="ident">err</span>)),
     });
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Amacro_rules!%20try%20%7B%0A%20%20%20%20(%24e%3Aexpr)%20%3D%3E%20(match%20%24e%20%7B%0A%20%20%20%20%20%20%20%20Ok(val)%20%3D%3E%20val%2C%0A%20%20%20%20%20%20%20%20Err(err)%20%3D%3E%20return%20Err(%3A%3Astd%3A%3Aconvert%3A%3AFrom%3A%3Afrom(err))%2C%0A%20%20%20%20%7D)%3B%0A%7D%0A%7D">Run</a></pre>
 
@@ -1463,17 +1463,17 @@ and <code>num::ParseIntError</code>? Поскольку обе они реали
 <p>Вооружившись более мощным макросом <code>try!</code>, давайте взглянем на код, написанный
 нами ранее, который читает файл и конвертирует его содержимое в число:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>fs</span>::<span class='ident'>File</span>;
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>io</span>::<span class='ident'>Read</span>;
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>path</span>::<span class='ident'>Path</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fs</span>::<span class="ident">File</span>;
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">io</span>::<span class="ident">Read</span>;
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">path</span>::<span class="ident">Path</span>;
 
-<span class='kw'>fn</span> <span class='ident'>file_double</span><span class='op'>&lt;</span><span class='ident'>P</span>: <span class='ident'>AsRef</span><span class='op'>&lt;</span><span class='ident'>Path</span><span class='op'>&gt;&gt;</span>(<span class='ident'>file_path</span>: <span class='ident'>P</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>i32</span>, <span class='ident'>String</span><span class='op'>&gt;</span> {
-    <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>file</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>File</span>::<span class='ident'>open</span>(<span class='ident'>file_path</span>).<span class='ident'>map_err</span>(<span class='op'>|</span><span class='ident'>e</span><span class='op'>|</span> <span class='ident'>e</span>.<span class='ident'>to_string</span>()));
-    <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>contents</span> <span class='op'>=</span> <span class='ident'>String</span>::<span class='ident'>new</span>();
-    <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>file</span>.<span class='ident'>read_to_string</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>contents</span>).<span class='ident'>map_err</span>(<span class='op'>|</span><span class='ident'>e</span><span class='op'>|</span> <span class='ident'>e</span>.<span class='ident'>to_string</span>()));
-    <span class='kw'>let</span> <span class='ident'>n</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>contents</span>.<span class='ident'>trim</span>().<span class='ident'>parse</span>::<span class='op'>&lt;</span><span class='ident'>i32</span><span class='op'>&gt;</span>().<span class='ident'>map_err</span>(<span class='op'>|</span><span class='ident'>e</span><span class='op'>|</span> <span class='ident'>e</span>.<span class='ident'>to_string</span>()));
-    <span class='prelude-val'>Ok</span>(<span class='number'>2</span> <span class='op'>*</span> <span class='ident'>n</span>)
+<span class="kw">fn</span> <span class="ident">file_double</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;&gt;</span>(<span class="ident">file_path</span>: <span class="ident">P</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">i32</span>, <span class="ident">String</span><span class="op">&gt;</span> {
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">file</span> <span class="op">=</span> <span class="macro">try</span><span class="macro">!</span>(<span class="ident">File</span>::<span class="ident">open</span>(<span class="ident">file_path</span>).<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="ident">e</span>.<span class="ident">to_string</span>()));
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">contents</span> <span class="op">=</span> <span class="ident">String</span>::<span class="ident">new</span>();
+    <span class="macro">try</span><span class="macro">!</span>(<span class="ident">file</span>.<span class="ident">read_to_string</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">contents</span>).<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="ident">e</span>.<span class="ident">to_string</span>()));
+    <span class="kw">let</span> <span class="ident">n</span> <span class="op">=</span> <span class="macro">try</span><span class="macro">!</span>(<span class="ident">contents</span>.<span class="ident">trim</span>().<span class="ident">parse</span>::<span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>().<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="ident">e</span>.<span class="ident">to_string</span>()));
+    <span class="prelude-val">Ok</span>(<span class="number">2</span> <span class="op">*</span> <span class="ident">n</span>)
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Ause%20std%3A%3Afs%3A%3AFile%3B%0Ause%20std%3A%3Aio%3A%3ARead%3B%0Ause%20std%3A%3Apath%3A%3APath%3B%0A%0Afn%20file_double%3CP%3A%20AsRef%3CPath%3E%3E(file_path%3A%20P)%20-%3E%20Result%3Ci32%2C%20String%3E%20%7B%0A%20%20%20%20let%20mut%20file%20%3D%20try!(File%3A%3Aopen(file_path).map_err(%7Ce%7C%20e.to_string()))%3B%0A%20%20%20%20let%20mut%20contents%20%3D%20String%3A%3Anew()%3B%0A%20%20%20%20try!(file.read_to_string(%26mut%20contents).map_err(%7Ce%7C%20e.to_string()))%3B%0A%20%20%20%20let%20n%20%3D%20try!(contents.trim().parse%3A%3A%3Ci32%3E().map_err(%7Ce%7C%20e.to_string()))%3B%0A%20%20%20%20Ok(2%20*%20n)%0A%7D%0A%7D">Run</a></pre>
 
 <p>Ранее мы говорили, что мы можем избавиться от вызовов <code>map_err</code>. На самом деле,
@@ -1481,18 +1481,18 @@ and <code>num::ParseIntError</code>? Поскольку обе они реали
 <code>From</code>. Как мы увидели в предыдущем разделе, <code>From</code> имеет реализацию, которая
 позволяет преобразовать любой тип ошибки в <code>Box&lt;Error&gt;</code>:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>error</span>::<span class='ident'>Error</span>;
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>fs</span>::<span class='ident'>File</span>;
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>io</span>::<span class='ident'>Read</span>;
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>path</span>::<span class='ident'>Path</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">error</span>::<span class="ident">Error</span>;
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fs</span>::<span class="ident">File</span>;
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">io</span>::<span class="ident">Read</span>;
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">path</span>::<span class="ident">Path</span>;
 
-<span class='kw'>fn</span> <span class='ident'>file_double</span><span class='op'>&lt;</span><span class='ident'>P</span>: <span class='ident'>AsRef</span><span class='op'>&lt;</span><span class='ident'>Path</span><span class='op'>&gt;&gt;</span>(<span class='ident'>file_path</span>: <span class='ident'>P</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>i32</span>, <span class='ident'>Box</span><span class='op'>&lt;</span><span class='ident'>Error</span><span class='op'>&gt;&gt;</span> {
-    <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>file</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>File</span>::<span class='ident'>open</span>(<span class='ident'>file_path</span>));
-    <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>contents</span> <span class='op'>=</span> <span class='ident'>String</span>::<span class='ident'>new</span>();
-    <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>file</span>.<span class='ident'>read_to_string</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>contents</span>));
-    <span class='kw'>let</span> <span class='ident'>n</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>contents</span>.<span class='ident'>trim</span>().<span class='ident'>parse</span>::<span class='op'>&lt;</span><span class='ident'>i32</span><span class='op'>&gt;</span>());
-    <span class='prelude-val'>Ok</span>(<span class='number'>2</span> <span class='op'>*</span> <span class='ident'>n</span>)
+<span class="kw">fn</span> <span class="ident">file_double</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;&gt;</span>(<span class="ident">file_path</span>: <span class="ident">P</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">i32</span>, <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Error</span><span class="op">&gt;&gt;</span> {
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">file</span> <span class="op">=</span> <span class="macro">try</span><span class="macro">!</span>(<span class="ident">File</span>::<span class="ident">open</span>(<span class="ident">file_path</span>));
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">contents</span> <span class="op">=</span> <span class="ident">String</span>::<span class="ident">new</span>();
+    <span class="macro">try</span><span class="macro">!</span>(<span class="ident">file</span>.<span class="ident">read_to_string</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">contents</span>));
+    <span class="kw">let</span> <span class="ident">n</span> <span class="op">=</span> <span class="macro">try</span><span class="macro">!</span>(<span class="ident">contents</span>.<span class="ident">trim</span>().<span class="ident">parse</span>::<span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>());
+    <span class="prelude-val">Ok</span>(<span class="number">2</span> <span class="op">*</span> <span class="ident">n</span>)
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Ause%20std%3A%3Aerror%3A%3AError%3B%0Ause%20std%3A%3Afs%3A%3AFile%3B%0Ause%20std%3A%3Aio%3A%3ARead%3B%0Ause%20std%3A%3Apath%3A%3APath%3B%0A%0Afn%20file_double%3CP%3A%20AsRef%3CPath%3E%3E(file_path%3A%20P)%20-%3E%20Result%3Ci32%2C%20Box%3CError%3E%3E%20%7B%0A%20%20%20%20let%20mut%20file%20%3D%20try!(File%3A%3Aopen(file_path))%3B%0A%20%20%20%20let%20mut%20contents%20%3D%20String%3A%3Anew()%3B%0A%20%20%20%20try!(file.read_to_string(%26mut%20contents))%3B%0A%20%20%20%20let%20n%20%3D%20try!(contents.trim().parse%3A%3A%3Ci32%3E())%3B%0A%20%20%20%20Ok(2%20*%20n)%0A%7D%0A%7D">Run</a></pre>
 
 <p>Мы уже очень близки к идеальной обработке ошибок. Наш код имеет очень мало
@@ -1534,26 +1534,26 @@ and <code>num::ParseIntError</code>? Поскольку обе они реали
 создание собственного типа ошибки. Давайте вспомним код, который считывает
 содержимое файла и преобразует его в целое число:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>fs</span>::<span class='ident'>File</span>;
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>io</span>::{<span class='self'>self</span>, <span class='ident'>Read</span>};
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>num</span>;
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>path</span>::<span class='ident'>Path</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fs</span>::<span class="ident">File</span>;
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">io</span>::{<span class="self">self</span>, <span class="ident">Read</span>};
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">num</span>;
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">path</span>::<span class="ident">Path</span>;
 
-<span class='comment'>// Мы реализуем `Debug` поскольку, по всей видимости, все типы должны реализовывать `Debug`.</span>
-<span class='comment'>// Это дает нам возможность получить адекватное и читаемое описание значения CliError</span>
-<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Debug</span>)]</span>
-<span class='kw'>enum</span> <span class='ident'>CliError</span> {
-    <span class='ident'>Io</span>(<span class='ident'>io</span>::<span class='ident'>Error</span>),
-    <span class='ident'>Parse</span>(<span class='ident'>num</span>::<span class='ident'>ParseIntError</span>),
+<span class="comment">// Мы реализуем `Debug` поскольку, по всей видимости, все типы должны реализовывать `Debug`.</span>
+<span class="comment">// Это дает нам возможность получить адекватное и читаемое описание значения CliError</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
+<span class="kw">enum</span> <span class="ident">CliError</span> {
+    <span class="ident">Io</span>(<span class="ident">io</span>::<span class="ident">Error</span>),
+    <span class="ident">Parse</span>(<span class="ident">num</span>::<span class="ident">ParseIntError</span>),
 }
 
-<span class='kw'>fn</span> <span class='ident'>file_double_verbose</span><span class='op'>&lt;</span><span class='ident'>P</span>: <span class='ident'>AsRef</span><span class='op'>&lt;</span><span class='ident'>Path</span><span class='op'>&gt;&gt;</span>(<span class='ident'>file_path</span>: <span class='ident'>P</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>i32</span>, <span class='ident'>CliError</span><span class='op'>&gt;</span> {
-    <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>file</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>File</span>::<span class='ident'>open</span>(<span class='ident'>file_path</span>).<span class='ident'>map_err</span>(<span class='ident'>CliError</span>::<span class='ident'>Io</span>));
-    <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>contents</span> <span class='op'>=</span> <span class='ident'>String</span>::<span class='ident'>new</span>();
-    <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>file</span>.<span class='ident'>read_to_string</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>contents</span>).<span class='ident'>map_err</span>(<span class='ident'>CliError</span>::<span class='ident'>Io</span>));
-    <span class='kw'>let</span> <span class='ident'>n</span>: <span class='ident'>i32</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>contents</span>.<span class='ident'>trim</span>().<span class='ident'>parse</span>().<span class='ident'>map_err</span>(<span class='ident'>CliError</span>::<span class='ident'>Parse</span>));
-    <span class='prelude-val'>Ok</span>(<span class='number'>2</span> <span class='op'>*</span> <span class='ident'>n</span>)
+<span class="kw">fn</span> <span class="ident">file_double_verbose</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;&gt;</span>(<span class="ident">file_path</span>: <span class="ident">P</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">i32</span>, <span class="ident">CliError</span><span class="op">&gt;</span> {
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">file</span> <span class="op">=</span> <span class="macro">try</span><span class="macro">!</span>(<span class="ident">File</span>::<span class="ident">open</span>(<span class="ident">file_path</span>).<span class="ident">map_err</span>(<span class="ident">CliError</span>::<span class="ident">Io</span>));
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">contents</span> <span class="op">=</span> <span class="ident">String</span>::<span class="ident">new</span>();
+    <span class="macro">try</span><span class="macro">!</span>(<span class="ident">file</span>.<span class="ident">read_to_string</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">contents</span>).<span class="ident">map_err</span>(<span class="ident">CliError</span>::<span class="ident">Io</span>));
+    <span class="kw">let</span> <span class="ident">n</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="macro">try</span><span class="macro">!</span>(<span class="ident">contents</span>.<span class="ident">trim</span>().<span class="ident">parse</span>().<span class="ident">map_err</span>(<span class="ident">CliError</span>::<span class="ident">Parse</span>));
+    <span class="prelude-val">Ok</span>(<span class="number">2</span> <span class="op">*</span> <span class="ident">n</span>)
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Ause%20std%3A%3Afs%3A%3AFile%3B%0Ause%20std%3A%3Aio%3A%3A%7Bself%2C%20Read%7D%3B%0Ause%20std%3A%3Anum%3B%0Ause%20std%3A%3Apath%3A%3APath%3B%0A%0A%2F%2F%20%D0%9C%D1%8B%20%D1%80%D0%B5%D0%B0%D0%BB%D0%B8%D0%B7%D1%83%D0%B5%D0%BC%20%60Debug%60%20%D0%BF%D0%BE%D1%81%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D1%83%2C%20%D0%BF%D0%BE%20%D0%B2%D1%81%D0%B5%D0%B9%20%D0%B2%D0%B8%D0%B4%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D0%B8%2C%20%D0%B2%D1%81%D0%B5%20%D1%82%D0%B8%D0%BF%D1%8B%20%D0%B4%D0%BE%D0%BB%D0%B6%D0%BD%D1%8B%20%D1%80%D0%B5%D0%B0%D0%BB%D0%B8%D0%B7%D0%BE%D0%B2%D1%8B%D0%B2%D0%B0%D1%82%D1%8C%20%60Debug%60.%0A%2F%2F%20%D0%AD%D1%82%D0%BE%20%D0%B4%D0%B0%D0%B5%D1%82%20%D0%BD%D0%B0%D0%BC%20%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D1%8C%20%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D1%82%D1%8C%20%D0%B0%D0%B4%D0%B5%D0%BA%D0%B2%D0%B0%D1%82%D0%BD%D0%BE%D0%B5%20%D0%B8%20%D1%87%D0%B8%D1%82%D0%B0%D0%B5%D0%BC%D0%BE%D0%B5%20%D0%BE%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B7%D0%BD%D0%B0%D1%87%D0%B5%D0%BD%D0%B8%D1%8F%20CliError%0A%23%5Bderive(Debug)%5D%0Aenum%20CliError%20%7B%0A%20%20%20%20Io(io%3A%3AError)%2C%0A%20%20%20%20Parse(num%3A%3AParseIntError)%2C%0A%7D%0A%0Afn%20file_double_verbose%3CP%3A%20AsRef%3CPath%3E%3E(file_path%3A%20P)%20-%3E%20Result%3Ci32%2C%20CliError%3E%20%7B%0A%20%20%20%20let%20mut%20file%20%3D%20try!(File%3A%3Aopen(file_path).map_err(CliError%3A%3AIo))%3B%0A%20%20%20%20let%20mut%20contents%20%3D%20String%3A%3Anew()%3B%0A%20%20%20%20try!(file.read_to_string(%26mut%20contents).map_err(CliError%3A%3AIo))%3B%0A%20%20%20%20let%20n%3A%20i32%20%3D%20try!(contents.trim().parse().map_err(CliError%3A%3AParse))%3B%0A%20%20%20%20Ok(2%20*%20n)%0A%7D%0A%7D">Run</a></pre>
 
 <p>Обратите внимание, что здесь у нас еще остались вызовы <code>map_err</code>. Почему?
@@ -1563,19 +1563,19 @@ and <code>num::ParseIntError</code>? Поскольку обе они реали
 тип <code>CliError</code>. Но мы можем легко это исправить! Поскольку мы определили тип
 <code>CliError</code>, мы можем также реализовать для него типаж <code>From</code>:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>io</span>;
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>num</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">io</span>;
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">num</span>;
 
-<span class='kw'>impl</span> <span class='ident'>From</span><span class='op'>&lt;</span><span class='ident'>io</span>::<span class='ident'>Error</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>CliError</span> {
-    <span class='kw'>fn</span> <span class='ident'>from</span>(<span class='ident'>err</span>: <span class='ident'>io</span>::<span class='ident'>Error</span>) <span class='op'>-&gt;</span> <span class='ident'>CliError</span> {
-        <span class='ident'>CliError</span>::<span class='ident'>Io</span>(<span class='ident'>err</span>)
+<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">io</span>::<span class="ident">Error</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">CliError</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">err</span>: <span class="ident">io</span>::<span class="ident">Error</span>) <span class="op">-&gt;</span> <span class="ident">CliError</span> {
+        <span class="ident">CliError</span>::<span class="ident">Io</span>(<span class="ident">err</span>)
     }
 }
 
-<span class='kw'>impl</span> <span class='ident'>From</span><span class='op'>&lt;</span><span class='ident'>num</span>::<span class='ident'>ParseIntError</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>CliError</span> {
-    <span class='kw'>fn</span> <span class='ident'>from</span>(<span class='ident'>err</span>: <span class='ident'>num</span>::<span class='ident'>ParseIntError</span>) <span class='op'>-&gt;</span> <span class='ident'>CliError</span> {
-        <span class='ident'>CliError</span>::<span class='ident'>Parse</span>(<span class='ident'>err</span>)
+<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">num</span>::<span class="ident">ParseIntError</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">CliError</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">err</span>: <span class="ident">num</span>::<span class="ident">ParseIntError</span>) <span class="op">-&gt;</span> <span class="ident">CliError</span> {
+        <span class="ident">CliError</span>::<span class="ident">Parse</span>(<span class="ident">err</span>)
     }
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0A%23%5Bderive(Debug)%5D%0Aenum%20CliError%20%7B%20Io(io%3A%3AError)%2C%20Parse(num%3A%3AParseIntError)%20%7D%0Ause%20std%3A%3Aio%3B%0Ause%20std%3A%3Anum%3B%0A%0Aimpl%20From%3Cio%3A%3AError%3E%20for%20CliError%20%7B%0A%20%20%20%20fn%20from(err%3A%20io%3A%3AError)%20-%3E%20CliError%20%7B%0A%20%20%20%20%20%20%20%20CliError%3A%3AIo(err)%0A%20%20%20%20%7D%0A%7D%0A%0Aimpl%20From%3Cnum%3A%3AParseIntError%3E%20for%20CliError%20%7B%0A%20%20%20%20fn%20from(err%3A%20num%3A%3AParseIntError)%20-%3E%20CliError%20%7B%0A%20%20%20%20%20%20%20%20CliError%3A%3AParse(err)%0A%20%20%20%20%7D%0A%7D%0A%7D">Run</a></pre>
 
@@ -1585,18 +1585,18 @@ and <code>num::ParseIntError</code>? Поскольку обе они реали
 
 <p>Наконец, мы можем переписать <code>file_double</code>:</p>
 
-<pre class='rust rust-example-rendered'>
+<pre class="rust rust-example-rendered">
 
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>fs</span>::<span class='ident'>File</span>;
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>io</span>::<span class='ident'>Read</span>;
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>path</span>::<span class='ident'>Path</span>;
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fs</span>::<span class="ident">File</span>;
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">io</span>::<span class="ident">Read</span>;
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">path</span>::<span class="ident">Path</span>;
 
-<span class='kw'>fn</span> <span class='ident'>file_double</span><span class='op'>&lt;</span><span class='ident'>P</span>: <span class='ident'>AsRef</span><span class='op'>&lt;</span><span class='ident'>Path</span><span class='op'>&gt;&gt;</span>(<span class='ident'>file_path</span>: <span class='ident'>P</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>i32</span>, <span class='ident'>CliError</span><span class='op'>&gt;</span> {
-    <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>file</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>File</span>::<span class='ident'>open</span>(<span class='ident'>file_path</span>));
-    <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>contents</span> <span class='op'>=</span> <span class='ident'>String</span>::<span class='ident'>new</span>();
-    <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>file</span>.<span class='ident'>read_to_string</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>contents</span>));
-    <span class='kw'>let</span> <span class='ident'>n</span>: <span class='ident'>i32</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>contents</span>.<span class='ident'>trim</span>().<span class='ident'>parse</span>());
-    <span class='prelude-val'>Ok</span>(<span class='number'>2</span> <span class='op'>*</span> <span class='ident'>n</span>)
+<span class="kw">fn</span> <span class="ident">file_double</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;&gt;</span>(<span class="ident">file_path</span>: <span class="ident">P</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">i32</span>, <span class="ident">CliError</span><span class="op">&gt;</span> {
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">file</span> <span class="op">=</span> <span class="macro">try</span><span class="macro">!</span>(<span class="ident">File</span>::<span class="ident">open</span>(<span class="ident">file_path</span>));
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">contents</span> <span class="op">=</span> <span class="ident">String</span>::<span class="ident">new</span>();
+    <span class="macro">try</span><span class="macro">!</span>(<span class="ident">file</span>.<span class="ident">read_to_string</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">contents</span>));
+    <span class="kw">let</span> <span class="ident">n</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="macro">try</span><span class="macro">!</span>(<span class="ident">contents</span>.<span class="ident">trim</span>().<span class="ident">parse</span>());
+    <span class="prelude-val">Ok</span>(<span class="number">2</span> <span class="op">*</span> <span class="ident">n</span>)
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Ause%20std%3A%3Aio%3B%0Ause%20std%3A%3Anum%3B%0Aenum%20CliError%20%7B%20Io(%3A%3Astd%3A%3Aio%3A%3AError)%2C%20Parse(%3A%3Astd%3A%3Anum%3A%3AParseIntError)%20%7D%0Aimpl%20From%3Cio%3A%3AError%3E%20for%20CliError%20%7B%0A%20%20%20%20fn%20from(err%3A%20io%3A%3AError)%20-%3E%20CliError%20%7B%20CliError%3A%3AIo(err)%20%7D%0A%7D%0Aimpl%20From%3Cnum%3A%3AParseIntError%3E%20for%20CliError%20%7B%0A%20%20%20%20fn%20from(err%3A%20num%3A%3AParseIntError)%20-%3E%20CliError%20%7B%20CliError%3A%3AParse(err)%20%7D%0A%7D%0A%0Ause%20std%3A%3Afs%3A%3AFile%3B%0Ause%20std%3A%3Aio%3A%3ARead%3B%0Ause%20std%3A%3Apath%3A%3APath%3B%0A%0Afn%20file_double%3CP%3A%20AsRef%3CPath%3E%3E(file_path%3A%20P)%20-%3E%20Result%3Ci32%2C%20CliError%3E%20%7B%0A%20%20%20%20let%20mut%20file%20%3D%20try!(File%3A%3Aopen(file_path))%3B%0A%20%20%20%20let%20mut%20contents%20%3D%20String%3A%3Anew()%3B%0A%20%20%20%20try!(file.read_to_string(%26mut%20contents))%3B%0A%20%20%20%20let%20n%3A%20i32%20%3D%20try!(contents.trim().parse())%3B%0A%20%20%20%20Ok(2%20*%20n)%0A%7D%0A%7D">Run</a></pre>
 
 <p>Единственное, что мы сделали — это удалили вызовы <code>map_err</code>. Они нам больше не
@@ -1609,25 +1609,25 @@ and <code>num::ParseIntError</code>? Поскольку обе они реали
 с плавающей точкой, то мы должны были бы добавить новый вариант к нашему типу
 ошибок:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>io</span>;
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>num</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">io</span>;
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">num</span>;
 
-<span class='kw'>enum</span> <span class='ident'>CliError</span> {
-    <span class='ident'>Io</span>(<span class='ident'>io</span>::<span class='ident'>Error</span>),
-    <span class='ident'>ParseInt</span>(<span class='ident'>num</span>::<span class='ident'>ParseIntError</span>),
-    <span class='ident'>ParseFloat</span>(<span class='ident'>num</span>::<span class='ident'>ParseFloatError</span>),
+<span class="kw">enum</span> <span class="ident">CliError</span> {
+    <span class="ident">Io</span>(<span class="ident">io</span>::<span class="ident">Error</span>),
+    <span class="ident">ParseInt</span>(<span class="ident">num</span>::<span class="ident">ParseIntError</span>),
+    <span class="ident">ParseFloat</span>(<span class="ident">num</span>::<span class="ident">ParseFloatError</span>),
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Ause%20std%3A%3Aio%3B%0Ause%20std%3A%3Anum%3B%0A%0Aenum%20CliError%20%7B%0A%20%20%20%20Io(io%3A%3AError)%2C%0A%20%20%20%20ParseInt(num%3A%3AParseIntError)%2C%0A%20%20%20%20ParseFloat(num%3A%3AParseFloatError)%2C%0A%7D%0A%7D">Run</a></pre>
 
 <p>И добавить новую реализацию для <code>From</code>:</p>
 
-<pre class='rust rust-example-rendered'>
+<pre class="rust rust-example-rendered">
 
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>num</span>;
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">num</span>;
 
-<span class='kw'>impl</span> <span class='ident'>From</span><span class='op'>&lt;</span><span class='ident'>num</span>::<span class='ident'>ParseFloatError</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>CliError</span> {
-    <span class='kw'>fn</span> <span class='ident'>from</span>(<span class='ident'>err</span>: <span class='ident'>num</span>::<span class='ident'>ParseFloatError</span>) <span class='op'>-&gt;</span> <span class='ident'>CliError</span> {
-        <span class='ident'>CliError</span>::<span class='ident'>ParseFloat</span>(<span class='ident'>err</span>)
+<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">num</span>::<span class="ident">ParseFloatError</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">CliError</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">err</span>: <span class="ident">num</span>::<span class="ident">ParseFloatError</span>) <span class="op">-&gt;</span> <span class="ident">CliError</span> {
+        <span class="ident">CliError</span>::<span class="ident">ParseFloat</span>(<span class="ident">err</span>)
     }
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Aenum%20CliError%20%7B%0A%20%20%20%20Io(%3A%3Astd%3A%3Aio%3A%3AError)%2C%0A%20%20%20%20ParseInt(num%3A%3AParseIntError)%2C%0A%20%20%20%20ParseFloat(num%3A%3AParseFloatError)%2C%0A%7D%0A%0Ause%20std%3A%3Anum%3B%0A%0Aimpl%20From%3Cnum%3A%3AParseFloatError%3E%20for%20CliError%20%7B%0A%20%20%20%20fn%20from(err%3A%20num%3A%3AParseFloatError)%20-%3E%20CliError%20%7B%0A%20%20%20%20%20%20%20%20CliError%3A%3AParseFloat(err)%0A%20%20%20%20%7D%0A%7D%0A%7D">Run</a></pre>
 

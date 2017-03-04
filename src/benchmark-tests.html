@@ -192,28 +192,28 @@
 производительность вашего кода. Давайте изменим наш <code>src/lib.rs</code>, чтобы он
 выглядел следующим образом (комментарии опущены):</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>feature</span>(<span class='ident'>test</span>)]</span>
+<pre class="rust rust-example-rendered">
+<span class="attribute">#<span class="op">!</span>[<span class="ident">feature</span>(<span class="ident">test</span>)]</span>
 
-<span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>test</span>;
+<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">test</span>;
 
-<span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>add_two</span>(<span class='ident'>a</span>: <span class='ident'>i32</span>) <span class='op'>-&gt;</span> <span class='ident'>i32</span> {
-    <span class='ident'>a</span> <span class='op'>+</span> <span class='number'>2</span>
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_two</span>(<span class="ident">a</span>: <span class="ident">i32</span>) <span class="op">-&gt;</span> <span class="ident">i32</span> {
+    <span class="ident">a</span> <span class="op">+</span> <span class="number">2</span>
 }
 
-<span class='attribute'>#[<span class='ident'>cfg</span>(<span class='ident'>test</span>)]</span>
-<span class='kw'>mod</span> <span class='ident'>tests</span> {
-    <span class='kw'>use</span> <span class='kw'>super</span>::<span class='kw-2'>*</span>;
-    <span class='kw'>use</span> <span class='ident'>test</span>::<span class='ident'>Bencher</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
+<span class="kw">mod</span> <span class="ident">tests</span> {
+    <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
+    <span class="kw">use</span> <span class="ident">test</span>::<span class="ident">Bencher</span>;
 
-    <span class='attribute'>#[<span class='ident'>test</span>]</span>
-    <span class='kw'>fn</span> <span class='ident'>it_works</span>() {
-        <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>4</span>, <span class='ident'>add_two</span>(<span class='number'>2</span>));
+    <span class="attribute">#[<span class="ident">test</span>]</span>
+    <span class="kw">fn</span> <span class="ident">it_works</span>() {
+        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="number">4</span>, <span class="ident">add_two</span>(<span class="number">2</span>));
     }
 
-    <span class='attribute'>#[<span class='ident'>bench</span>]</span>
-    <span class='kw'>fn</span> <span class='ident'>bench_add_two</span>(<span class='ident'>b</span>: <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>Bencher</span>) {
-        <span class='ident'>b</span>.<span class='ident'>iter</span>(<span class='op'>||</span> <span class='ident'>add_two</span>(<span class='number'>2</span>));
+    <span class="attribute">#[<span class="ident">bench</span>]</span>
+    <span class="kw">fn</span> <span class="ident">bench_add_two</span>(<span class="ident">b</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Bencher</span>) {
+        <span class="ident">b</span>.<span class="ident">iter</span>(<span class="op">||</span> <span class="ident">add_two</span>(<span class="number">2</span>));
     }
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=%23!%5Bfeature(test)%5D%0A%0Afn%20main()%20%7B%0Aextern%20crate%20test%3B%0A%0Apub%20fn%20add_two(a%3A%20i32)%20-%3E%20i32%20%7B%0A%20%20%20%20a%20%2B%202%0A%7D%0A%0A%23%5Bcfg(test)%5D%0Amod%20tests%20%7B%0A%20%20%20%20use%20super%3A%3A*%3B%0A%20%20%20%20use%20test%3A%3ABencher%3B%0A%0A%20%20%20%20%23%5Btest%5D%0A%20%20%20%20fn%20it_works()%20%7B%0A%20%20%20%20%20%20%20%20assert_eq!(4%2C%20add_two(2))%3B%0A%20%20%20%20%7D%0A%0A%20%20%20%20%23%5Bbench%5D%0A%20%20%20%20fn%20bench_add_two(b%3A%20%26mut%20Bencher)%20%7B%0A%20%20%20%20%20%20%20%20b.iter(%7C%7C%20add_two(2))%3B%0A%20%20%20%20%7D%0A%7D%0A%7D&amp;version=nightly">Run</a></pre>
 
@@ -271,16 +271,16 @@ test result: ok. 0 passed; 0 failed; 1 ignored; 1 measured
 этого ожидаем. Например, компилятор может определить, что некоторые выражения не
 оказывают каких-либо внешних эффектов и просто удалит их полностью.</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>feature</span>(<span class='ident'>test</span>)]</span>
+<pre class="rust rust-example-rendered">
+<span class="attribute">#<span class="op">!</span>[<span class="ident">feature</span>(<span class="ident">test</span>)]</span>
 
-<span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>test</span>;
-<span class='kw'>use</span> <span class='ident'>test</span>::<span class='ident'>Bencher</span>;
+<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">test</span>;
+<span class="kw">use</span> <span class="ident">test</span>::<span class="ident">Bencher</span>;
 
-<span class='attribute'>#[<span class='ident'>bench</span>]</span>
-<span class='kw'>fn</span> <span class='ident'>bench_xor_1000_ints</span>(<span class='ident'>b</span>: <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>Bencher</span>) {
-    <span class='ident'>b</span>.<span class='ident'>iter</span>(<span class='op'>||</span> {
-        (<span class='number'>0</span>..<span class='number'>1000</span>).<span class='ident'>fold</span>(<span class='number'>0</span>, <span class='op'>|</span><span class='ident'>old</span>, <span class='ident'>new</span><span class='op'>|</span> <span class='ident'>old</span> <span class='op'>^</span> <span class='ident'>new</span>);
+<span class="attribute">#[<span class="ident">bench</span>]</span>
+<span class="kw">fn</span> <span class="ident">bench_xor_1000_ints</span>(<span class="ident">b</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Bencher</span>) {
+    <span class="ident">b</span>.<span class="ident">iter</span>(<span class="op">||</span> {
+        (<span class="number">0</span>..<span class="number">1000</span>).<span class="ident">fold</span>(<span class="number">0</span>, <span class="op">|</span><span class="ident">old</span>, <span class="ident">new</span><span class="op">|</span> <span class="ident">old</span> <span class="op">^</span> <span class="ident">new</span>);
     });
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=%23!%5Bfeature(test)%5D%0A%0Afn%20main()%20%7B%0Aextern%20crate%20test%3B%0Ause%20test%3A%3ABencher%3B%0A%0A%23%5Bbench%5D%0Afn%20bench_xor_1000_ints(b%3A%20%26mut%20Bencher)%20%7B%0A%20%20%20%20b.iter(%7C%7C%20%7B%0A%20%20%20%20%20%20%20%20(0..1000).fold(0%2C%20%7Cold%2C%20new%7C%20old%20%5E%20new)%3B%0A%20%20%20%20%7D)%3B%0A%7D%0A%7D&amp;version=nightly">Run</a></pre>
 
@@ -299,25 +299,25 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 1 measured
 вычисления полностью будет не возможно. Для примера выше этого можно достигнуть,
 изменив вызова <code>b.iter</code></p>
 
-<pre class='rust rust-example-rendered'>
-<span class='ident'>b</span>.<span class='ident'>iter</span>(<span class='op'>||</span> {
-    <span class='comment'>// note lack of `;` (could also use an explicit `return`).</span>
-    (<span class='number'>0</span>..<span class='number'>1000</span>).<span class='ident'>fold</span>(<span class='number'>0</span>, <span class='op'>|</span><span class='ident'>old</span>, <span class='ident'>new</span><span class='op'>|</span> <span class='ident'>old</span> <span class='op'>^</span> <span class='ident'>new</span>)
+<pre class="rust rust-example-rendered">
+<span class="ident">b</span>.<span class="ident">iter</span>(<span class="op">||</span> {
+    <span class="comment">// note lack of `;` (could also use an explicit `return`).</span>
+    (<span class="number">0</span>..<span class="number">1000</span>).<span class="ident">fold</span>(<span class="number">0</span>, <span class="op">|</span><span class="ident">old</span>, <span class="ident">new</span><span class="op">|</span> <span class="ident">old</span> <span class="op">^</span> <span class="ident">new</span>)
 });<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Astruct%20X%3B%0Aimpl%20X%20%7B%20fn%20iter%3CT%2C%20F%3E(%26self%2C%20_%3A%20F)%20where%20F%3A%20FnMut()%20-%3E%20T%20%7B%7D%20%7D%20let%20b%20%3D%20X%3B%0Ab.iter(%7C%7C%20%7B%0A%20%20%20%20%2F%2F%20note%20lack%20of%20%60%3B%60%20(could%20also%20use%20an%20explicit%20%60return%60).%0A%20%20%20%20(0..1000).fold(0%2C%20%7Cold%2C%20new%7C%20old%20%5E%20new)%0A%7D)%3B%0A%7D">Run</a></pre>
 
 <p>Либо использовать вызов функции <code>test::black_box</code>, которая представляет собой
 «черный ящик», непрозрачный для оптимизатора, тем самым заставляя его
 рассматривать любой аргумент как используемый.</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>feature</span>(<span class='ident'>test</span>)]</span>
+<pre class="rust rust-example-rendered">
+<span class="attribute">#<span class="op">!</span>[<span class="ident">feature</span>(<span class="ident">test</span>)]</span>
 
-<span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>test</span>;
+<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">test</span>;
 
-<span class='ident'>b</span>.<span class='ident'>iter</span>(<span class='op'>||</span> {
-    <span class='kw'>let</span> <span class='ident'>n</span> <span class='op'>=</span> <span class='ident'>test</span>::<span class='ident'>black_box</span>(<span class='number'>1000</span>);
+<span class="ident">b</span>.<span class="ident">iter</span>(<span class="op">||</span> {
+    <span class="kw">let</span> <span class="ident">n</span> <span class="op">=</span> <span class="ident">test</span>::<span class="ident">black_box</span>(<span class="number">1000</span>);
 
-    (<span class='number'>0</span>..<span class='ident'>n</span>).<span class='ident'>fold</span>(<span class='number'>0</span>, <span class='op'>|</span><span class='ident'>a</span>, <span class='ident'>b</span><span class='op'>|</span> <span class='ident'>a</span> <span class='op'>^</span> <span class='ident'>b</span>)
+    (<span class="number">0</span>..<span class="ident">n</span>).<span class="ident">fold</span>(<span class="number">0</span>, <span class="op">|</span><span class="ident">a</span>, <span class="ident">b</span><span class="op">|</span> <span class="ident">a</span> <span class="op">^</span> <span class="ident">b</span>)
 })<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=%23!%5Bfeature(test)%5D%0A%0Aextern%20crate%20test%3B%0A%0Afn%20main()%20%7B%0Astruct%20X%3B%0Aimpl%20X%20%7B%20fn%20iter%3CT%2C%20F%3E(%26self%2C%20_%3A%20F)%20where%20F%3A%20FnMut()%20-%3E%20T%20%7B%7D%20%7D%20let%20b%20%3D%20X%3B%0Ab.iter(%7C%7C%20%7B%0A%20%20%20%20let%20n%20%3D%20test%3A%3Ablack_box(1000)%3B%0A%0A%20%20%20%20(0..n).fold(0%2C%20%7Ca%2C%20b%7C%20a%20%5E%20b)%0A%7D)%0A%7D%0A&amp;version=nightly">Run</a></pre>
 
 <p>В этом примере не происходит ни чтения, ни изменения значения, что очень дешево

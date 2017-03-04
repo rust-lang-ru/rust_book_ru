@@ -192,11 +192,11 @@
 нежелательно, и этого можно избежать с помощью атрибута <code>#![no_std]</code>,
 примененного (привязанного) к контейнеру.</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='comment'>// a minimal library</span>
-<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>crate_type</span><span class='op'>=</span><span class='string'>&quot;lib&quot;</span>]</span>
-<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>feature</span>(<span class='ident'>no_std</span>)]</span>
-<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>no_std</span>]</span><a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=%2F%2F%20a%20minimal%20library%0A%23!%5Bcrate_type%3D%22lib%22%5D%0A%23!%5Bfeature(no_std)%5D%0A%23!%5Bno_std%5D%0A%2F%2F%20fn%20main()%20%7B%7D%20tricked%20you%2C%20rustdoc!%0A&amp;version=nightly">Run</a></pre>
+<pre class="rust rust-example-rendered">
+<span class="comment">// a minimal library</span>
+<span class="attribute">#<span class="op">!</span>[<span class="ident">crate_type</span><span class="op">=</span><span class="string">&quot;lib&quot;</span>]</span>
+<span class="attribute">#<span class="op">!</span>[<span class="ident">feature</span>(<span class="ident">no_std</span>)]</span>
+<span class="attribute">#<span class="op">!</span>[<span class="ident">no_std</span>]</span><a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=%2F%2F%20a%20minimal%20library%0A%23!%5Bcrate_type%3D%22lib%22%5D%0A%23!%5Bfeature(no_std)%5D%0A%23!%5Bno_std%5D%0A%2F%2F%20fn%20main()%20%7B%7D%20tricked%20you%2C%20rustdoc!%0A&amp;version=nightly">Run</a></pre>
 
 <p>Очевидно, должно быть нечто большее, чем просто библиотеки: <code>#[no_std]</code> можно
 использовать с исполняемыми контейнерами, а управлять точкой входа можно двумя
@@ -206,47 +206,47 @@
 <p>В функцию, помеченную атрибутом <code>#[start]</code>, передаются параметры командной
 строки в том же формате, что и в C:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>feature</span>(<span class='ident'>lang_items</span>, <span class='ident'>start</span>, <span class='ident'>no_std</span>, <span class='ident'>libc</span>)]</span>
-<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>no_std</span>]</span>
+<pre class="rust rust-example-rendered">
+<span class="attribute">#<span class="op">!</span>[<span class="ident">feature</span>(<span class="ident">lang_items</span>, <span class="ident">start</span>, <span class="ident">no_std</span>, <span class="ident">libc</span>)]</span>
+<span class="attribute">#<span class="op">!</span>[<span class="ident">no_std</span>]</span>
 
-<span class='comment'>// Pull in the system libc library for what crt0.o likely requires</span>
-<span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>libc</span>;
+<span class="comment">// Pull in the system libc library for what crt0.o likely requires</span>
+<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">libc</span>;
 
-<span class='comment'>// Entry point for this program</span>
-<span class='attribute'>#[<span class='ident'>start</span>]</span>
-<span class='kw'>fn</span> <span class='ident'>start</span>(<span class='ident'>_argc</span>: <span class='ident'>isize</span>, <span class='ident'>_argv</span>: <span class='kw-2'>*</span><span class='kw'>const</span> <span class='kw-2'>*</span><span class='kw'>const</span> <span class='ident'>u8</span>) <span class='op'>-&gt;</span> <span class='ident'>isize</span> {
-    <span class='number'>0</span>
+<span class="comment">// Entry point for this program</span>
+<span class="attribute">#[<span class="ident">start</span>]</span>
+<span class="kw">fn</span> <span class="ident">start</span>(<span class="ident">_argc</span>: <span class="ident">isize</span>, <span class="ident">_argv</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-&gt;</span> <span class="ident">isize</span> {
+    <span class="number">0</span>
 }
 
-<span class='comment'>// These functions and traits are used by the compiler, but not</span>
-<span class='comment'>// for a bare-bones hello world. These are normally</span>
-<span class='comment'>// provided by libstd.</span>
-<span class='attribute'>#[<span class='ident'>lang</span> <span class='op'>=</span> <span class='string'>&quot;stack_exhausted&quot;</span>]</span> <span class='kw'>extern</span> <span class='kw'>fn</span> <span class='ident'>stack_exhausted</span>() {}
-<span class='attribute'>#[<span class='ident'>lang</span> <span class='op'>=</span> <span class='string'>&quot;eh_personality&quot;</span>]</span> <span class='kw'>extern</span> <span class='kw'>fn</span> <span class='ident'>eh_personality</span>() {}
-<span class='attribute'>#[<span class='ident'>lang</span> <span class='op'>=</span> <span class='string'>&quot;panic_fmt&quot;</span>]</span> <span class='kw'>fn</span> <span class='ident'>panic_fmt</span>() <span class='op'>-&gt;</span> <span class='op'>!</span> { <span class='kw'>loop</span> {} }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=%23!%5Bfeature(lang_items%2C%20start%2C%20no_std%2C%20libc)%5D%0A%23!%5Bno_std%5D%0A%0A%2F%2F%20Pull%20in%20the%20system%20libc%20library%20for%20what%20crt0.o%20likely%20requires%0Aextern%20crate%20libc%3B%0A%0A%2F%2F%20Entry%20point%20for%20this%20program%0A%23%5Bstart%5D%0Afn%20start(_argc%3A%20isize%2C%20_argv%3A%20*const%20*const%20u8)%20-%3E%20isize%20%7B%0A%20%20%20%200%0A%7D%0A%0A%2F%2F%20These%20functions%20and%20traits%20are%20used%20by%20the%20compiler%2C%20but%20not%0A%2F%2F%20for%20a%20bare-bones%20hello%20world.%20These%20are%20normally%0A%2F%2F%20provided%20by%20libstd.%0A%23%5Blang%20%3D%20%22stack_exhausted%22%5D%20extern%20fn%20stack_exhausted()%20%7B%7D%0A%23%5Blang%20%3D%20%22eh_personality%22%5D%20extern%20fn%20eh_personality()%20%7B%7D%0A%23%5Blang%20%3D%20%22panic_fmt%22%5D%20fn%20panic_fmt()%20-%3E%20!%20%7B%20loop%20%7B%7D%20%7D%0A%2F%2F%20fn%20main()%20%7B%7D%20tricked%20you%2C%20rustdoc!%0A&amp;version=nightly">Run</a></pre>
+<span class="comment">// These functions and traits are used by the compiler, but not</span>
+<span class="comment">// for a bare-bones hello world. These are normally</span>
+<span class="comment">// provided by libstd.</span>
+<span class="attribute">#[<span class="ident">lang</span> <span class="op">=</span> <span class="string">&quot;stack_exhausted&quot;</span>]</span> <span class="kw">extern</span> <span class="kw">fn</span> <span class="ident">stack_exhausted</span>() {}
+<span class="attribute">#[<span class="ident">lang</span> <span class="op">=</span> <span class="string">&quot;eh_personality&quot;</span>]</span> <span class="kw">extern</span> <span class="kw">fn</span> <span class="ident">eh_personality</span>() {}
+<span class="attribute">#[<span class="ident">lang</span> <span class="op">=</span> <span class="string">&quot;panic_fmt&quot;</span>]</span> <span class="kw">fn</span> <span class="ident">panic_fmt</span>() <span class="op">-&gt;</span> <span class="op">!</span> { <span class="kw">loop</span> {} }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=%23!%5Bfeature(lang_items%2C%20start%2C%20no_std%2C%20libc)%5D%0A%23!%5Bno_std%5D%0A%0A%2F%2F%20Pull%20in%20the%20system%20libc%20library%20for%20what%20crt0.o%20likely%20requires%0Aextern%20crate%20libc%3B%0A%0A%2F%2F%20Entry%20point%20for%20this%20program%0A%23%5Bstart%5D%0Afn%20start(_argc%3A%20isize%2C%20_argv%3A%20*const%20*const%20u8)%20-%3E%20isize%20%7B%0A%20%20%20%200%0A%7D%0A%0A%2F%2F%20These%20functions%20and%20traits%20are%20used%20by%20the%20compiler%2C%20but%20not%0A%2F%2F%20for%20a%20bare-bones%20hello%20world.%20These%20are%20normally%0A%2F%2F%20provided%20by%20libstd.%0A%23%5Blang%20%3D%20%22stack_exhausted%22%5D%20extern%20fn%20stack_exhausted()%20%7B%7D%0A%23%5Blang%20%3D%20%22eh_personality%22%5D%20extern%20fn%20eh_personality()%20%7B%7D%0A%23%5Blang%20%3D%20%22panic_fmt%22%5D%20fn%20panic_fmt()%20-%3E%20!%20%7B%20loop%20%7B%7D%20%7D%0A%2F%2F%20fn%20main()%20%7B%7D%20tricked%20you%2C%20rustdoc!%0A&amp;version=nightly">Run</a></pre>
 
 <p>Чтобы переопределить вставленную компилятором прокладку <code>main</code>, нужно сначала
 отключить ее с помощью <code>#![no_main]</code>, а затем создать соответствующий символ с
 правильным ABI и правильным именем, что также потребует переопределение
 искажения (коверкания) имен компилятором (<code>#[no_mangle]</code>):</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>feature</span>(<span class='ident'>no_std</span>)]</span>
-<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>no_std</span>]</span>
-<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>no_main</span>]</span>
-<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>feature</span>(<span class='ident'>lang_items</span>, <span class='ident'>start</span>)]</span>
+<pre class="rust rust-example-rendered">
+<span class="attribute">#<span class="op">!</span>[<span class="ident">feature</span>(<span class="ident">no_std</span>)]</span>
+<span class="attribute">#<span class="op">!</span>[<span class="ident">no_std</span>]</span>
+<span class="attribute">#<span class="op">!</span>[<span class="ident">no_main</span>]</span>
+<span class="attribute">#<span class="op">!</span>[<span class="ident">feature</span>(<span class="ident">lang_items</span>, <span class="ident">start</span>)]</span>
 
-<span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>libc</span>;
+<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">libc</span>;
 
-<span class='attribute'>#[<span class='ident'>no_mangle</span>]</span> <span class='comment'>// для уверенности в том, что этот символ будет называться `main` на выходе</span>
-<span class='kw'>pub</span> <span class='kw'>extern</span> <span class='kw'>fn</span> <span class='ident'>main</span>(<span class='ident'>argc</span>: <span class='ident'>i32</span>, <span class='ident'>argv</span>: <span class='kw-2'>*</span><span class='kw'>const</span> <span class='kw-2'>*</span><span class='kw'>const</span> <span class='ident'>u8</span>) <span class='op'>-&gt;</span> <span class='ident'>i32</span> {
-    <span class='number'>0</span>
+<span class="attribute">#[<span class="ident">no_mangle</span>]</span> <span class="comment">// для уверенности в том, что этот символ будет называться `main` на выходе</span>
+<span class="kw">pub</span> <span class="kw">extern</span> <span class="kw">fn</span> <span class="ident">main</span>(<span class="ident">argc</span>: <span class="ident">i32</span>, <span class="ident">argv</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-&gt;</span> <span class="ident">i32</span> {
+    <span class="number">0</span>
 }
 
-<span class='attribute'>#[<span class='ident'>lang</span> <span class='op'>=</span> <span class='string'>&quot;stack_exhausted&quot;</span>]</span> <span class='kw'>extern</span> <span class='kw'>fn</span> <span class='ident'>stack_exhausted</span>() {}
-<span class='attribute'>#[<span class='ident'>lang</span> <span class='op'>=</span> <span class='string'>&quot;eh_personality&quot;</span>]</span> <span class='kw'>extern</span> <span class='kw'>fn</span> <span class='ident'>eh_personality</span>() {}
-<span class='attribute'>#[<span class='ident'>lang</span> <span class='op'>=</span> <span class='string'>&quot;panic_fmt&quot;</span>]</span> <span class='kw'>fn</span> <span class='ident'>panic_fmt</span>() <span class='op'>-&gt;</span> <span class='op'>!</span> { <span class='kw'>loop</span> {} }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=%23!%5Bfeature(no_std)%5D%0A%23!%5Bno_std%5D%0A%23!%5Bno_main%5D%0A%23!%5Bfeature(lang_items%2C%20start)%5D%0A%0Aextern%20crate%20libc%3B%0A%0A%23%5Bno_mangle%5D%20%2F%2F%20%D0%B4%D0%BB%D1%8F%20%D1%83%D0%B2%D0%B5%D1%80%D0%B5%D0%BD%D0%BD%D0%BE%D1%81%D1%82%D0%B8%20%D0%B2%20%D1%82%D0%BE%D0%BC%2C%20%D1%87%D1%82%D0%BE%20%D1%8D%D1%82%D0%BE%D1%82%20%D1%81%D0%B8%D0%BC%D0%B2%D0%BE%D0%BB%20%D0%B1%D1%83%D0%B4%D0%B5%D1%82%20%D0%BD%D0%B0%D0%B7%D1%8B%D0%B2%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%60main%60%20%D0%BD%D0%B0%20%D0%B2%D1%8B%D1%85%D0%BE%D0%B4%D0%B5%0Apub%20extern%20fn%20main(argc%3A%20i32%2C%20argv%3A%20*const%20*const%20u8)%20-%3E%20i32%20%7B%0A%20%20%20%200%0A%7D%0A%0A%23%5Blang%20%3D%20%22stack_exhausted%22%5D%20extern%20fn%20stack_exhausted()%20%7B%7D%0A%23%5Blang%20%3D%20%22eh_personality%22%5D%20extern%20fn%20eh_personality()%20%7B%7D%0A%23%5Blang%20%3D%20%22panic_fmt%22%5D%20fn%20panic_fmt()%20-%3E%20!%20%7B%20loop%20%7B%7D%20%7D%0A%2F%2F%20fn%20main()%20%7B%7D%20tricked%20you%2C%20rustdoc!%0A&amp;version=nightly">Run</a></pre>
+<span class="attribute">#[<span class="ident">lang</span> <span class="op">=</span> <span class="string">&quot;stack_exhausted&quot;</span>]</span> <span class="kw">extern</span> <span class="kw">fn</span> <span class="ident">stack_exhausted</span>() {}
+<span class="attribute">#[<span class="ident">lang</span> <span class="op">=</span> <span class="string">&quot;eh_personality&quot;</span>]</span> <span class="kw">extern</span> <span class="kw">fn</span> <span class="ident">eh_personality</span>() {}
+<span class="attribute">#[<span class="ident">lang</span> <span class="op">=</span> <span class="string">&quot;panic_fmt&quot;</span>]</span> <span class="kw">fn</span> <span class="ident">panic_fmt</span>() <span class="op">-&gt;</span> <span class="op">!</span> { <span class="kw">loop</span> {} }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=%23!%5Bfeature(no_std)%5D%0A%23!%5Bno_std%5D%0A%23!%5Bno_main%5D%0A%23!%5Bfeature(lang_items%2C%20start)%5D%0A%0Aextern%20crate%20libc%3B%0A%0A%23%5Bno_mangle%5D%20%2F%2F%20%D0%B4%D0%BB%D1%8F%20%D1%83%D0%B2%D0%B5%D1%80%D0%B5%D0%BD%D0%BD%D0%BE%D1%81%D1%82%D0%B8%20%D0%B2%20%D1%82%D0%BE%D0%BC%2C%20%D1%87%D1%82%D0%BE%20%D1%8D%D1%82%D0%BE%D1%82%20%D1%81%D0%B8%D0%BC%D0%B2%D0%BE%D0%BB%20%D0%B1%D1%83%D0%B4%D0%B5%D1%82%20%D0%BD%D0%B0%D0%B7%D1%8B%D0%B2%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%60main%60%20%D0%BD%D0%B0%20%D0%B2%D1%8B%D1%85%D0%BE%D0%B4%D0%B5%0Apub%20extern%20fn%20main(argc%3A%20i32%2C%20argv%3A%20*const%20*const%20u8)%20-%3E%20i32%20%7B%0A%20%20%20%200%0A%7D%0A%0A%23%5Blang%20%3D%20%22stack_exhausted%22%5D%20extern%20fn%20stack_exhausted()%20%7B%7D%0A%23%5Blang%20%3D%20%22eh_personality%22%5D%20extern%20fn%20eh_personality()%20%7B%7D%0A%23%5Blang%20%3D%20%22panic_fmt%22%5D%20fn%20panic_fmt()%20-%3E%20!%20%7B%20loop%20%7B%7D%20%7D%0A%2F%2F%20fn%20main()%20%7B%7D%20tricked%20you%2C%20rustdoc!%0A&amp;version=nightly">Run</a></pre>
 
 <p>В настоящее время компилятор делает определенные предположения о символах,
 которые доступны для вызова в исполняемом контейнере. Как правило, эти функции
@@ -290,52 +290,52 @@ libstd</a>), но можно с
 двух векторов, предоставленных из кода C, и использует идиоматические практики
 Rust.</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>feature</span>(<span class='ident'>lang_items</span>, <span class='ident'>start</span>, <span class='ident'>no_std</span>, <span class='ident'>core</span>, <span class='ident'>libc</span>)]</span>
-<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>no_std</span>]</span>
+<pre class="rust rust-example-rendered">
+<span class="attribute">#<span class="op">!</span>[<span class="ident">feature</span>(<span class="ident">lang_items</span>, <span class="ident">start</span>, <span class="ident">no_std</span>, <span class="ident">core</span>, <span class="ident">libc</span>)]</span>
+<span class="attribute">#<span class="op">!</span>[<span class="ident">no_std</span>]</span>
 
-<span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>core</span>;
+<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">core</span>;
 
-<span class='kw'>use</span> <span class='ident'>core</span>::<span class='ident'>prelude</span>::<span class='kw-2'>*</span>;
+<span class="kw">use</span> <span class="ident">core</span>::<span class="ident">prelude</span>::<span class="kw-2">*</span>;
 
-<span class='kw'>use</span> <span class='ident'>core</span>::<span class='ident'>mem</span>;
+<span class="kw">use</span> <span class="ident">core</span>::<span class="ident">mem</span>;
 
-<span class='attribute'>#[<span class='ident'>no_mangle</span>]</span>
-<span class='kw'>pub</span> <span class='kw'>extern</span> <span class='kw'>fn</span> <span class='ident'>dot_product</span>(<span class='ident'>a</span>: <span class='kw-2'>*</span><span class='kw'>const</span> <span class='ident'>u32</span>, <span class='ident'>a_len</span>: <span class='ident'>u32</span>,
-                          <span class='ident'>b</span>: <span class='kw-2'>*</span><span class='kw'>const</span> <span class='ident'>u32</span>, <span class='ident'>b_len</span>: <span class='ident'>u32</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
-    <span class='kw'>use</span> <span class='ident'>core</span>::<span class='ident'>raw</span>::<span class='ident'>Slice</span>;
+<span class="attribute">#[<span class="ident">no_mangle</span>]</span>
+<span class="kw">pub</span> <span class="kw">extern</span> <span class="kw">fn</span> <span class="ident">dot_product</span>(<span class="ident">a</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u32</span>, <span class="ident">a_len</span>: <span class="ident">u32</span>,
+                          <span class="ident">b</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u32</span>, <span class="ident">b_len</span>: <span class="ident">u32</span>) <span class="op">-&gt;</span> <span class="ident">u32</span> {
+    <span class="kw">use</span> <span class="ident">core</span>::<span class="ident">raw</span>::<span class="ident">Slice</span>;
 
-    <span class='comment'>// Convert the provided arrays into Rust slices.</span>
-    <span class='comment'>// The core::raw module guarantees that the Slice</span>
-    <span class='comment'>// structure has the same memory layout as a &amp;[T]</span>
-    <span class='comment'>// slice.</span>
-    <span class='comment'>//</span>
-    <span class='comment'>// This is an unsafe operation because the compiler</span>
-    <span class='comment'>// cannot tell the pointers are valid.</span>
-    <span class='kw'>let</span> (<span class='ident'>a_slice</span>, <span class='ident'>b_slice</span>): (<span class='kw-2'>&amp;</span>[<span class='ident'>u32</span>], <span class='kw-2'>&amp;</span>[<span class='ident'>u32</span>]) <span class='op'>=</span> <span class='kw'>unsafe</span> {
-        <span class='ident'>mem</span>::<span class='ident'>transmute</span>((
-            <span class='ident'>Slice</span> { <span class='ident'>data</span>: <span class='ident'>a</span>, <span class='ident'>len</span>: <span class='ident'>a_len</span> <span class='kw'>as</span> <span class='ident'>usize</span> },
-            <span class='ident'>Slice</span> { <span class='ident'>data</span>: <span class='ident'>b</span>, <span class='ident'>len</span>: <span class='ident'>b_len</span> <span class='kw'>as</span> <span class='ident'>usize</span> },
+    <span class="comment">// Convert the provided arrays into Rust slices.</span>
+    <span class="comment">// The core::raw module guarantees that the Slice</span>
+    <span class="comment">// structure has the same memory layout as a &amp;[T]</span>
+    <span class="comment">// slice.</span>
+    <span class="comment">//</span>
+    <span class="comment">// This is an unsafe operation because the compiler</span>
+    <span class="comment">// cannot tell the pointers are valid.</span>
+    <span class="kw">let</span> (<span class="ident">a_slice</span>, <span class="ident">b_slice</span>): (<span class="kw-2">&amp;</span>[<span class="ident">u32</span>], <span class="kw-2">&amp;</span>[<span class="ident">u32</span>]) <span class="op">=</span> <span class="kw">unsafe</span> {
+        <span class="ident">mem</span>::<span class="ident">transmute</span>((
+            <span class="ident">Slice</span> { <span class="ident">data</span>: <span class="ident">a</span>, <span class="ident">len</span>: <span class="ident">a_len</span> <span class="kw">as</span> <span class="ident">usize</span> },
+            <span class="ident">Slice</span> { <span class="ident">data</span>: <span class="ident">b</span>, <span class="ident">len</span>: <span class="ident">b_len</span> <span class="kw">as</span> <span class="ident">usize</span> },
         ))
     };
 
-    <span class='comment'>// Iterate over the slices, collecting the result</span>
-    <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>ret</span> <span class='op'>=</span> <span class='number'>0</span>;
-    <span class='kw'>for</span> (<span class='ident'>i</span>, <span class='ident'>j</span>) <span class='kw'>in</span> <span class='ident'>a_slice</span>.<span class='ident'>iter</span>().<span class='ident'>zip</span>(<span class='ident'>b_slice</span>.<span class='ident'>iter</span>()) {
-        <span class='ident'>ret</span> <span class='op'>+=</span> (<span class='kw-2'>*</span><span class='ident'>i</span>) <span class='op'>*</span> (<span class='kw-2'>*</span><span class='ident'>j</span>);
+    <span class="comment">// Iterate over the slices, collecting the result</span>
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ret</span> <span class="op">=</span> <span class="number">0</span>;
+    <span class="kw">for</span> (<span class="ident">i</span>, <span class="ident">j</span>) <span class="kw">in</span> <span class="ident">a_slice</span>.<span class="ident">iter</span>().<span class="ident">zip</span>(<span class="ident">b_slice</span>.<span class="ident">iter</span>()) {
+        <span class="ident">ret</span> <span class="op">+=</span> (<span class="kw-2">*</span><span class="ident">i</span>) <span class="op">*</span> (<span class="kw-2">*</span><span class="ident">j</span>);
     }
-    <span class='kw'>return</span> <span class='ident'>ret</span>;
+    <span class="kw">return</span> <span class="ident">ret</span>;
 }
 
-<span class='attribute'>#[<span class='ident'>lang</span> <span class='op'>=</span> <span class='string'>&quot;panic_fmt&quot;</span>]</span>
-<span class='kw'>extern</span> <span class='kw'>fn</span> <span class='ident'>panic_fmt</span>(<span class='ident'>args</span>: <span class='kw-2'>&amp;</span><span class='ident'>core</span>::<span class='ident'>fmt</span>::<span class='ident'>Arguments</span>,
-                    <span class='ident'>file</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span>,
-                    <span class='ident'>line</span>: <span class='ident'>u32</span>) <span class='op'>-&gt;</span> <span class='op'>!</span> {
-    <span class='kw'>loop</span> {}
+<span class="attribute">#[<span class="ident">lang</span> <span class="op">=</span> <span class="string">&quot;panic_fmt&quot;</span>]</span>
+<span class="kw">extern</span> <span class="kw">fn</span> <span class="ident">panic_fmt</span>(<span class="ident">args</span>: <span class="kw-2">&amp;</span><span class="ident">core</span>::<span class="ident">fmt</span>::<span class="ident">Arguments</span>,
+                    <span class="ident">file</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
+                    <span class="ident">line</span>: <span class="ident">u32</span>) <span class="op">-&gt;</span> <span class="op">!</span> {
+    <span class="kw">loop</span> {}
 }
 
-<span class='attribute'>#[<span class='ident'>lang</span> <span class='op'>=</span> <span class='string'>&quot;stack_exhausted&quot;</span>]</span> <span class='kw'>extern</span> <span class='kw'>fn</span> <span class='ident'>stack_exhausted</span>() {}
-<span class='attribute'>#[<span class='ident'>lang</span> <span class='op'>=</span> <span class='string'>&quot;eh_personality&quot;</span>]</span> <span class='kw'>extern</span> <span class='kw'>fn</span> <span class='ident'>eh_personality</span>() {}<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=%23!%5Bfeature(lang_items%2C%20start%2C%20no_std%2C%20core%2C%20libc)%5D%0A%23!%5Bno_std%5D%0A%0Aextern%20crate%20libc%3B%0Aextern%20crate%20core%3B%0A%0Ause%20core%3A%3Aprelude%3A%3A*%3B%0A%0Ause%20core%3A%3Amem%3B%0A%0A%23%5Bno_mangle%5D%0Apub%20extern%20fn%20dot_product(a%3A%20*const%20u32%2C%20a_len%3A%20u32%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20b%3A%20*const%20u32%2C%20b_len%3A%20u32)%20-%3E%20u32%20%7B%0A%20%20%20%20use%20core%3A%3Araw%3A%3ASlice%3B%0A%0A%20%20%20%20%2F%2F%20Convert%20the%20provided%20arrays%20into%20Rust%20slices.%0A%20%20%20%20%2F%2F%20The%20core%3A%3Araw%20module%20guarantees%20that%20the%20Slice%0A%20%20%20%20%2F%2F%20structure%20has%20the%20same%20memory%20layout%20as%20a%20%26%5BT%5D%0A%20%20%20%20%2F%2F%20slice.%0A%20%20%20%20%2F%2F%0A%20%20%20%20%2F%2F%20This%20is%20an%20unsafe%20operation%20because%20the%20compiler%0A%20%20%20%20%2F%2F%20cannot%20tell%20the%20pointers%20are%20valid.%0A%20%20%20%20let%20(a_slice%2C%20b_slice)%3A%20(%26%5Bu32%5D%2C%20%26%5Bu32%5D)%20%3D%20unsafe%20%7B%0A%20%20%20%20%20%20%20%20mem%3A%3Atransmute((%0A%20%20%20%20%20%20%20%20%20%20%20%20Slice%20%7B%20data%3A%20a%2C%20len%3A%20a_len%20as%20usize%20%7D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20Slice%20%7B%20data%3A%20b%2C%20len%3A%20b_len%20as%20usize%20%7D%2C%0A%20%20%20%20%20%20%20%20))%0A%20%20%20%20%7D%3B%0A%0A%20%20%20%20%2F%2F%20Iterate%20over%20the%20slices%2C%20collecting%20the%20result%0A%20%20%20%20let%20mut%20ret%20%3D%200%3B%0A%20%20%20%20for%20(i%2C%20j)%20in%20a_slice.iter().zip(b_slice.iter())%20%7B%0A%20%20%20%20%20%20%20%20ret%20%2B%3D%20(*i)%20*%20(*j)%3B%0A%20%20%20%20%7D%0A%20%20%20%20return%20ret%3B%0A%7D%0A%0A%23%5Blang%20%3D%20%22panic_fmt%22%5D%0Aextern%20fn%20panic_fmt(args%3A%20%26core%3A%3Afmt%3A%3AArguments%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20file%3A%20%26str%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20line%3A%20u32)%20-%3E%20!%20%7B%0A%20%20%20%20loop%20%7B%7D%0A%7D%0A%0A%23%5Blang%20%3D%20%22stack_exhausted%22%5D%20extern%20fn%20stack_exhausted()%20%7B%7D%0A%23%5Blang%20%3D%20%22eh_personality%22%5D%20extern%20fn%20eh_personality()%20%7B%7D%0A%23%5Bstart%5D%20fn%20start(argc%3A%20isize%2C%20argv%3A%20*const%20*const%20u8)%20-%3E%20isize%20%7B%200%20%7D%0Afn%20main()%20%7B%7D%0A&amp;version=nightly">Run</a></pre>
+<span class="attribute">#[<span class="ident">lang</span> <span class="op">=</span> <span class="string">&quot;stack_exhausted&quot;</span>]</span> <span class="kw">extern</span> <span class="kw">fn</span> <span class="ident">stack_exhausted</span>() {}
+<span class="attribute">#[<span class="ident">lang</span> <span class="op">=</span> <span class="string">&quot;eh_personality&quot;</span>]</span> <span class="kw">extern</span> <span class="kw">fn</span> <span class="ident">eh_personality</span>() {}<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=%23!%5Bfeature(lang_items%2C%20start%2C%20no_std%2C%20core%2C%20libc)%5D%0A%23!%5Bno_std%5D%0A%0Aextern%20crate%20libc%3B%0Aextern%20crate%20core%3B%0A%0Ause%20core%3A%3Aprelude%3A%3A*%3B%0A%0Ause%20core%3A%3Amem%3B%0A%0A%23%5Bno_mangle%5D%0Apub%20extern%20fn%20dot_product(a%3A%20*const%20u32%2C%20a_len%3A%20u32%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20b%3A%20*const%20u32%2C%20b_len%3A%20u32)%20-%3E%20u32%20%7B%0A%20%20%20%20use%20core%3A%3Araw%3A%3ASlice%3B%0A%0A%20%20%20%20%2F%2F%20Convert%20the%20provided%20arrays%20into%20Rust%20slices.%0A%20%20%20%20%2F%2F%20The%20core%3A%3Araw%20module%20guarantees%20that%20the%20Slice%0A%20%20%20%20%2F%2F%20structure%20has%20the%20same%20memory%20layout%20as%20a%20%26%5BT%5D%0A%20%20%20%20%2F%2F%20slice.%0A%20%20%20%20%2F%2F%0A%20%20%20%20%2F%2F%20This%20is%20an%20unsafe%20operation%20because%20the%20compiler%0A%20%20%20%20%2F%2F%20cannot%20tell%20the%20pointers%20are%20valid.%0A%20%20%20%20let%20(a_slice%2C%20b_slice)%3A%20(%26%5Bu32%5D%2C%20%26%5Bu32%5D)%20%3D%20unsafe%20%7B%0A%20%20%20%20%20%20%20%20mem%3A%3Atransmute((%0A%20%20%20%20%20%20%20%20%20%20%20%20Slice%20%7B%20data%3A%20a%2C%20len%3A%20a_len%20as%20usize%20%7D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20Slice%20%7B%20data%3A%20b%2C%20len%3A%20b_len%20as%20usize%20%7D%2C%0A%20%20%20%20%20%20%20%20))%0A%20%20%20%20%7D%3B%0A%0A%20%20%20%20%2F%2F%20Iterate%20over%20the%20slices%2C%20collecting%20the%20result%0A%20%20%20%20let%20mut%20ret%20%3D%200%3B%0A%20%20%20%20for%20(i%2C%20j)%20in%20a_slice.iter().zip(b_slice.iter())%20%7B%0A%20%20%20%20%20%20%20%20ret%20%2B%3D%20(*i)%20*%20(*j)%3B%0A%20%20%20%20%7D%0A%20%20%20%20return%20ret%3B%0A%7D%0A%0A%23%5Blang%20%3D%20%22panic_fmt%22%5D%0Aextern%20fn%20panic_fmt(args%3A%20%26core%3A%3Afmt%3A%3AArguments%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20file%3A%20%26str%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20line%3A%20u32)%20-%3E%20!%20%7B%0A%20%20%20%20loop%20%7B%7D%0A%7D%0A%0A%23%5Blang%20%3D%20%22stack_exhausted%22%5D%20extern%20fn%20stack_exhausted()%20%7B%7D%0A%23%5Blang%20%3D%20%22eh_personality%22%5D%20extern%20fn%20eh_personality()%20%7B%7D%0A%23%5Bstart%5D%20fn%20start(argc%3A%20isize%2C%20argv%3A%20*const%20*const%20u8)%20-%3E%20isize%20%7B%200%20%7D%0Afn%20main()%20%7B%7D%0A&amp;version=nightly">Run</a></pre>
 
 <p>Обратите внимание, что здесь, в отличае от примеров, рассмотренных выше, есть
 один дополнительный lang элемент <code>panic_fmt</code>. Он должен быть определён

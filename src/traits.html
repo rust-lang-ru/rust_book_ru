@@ -194,16 +194,16 @@
 <p>Вы помните ключевое слово <code>impl</code>, используемое для вызова функции через
 синтаксис метода?</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>struct</span> <span class='ident'>Circle</span> {
-    <span class='ident'>x</span>: <span class='ident'>f64</span>,
-    <span class='ident'>y</span>: <span class='ident'>f64</span>,
-    <span class='ident'>radius</span>: <span class='ident'>f64</span>,
+<pre class="rust rust-example-rendered">
+<span class="kw">struct</span> <span class="ident">Circle</span> {
+    <span class="ident">x</span>: <span class="ident">f64</span>,
+    <span class="ident">y</span>: <span class="ident">f64</span>,
+    <span class="ident">radius</span>: <span class="ident">f64</span>,
 }
 
-<span class='kw'>impl</span> <span class='ident'>Circle</span> {
-    <span class='kw'>fn</span> <span class='ident'>area</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>f64</span> {
-        <span class='ident'>std</span>::<span class='ident'>f64</span>::<span class='ident'>consts</span>::<span class='ident'>PI</span> <span class='op'>*</span> (<span class='self'>self</span>.<span class='ident'>radius</span> <span class='op'>*</span> <span class='self'>self</span>.<span class='ident'>radius</span>)
+<span class="kw">impl</span> <span class="ident">Circle</span> {
+    <span class="kw">fn</span> <span class="ident">area</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">f64</span> {
+        <span class="ident">std</span>::<span class="ident">f64</span>::<span class="ident">consts</span>::<span class="ident">PI</span> <span class="op">*</span> (<span class="self">self</span>.<span class="ident">radius</span> <span class="op">*</span> <span class="self">self</span>.<span class="ident">radius</span>)
     }
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=%23!%5Bfeature(core)%5D%0Afn%20main()%20%7B%0Astruct%20Circle%20%7B%0A%20%20%20%20x%3A%20f64%2C%0A%20%20%20%20y%3A%20f64%2C%0A%20%20%20%20radius%3A%20f64%2C%0A%7D%0A%0Aimpl%20Circle%20%7B%0A%20%20%20%20fn%20area(%26self)%20-%3E%20f64%20%7B%0A%20%20%20%20%20%20%20%20std%3A%3Af64%3A%3Aconsts%3A%3API%20*%20(self.radius%20*%20self.radius)%0A%20%20%20%20%7D%0A%7D%0A%7D&amp;version=nightly">Run</a></pre>
 
@@ -211,20 +211,20 @@
 сигнатуру метода, а затем реализуем этот типаж для нужной структуры. Например,
 как показано ниже:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>struct</span> <span class='ident'>Circle</span> {
-    <span class='ident'>x</span>: <span class='ident'>f64</span>,
-    <span class='ident'>y</span>: <span class='ident'>f64</span>,
-    <span class='ident'>radius</span>: <span class='ident'>f64</span>,
+<pre class="rust rust-example-rendered">
+<span class="kw">struct</span> <span class="ident">Circle</span> {
+    <span class="ident">x</span>: <span class="ident">f64</span>,
+    <span class="ident">y</span>: <span class="ident">f64</span>,
+    <span class="ident">radius</span>: <span class="ident">f64</span>,
 }
 
-<span class='kw'>trait</span> <span class='ident'>HasArea</span> {
-    <span class='kw'>fn</span> <span class='ident'>area</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>f64</span>;
+<span class="kw">trait</span> <span class="ident">HasArea</span> {
+    <span class="kw">fn</span> <span class="ident">area</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">f64</span>;
 }
 
-<span class='kw'>impl</span> <span class='ident'>HasArea</span> <span class='kw'>for</span> <span class='ident'>Circle</span> {
-    <span class='kw'>fn</span> <span class='ident'>area</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>f64</span> {
-        <span class='ident'>std</span>::<span class='ident'>f64</span>::<span class='ident'>consts</span>::<span class='ident'>PI</span> <span class='op'>*</span> (<span class='self'>self</span>.<span class='ident'>radius</span> <span class='op'>*</span> <span class='self'>self</span>.<span class='ident'>radius</span>)
+<span class="kw">impl</span> <span class="ident">HasArea</span> <span class="kw">for</span> <span class="ident">Circle</span> {
+    <span class="kw">fn</span> <span class="ident">area</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">f64</span> {
+        <span class="ident">std</span>::<span class="ident">f64</span>::<span class="ident">consts</span>::<span class="ident">PI</span> <span class="op">*</span> (<span class="self">self</span>.<span class="ident">radius</span> <span class="op">*</span> <span class="self">self</span>.<span class="ident">radius</span>)
     }
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=%23!%5Bfeature(core)%5D%0Afn%20main()%20%7B%0Astruct%20Circle%20%7B%0A%20%20%20%20x%3A%20f64%2C%0A%20%20%20%20y%3A%20f64%2C%0A%20%20%20%20radius%3A%20f64%2C%0A%7D%0A%0Atrait%20HasArea%20%7B%0A%20%20%20%20fn%20area(%26self)%20-%3E%20f64%3B%0A%7D%0A%0Aimpl%20HasArea%20for%20Circle%20%7B%0A%20%20%20%20fn%20area(%26self)%20-%3E%20f64%20%7B%0A%20%20%20%20%20%20%20%20std%3A%3Af64%3A%3Aconsts%3A%3API%20*%20(self.radius%20*%20self.radius)%0A%20%20%20%20%7D%0A%7D%0A%7D&amp;version=nightly">Run</a></pre>
 
@@ -236,9 +236,9 @@
 <p>Мы можем использовать типажи для ограничения обобщённых типов. Рассмотрим
 похожую функцию, которая также не компилируется, и выводит ошибку:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span> <span class='ident'>print_area</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span>(<span class='ident'>shape</span>: <span class='ident'>T</span>) {
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;This shape has an area of {}&quot;</span>, <span class='ident'>shape</span>.<span class='ident'>area</span>());
+<pre class="rust rust-example-rendered">
+<span class="kw">fn</span> <span class="ident">print_area</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">shape</span>: <span class="ident">T</span>) {
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;This shape has an area of {}&quot;</span>, <span class="ident">shape</span>.<span class="ident">area</span>());
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20print_area%3CT%3E(shape%3A%20T)%20%7B%0A%20%20%20%20println!(%22This%20shape%20has%20an%20area%20of%20%7B%7D%22%2C%20shape.area())%3B%0A%7D%0A%7D">Run</a></pre>
 
 <p>Rust выводит:</p>
@@ -250,9 +250,9 @@
 метод <code>area</code>. Но мы можем добавить «ограничение по типажу» к нашему обобщённому
 типу <code>T</code>, гарантируя, что он будет соответствовать требованиям:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span> <span class='ident'>print_area</span><span class='op'>&lt;</span><span class='ident'>T</span>: <span class='ident'>HasArea</span><span class='op'>&gt;</span>(<span class='ident'>shape</span>: <span class='ident'>T</span>) {
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;This shape has an area of {}&quot;</span>, <span class='ident'>shape</span>.<span class='ident'>area</span>());
+<pre class="rust rust-example-rendered">
+<span class="kw">fn</span> <span class="ident">print_area</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">HasArea</span><span class="op">&gt;</span>(<span class="ident">shape</span>: <span class="ident">T</span>) {
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;This shape has an area of {}&quot;</span>, <span class="ident">shape</span>.<span class="ident">area</span>());
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Atrait%20HasArea%20%7B%0A%20%20%20%20fn%20area(%26self)%20-%3E%20f64%3B%0A%7D%0Afn%20print_area%3CT%3A%20HasArea%3E(shape%3A%20T)%20%7B%0A%20%20%20%20println!(%22This%20shape%20has%20an%20area%20of%20%7B%7D%22%2C%20shape.area())%3B%0A%7D%0A%7D">Run</a></pre>
 
 <p>Синтаксис <code>&lt;T: HasArea&gt;</code> означает «любой тип, реализующий типаж <code>HasArea</code>».
@@ -261,54 +261,54 @@
 
 <p>Вот расширенный пример того, как это работает:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>trait</span> <span class='ident'>HasArea</span> {
-    <span class='kw'>fn</span> <span class='ident'>area</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>f64</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">trait</span> <span class="ident">HasArea</span> {
+    <span class="kw">fn</span> <span class="ident">area</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">f64</span>;
 }
 
-<span class='kw'>struct</span> <span class='ident'>Circle</span> {
-    <span class='ident'>x</span>: <span class='ident'>f64</span>,
-    <span class='ident'>y</span>: <span class='ident'>f64</span>,
-    <span class='ident'>radius</span>: <span class='ident'>f64</span>,
+<span class="kw">struct</span> <span class="ident">Circle</span> {
+    <span class="ident">x</span>: <span class="ident">f64</span>,
+    <span class="ident">y</span>: <span class="ident">f64</span>,
+    <span class="ident">radius</span>: <span class="ident">f64</span>,
 }
 
-<span class='kw'>impl</span> <span class='ident'>HasArea</span> <span class='kw'>for</span> <span class='ident'>Circle</span> {
-    <span class='kw'>fn</span> <span class='ident'>area</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>f64</span> {
-        <span class='ident'>std</span>::<span class='ident'>f64</span>::<span class='ident'>consts</span>::<span class='ident'>PI</span> <span class='op'>*</span> (<span class='self'>self</span>.<span class='ident'>radius</span> <span class='op'>*</span> <span class='self'>self</span>.<span class='ident'>radius</span>)
+<span class="kw">impl</span> <span class="ident">HasArea</span> <span class="kw">for</span> <span class="ident">Circle</span> {
+    <span class="kw">fn</span> <span class="ident">area</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">f64</span> {
+        <span class="ident">std</span>::<span class="ident">f64</span>::<span class="ident">consts</span>::<span class="ident">PI</span> <span class="op">*</span> (<span class="self">self</span>.<span class="ident">radius</span> <span class="op">*</span> <span class="self">self</span>.<span class="ident">radius</span>)
     }
 }
 
-<span class='kw'>struct</span> <span class='ident'>Square</span> {
-    <span class='ident'>x</span>: <span class='ident'>f64</span>,
-    <span class='ident'>y</span>: <span class='ident'>f64</span>,
-    <span class='ident'>side</span>: <span class='ident'>f64</span>,
+<span class="kw">struct</span> <span class="ident">Square</span> {
+    <span class="ident">x</span>: <span class="ident">f64</span>,
+    <span class="ident">y</span>: <span class="ident">f64</span>,
+    <span class="ident">side</span>: <span class="ident">f64</span>,
 }
 
-<span class='kw'>impl</span> <span class='ident'>HasArea</span> <span class='kw'>for</span> <span class='ident'>Square</span> {
-    <span class='kw'>fn</span> <span class='ident'>area</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>f64</span> {
-        <span class='self'>self</span>.<span class='ident'>side</span> <span class='op'>*</span> <span class='self'>self</span>.<span class='ident'>side</span>
+<span class="kw">impl</span> <span class="ident">HasArea</span> <span class="kw">for</span> <span class="ident">Square</span> {
+    <span class="kw">fn</span> <span class="ident">area</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">f64</span> {
+        <span class="self">self</span>.<span class="ident">side</span> <span class="op">*</span> <span class="self">self</span>.<span class="ident">side</span>
     }
 }
 
-<span class='kw'>fn</span> <span class='ident'>print_area</span><span class='op'>&lt;</span><span class='ident'>T</span>: <span class='ident'>HasArea</span><span class='op'>&gt;</span>(<span class='ident'>shape</span>: <span class='ident'>T</span>) {
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Площадь этой фигуры равна {}&quot;</span>, <span class='ident'>shape</span>.<span class='ident'>area</span>());
+<span class="kw">fn</span> <span class="ident">print_area</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">HasArea</span><span class="op">&gt;</span>(<span class="ident">shape</span>: <span class="ident">T</span>) {
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;Площадь этой фигуры равна {}&quot;</span>, <span class="ident">shape</span>.<span class="ident">area</span>());
 }
 
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='kw'>let</span> <span class='ident'>c</span> <span class='op'>=</span> <span class='ident'>Circle</span> {
-        <span class='ident'>x</span>: <span class='number'>0.0f64</span>,
-        <span class='ident'>y</span>: <span class='number'>0.0f64</span>,
-        <span class='ident'>radius</span>: <span class='number'>1.0f64</span>,
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="kw">let</span> <span class="ident">c</span> <span class="op">=</span> <span class="ident">Circle</span> {
+        <span class="ident">x</span>: <span class="number">0.0f64</span>,
+        <span class="ident">y</span>: <span class="number">0.0f64</span>,
+        <span class="ident">radius</span>: <span class="number">1.0f64</span>,
     };
 
-    <span class='kw'>let</span> <span class='ident'>s</span> <span class='op'>=</span> <span class='ident'>Square</span> {
-        <span class='ident'>x</span>: <span class='number'>0.0f64</span>,
-        <span class='ident'>y</span>: <span class='number'>0.0f64</span>,
-        <span class='ident'>side</span>: <span class='number'>1.0f64</span>,
+    <span class="kw">let</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">Square</span> {
+        <span class="ident">x</span>: <span class="number">0.0f64</span>,
+        <span class="ident">y</span>: <span class="number">0.0f64</span>,
+        <span class="ident">side</span>: <span class="number">1.0f64</span>,
     };
 
-    <span class='ident'>print_area</span>(<span class='ident'>c</span>);
-    <span class='ident'>print_area</span>(<span class='ident'>s</span>);
+    <span class="ident">print_area</span>(<span class="ident">c</span>);
+    <span class="ident">print_area</span>(<span class="ident">s</span>);
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=%23!%5Bfeature(core)%5D%0Atrait%20HasArea%20%7B%0A%20%20%20%20fn%20area(%26self)%20-%3E%20f64%3B%0A%7D%0A%0Astruct%20Circle%20%7B%0A%20%20%20%20x%3A%20f64%2C%0A%20%20%20%20y%3A%20f64%2C%0A%20%20%20%20radius%3A%20f64%2C%0A%7D%0A%0Aimpl%20HasArea%20for%20Circle%20%7B%0A%20%20%20%20fn%20area(%26self)%20-%3E%20f64%20%7B%0A%20%20%20%20%20%20%20%20std%3A%3Af64%3A%3Aconsts%3A%3API%20*%20(self.radius%20*%20self.radius)%0A%20%20%20%20%7D%0A%7D%0A%0Astruct%20Square%20%7B%0A%20%20%20%20x%3A%20f64%2C%0A%20%20%20%20y%3A%20f64%2C%0A%20%20%20%20side%3A%20f64%2C%0A%7D%0A%0Aimpl%20HasArea%20for%20Square%20%7B%0A%20%20%20%20fn%20area(%26self)%20-%3E%20f64%20%7B%0A%20%20%20%20%20%20%20%20self.side%20*%20self.side%0A%20%20%20%20%7D%0A%7D%0A%0Afn%20print_area%3CT%3A%20HasArea%3E(shape%3A%20T)%20%7B%0A%20%20%20%20println!(%22%D0%9F%D0%BB%D0%BE%D1%89%D0%B0%D0%B4%D1%8C%20%D1%8D%D1%82%D0%BE%D0%B9%20%D1%84%D0%B8%D0%B3%D1%83%D1%80%D1%8B%20%D1%80%D0%B0%D0%B2%D0%BD%D0%B0%20%7B%7D%22%2C%20shape.area())%3B%0A%7D%0A%0Afn%20main()%20%7B%0A%20%20%20%20let%20c%20%3D%20Circle%20%7B%0A%20%20%20%20%20%20%20%20x%3A%200.0f64%2C%0A%20%20%20%20%20%20%20%20y%3A%200.0f64%2C%0A%20%20%20%20%20%20%20%20radius%3A%201.0f64%2C%0A%20%20%20%20%7D%3B%0A%0A%20%20%20%20let%20s%20%3D%20Square%20%7B%0A%20%20%20%20%20%20%20%20x%3A%200.0f64%2C%0A%20%20%20%20%20%20%20%20y%3A%200.0f64%2C%0A%20%20%20%20%20%20%20%20side%3A%201.0f64%2C%0A%20%20%20%20%7D%3B%0A%0A%20%20%20%20print_area(c)%3B%0A%20%20%20%20print_area(s)%3B%0A%7D%0A&amp;version=nightly">Run</a></pre>
 
 <p>Ниже показан вывод программы:</p>
@@ -321,8 +321,8 @@
 функцией, но и гарантирует, что будет получен корректный тип. Если же мы
 передадим некорректный тип:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='ident'>print_area</span>(<span class='number'>5</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Aprint_area(5)%3B%0A%7D">Run</a></pre>
+<pre class="rust rust-example-rendered">
+<span class="ident">print_area</span>(<span class="number">5</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Aprint_area(5)%3B%0A%7D">Run</a></pre>
 
 <p>Мы получим ошибку времени компиляции:</p>
 
@@ -333,20 +333,20 @@
 типаж можно для любого типа. Технически, мы <em>могли бы</em> реализовать <code>HasArea</code> для
 <code>i32</code>:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>trait</span> <span class='ident'>HasArea</span> {
-    <span class='kw'>fn</span> <span class='ident'>area</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>f64</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">trait</span> <span class="ident">HasArea</span> {
+    <span class="kw">fn</span> <span class="ident">area</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">f64</span>;
 }
 
-<span class='kw'>impl</span> <span class='ident'>HasArea</span> <span class='kw'>for</span> <span class='ident'>i32</span> {
-    <span class='kw'>fn</span> <span class='ident'>area</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>f64</span> {
-        <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;это нелепо&quot;</span>);
+<span class="kw">impl</span> <span class="ident">HasArea</span> <span class="kw">for</span> <span class="ident">i32</span> {
+    <span class="kw">fn</span> <span class="ident">area</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">f64</span> {
+        <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;это нелепо&quot;</span>);
 
-        <span class='kw-2'>*</span><span class='self'>self</span> <span class='kw'>as</span> <span class='ident'>f64</span>
+        <span class="kw-2">*</span><span class="self">self</span> <span class="kw">as</span> <span class="ident">f64</span>
     }
 }
 
-<span class='number'>5</span>.<span class='ident'>area</span>();<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Atrait%20HasArea%20%7B%0A%20%20%20%20fn%20area(%26self)%20-%3E%20f64%3B%0A%7D%0A%0Aimpl%20HasArea%20for%20i32%20%7B%0A%20%20%20%20fn%20area(%26self)%20-%3E%20f64%20%7B%0A%20%20%20%20%20%20%20%20println!(%22%D1%8D%D1%82%D0%BE%20%D0%BD%D0%B5%D0%BB%D0%B5%D0%BF%D0%BE%22)%3B%0A%0A%20%20%20%20%20%20%20%20*self%20as%20f64%0A%20%20%20%20%7D%0A%7D%0A%0A5.area()%3B%0A%7D">Run</a></pre>
+<span class="number">5</span>.<span class="ident">area</span>();<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Atrait%20HasArea%20%7B%0A%20%20%20%20fn%20area(%26self)%20-%3E%20f64%3B%0A%7D%0A%0Aimpl%20HasArea%20for%20i32%20%7B%0A%20%20%20%20fn%20area(%26self)%20-%3E%20f64%20%7B%0A%20%20%20%20%20%20%20%20println!(%22%D1%8D%D1%82%D0%BE%20%D0%BD%D0%B5%D0%BB%D0%B5%D0%BF%D0%BE%22)%3B%0A%0A%20%20%20%20%20%20%20%20*self%20as%20f64%0A%20%20%20%20%7D%0A%7D%0A%0A5.area()%3B%0A%7D">Run</a></pre>
 
 <p>Хотя технически это возможно, реализация методов для примитивных типов считается
 плохим стилем программирования.</p>
@@ -358,10 +358,10 @@
 <a href="https://doc.rust-lang.org/stable/std/io/trait.Write.html"><code>Write</code></a>, который добавляет типу <code>File</code> функциональность ввода-вывода.
 По умолчанию у <code>File</code> не будет этих методов:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>f</span> <span class='op'>=</span> <span class='ident'>std</span>::<span class='ident'>fs</span>::<span class='ident'>File</span>::<span class='ident'>open</span>(<span class='string'>&quot;foo.txt&quot;</span>).<span class='ident'>ok</span>().<span class='ident'>expect</span>(<span class='string'>&quot;Не могу открыть foo.txt&quot;</span>);
-<span class='kw'>let</span> <span class='ident'>buf</span> <span class='op'>=</span> <span class='string'>b&quot;whatever&quot;</span>; <span class='comment'>// литерал строки байт. buf: &amp;[u8; 8]</span>
-<span class='kw'>let</span> <span class='ident'>result</span> <span class='op'>=</span> <span class='ident'>f</span>.<span class='ident'>write</span>(<span class='ident'>buf</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20mut%20f%20%3D%20std%3A%3Afs%3A%3AFile%3A%3Aopen(%22foo.txt%22).ok().expect(%22%D0%9D%D0%B5%20%D0%BC%D0%BE%D0%B3%D1%83%20%D0%BE%D1%82%D0%BA%D1%80%D1%8B%D1%82%D1%8C%20foo.txt%22)%3B%0Alet%20buf%20%3D%20b%22whatever%22%3B%20%2F%2F%20%D0%BB%D0%B8%D1%82%D0%B5%D1%80%D0%B0%D0%BB%20%D1%81%D1%82%D1%80%D0%BE%D0%BA%D0%B8%20%D0%B1%D0%B0%D0%B9%D1%82.%20buf%3A%20%26%5Bu8%3B%208%5D%0Alet%20result%20%3D%20f.write(buf)%3B%0Aresult.unwrap()%3B%20%2F%2F%20%D0%B8%D0%B3%D0%BD%D0%BE%D1%80%D0%B8%D1%80%D1%83%D0%B5%D0%BC%20%D0%BE%D1%88%D0%B8%D0%B1%D0%BA%D1%83%0A%7D">Run</a></pre>
+<pre class="rust rust-example-rendered">
+<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">f</span> <span class="op">=</span> <span class="ident">std</span>::<span class="ident">fs</span>::<span class="ident">File</span>::<span class="ident">open</span>(<span class="string">&quot;foo.txt&quot;</span>).<span class="ident">ok</span>().<span class="ident">expect</span>(<span class="string">&quot;Не могу открыть foo.txt&quot;</span>);
+<span class="kw">let</span> <span class="ident">buf</span> <span class="op">=</span> <span class="string">b&quot;whatever&quot;</span>; <span class="comment">// литерал строки байт. buf: &amp;[u8; 8]</span>
+<span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="ident">f</span>.<span class="ident">write</span>(<span class="ident">buf</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20mut%20f%20%3D%20std%3A%3Afs%3A%3AFile%3A%3Aopen(%22foo.txt%22).ok().expect(%22%D0%9D%D0%B5%20%D0%BC%D0%BE%D0%B3%D1%83%20%D0%BE%D1%82%D0%BA%D1%80%D1%8B%D1%82%D1%8C%20foo.txt%22)%3B%0Alet%20buf%20%3D%20b%22whatever%22%3B%20%2F%2F%20%D0%BB%D0%B8%D1%82%D0%B5%D1%80%D0%B0%D0%BB%20%D1%81%D1%82%D1%80%D0%BE%D0%BA%D0%B8%20%D0%B1%D0%B0%D0%B9%D1%82.%20buf%3A%20%26%5Bu8%3B%208%5D%0Alet%20result%20%3D%20f.write(buf)%3B%0Aresult.unwrap()%3B%20%2F%2F%20%D0%B8%D0%B3%D0%BD%D0%BE%D1%80%D0%B8%D1%80%D1%83%D0%B5%D0%BC%20%D0%BE%D1%88%D0%B8%D0%B1%D0%BA%D1%83%0A%7D">Run</a></pre>
 
 <p>Вот ошибка:</p>
 
@@ -372,12 +372,12 @@ let result = f.write(buf);
 
 <p>Сначала мы должны сделать <code>use</code> для типажа <code>Write</code>:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>io</span>::<span class='ident'>Write</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">io</span>::<span class="ident">Write</span>;
 
-<span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>f</span> <span class='op'>=</span> <span class='ident'>std</span>::<span class='ident'>fs</span>::<span class='ident'>File</span>::<span class='ident'>open</span>(<span class='string'>&quot;foo.txt&quot;</span>).<span class='ident'>ok</span>().<span class='ident'>expect</span>(<span class='string'>&quot;Не могу открыть foo.txt&quot;</span>);
-<span class='kw'>let</span> <span class='ident'>buf</span> <span class='op'>=</span> <span class='string'>b&quot;whatever&quot;</span>;
-<span class='kw'>let</span> <span class='ident'>result</span> <span class='op'>=</span> <span class='ident'>f</span>.<span class='ident'>write</span>(<span class='ident'>buf</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Ause%20std%3A%3Aio%3A%3AWrite%3B%0A%0Alet%20mut%20f%20%3D%20std%3A%3Afs%3A%3AFile%3A%3Aopen(%22foo.txt%22).ok().expect(%22%D0%9D%D0%B5%20%D0%BC%D0%BE%D0%B3%D1%83%20%D0%BE%D1%82%D0%BA%D1%80%D1%8B%D1%82%D1%8C%20foo.txt%22)%3B%0Alet%20buf%20%3D%20b%22whatever%22%3B%0Alet%20result%20%3D%20f.write(buf)%3B%0Aresult.unwrap()%3B%20%2F%2F%20%D0%B8%D0%B3%D0%BD%D0%BE%D1%80%D0%B8%D1%80%D1%83%D0%B5%D0%BC%20%D0%BE%D1%88%D0%B8%D0%B1%D0%BA%D1%83%0A%7D">Run</a></pre>
+<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">f</span> <span class="op">=</span> <span class="ident">std</span>::<span class="ident">fs</span>::<span class="ident">File</span>::<span class="ident">open</span>(<span class="string">&quot;foo.txt&quot;</span>).<span class="ident">ok</span>().<span class="ident">expect</span>(<span class="string">&quot;Не могу открыть foo.txt&quot;</span>);
+<span class="kw">let</span> <span class="ident">buf</span> <span class="op">=</span> <span class="string">b&quot;whatever&quot;</span>;
+<span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="ident">f</span>.<span class="ident">write</span>(<span class="ident">buf</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Ause%20std%3A%3Aio%3A%3AWrite%3B%0A%0Alet%20mut%20f%20%3D%20std%3A%3Afs%3A%3AFile%3A%3Aopen(%22foo.txt%22).ok().expect(%22%D0%9D%D0%B5%20%D0%BC%D0%BE%D0%B3%D1%83%20%D0%BE%D1%82%D0%BA%D1%80%D1%8B%D1%82%D1%8C%20foo.txt%22)%3B%0Alet%20buf%20%3D%20b%22whatever%22%3B%0Alet%20result%20%3D%20f.write(buf)%3B%0Aresult.unwrap()%3B%20%2F%2F%20%D0%B8%D0%B3%D0%BD%D0%BE%D1%80%D0%B8%D1%80%D1%83%D0%B5%D0%BC%20%D0%BE%D1%88%D0%B8%D0%B1%D0%BA%D1%83%0A%7D">Run</a></pre>
 
 <p>Это скомпилируется без ошибки.</p>
 
@@ -400,19 +400,19 @@ let result = f.write(buf);
 <p>Вы уже видели, как можно ограничить обобщённый параметр типа определённым
 типажом:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span> <span class='ident'>foo</span><span class='op'>&lt;</span><span class='ident'>T</span>: <span class='ident'>Clone</span><span class='op'>&gt;</span>(<span class='ident'>x</span>: <span class='ident'>T</span>) {
-    <span class='ident'>x</span>.<span class='ident'>clone</span>();
+<pre class="rust rust-example-rendered">
+<span class="kw">fn</span> <span class="ident">foo</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Clone</span><span class="op">&gt;</span>(<span class="ident">x</span>: <span class="ident">T</span>) {
+    <span class="ident">x</span>.<span class="ident">clone</span>();
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20foo%3CT%3A%20Clone%3E(x%3A%20T)%20%7B%0A%20%20%20%20x.clone()%3B%0A%7D%0A%7D">Run</a></pre>
 
 <p>Если вам нужно больше одного ограничения, вы можете использовать <code>+</code>:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>fmt</span>::<span class='ident'>Debug</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fmt</span>::<span class="ident">Debug</span>;
 
-<span class='kw'>fn</span> <span class='ident'>foo</span><span class='op'>&lt;</span><span class='ident'>T</span>: <span class='ident'>Clone</span> <span class='op'>+</span> <span class='ident'>Debug</span><span class='op'>&gt;</span>(<span class='ident'>x</span>: <span class='ident'>T</span>) {
-    <span class='ident'>x</span>.<span class='ident'>clone</span>();
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{:?}&quot;</span>, <span class='ident'>x</span>);
+<span class="kw">fn</span> <span class="ident">foo</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Clone</span> <span class="op">+</span> <span class="ident">Debug</span><span class="op">&gt;</span>(<span class="ident">x</span>: <span class="ident">T</span>) {
+    <span class="ident">x</span>.<span class="ident">clone</span>();
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;{:?}&quot;</span>, <span class="ident">x</span>);
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Ause%20std%3A%3Afmt%3A%3ADebug%3B%0A%0Afn%20foo%3CT%3A%20Clone%20%2B%20Debug%3E(x%3A%20T)%20%7B%0A%20%20%20%20x.clone()%3B%0A%20%20%20%20println!(%22%7B%3A%3F%7D%22%2C%20x)%3B%0A%7D%0A%7D">Run</a></pre>
 
 <p>Теперь тип <code>T</code> должен реализовавать как типаж <code>Clone</code>, так и типаж <code>Debug</code>.</p>
@@ -422,13 +422,13 @@ let result = f.write(buf);
 ограничений по типажам выглядит не так уж плохо, но, с увеличением количества
 зависимостей, синтаксис получается более неуклюжим:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>fmt</span>::<span class='ident'>Debug</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fmt</span>::<span class="ident">Debug</span>;
 
-<span class='kw'>fn</span> <span class='ident'>foo</span><span class='op'>&lt;</span><span class='ident'>T</span>: <span class='ident'>Clone</span>, <span class='ident'>K</span>: <span class='ident'>Clone</span> <span class='op'>+</span> <span class='ident'>Debug</span><span class='op'>&gt;</span>(<span class='ident'>x</span>: <span class='ident'>T</span>, <span class='ident'>y</span>: <span class='ident'>K</span>) {
-    <span class='ident'>x</span>.<span class='ident'>clone</span>();
-    <span class='ident'>y</span>.<span class='ident'>clone</span>();
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{:?}&quot;</span>, <span class='ident'>y</span>);
+<span class="kw">fn</span> <span class="ident">foo</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Clone</span>, <span class="ident">K</span>: <span class="ident">Clone</span> <span class="op">+</span> <span class="ident">Debug</span><span class="op">&gt;</span>(<span class="ident">x</span>: <span class="ident">T</span>, <span class="ident">y</span>: <span class="ident">K</span>) {
+    <span class="ident">x</span>.<span class="ident">clone</span>();
+    <span class="ident">y</span>.<span class="ident">clone</span>();
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;{:?}&quot;</span>, <span class="ident">y</span>);
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Ause%20std%3A%3Afmt%3A%3ADebug%3B%0A%0Afn%20foo%3CT%3A%20Clone%2C%20K%3A%20Clone%20%2B%20Debug%3E(x%3A%20T%2C%20y%3A%20K)%20%7B%0A%20%20%20%20x.clone()%3B%0A%20%20%20%20y.clone()%3B%0A%20%20%20%20println!(%22%7B%3A%3F%7D%22%2C%20y)%3B%0A%7D%0A%7D">Run</a></pre>
 
 <p>Имя функции находится слева, а список параметров — далеко справа. Ограничения
@@ -436,24 +436,24 @@ let result = f.write(buf);
 
 <p>Есть решение и для этой проблемы, и оно называется «утверждение <code>where</code>»:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>fmt</span>::<span class='ident'>Debug</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fmt</span>::<span class="ident">Debug</span>;
 
-<span class='kw'>fn</span> <span class='ident'>foo</span><span class='op'>&lt;</span><span class='ident'>T</span>: <span class='ident'>Clone</span>, <span class='ident'>K</span>: <span class='ident'>Clone</span> <span class='op'>+</span> <span class='ident'>Debug</span><span class='op'>&gt;</span>(<span class='ident'>x</span>: <span class='ident'>T</span>, <span class='ident'>y</span>: <span class='ident'>K</span>) {
-    <span class='ident'>x</span>.<span class='ident'>clone</span>();
-    <span class='ident'>y</span>.<span class='ident'>clone</span>();
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{:?}&quot;</span>, <span class='ident'>y</span>);
+<span class="kw">fn</span> <span class="ident">foo</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Clone</span>, <span class="ident">K</span>: <span class="ident">Clone</span> <span class="op">+</span> <span class="ident">Debug</span><span class="op">&gt;</span>(<span class="ident">x</span>: <span class="ident">T</span>, <span class="ident">y</span>: <span class="ident">K</span>) {
+    <span class="ident">x</span>.<span class="ident">clone</span>();
+    <span class="ident">y</span>.<span class="ident">clone</span>();
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;{:?}&quot;</span>, <span class="ident">y</span>);
 }
 
-<span class='kw'>fn</span> <span class='ident'>bar</span><span class='op'>&lt;</span><span class='ident'>T</span>, <span class='ident'>K</span><span class='op'>&gt;</span>(<span class='ident'>x</span>: <span class='ident'>T</span>, <span class='ident'>y</span>: <span class='ident'>K</span>) <span class='kw'>where</span> <span class='ident'>T</span>: <span class='ident'>Clone</span>, <span class='ident'>K</span>: <span class='ident'>Clone</span> <span class='op'>+</span> <span class='ident'>Debug</span> {
-    <span class='ident'>x</span>.<span class='ident'>clone</span>();
-    <span class='ident'>y</span>.<span class='ident'>clone</span>();
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{:?}&quot;</span>, <span class='ident'>y</span>);
+<span class="kw">fn</span> <span class="ident">bar</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">K</span><span class="op">&gt;</span>(<span class="ident">x</span>: <span class="ident">T</span>, <span class="ident">y</span>: <span class="ident">K</span>) <span class="kw">where</span> <span class="ident">T</span>: <span class="ident">Clone</span>, <span class="ident">K</span>: <span class="ident">Clone</span> <span class="op">+</span> <span class="ident">Debug</span> {
+    <span class="ident">x</span>.<span class="ident">clone</span>();
+    <span class="ident">y</span>.<span class="ident">clone</span>();
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;{:?}&quot;</span>, <span class="ident">y</span>);
 }
 
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='ident'>foo</span>(<span class='string'>&quot;Привет&quot;</span>, <span class='string'>&quot;мир&quot;</span>);
-    <span class='ident'>bar</span>(<span class='string'>&quot;Привет&quot;</span>, <span class='string'>&quot;мир&quot;</span>);
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="ident">foo</span>(<span class="string">&quot;Привет&quot;</span>, <span class="string">&quot;мир&quot;</span>);
+    <span class="ident">bar</span>(<span class="string">&quot;Привет&quot;</span>, <span class="string">&quot;мир&quot;</span>);
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=use%20std%3A%3Afmt%3A%3ADebug%3B%0A%0Afn%20foo%3CT%3A%20Clone%2C%20K%3A%20Clone%20%2B%20Debug%3E(x%3A%20T%2C%20y%3A%20K)%20%7B%0A%20%20%20%20x.clone()%3B%0A%20%20%20%20y.clone()%3B%0A%20%20%20%20println!(%22%7B%3A%3F%7D%22%2C%20y)%3B%0A%7D%0A%0Afn%20bar%3CT%2C%20K%3E(x%3A%20T%2C%20y%3A%20K)%20where%20T%3A%20Clone%2C%20K%3A%20Clone%20%2B%20Debug%20%7B%0A%20%20%20%20x.clone()%3B%0A%20%20%20%20y.clone()%3B%0A%20%20%20%20println!(%22%7B%3A%3F%7D%22%2C%20y)%3B%0A%7D%0A%0Afn%20main()%20%7B%0A%20%20%20%20foo(%22%D0%9F%D1%80%D0%B8%D0%B2%D0%B5%D1%82%22%2C%20%22%D0%BC%D0%B8%D1%80%22)%3B%0A%20%20%20%20bar(%22%D0%9F%D1%80%D0%B8%D0%B2%D0%B5%D1%82%22%2C%20%22%D0%BC%D0%B8%D1%80%22)%3B%0A%7D%0A">Run</a></pre>
 
 <p><code>foo()</code> использует синтаксис, показанный ранее, а <code>bar()</code> использует утверждение
@@ -461,41 +461,41 @@ let result = f.write(buf);
 типов параметров, а затем добавить <code>where</code> после списка параметров. В более
 длинных списках можно использовать пробелы:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>fmt</span>::<span class='ident'>Debug</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fmt</span>::<span class="ident">Debug</span>;
 
-<span class='kw'>fn</span> <span class='ident'>bar</span><span class='op'>&lt;</span><span class='ident'>T</span>, <span class='ident'>K</span><span class='op'>&gt;</span>(<span class='ident'>x</span>: <span class='ident'>T</span>, <span class='ident'>y</span>: <span class='ident'>K</span>)
-    <span class='kw'>where</span> <span class='ident'>T</span>: <span class='ident'>Clone</span>,
-          <span class='ident'>K</span>: <span class='ident'>Clone</span> <span class='op'>+</span> <span class='ident'>Debug</span> {
+<span class="kw">fn</span> <span class="ident">bar</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">K</span><span class="op">&gt;</span>(<span class="ident">x</span>: <span class="ident">T</span>, <span class="ident">y</span>: <span class="ident">K</span>)
+    <span class="kw">where</span> <span class="ident">T</span>: <span class="ident">Clone</span>,
+          <span class="ident">K</span>: <span class="ident">Clone</span> <span class="op">+</span> <span class="ident">Debug</span> {
 
-    <span class='ident'>x</span>.<span class='ident'>clone</span>();
-    <span class='ident'>y</span>.<span class='ident'>clone</span>();
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{:?}&quot;</span>, <span class='ident'>y</span>);
+    <span class="ident">x</span>.<span class="ident">clone</span>();
+    <span class="ident">y</span>.<span class="ident">clone</span>();
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;{:?}&quot;</span>, <span class="ident">y</span>);
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Ause%20std%3A%3Afmt%3A%3ADebug%3B%0A%0Afn%20bar%3CT%2C%20K%3E(x%3A%20T%2C%20y%3A%20K)%0A%20%20%20%20where%20T%3A%20Clone%2C%0A%20%20%20%20%20%20%20%20%20%20K%3A%20Clone%20%2B%20Debug%20%7B%0A%0A%20%20%20%20x.clone()%3B%0A%20%20%20%20y.clone()%3B%0A%20%20%20%20println!(%22%7B%3A%3F%7D%22%2C%20y)%3B%0A%7D%0A%7D">Run</a></pre>
 
 <p>Такая гибкость может добавить ясности в сложных ситуациях.</p>
 
 <p>На самом деле <code>where</code> это больше, чем просто упрощение синтаксиса. Например:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>trait</span> <span class='ident'>ConvertTo</span><span class='op'>&lt;</span><span class='ident'>Output</span><span class='op'>&gt;</span> {
-    <span class='kw'>fn</span> <span class='ident'>convert</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>Output</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">trait</span> <span class="ident">ConvertTo</span><span class="op">&lt;</span><span class="ident">Output</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">convert</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">Output</span>;
 }
 
-<span class='kw'>impl</span> <span class='ident'>ConvertTo</span><span class='op'>&lt;</span><span class='ident'>i64</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>i32</span> {
-    <span class='kw'>fn</span> <span class='ident'>convert</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>i64</span> { <span class='kw-2'>*</span><span class='self'>self</span> <span class='kw'>as</span> <span class='ident'>i64</span> }
+<span class="kw">impl</span> <span class="ident">ConvertTo</span><span class="op">&lt;</span><span class="ident">i64</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">i32</span> {
+    <span class="kw">fn</span> <span class="ident">convert</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">i64</span> { <span class="kw-2">*</span><span class="self">self</span> <span class="kw">as</span> <span class="ident">i64</span> }
 }
 
-<span class='comment'>// может быть вызван с T == i32</span>
-<span class='kw'>fn</span> <span class='ident'>normal</span><span class='op'>&lt;</span><span class='ident'>T</span>: <span class='ident'>ConvertTo</span><span class='op'>&lt;</span><span class='ident'>i64</span><span class='op'>&gt;&gt;</span>(<span class='ident'>x</span>: <span class='kw-2'>&amp;</span><span class='ident'>T</span>) <span class='op'>-&gt;</span> <span class='ident'>i64</span> {
-    <span class='ident'>x</span>.<span class='ident'>convert</span>()
+<span class="comment">// может быть вызван с T == i32</span>
+<span class="kw">fn</span> <span class="ident">normal</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">ConvertTo</span><span class="op">&lt;</span><span class="ident">i64</span><span class="op">&gt;&gt;</span>(<span class="ident">x</span>: <span class="kw-2">&amp;</span><span class="ident">T</span>) <span class="op">-&gt;</span> <span class="ident">i64</span> {
+    <span class="ident">x</span>.<span class="ident">convert</span>()
 }
 
-<span class='comment'>// может быть вызван с T == i64</span>
-<span class='kw'>fn</span> <span class='ident'>inverse</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span>() <span class='op'>-&gt;</span> <span class='ident'>T</span>
-        <span class='comment'>// использует ConvertTo как если бы это было «ConvertTo&lt;i64&gt;»</span>
-        <span class='kw'>where</span> <span class='ident'>i32</span>: <span class='ident'>ConvertTo</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span> {
-    <span class='number'>1i32</span>.<span class='ident'>convert</span>()
+<span class="comment">// может быть вызван с T == i64</span>
+<span class="kw">fn</span> <span class="ident">inverse</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>() <span class="op">-&gt;</span> <span class="ident">T</span>
+        <span class="comment">// использует ConvertTo как если бы это было «ConvertTo&lt;i64&gt;»</span>
+        <span class="kw">where</span> <span class="ident">i32</span>: <span class="ident">ConvertTo</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
+    <span class="number">1i32</span>.<span class="ident">convert</span>()
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Atrait%20ConvertTo%3COutput%3E%20%7B%0A%20%20%20%20fn%20convert(%26self)%20-%3E%20Output%3B%0A%7D%0A%0Aimpl%20ConvertTo%3Ci64%3E%20for%20i32%20%7B%0A%20%20%20%20fn%20convert(%26self)%20-%3E%20i64%20%7B%20*self%20as%20i64%20%7D%0A%7D%0A%0A%2F%2F%20%D0%BC%D0%BE%D0%B6%D0%B5%D1%82%20%D0%B1%D1%8B%D1%82%D1%8C%20%D0%B2%D1%8B%D0%B7%D0%B2%D0%B0%D0%BD%20%D1%81%20T%20%3D%3D%20i32%0Afn%20normal%3CT%3A%20ConvertTo%3Ci64%3E%3E(x%3A%20%26T)%20-%3E%20i64%20%7B%0A%20%20%20%20x.convert()%0A%7D%0A%0A%2F%2F%20%D0%BC%D0%BE%D0%B6%D0%B5%D1%82%20%D0%B1%D1%8B%D1%82%D1%8C%20%D0%B2%D1%8B%D0%B7%D0%B2%D0%B0%D0%BD%20%D1%81%20T%20%3D%3D%20i64%0Afn%20inverse%3CT%3E()%20-%3E%20T%0A%20%20%20%20%20%20%20%20%2F%2F%20%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D1%82%20ConvertTo%20%D0%BA%D0%B0%D0%BA%20%D0%B5%D1%81%D0%BB%D0%B8%20%D0%B1%D1%8B%20%D1%8D%D1%82%D0%BE%20%D0%B1%D1%8B%D0%BB%D0%BE%20%C2%ABConvertTo%3Ci64%3E%C2%BB%0A%20%20%20%20%20%20%20%20where%20i32%3A%20ConvertTo%3CT%3E%20%7B%0A%20%20%20%201i32.convert()%0A%7D%0A%7D">Run</a></pre>
 
 <p>Этот код демонстрирует дополнительные преимущества использования утверждения
@@ -507,71 +507,71 @@ let result = f.write(buf);
 <p>Есть еще одна особенность типажей, о которой стоит поговорить: методы по
 умолчанию. Проще всего показать это на примере:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>trait</span> <span class='ident'>Foo</span> {
-    <span class='kw'>fn</span> <span class='ident'>is_valid</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>bool</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">trait</span> <span class="ident">Foo</span> {
+    <span class="kw">fn</span> <span class="ident">is_valid</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span>;
 
-    <span class='kw'>fn</span> <span class='ident'>is_invalid</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>bool</span> { <span class='op'>!</span><span class='self'>self</span>.<span class='ident'>is_valid</span>() }
+    <span class="kw">fn</span> <span class="ident">is_invalid</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> { <span class="op">!</span><span class="self">self</span>.<span class="ident">is_valid</span>() }
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Atrait%20Foo%20%7B%0A%20%20%20%20fn%20is_valid(%26self)%20-%3E%20bool%3B%0A%0A%20%20%20%20fn%20is_invalid(%26self)%20-%3E%20bool%20%7B%20!self.is_valid()%20%7D%0A%7D%0A%7D">Run</a></pre>
 
 <p>В типах, реализующих типаж <code>Foo</code>, нужно реализовать метод <code>is_valid()</code>, а
 <code>is_invalid()</code> будет реализован по-умолчанию. Его поведение можно
 переопределить:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>struct</span> <span class='ident'>UseDefault</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">struct</span> <span class="ident">UseDefault</span>;
 
-<span class='kw'>impl</span> <span class='ident'>Foo</span> <span class='kw'>for</span> <span class='ident'>UseDefault</span> {
-    <span class='kw'>fn</span> <span class='ident'>is_valid</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>bool</span> {
-        <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Вызван UseDefault.is_valid.&quot;</span>);
-        <span class='bool-val'>true</span>
+<span class="kw">impl</span> <span class="ident">Foo</span> <span class="kw">for</span> <span class="ident">UseDefault</span> {
+    <span class="kw">fn</span> <span class="ident">is_valid</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+        <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;Вызван UseDefault.is_valid.&quot;</span>);
+        <span class="bool-val">true</span>
     }
 }
 
-<span class='kw'>struct</span> <span class='ident'>OverrideDefault</span>;
+<span class="kw">struct</span> <span class="ident">OverrideDefault</span>;
 
-<span class='kw'>impl</span> <span class='ident'>Foo</span> <span class='kw'>for</span> <span class='ident'>OverrideDefault</span> {
-    <span class='kw'>fn</span> <span class='ident'>is_valid</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>bool</span> {
-        <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Вызван OverrideDefault.is_valid.&quot;</span>);
-        <span class='bool-val'>true</span>
+<span class="kw">impl</span> <span class="ident">Foo</span> <span class="kw">for</span> <span class="ident">OverrideDefault</span> {
+    <span class="kw">fn</span> <span class="ident">is_valid</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+        <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;Вызван OverrideDefault.is_valid.&quot;</span>);
+        <span class="bool-val">true</span>
     }
 
-    <span class='kw'>fn</span> <span class='ident'>is_invalid</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>bool</span> {
-        <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Вызван OverrideDefault.is_invalid!&quot;</span>);
-        <span class='bool-val'>true</span> <span class='comment'>// эта реализация противоречит сама себе!</span>
+    <span class="kw">fn</span> <span class="ident">is_invalid</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+        <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;Вызван OverrideDefault.is_invalid!&quot;</span>);
+        <span class="bool-val">true</span> <span class="comment">// эта реализация противоречит сама себе!</span>
     }
 }
 
-<span class='kw'>let</span> <span class='ident'>default</span> <span class='op'>=</span> <span class='ident'>UseDefault</span>;
-<span class='macro'>assert</span><span class='macro'>!</span>(<span class='op'>!</span><span class='ident'>default</span>.<span class='ident'>is_invalid</span>()); <span class='comment'>// печатает «Вызван UseDefault.is_valid.»</span>
+<span class="kw">let</span> <span class="ident">default</span> <span class="op">=</span> <span class="ident">UseDefault</span>;
+<span class="macro">assert</span><span class="macro">!</span>(<span class="op">!</span><span class="ident">default</span>.<span class="ident">is_invalid</span>()); <span class="comment">// печатает «Вызван UseDefault.is_valid.»</span>
 
-<span class='kw'>let</span> <span class='ident'>over</span> <span class='op'>=</span> <span class='ident'>OverrideDefault</span>;
-<span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>over</span>.<span class='ident'>is_invalid</span>()); <span class='comment'>// печатает «Вызван OverrideDefault.is_invalid!»</span><a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Atrait%20Foo%20%7B%0A%20%20%20%20fn%20is_valid(%26self)%20-%3E%20bool%3B%0A%0A%20%20%20%20fn%20is_invalid(%26self)%20-%3E%20bool%20%7B%20!self.is_valid()%20%7D%0A%7D%0Astruct%20UseDefault%3B%0A%0Aimpl%20Foo%20for%20UseDefault%20%7B%0A%20%20%20%20fn%20is_valid(%26self)%20-%3E%20bool%20%7B%0A%20%20%20%20%20%20%20%20println!(%22%D0%92%D1%8B%D0%B7%D0%B2%D0%B0%D0%BD%20UseDefault.is_valid.%22)%3B%0A%20%20%20%20%20%20%20%20true%0A%20%20%20%20%7D%0A%7D%0A%0Astruct%20OverrideDefault%3B%0A%0Aimpl%20Foo%20for%20OverrideDefault%20%7B%0A%20%20%20%20fn%20is_valid(%26self)%20-%3E%20bool%20%7B%0A%20%20%20%20%20%20%20%20println!(%22%D0%92%D1%8B%D0%B7%D0%B2%D0%B0%D0%BD%20OverrideDefault.is_valid.%22)%3B%0A%20%20%20%20%20%20%20%20true%0A%20%20%20%20%7D%0A%0A%20%20%20%20fn%20is_invalid(%26self)%20-%3E%20bool%20%7B%0A%20%20%20%20%20%20%20%20println!(%22%D0%92%D1%8B%D0%B7%D0%B2%D0%B0%D0%BD%20OverrideDefault.is_invalid!%22)%3B%0A%20%20%20%20%20%20%20%20true%20%2F%2F%20%D1%8D%D1%82%D0%B0%20%D1%80%D0%B5%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BF%D1%80%D0%BE%D1%82%D0%B8%D0%B2%D0%BE%D1%80%D0%B5%D1%87%D0%B8%D1%82%20%D1%81%D0%B0%D0%BC%D0%B0%20%D1%81%D0%B5%D0%B1%D0%B5!%0A%20%20%20%20%7D%0A%7D%0A%0Alet%20default%20%3D%20UseDefault%3B%0Aassert!(!default.is_invalid())%3B%20%2F%2F%20%D0%BF%D0%B5%D1%87%D0%B0%D1%82%D0%B0%D0%B5%D1%82%20%C2%AB%D0%92%D1%8B%D0%B7%D0%B2%D0%B0%D0%BD%20UseDefault.is_valid.%C2%BB%0A%0Alet%20over%20%3D%20OverrideDefault%3B%0Aassert!(over.is_invalid())%3B%20%2F%2F%20%D0%BF%D0%B5%D1%87%D0%B0%D1%82%D0%B0%D0%B5%D1%82%20%C2%AB%D0%92%D1%8B%D0%B7%D0%B2%D0%B0%D0%BD%20OverrideDefault.is_invalid!%C2%BB%0A%7D">Run</a></pre>
+<span class="kw">let</span> <span class="ident">over</span> <span class="op">=</span> <span class="ident">OverrideDefault</span>;
+<span class="macro">assert</span><span class="macro">!</span>(<span class="ident">over</span>.<span class="ident">is_invalid</span>()); <span class="comment">// печатает «Вызван OverrideDefault.is_invalid!»</span><a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Atrait%20Foo%20%7B%0A%20%20%20%20fn%20is_valid(%26self)%20-%3E%20bool%3B%0A%0A%20%20%20%20fn%20is_invalid(%26self)%20-%3E%20bool%20%7B%20!self.is_valid()%20%7D%0A%7D%0Astruct%20UseDefault%3B%0A%0Aimpl%20Foo%20for%20UseDefault%20%7B%0A%20%20%20%20fn%20is_valid(%26self)%20-%3E%20bool%20%7B%0A%20%20%20%20%20%20%20%20println!(%22%D0%92%D1%8B%D0%B7%D0%B2%D0%B0%D0%BD%20UseDefault.is_valid.%22)%3B%0A%20%20%20%20%20%20%20%20true%0A%20%20%20%20%7D%0A%7D%0A%0Astruct%20OverrideDefault%3B%0A%0Aimpl%20Foo%20for%20OverrideDefault%20%7B%0A%20%20%20%20fn%20is_valid(%26self)%20-%3E%20bool%20%7B%0A%20%20%20%20%20%20%20%20println!(%22%D0%92%D1%8B%D0%B7%D0%B2%D0%B0%D0%BD%20OverrideDefault.is_valid.%22)%3B%0A%20%20%20%20%20%20%20%20true%0A%20%20%20%20%7D%0A%0A%20%20%20%20fn%20is_invalid(%26self)%20-%3E%20bool%20%7B%0A%20%20%20%20%20%20%20%20println!(%22%D0%92%D1%8B%D0%B7%D0%B2%D0%B0%D0%BD%20OverrideDefault.is_invalid!%22)%3B%0A%20%20%20%20%20%20%20%20true%20%2F%2F%20%D1%8D%D1%82%D0%B0%20%D1%80%D0%B5%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BF%D1%80%D0%BE%D1%82%D0%B8%D0%B2%D0%BE%D1%80%D0%B5%D1%87%D0%B8%D1%82%20%D1%81%D0%B0%D0%BC%D0%B0%20%D1%81%D0%B5%D0%B1%D0%B5!%0A%20%20%20%20%7D%0A%7D%0A%0Alet%20default%20%3D%20UseDefault%3B%0Aassert!(!default.is_invalid())%3B%20%2F%2F%20%D0%BF%D0%B5%D1%87%D0%B0%D1%82%D0%B0%D0%B5%D1%82%20%C2%AB%D0%92%D1%8B%D0%B7%D0%B2%D0%B0%D0%BD%20UseDefault.is_valid.%C2%BB%0A%0Alet%20over%20%3D%20OverrideDefault%3B%0Aassert!(over.is_invalid())%3B%20%2F%2F%20%D0%BF%D0%B5%D1%87%D0%B0%D1%82%D0%B0%D0%B5%D1%82%20%C2%AB%D0%92%D1%8B%D0%B7%D0%B2%D0%B0%D0%BD%20OverrideDefault.is_invalid!%C2%BB%0A%7D">Run</a></pre>
 
 <h1 id='Наследование' class='section-header'><a href='#Наследование'>Наследование</a></h1>
 <p>Иногда чтобы реализовать один типаж, нужно реализовать типажи, от которых он
 зависит:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>trait</span> <span class='ident'>Foo</span> {
-    <span class='kw'>fn</span> <span class='ident'>foo</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>);
+<pre class="rust rust-example-rendered">
+<span class="kw">trait</span> <span class="ident">Foo</span> {
+    <span class="kw">fn</span> <span class="ident">foo</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 }
 
-<span class='kw'>trait</span> <span class='ident'>FooBar</span> : <span class='ident'>Foo</span> {
-    <span class='kw'>fn</span> <span class='ident'>foobar</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>);
+<span class="kw">trait</span> <span class="ident">FooBar</span> : <span class="ident">Foo</span> {
+    <span class="kw">fn</span> <span class="ident">foobar</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Atrait%20Foo%20%7B%0A%20%20%20%20fn%20foo(%26self)%3B%0A%7D%0A%0Atrait%20FooBar%20%3A%20Foo%20%7B%0A%20%20%20%20fn%20foobar(%26self)%3B%0A%7D%0A%7D">Run</a></pre>
 
 <p>Типы, реализующие <code>FooBar</code>, должны реализовывать <code>Foo</code>:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>struct</span> <span class='ident'>Baz</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">struct</span> <span class="ident">Baz</span>;
 
-<span class='kw'>impl</span> <span class='ident'>Foo</span> <span class='kw'>for</span> <span class='ident'>Baz</span> {
-    <span class='kw'>fn</span> <span class='ident'>foo</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) { <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;foo&quot;</span>); }
+<span class="kw">impl</span> <span class="ident">Foo</span> <span class="kw">for</span> <span class="ident">Baz</span> {
+    <span class="kw">fn</span> <span class="ident">foo</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) { <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;foo&quot;</span>); }
 }
 
-<span class='kw'>impl</span> <span class='ident'>FooBar</span> <span class='kw'>for</span> <span class='ident'>Baz</span> {
-    <span class='kw'>fn</span> <span class='ident'>foobar</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) { <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;foobar&quot;</span>); }
+<span class="kw">impl</span> <span class="ident">FooBar</span> <span class="kw">for</span> <span class="ident">Baz</span> {
+    <span class="kw">fn</span> <span class="ident">foobar</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) { <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;foobar&quot;</span>); }
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Atrait%20Foo%20%7B%0A%20%20%20%20fn%20foo(%26self)%3B%0A%7D%0Atrait%20FooBar%20%3A%20Foo%20%7B%0A%20%20%20%20fn%20foobar(%26self)%3B%0A%7D%0Astruct%20Baz%3B%0A%0Aimpl%20Foo%20for%20Baz%20%7B%0A%20%20%20%20fn%20foo(%26self)%20%7B%20println!(%22foo%22)%3B%20%7D%0A%7D%0A%0Aimpl%20FooBar%20for%20Baz%20%7B%0A%20%20%20%20fn%20foobar(%26self)%20%7B%20println!(%22foobar%22)%3B%20%7D%0A%7D%0A%7D">Run</a></pre>
 
 <p>Если мы забудем реализовать <code>Foo</code>, компилятор скажет нам об этом:</p>

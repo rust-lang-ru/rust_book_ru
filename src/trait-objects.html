@@ -200,37 +200,37 @@
 Давайте создадим простой типаж <code>Foo</code>. Он содержит один метод, который возвращает
 <code>String</code>.</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>trait</span> <span class='ident'>Foo</span> {
-    <span class='kw'>fn</span> <span class='ident'>method</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>String</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">trait</span> <span class="ident">Foo</span> {
+    <span class="kw">fn</span> <span class="ident">method</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">String</span>;
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Atrait%20Foo%20%7B%0A%20%20%20%20fn%20method(%26self)%20-%3E%20String%3B%0A%7D%0A%7D">Run</a></pre>
 
 <p>Также мы реализуем этот типаж для <code>u8</code> и <code>String</code>:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>impl</span> <span class='ident'>Foo</span> <span class='kw'>for</span> <span class='ident'>u8</span> {
-    <span class='kw'>fn</span> <span class='ident'>method</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>String</span> { <span class='macro'>format</span><span class='macro'>!</span>(<span class='string'>&quot;u8: {}&quot;</span>, <span class='kw-2'>*</span><span class='self'>self</span>) }
+<pre class="rust rust-example-rendered">
+<span class="kw">impl</span> <span class="ident">Foo</span> <span class="kw">for</span> <span class="ident">u8</span> {
+    <span class="kw">fn</span> <span class="ident">method</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">String</span> { <span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;u8: {}&quot;</span>, <span class="kw-2">*</span><span class="self">self</span>) }
 }
 
-<span class='kw'>impl</span> <span class='ident'>Foo</span> <span class='kw'>for</span> <span class='ident'>String</span> {
-    <span class='kw'>fn</span> <span class='ident'>method</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>String</span> { <span class='macro'>format</span><span class='macro'>!</span>(<span class='string'>&quot;string: {}&quot;</span>, <span class='kw-2'>*</span><span class='self'>self</span>) }
+<span class="kw">impl</span> <span class="ident">Foo</span> <span class="kw">for</span> <span class="ident">String</span> {
+    <span class="kw">fn</span> <span class="ident">method</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">String</span> { <span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;string: {}&quot;</span>, <span class="kw-2">*</span><span class="self">self</span>) }
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Atrait%20Foo%20%7B%20fn%20method(%26self)%20-%3E%20String%3B%20%7D%0Aimpl%20Foo%20for%20u8%20%7B%0A%20%20%20%20fn%20method(%26self)%20-%3E%20String%20%7B%20format!(%22u8%3A%20%7B%7D%22%2C%20*self)%20%7D%0A%7D%0A%0Aimpl%20Foo%20for%20String%20%7B%0A%20%20%20%20fn%20method(%26self)%20-%3E%20String%20%7B%20format!(%22string%3A%20%7B%7D%22%2C%20*self)%20%7D%0A%7D%0A%7D">Run</a></pre>
 
 <h2 id='Статическая-диспетчеризация' class='section-header'><a href='#Статическая-диспетчеризация'>Статическая диспетчеризация</a></h2>
 <p>Мы можем использовать этот типаж для выполнения статической диспетчеризации с
 помощью ограничения типажом:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span> <span class='ident'>do_something</span><span class='op'>&lt;</span><span class='ident'>T</span>: <span class='ident'>Foo</span><span class='op'>&gt;</span>(<span class='ident'>x</span>: <span class='ident'>T</span>) {
-    <span class='ident'>x</span>.<span class='ident'>method</span>();
+<pre class="rust rust-example-rendered">
+<span class="kw">fn</span> <span class="ident">do_something</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Foo</span><span class="op">&gt;</span>(<span class="ident">x</span>: <span class="ident">T</span>) {
+    <span class="ident">x</span>.<span class="ident">method</span>();
 }
 
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='kw'>let</span> <span class='ident'>x</span> <span class='op'>=</span> <span class='number'>5u8</span>;
-    <span class='kw'>let</span> <span class='ident'>y</span> <span class='op'>=</span> <span class='string'>&quot;Hello&quot;</span>.<span class='ident'>to_string</span>();
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="number">5u8</span>;
+    <span class="kw">let</span> <span class="ident">y</span> <span class="op">=</span> <span class="string">&quot;Hello&quot;</span>.<span class="ident">to_string</span>();
 
-    <span class='ident'>do_something</span>(<span class='ident'>x</span>);
-    <span class='ident'>do_something</span>(<span class='ident'>y</span>);
+    <span class="ident">do_something</span>(<span class="ident">x</span>);
+    <span class="ident">do_something</span>(<span class="ident">y</span>);
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=trait%20Foo%20%7B%20fn%20method(%26self)%20-%3E%20String%3B%20%7D%0Aimpl%20Foo%20for%20u8%20%7B%20fn%20method(%26self)%20-%3E%20String%20%7B%20format!(%22u8%3A%20%7B%7D%22%2C%20*self)%20%7D%20%7D%0Aimpl%20Foo%20for%20String%20%7B%20fn%20method(%26self)%20-%3E%20String%20%7B%20format!(%22string%3A%20%7B%7D%22%2C%20*self)%20%7D%20%7D%0Afn%20do_something%3CT%3A%20Foo%3E(x%3A%20T)%20%7B%0A%20%20%20%20x.method()%3B%0A%7D%0A%0Afn%20main()%20%7B%0A%20%20%20%20let%20x%20%3D%205u8%3B%0A%20%20%20%20let%20y%20%3D%20%22Hello%22.to_string()%3B%0A%0A%20%20%20%20do_something(x)%3B%0A%20%20%20%20do_something(y)%3B%0A%7D%0A">Run</a></pre>
 
 <p>Здесь Rust использует &#39;мономорфизацию&#39; для статической диспетчеризации. Это
@@ -238,21 +238,21 @@
 типов: <code>u8</code> и <code>String</code>, а затем заменит все места вызовов на вызовы этих
 специализированных функций. Другими словами, Rust сгенерирует нечто вроде этого:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span> <span class='ident'>do_something_u8</span>(<span class='ident'>x</span>: <span class='ident'>u8</span>) {
-    <span class='ident'>x</span>.<span class='ident'>method</span>();
+<pre class="rust rust-example-rendered">
+<span class="kw">fn</span> <span class="ident">do_something_u8</span>(<span class="ident">x</span>: <span class="ident">u8</span>) {
+    <span class="ident">x</span>.<span class="ident">method</span>();
 }
 
-<span class='kw'>fn</span> <span class='ident'>do_something_string</span>(<span class='ident'>x</span>: <span class='ident'>String</span>) {
-    <span class='ident'>x</span>.<span class='ident'>method</span>();
+<span class="kw">fn</span> <span class="ident">do_something_string</span>(<span class="ident">x</span>: <span class="ident">String</span>) {
+    <span class="ident">x</span>.<span class="ident">method</span>();
 }
 
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='kw'>let</span> <span class='ident'>x</span> <span class='op'>=</span> <span class='number'>5u8</span>;
-    <span class='kw'>let</span> <span class='ident'>y</span> <span class='op'>=</span> <span class='string'>&quot;Hello&quot;</span>.<span class='ident'>to_string</span>();
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="number">5u8</span>;
+    <span class="kw">let</span> <span class="ident">y</span> <span class="op">=</span> <span class="string">&quot;Hello&quot;</span>.<span class="ident">to_string</span>();
 
-    <span class='ident'>do_something_u8</span>(<span class='ident'>x</span>);
-    <span class='ident'>do_something_string</span>(<span class='ident'>y</span>);
+    <span class="ident">do_something_u8</span>(<span class="ident">x</span>);
+    <span class="ident">do_something_string</span>(<span class="ident">y</span>);
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=trait%20Foo%20%7B%20fn%20method(%26self)%20-%3E%20String%3B%20%7D%0Aimpl%20Foo%20for%20u8%20%7B%20fn%20method(%26self)%20-%3E%20String%20%7B%20format!(%22u8%3A%20%7B%7D%22%2C%20*self)%20%7D%20%7D%0Aimpl%20Foo%20for%20String%20%7B%20fn%20method(%26self)%20-%3E%20String%20%7B%20format!(%22string%3A%20%7B%7D%22%2C%20*self)%20%7D%20%7D%0Afn%20do_something_u8(x%3A%20u8)%20%7B%0A%20%20%20%20x.method()%3B%0A%7D%0A%0Afn%20do_something_string(x%3A%20String)%20%7B%0A%20%20%20%20x.method()%3B%0A%7D%0A%0Afn%20main()%20%7B%0A%20%20%20%20let%20x%20%3D%205u8%3B%0A%20%20%20%20let%20y%20%3D%20%22Hello%22.to_string()%3B%0A%0A%20%20%20%20do_something_u8(x)%3B%0A%20%20%20%20do_something_string(y)%3B%0A%7D%0A">Run</a></pre>
 
 <p>Статическая диспетчеризация имеет большой потенциал: она позволяет вызывать
@@ -298,28 +298,28 @@
 выполнения динамической диспетчеризации с типажами-объектами путем явного
 приведения типа:</p>
 
-<pre class='rust rust-example-rendered'>
+<pre class="rust rust-example-rendered">
 
-<span class='kw'>fn</span> <span class='ident'>do_something</span>(<span class='ident'>x</span>: <span class='kw-2'>&amp;</span><span class='ident'>Foo</span>) {
-    <span class='ident'>x</span>.<span class='ident'>method</span>();
+<span class="kw">fn</span> <span class="ident">do_something</span>(<span class="ident">x</span>: <span class="kw-2">&amp;</span><span class="ident">Foo</span>) {
+    <span class="ident">x</span>.<span class="ident">method</span>();
 }
 
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='kw'>let</span> <span class='ident'>x</span> <span class='op'>=</span> <span class='number'>5u8</span>;
-    <span class='ident'>do_something</span>(<span class='kw-2'>&amp;</span><span class='ident'>x</span> <span class='kw'>as</span> <span class='kw-2'>&amp;</span><span class='ident'>Foo</span>);
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="number">5u8</span>;
+    <span class="ident">do_something</span>(<span class="kw-2">&amp;</span><span class="ident">x</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="ident">Foo</span>);
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=trait%20Foo%20%7B%20fn%20method(%26self)%20-%3E%20String%3B%20%7D%0Aimpl%20Foo%20for%20u8%20%7B%20fn%20method(%26self)%20-%3E%20String%20%7B%20format!(%22u8%3A%20%7B%7D%22%2C%20*self)%20%7D%20%7D%0Aimpl%20Foo%20for%20String%20%7B%20fn%20method(%26self)%20-%3E%20String%20%7B%20format!(%22string%3A%20%7B%7D%22%2C%20*self)%20%7D%20%7D%0A%0Afn%20do_something(x%3A%20%26Foo)%20%7B%0A%20%20%20%20x.method()%3B%0A%7D%0A%0Afn%20main()%20%7B%0A%20%20%20%20let%20x%20%3D%205u8%3B%0A%20%20%20%20do_something(%26x%20as%20%26Foo)%3B%0A%7D%0A">Run</a></pre>
 
 <p>или неявного приведения типа:</p>
 
-<pre class='rust rust-example-rendered'>
+<pre class="rust rust-example-rendered">
 
-<span class='kw'>fn</span> <span class='ident'>do_something</span>(<span class='ident'>x</span>: <span class='kw-2'>&amp;</span><span class='ident'>Foo</span>) {
-    <span class='ident'>x</span>.<span class='ident'>method</span>();
+<span class="kw">fn</span> <span class="ident">do_something</span>(<span class="ident">x</span>: <span class="kw-2">&amp;</span><span class="ident">Foo</span>) {
+    <span class="ident">x</span>.<span class="ident">method</span>();
 }
 
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='kw'>let</span> <span class='ident'>x</span> <span class='op'>=</span> <span class='string'>&quot;Hello&quot;</span>.<span class='ident'>to_string</span>();
-    <span class='ident'>do_something</span>(<span class='kw-2'>&amp;</span><span class='ident'>x</span>);
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="string">&quot;Hello&quot;</span>.<span class="ident">to_string</span>();
+    <span class="ident">do_something</span>(<span class="kw-2">&amp;</span><span class="ident">x</span>);
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=trait%20Foo%20%7B%20fn%20method(%26self)%20-%3E%20String%3B%20%7D%0Aimpl%20Foo%20for%20u8%20%7B%20fn%20method(%26self)%20-%3E%20String%20%7B%20format!(%22u8%3A%20%7B%7D%22%2C%20*self)%20%7D%20%7D%0Aimpl%20Foo%20for%20String%20%7B%20fn%20method(%26self)%20-%3E%20String%20%7B%20format!(%22string%3A%20%7B%7D%22%2C%20*self)%20%7D%20%7D%0A%0Afn%20do_something(x%3A%20%26Foo)%20%7B%0A%20%20%20%20x.method()%3B%0A%7D%0A%0Afn%20main()%20%7B%0A%20%20%20%20let%20x%20%3D%20%22Hello%22.to_string()%3B%0A%20%20%20%20do_something(%26x)%3B%0A%7D%0A">Run</a></pre>
 
 <p>Функция, которая принимает типаж-объект, не обладает специализированными копиями
@@ -360,10 +360,10 @@
 <code>std::raw</code> содержит структуры с макетами, которые являются такими же, как и
 сложные встроенные типы, <a href="http://doc.rust-lang.org/std/raw/struct.TraitObject.html">в том числе типажи-объекты</a>:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>TraitObject</span> {
-    <span class='kw'>pub</span> <span class='ident'>data</span>: <span class='kw-2'>*</span><span class='kw-2'>mut</span> (),
-    <span class='kw'>pub</span> <span class='ident'>vtable</span>: <span class='kw-2'>*</span><span class='kw-2'>mut</span> (),
+<pre class="rust rust-example-rendered">
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TraitObject</span> {
+    <span class="kw">pub</span> <span class="ident">data</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> (),
+    <span class="kw">pub</span> <span class="ident">vtable</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> (),
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Amod%20foo%20%7B%0Apub%20struct%20TraitObject%20%7B%0A%20%20%20%20pub%20data%3A%20*mut%20()%2C%0A%20%20%20%20pub%20vtable%3A%20*mut%20()%2C%0A%7D%0A%7D%0A%7D">Run</a></pre>
 
 <p>То есть типаж-объект, такой как <code>&amp;Foo</code>, состоит из указателя на «данные» и
@@ -379,51 +379,51 @@
 из виртуальной таблицы, а затем динамически вызывает метод по этому указателю.
 Например:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>struct</span> <span class='ident'>FooVtable</span> {
-    <span class='ident'>destructor</span>: <span class='kw'>fn</span>(<span class='kw-2'>*</span><span class='kw-2'>mut</span> ()),
-    <span class='ident'>size</span>: <span class='ident'>usize</span>,
-    <span class='ident'>align</span>: <span class='ident'>usize</span>,
-    <span class='ident'>method</span>: <span class='kw'>fn</span>(<span class='kw-2'>*</span><span class='kw'>const</span> ()) <span class='op'>-&gt;</span> <span class='ident'>String</span>,
+<pre class="rust rust-example-rendered">
+<span class="kw">struct</span> <span class="ident">FooVtable</span> {
+    <span class="ident">destructor</span>: <span class="kw">fn</span>(<span class="kw-2">*</span><span class="kw-2">mut</span> ()),
+    <span class="ident">size</span>: <span class="ident">usize</span>,
+    <span class="ident">align</span>: <span class="ident">usize</span>,
+    <span class="ident">method</span>: <span class="kw">fn</span>(<span class="kw-2">*</span><span class="kw">const</span> ()) <span class="op">-&gt;</span> <span class="ident">String</span>,
 }
 
-<span class='comment'>// u8:</span>
+<span class="comment">// u8:</span>
 
-<span class='kw'>fn</span> <span class='ident'>call_method_on_u8</span>(<span class='ident'>x</span>: <span class='kw-2'>*</span><span class='kw'>const</span> ()) <span class='op'>-&gt;</span> <span class='ident'>String</span> {
-    <span class='comment'>// компилятор гарантирует, что эта функция вызывается только</span>
-    <span class='comment'>// с `x`, указывающим на u8</span>
-    <span class='kw'>let</span> <span class='ident'>byte</span>: <span class='kw-2'>&amp;</span><span class='ident'>u8</span> <span class='op'>=</span> <span class='kw'>unsafe</span> { <span class='kw-2'>&amp;</span><span class='kw-2'>*</span>(<span class='ident'>x</span> <span class='kw'>as</span> <span class='kw-2'>*</span><span class='kw'>const</span> <span class='ident'>u8</span>) };
+<span class="kw">fn</span> <span class="ident">call_method_on_u8</span>(<span class="ident">x</span>: <span class="kw-2">*</span><span class="kw">const</span> ()) <span class="op">-&gt;</span> <span class="ident">String</span> {
+    <span class="comment">// компилятор гарантирует, что эта функция вызывается только</span>
+    <span class="comment">// с `x`, указывающим на u8</span>
+    <span class="kw">let</span> <span class="ident">byte</span>: <span class="kw-2">&amp;</span><span class="ident">u8</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">x</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) };
 
-    <span class='ident'>byte</span>.<span class='ident'>method</span>()
+    <span class="ident">byte</span>.<span class="ident">method</span>()
 }
 
-<span class='kw'>static</span> <span class='ident'>Foo_for_u8_vtable</span>: <span class='ident'>FooVtable</span> <span class='op'>=</span> <span class='ident'>FooVtable</span> {
-    <span class='ident'>destructor</span>: <span class='comment'>/* магия компилятора */</span>,
-    <span class='ident'>size</span>: <span class='number'>1</span>,
-    <span class='ident'>align</span>: <span class='number'>1</span>,
+<span class="kw">static</span> <span class="ident">Foo_for_u8_vtable</span>: <span class="ident">FooVtable</span> <span class="op">=</span> <span class="ident">FooVtable</span> {
+    <span class="ident">destructor</span>: <span class="comment">/* магия компилятора */</span>,
+    <span class="ident">size</span>: <span class="number">1</span>,
+    <span class="ident">align</span>: <span class="number">1</span>,
 
-    <span class='comment'>// преобразование в указатель на функцию</span>
-    <span class='ident'>method</span>: <span class='ident'>call_method_on_u8</span> <span class='kw'>as</span> <span class='kw'>fn</span>(<span class='kw-2'>*</span><span class='kw'>const</span> ()) <span class='op'>-&gt;</span> <span class='ident'>String</span>,
+    <span class="comment">// преобразование в указатель на функцию</span>
+    <span class="ident">method</span>: <span class="ident">call_method_on_u8</span> <span class="kw">as</span> <span class="kw">fn</span>(<span class="kw-2">*</span><span class="kw">const</span> ()) <span class="op">-&gt;</span> <span class="ident">String</span>,
 };
 
 
-<span class='comment'>// String:</span>
+<span class="comment">// String:</span>
 
-<span class='kw'>fn</span> <span class='ident'>call_method_on_String</span>(<span class='ident'>x</span>: <span class='kw-2'>*</span><span class='kw'>const</span> ()) <span class='op'>-&gt;</span> <span class='ident'>String</span> {
-    <span class='comment'>// компилятор гарантирует, что эта функция вызывается только</span>
-    <span class='comment'>// с `x`, указывающим на String</span>
-    <span class='kw'>let</span> <span class='ident'>string</span>: <span class='kw-2'>&amp;</span><span class='ident'>String</span> <span class='op'>=</span> <span class='kw'>unsafe</span> { <span class='kw-2'>&amp;</span><span class='kw-2'>*</span>(<span class='ident'>x</span> <span class='kw'>as</span> <span class='kw-2'>*</span><span class='kw'>const</span> <span class='ident'>String</span>) };
+<span class="kw">fn</span> <span class="ident">call_method_on_String</span>(<span class="ident">x</span>: <span class="kw-2">*</span><span class="kw">const</span> ()) <span class="op">-&gt;</span> <span class="ident">String</span> {
+    <span class="comment">// компилятор гарантирует, что эта функция вызывается только</span>
+    <span class="comment">// с `x`, указывающим на String</span>
+    <span class="kw">let</span> <span class="ident">string</span>: <span class="kw-2">&amp;</span><span class="ident">String</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">x</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">String</span>) };
 
-    <span class='ident'>string</span>.<span class='ident'>method</span>()
+    <span class="ident">string</span>.<span class="ident">method</span>()
 }
 
-<span class='kw'>static</span> <span class='ident'>Foo_for_String_vtable</span>: <span class='ident'>FooVtable</span> <span class='op'>=</span> <span class='ident'>FooVtable</span> {
-    <span class='ident'>destructor</span>: <span class='comment'>/* магия компилятора */</span>,
-    <span class='comment'>// значения для 64-битного компьютера, для 32-битного они в 2 раза меньше</span>
-    <span class='ident'>size</span>: <span class='number'>24</span>,
-    <span class='ident'>align</span>: <span class='number'>8</span>,
+<span class="kw">static</span> <span class="ident">Foo_for_String_vtable</span>: <span class="ident">FooVtable</span> <span class="op">=</span> <span class="ident">FooVtable</span> {
+    <span class="ident">destructor</span>: <span class="comment">/* магия компилятора */</span>,
+    <span class="comment">// значения для 64-битного компьютера, для 32-битного они в 2 раза меньше</span>
+    <span class="ident">size</span>: <span class="number">24</span>,
+    <span class="ident">align</span>: <span class="number">8</span>,
 
-    <span class='ident'>method</span>: <span class='ident'>call_method_on_String</span> <span class='kw'>as</span> <span class='kw'>fn</span>(<span class='kw-2'>*</span><span class='kw'>const</span> ()) <span class='op'>-&gt;</span> <span class='ident'>String</span>,
+    <span class="ident">method</span>: <span class="ident">call_method_on_String</span> <span class="kw">as</span> <span class="kw">fn</span>(<span class="kw-2">*</span><span class="kw">const</span> ()) <span class="op">-&gt;</span> <span class="ident">String</span>,
 };<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Astruct%20FooVtable%20%7B%0A%20%20%20%20destructor%3A%20fn(*mut%20())%2C%0A%20%20%20%20size%3A%20usize%2C%0A%20%20%20%20align%3A%20usize%2C%0A%20%20%20%20method%3A%20fn(*const%20())%20-%3E%20String%2C%0A%7D%0A%0A%2F%2F%20u8%3A%0A%0Afn%20call_method_on_u8(x%3A%20*const%20())%20-%3E%20String%20%7B%0A%20%20%20%20%2F%2F%20%D0%BA%D0%BE%D0%BC%D0%BF%D0%B8%D0%BB%D1%8F%D1%82%D0%BE%D1%80%20%D0%B3%D0%B0%D1%80%D0%B0%D0%BD%D1%82%D0%B8%D1%80%D1%83%D0%B5%D1%82%2C%20%D1%87%D1%82%D0%BE%20%D1%8D%D1%82%D0%B0%20%D1%84%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D1%8F%20%D0%B2%D1%8B%D0%B7%D1%8B%D0%B2%D0%B0%D0%B5%D1%82%D1%81%D1%8F%20%D1%82%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE%0A%20%20%20%20%2F%2F%20%D1%81%20%60x%60%2C%20%D1%83%D0%BA%D0%B0%D0%B7%D1%8B%D0%B2%D0%B0%D1%8E%D1%89%D0%B8%D0%BC%20%D0%BD%D0%B0%20u8%0A%20%20%20%20let%20byte%3A%20%26u8%20%3D%20unsafe%20%7B%20%26*(x%20as%20*const%20u8)%20%7D%3B%0A%0A%20%20%20%20byte.method()%0A%7D%0A%0Astatic%20Foo_for_u8_vtable%3A%20FooVtable%20%3D%20FooVtable%20%7B%0A%20%20%20%20destructor%3A%20%2F*%20%D0%BC%D0%B0%D0%B3%D0%B8%D1%8F%20%D0%BA%D0%BE%D0%BC%D0%BF%D0%B8%D0%BB%D1%8F%D1%82%D0%BE%D1%80%D0%B0%20*%2F%2C%0A%20%20%20%20size%3A%201%2C%0A%20%20%20%20align%3A%201%2C%0A%0A%20%20%20%20%2F%2F%20%D0%BF%D1%80%D0%B5%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B2%20%D1%83%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%20%D0%BD%D0%B0%20%D1%84%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D1%8E%0A%20%20%20%20method%3A%20call_method_on_u8%20as%20fn(*const%20())%20-%3E%20String%2C%0A%7D%3B%0A%0A%0A%2F%2F%20String%3A%0A%0Afn%20call_method_on_String(x%3A%20*const%20())%20-%3E%20String%20%7B%0A%20%20%20%20%2F%2F%20%D0%BA%D0%BE%D0%BC%D0%BF%D0%B8%D0%BB%D1%8F%D1%82%D0%BE%D1%80%20%D0%B3%D0%B0%D1%80%D0%B0%D0%BD%D1%82%D0%B8%D1%80%D1%83%D0%B5%D1%82%2C%20%D1%87%D1%82%D0%BE%20%D1%8D%D1%82%D0%B0%20%D1%84%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D1%8F%20%D0%B2%D1%8B%D0%B7%D1%8B%D0%B2%D0%B0%D0%B5%D1%82%D1%81%D1%8F%20%D1%82%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE%0A%20%20%20%20%2F%2F%20%D1%81%20%60x%60%2C%20%D1%83%D0%BA%D0%B0%D0%B7%D1%8B%D0%B2%D0%B0%D1%8E%D1%89%D0%B8%D0%BC%20%D0%BD%D0%B0%20String%0A%20%20%20%20let%20string%3A%20%26String%20%3D%20unsafe%20%7B%20%26*(x%20as%20*const%20String)%20%7D%3B%0A%0A%20%20%20%20string.method()%0A%7D%0A%0Astatic%20Foo_for_String_vtable%3A%20FooVtable%20%3D%20FooVtable%20%7B%0A%20%20%20%20destructor%3A%20%2F*%20%D0%BC%D0%B0%D0%B3%D0%B8%D1%8F%20%D0%BA%D0%BE%D0%BC%D0%BF%D0%B8%D0%BB%D1%8F%D1%82%D0%BE%D1%80%D0%B0%20*%2F%2C%0A%20%20%20%20%2F%2F%20%D0%B7%D0%BD%D0%B0%D1%87%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B4%D0%BB%D1%8F%2064-%D0%B1%D0%B8%D1%82%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BA%D0%BE%D0%BC%D0%BF%D1%8C%D1%8E%D1%82%D0%B5%D1%80%D0%B0%2C%20%D0%B4%D0%BB%D1%8F%2032-%D0%B1%D0%B8%D1%82%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BE%D0%BD%D0%B8%20%D0%B2%202%20%D1%80%D0%B0%D0%B7%D0%B0%20%D0%BC%D0%B5%D0%BD%D1%8C%D1%88%D0%B5%0A%20%20%20%20size%3A%2024%2C%0A%20%20%20%20align%3A%208%2C%0A%0A%20%20%20%20method%3A%20call_method_on_String%20as%20fn(*const%20())%20-%3E%20String%2C%0A%7D%3B%0A%7D">Run</a></pre>
 
 <p>Поле <code>destructor</code> в каждой виртуальной таблице указывает на функцию, которая
@@ -441,31 +441,31 @@
 вид создания и использования типажей-объектов <code>Foo</code> может выглядеть примерно как
 (игнорируются несоответствия типов: в любом случае, они всего лишь указатели):</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>let</span> <span class='ident'>a</span>: <span class='ident'>String</span> <span class='op'>=</span> <span class='string'>&quot;foo&quot;</span>.<span class='ident'>to_string</span>();
-<span class='kw'>let</span> <span class='ident'>x</span>: <span class='ident'>u8</span> <span class='op'>=</span> <span class='number'>1</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">let</span> <span class="ident">a</span>: <span class="ident">String</span> <span class="op">=</span> <span class="string">&quot;foo&quot;</span>.<span class="ident">to_string</span>();
+<span class="kw">let</span> <span class="ident">x</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">1</span>;
 
-<span class='comment'>// let b: &amp;Foo = &amp;a;</span>
-<span class='kw'>let</span> <span class='ident'>b</span> <span class='op'>=</span> <span class='ident'>TraitObject</span> {
-    <span class='comment'>// store the data</span>
-    <span class='ident'>data</span>: <span class='kw-2'>&amp;</span><span class='ident'>a</span>,
-    <span class='comment'>// store the methods</span>
-    <span class='ident'>vtable</span>: <span class='kw-2'>&amp;</span><span class='ident'>Foo_for_String_vtable</span>
+<span class="comment">// let b: &amp;Foo = &amp;a;</span>
+<span class="kw">let</span> <span class="ident">b</span> <span class="op">=</span> <span class="ident">TraitObject</span> {
+    <span class="comment">// store the data</span>
+    <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="ident">a</span>,
+    <span class="comment">// store the methods</span>
+    <span class="ident">vtable</span>: <span class="kw-2">&amp;</span><span class="ident">Foo_for_String_vtable</span>
 };
 
-<span class='comment'>// let y: &amp;Foo = x;</span>
-<span class='kw'>let</span> <span class='ident'>y</span> <span class='op'>=</span> <span class='ident'>TraitObject</span> {
-    <span class='comment'>// store the data</span>
-    <span class='ident'>data</span>: <span class='kw-2'>&amp;</span><span class='ident'>x</span>,
-    <span class='comment'>// store the methods</span>
-    <span class='ident'>vtable</span>: <span class='kw-2'>&amp;</span><span class='ident'>Foo_for_u8_vtable</span>
+<span class="comment">// let y: &amp;Foo = x;</span>
+<span class="kw">let</span> <span class="ident">y</span> <span class="op">=</span> <span class="ident">TraitObject</span> {
+    <span class="comment">// store the data</span>
+    <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="ident">x</span>,
+    <span class="comment">// store the methods</span>
+    <span class="ident">vtable</span>: <span class="kw-2">&amp;</span><span class="ident">Foo_for_u8_vtable</span>
 };
 
-<span class='comment'>// b.method();</span>
-(<span class='ident'>b</span>.<span class='ident'>vtable</span>.<span class='ident'>method</span>)(<span class='ident'>b</span>.<span class='ident'>data</span>);
+<span class="comment">// b.method();</span>
+(<span class="ident">b</span>.<span class="ident">vtable</span>.<span class="ident">method</span>)(<span class="ident">b</span>.<span class="ident">data</span>);
 
-<span class='comment'>// y.method();</span>
-(<span class='ident'>y</span>.<span class='ident'>vtable</span>.<span class='ident'>method</span>)(<span class='ident'>y</span>.<span class='ident'>data</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20a%3A%20String%20%3D%20%22foo%22.to_string()%3B%0Alet%20x%3A%20u8%20%3D%201%3B%0A%0A%2F%2F%20let%20b%3A%20%26Foo%20%3D%20%26a%3B%0Alet%20b%20%3D%20TraitObject%20%7B%0A%20%20%20%20%2F%2F%20store%20the%20data%0A%20%20%20%20data%3A%20%26a%2C%0A%20%20%20%20%2F%2F%20store%20the%20methods%0A%20%20%20%20vtable%3A%20%26Foo_for_String_vtable%0A%7D%3B%0A%0A%2F%2F%20let%20y%3A%20%26Foo%20%3D%20x%3B%0Alet%20y%20%3D%20TraitObject%20%7B%0A%20%20%20%20%2F%2F%20store%20the%20data%0A%20%20%20%20data%3A%20%26x%2C%0A%20%20%20%20%2F%2F%20store%20the%20methods%0A%20%20%20%20vtable%3A%20%26Foo_for_u8_vtable%0A%7D%3B%0A%0A%2F%2F%20b.method()%3B%0A(b.vtable.method)(b.data)%3B%0A%0A%2F%2F%20y.method()%3B%0A(y.vtable.method)(y.data)%3B%0A%7D">Run</a></pre>
+<span class="comment">// y.method();</span>
+(<span class="ident">y</span>.<span class="ident">vtable</span>.<span class="ident">method</span>)(<span class="ident">y</span>.<span class="ident">data</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20a%3A%20String%20%3D%20%22foo%22.to_string()%3B%0Alet%20x%3A%20u8%20%3D%201%3B%0A%0A%2F%2F%20let%20b%3A%20%26Foo%20%3D%20%26a%3B%0Alet%20b%20%3D%20TraitObject%20%7B%0A%20%20%20%20%2F%2F%20store%20the%20data%0A%20%20%20%20data%3A%20%26a%2C%0A%20%20%20%20%2F%2F%20store%20the%20methods%0A%20%20%20%20vtable%3A%20%26Foo_for_String_vtable%0A%7D%3B%0A%0A%2F%2F%20let%20y%3A%20%26Foo%20%3D%20x%3B%0Alet%20y%20%3D%20TraitObject%20%7B%0A%20%20%20%20%2F%2F%20store%20the%20data%0A%20%20%20%20data%3A%20%26x%2C%0A%20%20%20%20%2F%2F%20store%20the%20methods%0A%20%20%20%20vtable%3A%20%26Foo_for_u8_vtable%0A%7D%3B%0A%0A%2F%2F%20b.method()%3B%0A(b.vtable.method)(b.data)%3B%0A%0A%2F%2F%20y.method()%3B%0A(y.vtable.method)(y.data)%3B%0A%7D">Run</a></pre>
 
     <script src='../rustbook.js'></script>
 </div></div>

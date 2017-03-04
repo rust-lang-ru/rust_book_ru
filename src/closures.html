@@ -196,37 +196,37 @@
 <h1 id='Синтаксис' class='section-header'><a href='#Синтаксис'>Синтаксис</a></h1>
 <p>Замыкания выглядят следующим образом:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>let</span> <span class='ident'>plus_one</span> <span class='op'>=</span> <span class='op'>|</span><span class='ident'>x</span>: <span class='ident'>i32</span><span class='op'>|</span> <span class='ident'>x</span> <span class='op'>+</span> <span class='number'>1</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">let</span> <span class="ident">plus_one</span> <span class="op">=</span> <span class="op">|</span><span class="ident">x</span>: <span class="ident">i32</span><span class="op">|</span> <span class="ident">x</span> <span class="op">+</span> <span class="number">1</span>;
 
-<span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>2</span>, <span class='ident'>plus_one</span>(<span class='number'>1</span>));<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20plus_one%20%3D%20%7Cx%3A%20i32%7C%20x%20%2B%201%3B%0A%0Aassert_eq!(2%2C%20plus_one(1))%3B%0A%7D">Run</a></pre>
+<span class="macro">assert_eq</span><span class="macro">!</span>(<span class="number">2</span>, <span class="ident">plus_one</span>(<span class="number">1</span>));<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20plus_one%20%3D%20%7Cx%3A%20i32%7C%20x%20%2B%201%3B%0A%0Aassert_eq!(2%2C%20plus_one(1))%3B%0A%7D">Run</a></pre>
 
 <p>Мы создаем связывание, <code>plus_one</code>, и присваиваем ему замыкание. Аргументы
 замыкания располагаются между двумя символами <code>|</code>, а телом замыкания является
 выражение, в данном случае: <code>x + 1</code>. Помните, что <code>{ }</code> также является
 выражением, поэтому тело замыкания может содержать много строк:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>let</span> <span class='ident'>plus_two</span> <span class='op'>=</span> <span class='op'>|</span><span class='ident'>x</span><span class='op'>|</span> {
-    <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>result</span>: <span class='ident'>i32</span> <span class='op'>=</span> <span class='ident'>x</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">let</span> <span class="ident">plus_two</span> <span class="op">=</span> <span class="op">|</span><span class="ident">x</span><span class="op">|</span> {
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">result</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="ident">x</span>;
 
-    <span class='ident'>result</span> <span class='op'>+=</span> <span class='number'>1</span>;
-    <span class='ident'>result</span> <span class='op'>+=</span> <span class='number'>1</span>;
+    <span class="ident">result</span> <span class="op">+=</span> <span class="number">1</span>;
+    <span class="ident">result</span> <span class="op">+=</span> <span class="number">1</span>;
 
-    <span class='ident'>result</span>
+    <span class="ident">result</span>
 };
 
-<span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>4</span>, <span class='ident'>plus_two</span>(<span class='number'>2</span>));<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20plus_two%20%3D%20%7Cx%7C%20%7B%0A%20%20%20%20let%20mut%20result%3A%20i32%20%3D%20x%3B%0A%0A%20%20%20%20result%20%2B%3D%201%3B%0A%20%20%20%20result%20%2B%3D%201%3B%0A%0A%20%20%20%20result%0A%7D%3B%0A%0Aassert_eq!(4%2C%20plus_two(2))%3B%0A%7D">Run</a></pre>
+<span class="macro">assert_eq</span><span class="macro">!</span>(<span class="number">4</span>, <span class="ident">plus_two</span>(<span class="number">2</span>));<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20plus_two%20%3D%20%7Cx%7C%20%7B%0A%20%20%20%20let%20mut%20result%3A%20i32%20%3D%20x%3B%0A%0A%20%20%20%20result%20%2B%3D%201%3B%0A%20%20%20%20result%20%2B%3D%201%3B%0A%0A%20%20%20%20result%0A%7D%3B%0A%0Aassert_eq!(4%2C%20plus_two(2))%3B%0A%7D">Run</a></pre>
 
 <p>Обратите внимание, что есть несколько небольших различий между замыканиями и
 обычными функциями, определенными с помощью <code>fn</code>. Первое отличие состоит в том,
 что для замыкания мы не должны указывать ни типы аргументов, которые оно
 принимает, ни тип возвращаемого им значения. Мы можем:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>let</span> <span class='ident'>plus_one</span> <span class='op'>=</span> <span class='op'>|</span><span class='ident'>x</span>: <span class='ident'>i32</span><span class='op'>|</span> <span class='op'>-&gt;</span> <span class='ident'>i32</span> { <span class='ident'>x</span> <span class='op'>+</span> <span class='number'>1</span> };
+<pre class="rust rust-example-rendered">
+<span class="kw">let</span> <span class="ident">plus_one</span> <span class="op">=</span> <span class="op">|</span><span class="ident">x</span>: <span class="ident">i32</span><span class="op">|</span> <span class="op">-&gt;</span> <span class="ident">i32</span> { <span class="ident">x</span> <span class="op">+</span> <span class="number">1</span> };
 
-<span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>2</span>, <span class='ident'>plus_one</span>(<span class='number'>1</span>));<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20plus_one%20%3D%20%7Cx%3A%20i32%7C%20-%3E%20i32%20%7B%20x%20%2B%201%20%7D%3B%0A%0Aassert_eq!(2%2C%20plus_one(1))%3B%0A%7D">Run</a></pre>
+<span class="macro">assert_eq</span><span class="macro">!</span>(<span class="number">2</span>, <span class="ident">plus_one</span>(<span class="number">1</span>));<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20plus_one%20%3D%20%7Cx%3A%20i32%7C%20-%3E%20i32%20%7B%20x%20%2B%201%20%7D%3B%0A%0Aassert_eq!(2%2C%20plus_one(1))%3B%0A%7D">Run</a></pre>
 
 <p>Но мы не должны. Почему так? В основном, это было сделано из эргономических
 соображений (соображений удобства). В то время как для именованных функций явное
@@ -243,10 +243,10 @@
 <p>Второе отличие — синтаксис очень похож, но все же немного отличается. Мы
 добавили пробелы здесь, чтобы было нагляднее:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span>  <span class='ident'>plus_one_v1</span>   (<span class='ident'>x</span>: <span class='ident'>i32</span> ) <span class='op'>-&gt;</span> <span class='ident'>i32</span> { <span class='ident'>x</span> <span class='op'>+</span> <span class='number'>1</span> }
-<span class='kw'>let</span> <span class='ident'>plus_one_v2</span> <span class='op'>=</span> <span class='op'>|</span><span class='ident'>x</span>: <span class='ident'>i32</span> <span class='op'>|</span> <span class='op'>-&gt;</span> <span class='ident'>i32</span> { <span class='ident'>x</span> <span class='op'>+</span> <span class='number'>1</span> };
-<span class='kw'>let</span> <span class='ident'>plus_one_v3</span> <span class='op'>=</span> <span class='op'>|</span><span class='ident'>x</span>: <span class='ident'>i32</span> <span class='op'>|</span>          <span class='ident'>x</span> <span class='op'>+</span> <span class='number'>1</span>  ;<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20%20plus_one_v1%20%20%20(x%3A%20i32%20)%20-%3E%20i32%20%7B%20x%20%2B%201%20%7D%0Alet%20plus_one_v2%20%3D%20%7Cx%3A%20i32%20%7C%20-%3E%20i32%20%7B%20x%20%2B%201%20%7D%3B%0Alet%20plus_one_v3%20%3D%20%7Cx%3A%20i32%20%7C%20%20%20%20%20%20%20%20%20%20x%20%2B%201%20%20%3B%0A%7D">Run</a></pre>
+<pre class="rust rust-example-rendered">
+<span class="kw">fn</span>  <span class="ident">plus_one_v1</span>   (<span class="ident">x</span>: <span class="ident">i32</span> ) <span class="op">-&gt;</span> <span class="ident">i32</span> { <span class="ident">x</span> <span class="op">+</span> <span class="number">1</span> }
+<span class="kw">let</span> <span class="ident">plus_one_v2</span> <span class="op">=</span> <span class="op">|</span><span class="ident">x</span>: <span class="ident">i32</span> <span class="op">|</span> <span class="op">-&gt;</span> <span class="ident">i32</span> { <span class="ident">x</span> <span class="op">+</span> <span class="number">1</span> };
+<span class="kw">let</span> <span class="ident">plus_one_v3</span> <span class="op">=</span> <span class="op">|</span><span class="ident">x</span>: <span class="ident">i32</span> <span class="op">|</span>          <span class="ident">x</span> <span class="op">+</span> <span class="number">1</span>  ;<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20%20plus_one_v1%20%20%20(x%3A%20i32%20)%20-%3E%20i32%20%7B%20x%20%2B%201%20%7D%0Alet%20plus_one_v2%20%3D%20%7Cx%3A%20i32%20%7C%20-%3E%20i32%20%7B%20x%20%2B%201%20%7D%3B%0Alet%20plus_one_v3%20%3D%20%7Cx%3A%20i32%20%7C%20%20%20%20%20%20%20%20%20%20x%20%2B%201%20%20%3B%0A%7D">Run</a></pre>
 
 <p>Есть небольшие различия, но принцип аналогичен.</p>
 
@@ -254,22 +254,22 @@
 <p>Замыкания называются так потому, что они &#39;замыкают свое окружение.&#39; Это выглядит
 следующим образом:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>let</span> <span class='ident'>num</span> <span class='op'>=</span> <span class='number'>5</span>;
-<span class='kw'>let</span> <span class='ident'>plus_num</span> <span class='op'>=</span> <span class='op'>|</span><span class='ident'>x</span>: <span class='ident'>i32</span><span class='op'>|</span> <span class='ident'>x</span> <span class='op'>+</span> <span class='ident'>num</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">let</span> <span class="ident">num</span> <span class="op">=</span> <span class="number">5</span>;
+<span class="kw">let</span> <span class="ident">plus_num</span> <span class="op">=</span> <span class="op">|</span><span class="ident">x</span>: <span class="ident">i32</span><span class="op">|</span> <span class="ident">x</span> <span class="op">+</span> <span class="ident">num</span>;
 
-<span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>10</span>, <span class='ident'>plus_num</span>(<span class='number'>5</span>));<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20num%20%3D%205%3B%0Alet%20plus_num%20%3D%20%7Cx%3A%20i32%7C%20x%20%2B%20num%3B%0A%0Aassert_eq!(10%2C%20plus_num(5))%3B%0A%7D">Run</a></pre>
+<span class="macro">assert_eq</span><span class="macro">!</span>(<span class="number">10</span>, <span class="ident">plus_num</span>(<span class="number">5</span>));<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20num%20%3D%205%3B%0Alet%20plus_num%20%3D%20%7Cx%3A%20i32%7C%20x%20%2B%20num%3B%0A%0Aassert_eq!(10%2C%20plus_num(5))%3B%0A%7D">Run</a></pre>
 
 <p>Это замыкание, <code>plus_num</code>, ссылается на связанную с помощью оператора <code>let</code>
 переменную <code>num</code>, расположенную в своей области видимости. Если говорить более
 конкретно, то оно заимствует связывание. Если мы сделаем что-то, что
 противоречило бы связыванию, то получим ошибку. Например этот код:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>num</span> <span class='op'>=</span> <span class='number'>5</span>;
-<span class='kw'>let</span> <span class='ident'>plus_num</span> <span class='op'>=</span> <span class='op'>|</span><span class='ident'>x</span>: <span class='ident'>i32</span><span class='op'>|</span> <span class='ident'>x</span> <span class='op'>+</span> <span class='ident'>num</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">num</span> <span class="op">=</span> <span class="number">5</span>;
+<span class="kw">let</span> <span class="ident">plus_num</span> <span class="op">=</span> <span class="op">|</span><span class="ident">x</span>: <span class="ident">i32</span><span class="op">|</span> <span class="ident">x</span> <span class="op">+</span> <span class="ident">num</span>;
 
-<span class='kw'>let</span> <span class='ident'>y</span> <span class='op'>=</span> <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>num</span>;<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20mut%20num%20%3D%205%3B%0Alet%20plus_num%20%3D%20%7Cx%3A%20i32%7C%20x%20%2B%20num%3B%0A%0Alet%20y%20%3D%20%26mut%20num%3B%0A%7D">Run</a></pre>
+<span class="kw">let</span> <span class="ident">y</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">num</span>;<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20mut%20num%20%3D%205%3B%0Alet%20plus_num%20%3D%20%7Cx%3A%20i32%7C%20x%20%2B%20num%3B%0A%0Alet%20y%20%3D%20%26mut%20num%3B%0A%7D">Run</a></pre>
 
 <p>Который выдаст следующие ошибки:</p>
 
@@ -296,24 +296,24 @@ fn main() {
 замыкание уже заимствует его. Если же мы обеспечим выход замыкания из области
 видимости, то мы сможем:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>num</span> <span class='op'>=</span> <span class='number'>5</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">num</span> <span class="op">=</span> <span class="number">5</span>;
 {
-    <span class='kw'>let</span> <span class='ident'>plus_num</span> <span class='op'>=</span> <span class='op'>|</span><span class='ident'>x</span>: <span class='ident'>i32</span><span class='op'>|</span> <span class='ident'>x</span> <span class='op'>+</span> <span class='ident'>num</span>;
+    <span class="kw">let</span> <span class="ident">plus_num</span> <span class="op">=</span> <span class="op">|</span><span class="ident">x</span>: <span class="ident">i32</span><span class="op">|</span> <span class="ident">x</span> <span class="op">+</span> <span class="ident">num</span>;
 
-} <span class='comment'>// plus_num goes out of scope, borrow of num ends</span>
+} <span class="comment">// plus_num goes out of scope, borrow of num ends</span>
 
-<span class='kw'>let</span> <span class='ident'>y</span> <span class='op'>=</span> <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>num</span>;<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20mut%20num%20%3D%205%3B%0A%7B%0A%20%20%20%20let%20plus_num%20%3D%20%7Cx%3A%20i32%7C%20x%20%2B%20num%3B%0A%0A%7D%20%2F%2F%20plus_num%20goes%20out%20of%20scope%2C%20borrow%20of%20num%20ends%0A%0Alet%20y%20%3D%20%26mut%20num%3B%0A%7D">Run</a></pre>
+<span class="kw">let</span> <span class="ident">y</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">num</span>;<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20mut%20num%20%3D%205%3B%0A%7B%0A%20%20%20%20let%20plus_num%20%3D%20%7Cx%3A%20i32%7C%20x%20%2B%20num%3B%0A%0A%7D%20%2F%2F%20plus_num%20goes%20out%20of%20scope%2C%20borrow%20of%20num%20ends%0A%0Alet%20y%20%3D%20%26mut%20num%3B%0A%7D">Run</a></pre>
 
 <p>Однако, Rust также может забирать право владения и перемещать свое окружение,
 если этого требует замыкание:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>let</span> <span class='ident'>nums</span> <span class='op'>=</span> <span class='macro'>vec</span><span class='macro'>!</span>[<span class='number'>1</span>, <span class='number'>2</span>, <span class='number'>3</span>];
+<pre class="rust rust-example-rendered">
+<span class="kw">let</span> <span class="ident">nums</span> <span class="op">=</span> <span class="macro">vec</span><span class="macro">!</span>[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];
 
-<span class='kw'>let</span> <span class='ident'>takes_nums</span> <span class='op'>=</span> <span class='op'>||</span> <span class='ident'>nums</span>;
+<span class="kw">let</span> <span class="ident">takes_nums</span> <span class="op">=</span> <span class="op">||</span> <span class="ident">nums</span>;
 
-<span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{:?}&quot;</span>, <span class='ident'>nums</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20nums%20%3D%20vec!%5B1%2C%202%2C%203%5D%3B%0A%0Alet%20takes_nums%20%3D%20%7C%7C%20nums%3B%0A%0Aprintln!(%22%7B%3A%3F%7D%22%2C%20nums)%3B%0A%7D">Run</a></pre>
+<span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;{:?}&quot;</span>, <span class="ident">nums</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20nums%20%3D%20vec!%5B1%2C%202%2C%203%5D%3B%0A%0Alet%20takes_nums%20%3D%20%7C%7C%20nums%3B%0A%0Aprintln!(%22%7B%3A%3F%7D%22%2C%20nums)%3B%0A%7D">Run</a></pre>
 
 <p>Этот код выдаст:</p>
 
@@ -332,25 +332,25 @@ let takes_nums = || nums;
 <p>Мы можем заставить наше замыкание забирать право владения на свое окружение с
 помощью ключевого слова <code>move</code>:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>let</span> <span class='ident'>num</span> <span class='op'>=</span> <span class='number'>5</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">let</span> <span class="ident">num</span> <span class="op">=</span> <span class="number">5</span>;
 
-<span class='kw'>let</span> <span class='ident'>owns_num</span> <span class='op'>=</span> <span class='kw'>move</span> <span class='op'>|</span><span class='ident'>x</span>: <span class='ident'>i32</span><span class='op'>|</span> <span class='ident'>x</span> <span class='op'>+</span> <span class='ident'>num</span>;<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20num%20%3D%205%3B%0A%0Alet%20owns_num%20%3D%20move%20%7Cx%3A%20i32%7C%20x%20%2B%20num%3B%0A%7D">Run</a></pre>
+<span class="kw">let</span> <span class="ident">owns_num</span> <span class="op">=</span> <span class="kw">move</span> <span class="op">|</span><span class="ident">x</span>: <span class="ident">i32</span><span class="op">|</span> <span class="ident">x</span> <span class="op">+</span> <span class="ident">num</span>;<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20num%20%3D%205%3B%0A%0Alet%20owns_num%20%3D%20move%20%7Cx%3A%20i32%7C%20x%20%2B%20num%3B%0A%7D">Run</a></pre>
 
 <p>Теперь, когда указано ключевое слово <code>move</code>, переменные следуют нормальной
 семантике перемещения. В данном примере <code>5</code> реализует <code>Copy</code>, поэтому <code>owns_num</code>
 становится владельцем копии <code>num</code>. Так в чем же разница?</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>num</span> <span class='op'>=</span> <span class='number'>5</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">num</span> <span class="op">=</span> <span class="number">5</span>;
 
 {
-    <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>add_num</span> <span class='op'>=</span> <span class='op'>|</span><span class='ident'>x</span>: <span class='ident'>i32</span><span class='op'>|</span> <span class='ident'>num</span> <span class='op'>+=</span> <span class='ident'>x</span>;
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">add_num</span> <span class="op">=</span> <span class="op">|</span><span class="ident">x</span>: <span class="ident">i32</span><span class="op">|</span> <span class="ident">num</span> <span class="op">+=</span> <span class="ident">x</span>;
 
-    <span class='ident'>add_num</span>(<span class='number'>5</span>);
+    <span class="ident">add_num</span>(<span class="number">5</span>);
 }
 
-<span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>10</span>, <span class='ident'>num</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20mut%20num%20%3D%205%3B%0A%0A%7B%0A%20%20%20%20let%20mut%20add_num%20%3D%20%7Cx%3A%20i32%7C%20num%20%2B%3D%20x%3B%0A%0A%20%20%20%20add_num(5)%3B%0A%7D%0A%0Aassert_eq!(10%2C%20num)%3B%0A%7D">Run</a></pre>
+<span class="macro">assert_eq</span><span class="macro">!</span>(<span class="number">10</span>, <span class="ident">num</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20mut%20num%20%3D%205%3B%0A%0A%7B%0A%20%20%20%20let%20mut%20add_num%20%3D%20%7Cx%3A%20i32%7C%20num%20%2B%3D%20x%3B%0A%0A%20%20%20%20add_num(5)%3B%0A%7D%0A%0Aassert_eq!(10%2C%20num)%3B%0A%7D">Run</a></pre>
 
 <p>Итак, в этом примере наше замыкание принимает изменяемую ссылку на <code>num</code>. Затем,
 когда мы вызываем замыкание <code>add_num</code>, то, как мы и ожидали, оно изменяет
@@ -359,16 +359,16 @@ let takes_nums = || nums;
 
 <p>Если же мы будем использовать <code>move</code> замыкание, то получим следующие отличия:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>num</span> <span class='op'>=</span> <span class='number'>5</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">num</span> <span class="op">=</span> <span class="number">5</span>;
 
 {
-    <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>add_num</span> <span class='op'>=</span> <span class='kw'>move</span> <span class='op'>|</span><span class='ident'>x</span>: <span class='ident'>i32</span><span class='op'>|</span> <span class='ident'>num</span> <span class='op'>+=</span> <span class='ident'>x</span>;
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">add_num</span> <span class="op">=</span> <span class="kw">move</span> <span class="op">|</span><span class="ident">x</span>: <span class="ident">i32</span><span class="op">|</span> <span class="ident">num</span> <span class="op">+=</span> <span class="ident">x</span>;
 
-    <span class='ident'>add_num</span>(<span class='number'>5</span>);
+    <span class="ident">add_num</span>(<span class="number">5</span>);
 }
 
-<span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>5</span>, <span class='ident'>num</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20mut%20num%20%3D%205%3B%0A%0A%7B%0A%20%20%20%20let%20mut%20add_num%20%3D%20move%20%7Cx%3A%20i32%7C%20num%20%2B%3D%20x%3B%0A%0A%20%20%20%20add_num(5)%3B%0A%7D%0A%0Aassert_eq!(5%2C%20num)%3B%0A%7D">Run</a></pre>
+<span class="macro">assert_eq</span><span class="macro">!</span>(<span class="number">5</span>, <span class="ident">num</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20mut%20num%20%3D%205%3B%0A%0A%7B%0A%20%20%20%20let%20mut%20add_num%20%3D%20move%20%7Cx%3A%20i32%7C%20num%20%2B%3D%20x%3B%0A%0A%20%20%20%20add_num(5)%3B%0A%7D%0A%0Aassert_eq!(5%2C%20num)%3B%0A%7D">Run</a></pre>
 
 <p>Мы всего лишь получаем <code>5</code>. Вместо того, чтобы получать изменяемый заем на
 <code>num</code>, мы получаем право владения на копию.</p>
@@ -398,19 +398,19 @@ let takes_nums = || nums;
 Rust мы используем систему типажей для перегрузки операций. Вызов функций не
 является исключением. Существуют три отдельных типажа для их перегрузки:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Fn</span><span class='op'>&lt;</span><span class='ident'>Args</span><span class='op'>&gt;</span> : <span class='ident'>FnMut</span><span class='op'>&lt;</span><span class='ident'>Args</span><span class='op'>&gt;</span> {
-    <span class='kw'>extern</span> <span class='string'>&quot;rust-call&quot;</span> <span class='kw'>fn</span> <span class='ident'>call</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>, <span class='ident'>args</span>: <span class='ident'>Args</span>) <span class='op'>-&gt;</span> <span class='self'>Self</span>::<span class='ident'>Output</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">Fn</span><span class="op">&lt;</span><span class="ident">Args</span><span class="op">&gt;</span> : <span class="ident">FnMut</span><span class="op">&lt;</span><span class="ident">Args</span><span class="op">&gt;</span> {
+    <span class="kw">extern</span> <span class="string">&quot;rust-call&quot;</span> <span class="kw">fn</span> <span class="ident">call</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">args</span>: <span class="ident">Args</span>) <span class="op">-&gt;</span> <span class="self">Self</span>::<span class="ident">Output</span>;
 }
 
-<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>FnMut</span><span class='op'>&lt;</span><span class='ident'>Args</span><span class='op'>&gt;</span> : <span class='ident'>FnOnce</span><span class='op'>&lt;</span><span class='ident'>Args</span><span class='op'>&gt;</span> {
-    <span class='kw'>extern</span> <span class='string'>&quot;rust-call&quot;</span> <span class='kw'>fn</span> <span class='ident'>call_mut</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>, <span class='ident'>args</span>: <span class='ident'>Args</span>) <span class='op'>-&gt;</span> <span class='self'>Self</span>::<span class='ident'>Output</span>;
+<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">FnMut</span><span class="op">&lt;</span><span class="ident">Args</span><span class="op">&gt;</span> : <span class="ident">FnOnce</span><span class="op">&lt;</span><span class="ident">Args</span><span class="op">&gt;</span> {
+    <span class="kw">extern</span> <span class="string">&quot;rust-call&quot;</span> <span class="kw">fn</span> <span class="ident">call_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">args</span>: <span class="ident">Args</span>) <span class="op">-&gt;</span> <span class="self">Self</span>::<span class="ident">Output</span>;
 }
 
-<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>FnOnce</span><span class='op'>&lt;</span><span class='ident'>Args</span><span class='op'>&gt;</span> {
-    <span class='kw'>type</span> <span class='ident'>Output</span>;
+<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">FnOnce</span><span class="op">&lt;</span><span class="ident">Args</span><span class="op">&gt;</span> {
+    <span class="kw">type</span> <span class="ident">Output</span>;
 
-    <span class='kw'>extern</span> <span class='string'>&quot;rust-call&quot;</span> <span class='kw'>fn</span> <span class='ident'>call_once</span>(<span class='self'>self</span>, <span class='ident'>args</span>: <span class='ident'>Args</span>) <span class='op'>-&gt;</span> <span class='self'>Self</span>::<span class='ident'>Output</span>;
+    <span class="kw">extern</span> <span class="string">&quot;rust-call&quot;</span> <span class="kw">fn</span> <span class="ident">call_once</span>(<span class="self">self</span>, <span class="ident">args</span>: <span class="ident">Args</span>) <span class="op">-&gt;</span> <span class="self">Self</span>::<span class="ident">Output</span>;
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Amod%20foo%20%7B%0Apub%20trait%20Fn%3CArgs%3E%20%3A%20FnMut%3CArgs%3E%20%7B%0A%20%20%20%20extern%20%22rust-call%22%20fn%20call(%26self%2C%20args%3A%20Args)%20-%3E%20Self%3A%3AOutput%3B%0A%7D%0A%0Apub%20trait%20FnMut%3CArgs%3E%20%3A%20FnOnce%3CArgs%3E%20%7B%0A%20%20%20%20extern%20%22rust-call%22%20fn%20call_mut(%26mut%20self%2C%20args%3A%20Args)%20-%3E%20Self%3A%3AOutput%3B%0A%7D%0A%0Apub%20trait%20FnOnce%3CArgs%3E%20%7B%0A%20%20%20%20type%20Output%3B%0A%0A%20%20%20%20extern%20%22rust-call%22%20fn%20call_once(self%2C%20args%3A%20Args)%20-%3E%20Self%3A%3AOutput%3B%0A%7D%0A%7D%0A%7D">Run</a></pre>
 
 <p>Вы можете заметить некоторые различия между этими типажами, но есть одно главное
@@ -432,16 +432,16 @@ Rust мы используем систему типажей для перегр
 диспетчеризацией. Во-первых, давайте напишем функцию, которая принимает что-то
 вызываемое, вызывает это что-то и возвращает результат:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span> <span class='ident'>call_with_one</span><span class='op'>&lt;</span><span class='ident'>F</span><span class='op'>&gt;</span>(<span class='ident'>some_closure</span>: <span class='ident'>F</span>) <span class='op'>-&gt;</span> <span class='ident'>i32</span>
-    <span class='kw'>where</span> <span class='ident'>F</span> : <span class='ident'>Fn</span>(<span class='ident'>i32</span>) <span class='op'>-&gt;</span> <span class='ident'>i32</span> {
+<pre class="rust rust-example-rendered">
+<span class="kw">fn</span> <span class="ident">call_with_one</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(<span class="ident">some_closure</span>: <span class="ident">F</span>) <span class="op">-&gt;</span> <span class="ident">i32</span>
+    <span class="kw">where</span> <span class="ident">F</span> : <span class="ident">Fn</span>(<span class="ident">i32</span>) <span class="op">-&gt;</span> <span class="ident">i32</span> {
 
-    <span class='ident'>some_closure</span>(<span class='number'>1</span>)
+    <span class="ident">some_closure</span>(<span class="number">1</span>)
 }
 
-<span class='kw'>let</span> <span class='ident'>answer</span> <span class='op'>=</span> <span class='ident'>call_with_one</span>(<span class='op'>|</span><span class='ident'>x</span><span class='op'>|</span> <span class='ident'>x</span> <span class='op'>+</span> <span class='number'>2</span>);
+<span class="kw">let</span> <span class="ident">answer</span> <span class="op">=</span> <span class="ident">call_with_one</span>(<span class="op">|</span><span class="ident">x</span><span class="op">|</span> <span class="ident">x</span> <span class="op">+</span> <span class="number">2</span>);
 
-<span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>3</span>, <span class='ident'>answer</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20call_with_one%3CF%3E(some_closure%3A%20F)%20-%3E%20i32%0A%20%20%20%20where%20F%20%3A%20Fn(i32)%20-%3E%20i32%20%7B%0A%0A%20%20%20%20some_closure(1)%0A%7D%0A%0Alet%20answer%20%3D%20call_with_one(%7Cx%7C%20x%20%2B%202)%3B%0A%0Aassert_eq!(3%2C%20answer)%3B%0A%7D">Run</a></pre>
+<span class="macro">assert_eq</span><span class="macro">!</span>(<span class="number">3</span>, <span class="ident">answer</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20call_with_one%3CF%3E(some_closure%3A%20F)%20-%3E%20i32%0A%20%20%20%20where%20F%20%3A%20Fn(i32)%20-%3E%20i32%20%7B%0A%0A%20%20%20%20some_closure(1)%0A%7D%0A%0Alet%20answer%20%3D%20call_with_one(%7Cx%7C%20x%20%2B%202)%3B%0A%0Aassert_eq!(3%2C%20answer)%3B%0A%7D">Run</a></pre>
 
 <p>Мы передаем наше замыкание <code>|x| x + 2</code>, в функцию <code>call_with_one</code>. Она же
 делает то, о чем говорит ее название: вызывает замыкание, передавая ему <code>1</code> в
@@ -449,14 +449,14 @@ Rust мы используем систему типажей для перегр
 
 <p>Давайте рассмотрим сигнатуру функции <code>call_with_one</code> более подробно:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span> <span class='ident'>call_with_one</span><span class='op'>&lt;</span><span class='ident'>F</span><span class='op'>&gt;</span>(<span class='ident'>some_closure</span>: <span class='ident'>F</span>) <span class='op'>-&gt;</span> <span class='ident'>i32</span><a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20call_with_one%3CF%3E(some_closure%3A%20F)%20-%3E%20i32%0A%20%20%20where%20F%20%3A%20Fn(i32)%20-%3E%20i32%20%7B%0A%20%20%20some_closure(1)%20%7D%0A%7D">Run</a></pre>
+<pre class="rust rust-example-rendered">
+<span class="kw">fn</span> <span class="ident">call_with_one</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(<span class="ident">some_closure</span>: <span class="ident">F</span>) <span class="op">-&gt;</span> <span class="ident">i32</span><a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20call_with_one%3CF%3E(some_closure%3A%20F)%20-%3E%20i32%0A%20%20%20where%20F%20%3A%20Fn(i32)%20-%3E%20i32%20%7B%0A%20%20%20some_closure(1)%20%7D%0A%7D">Run</a></pre>
 
 <p>Мы принимаем один параметр, который имеет тип <code>F</code>. Мы также возвращаем <code>i32</code>.
 Эта часть не интересна. Следующим важным моментом является:</p>
 
-<pre class='rust rust-example-rendered'>
-    <span class='kw'>where</span> <span class='ident'>F</span> : <span class='ident'>Fn</span>(<span class='ident'>i32</span>) <span class='op'>-&gt;</span> <span class='ident'>i32</span> {<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20call_with_one%3CF%3E(some_closure%3A%20F)%20-%3E%20i32%0A%20%20%20%20where%20F%20%3A%20Fn(i32)%20-%3E%20i32%20%7B%0A%20%20some_closure(1)%20%7D%0A%7D">Run</a></pre>
+<pre class="rust rust-example-rendered">
+    <span class="kw">where</span> <span class="ident">F</span> : <span class="ident">Fn</span>(<span class="ident">i32</span>) <span class="op">-&gt;</span> <span class="ident">i32</span> {<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20call_with_one%3CF%3E(some_closure%3A%20F)%20-%3E%20i32%0A%20%20%20%20where%20F%20%3A%20Fn(i32)%20-%3E%20i32%20%7B%0A%20%20some_closure(1)%20%7D%0A%7D">Run</a></pre>
 
 <p>Так как <code>Fn</code> является типажом, мы можем связать с ним наш обобщенный параметр. В
 этом примере, замыкание принимает <code>i32</code> в качестве аргумента и возвращает <code>i32</code>,
@@ -474,14 +474,14 @@ Rust мы используем систему типажей для перегр
 <p>Конечно, если нам нужна динамическая диспетчеризация, мы также можем
 использовать и ее. Обычно для этого случая используется типаж-объект:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span> <span class='ident'>call_with_one</span>(<span class='ident'>some_closure</span>: <span class='kw-2'>&amp;</span><span class='ident'>Fn</span>(<span class='ident'>i32</span>) <span class='op'>-&gt;</span> <span class='ident'>i32</span>) <span class='op'>-&gt;</span> <span class='ident'>i32</span> {
-    <span class='ident'>some_closure</span>(<span class='number'>1</span>)
+<pre class="rust rust-example-rendered">
+<span class="kw">fn</span> <span class="ident">call_with_one</span>(<span class="ident">some_closure</span>: <span class="kw-2">&amp;</span><span class="ident">Fn</span>(<span class="ident">i32</span>) <span class="op">-&gt;</span> <span class="ident">i32</span>) <span class="op">-&gt;</span> <span class="ident">i32</span> {
+    <span class="ident">some_closure</span>(<span class="number">1</span>)
 }
 
-<span class='kw'>let</span> <span class='ident'>answer</span> <span class='op'>=</span> <span class='ident'>call_with_one</span>(<span class='kw-2'>&amp;</span><span class='op'>|</span><span class='ident'>x</span><span class='op'>|</span> <span class='ident'>x</span> <span class='op'>+</span> <span class='number'>2</span>);
+<span class="kw">let</span> <span class="ident">answer</span> <span class="op">=</span> <span class="ident">call_with_one</span>(<span class="kw-2">&amp;</span><span class="op">|</span><span class="ident">x</span><span class="op">|</span> <span class="ident">x</span> <span class="op">+</span> <span class="number">2</span>);
 
-<span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>3</span>, <span class='ident'>answer</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20call_with_one(some_closure%3A%20%26Fn(i32)%20-%3E%20i32)%20-%3E%20i32%20%7B%0A%20%20%20%20some_closure(1)%0A%7D%0A%0Alet%20answer%20%3D%20call_with_one(%26%7Cx%7C%20x%20%2B%202)%3B%0A%0Aassert_eq!(3%2C%20answer)%3B%0A%7D">Run</a></pre>
+<span class="macro">assert_eq</span><span class="macro">!</span>(<span class="number">3</span>, <span class="ident">answer</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20call_with_one(some_closure%3A%20%26Fn(i32)%20-%3E%20i32)%20-%3E%20i32%20%7B%0A%20%20%20%20some_closure(1)%0A%7D%0A%0Alet%20answer%20%3D%20call_with_one(%26%7Cx%7C%20x%20%2B%202)%3B%0A%0Aassert_eq!(3%2C%20answer)%3B%0A%7D">Run</a></pre>
 
 <p>Теперь наша функция в качетве аргумента принимает типаж-объект <code>&amp;Fn</code>. Поэтому мы
 должны создать ссылку на замыкание, а затем передать ее в функцию
@@ -493,17 +493,17 @@ Rust мы используем систему типажей для перегр
 столкнуться с ошибкой. Сперва это может показаться странным, но мы с этим
 разберемся. Вот как вы, наверное, попытаетесь вернуть замыкание из функции:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span> <span class='ident'>factory</span>() <span class='op'>-&gt;</span> (<span class='ident'>Fn</span>(<span class='ident'>i32</span>) <span class='op'>-&gt;</span> <span class='ident'>i32</span>) {
-    <span class='kw'>let</span> <span class='ident'>num</span> <span class='op'>=</span> <span class='number'>5</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">fn</span> <span class="ident">factory</span>() <span class="op">-&gt;</span> (<span class="ident">Fn</span>(<span class="ident">i32</span>) <span class="op">-&gt;</span> <span class="ident">i32</span>) {
+    <span class="kw">let</span> <span class="ident">num</span> <span class="op">=</span> <span class="number">5</span>;
 
-    <span class='op'>|</span><span class='ident'>x</span><span class='op'>|</span> <span class='ident'>x</span> <span class='op'>+</span> <span class='ident'>num</span>
+    <span class="op">|</span><span class="ident">x</span><span class="op">|</span> <span class="ident">x</span> <span class="op">+</span> <span class="ident">num</span>
 }
 
-<span class='kw'>let</span> <span class='ident'>f</span> <span class='op'>=</span> <span class='ident'>factory</span>();
+<span class="kw">let</span> <span class="ident">f</span> <span class="op">=</span> <span class="ident">factory</span>();
 
-<span class='kw'>let</span> <span class='ident'>answer</span> <span class='op'>=</span> <span class='ident'>f</span>(<span class='number'>1</span>);
-<span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>6</span>, <span class='ident'>answer</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20factory()%20-%3E%20(Fn(i32)%20-%3E%20i32)%20%7B%0A%20%20%20%20let%20num%20%3D%205%3B%0A%0A%20%20%20%20%7Cx%7C%20x%20%2B%20num%0A%7D%0A%0Alet%20f%20%3D%20factory()%3B%0A%0Alet%20answer%20%3D%20f(1)%3B%0Aassert_eq!(6%2C%20answer)%3B%0A%7D">Run</a></pre>
+<span class="kw">let</span> <span class="ident">answer</span> <span class="op">=</span> <span class="ident">f</span>(<span class="number">1</span>);
+<span class="macro">assert_eq</span><span class="macro">!</span>(<span class="number">6</span>, <span class="ident">answer</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20factory()%20-%3E%20(Fn(i32)%20-%3E%20i32)%20%7B%0A%20%20%20%20let%20num%20%3D%205%3B%0A%0A%20%20%20%20%7Cx%7C%20x%20%2B%20num%0A%7D%0A%0Alet%20f%20%3D%20factory()%3B%0A%0Alet%20answer%20%3D%20f(1)%3B%0Aassert_eq!(6%2C%20answer)%3B%0A%7D">Run</a></pre>
 
 <p>Это выдаст следующие длинные, взаимосвязанные ошибки:</p>
 
@@ -529,17 +529,17 @@ let f = factory();
 неопределенного размера — передать ссылку на это что-то, так как ссылки имеют
 известный размер. Таким образом, следовало бы написать так:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span> <span class='ident'>factory</span>() <span class='op'>-&gt;</span> <span class='kw-2'>&amp;</span>(<span class='ident'>Fn</span>(<span class='ident'>i32</span>) <span class='op'>-&gt;</span> <span class='ident'>i32</span>) {
-    <span class='kw'>let</span> <span class='ident'>num</span> <span class='op'>=</span> <span class='number'>5</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">fn</span> <span class="ident">factory</span>() <span class="op">-&gt;</span> <span class="kw-2">&amp;</span>(<span class="ident">Fn</span>(<span class="ident">i32</span>) <span class="op">-&gt;</span> <span class="ident">i32</span>) {
+    <span class="kw">let</span> <span class="ident">num</span> <span class="op">=</span> <span class="number">5</span>;
 
-    <span class='op'>|</span><span class='ident'>x</span><span class='op'>|</span> <span class='ident'>x</span> <span class='op'>+</span> <span class='ident'>num</span>
+    <span class="op">|</span><span class="ident">x</span><span class="op">|</span> <span class="ident">x</span> <span class="op">+</span> <span class="ident">num</span>
 }
 
-<span class='kw'>let</span> <span class='ident'>f</span> <span class='op'>=</span> <span class='ident'>factory</span>();
+<span class="kw">let</span> <span class="ident">f</span> <span class="op">=</span> <span class="ident">factory</span>();
 
-<span class='kw'>let</span> <span class='ident'>answer</span> <span class='op'>=</span> <span class='ident'>f</span>(<span class='number'>1</span>);
-<span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>6</span>, <span class='ident'>answer</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20factory()%20-%3E%20%26(Fn(i32)%20-%3E%20i32)%20%7B%0A%20%20%20%20let%20num%20%3D%205%3B%0A%0A%20%20%20%20%7Cx%7C%20x%20%2B%20num%0A%7D%0A%0Alet%20f%20%3D%20factory()%3B%0A%0Alet%20answer%20%3D%20f(1)%3B%0Aassert_eq!(6%2C%20answer)%3B%0A%7D">Run</a></pre>
+<span class="kw">let</span> <span class="ident">answer</span> <span class="op">=</span> <span class="ident">f</span>(<span class="number">1</span>);
+<span class="macro">assert_eq</span><span class="macro">!</span>(<span class="number">6</span>, <span class="ident">answer</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20factory()%20-%3E%20%26(Fn(i32)%20-%3E%20i32)%20%7B%0A%20%20%20%20let%20num%20%3D%205%3B%0A%0A%20%20%20%20%7Cx%7C%20x%20%2B%20num%0A%7D%0A%0Alet%20f%20%3D%20factory()%3B%0A%0Alet%20answer%20%3D%20f(1)%3B%0Aassert_eq!(6%2C%20answer)%3B%0A%7D">Run</a></pre>
 
 <p>Но тогда мы получим другую ошибку:</p>
 
@@ -552,17 +552,17 @@ fn factory() -&gt; &amp;(Fn(i32) -&gt; i32) {
 Так наша функция <code>factory()</code> не принимает никаких аргументов, то элизия
 (сокрытие) здесь не уместна. Какое время жизни мы должны выбрать? <code>&#39;static</code>:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span> <span class='ident'>factory</span>() <span class='op'>-&gt;</span> <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> (<span class='ident'>Fn</span>(<span class='ident'>i32</span>) <span class='op'>-&gt;</span> <span class='ident'>i32</span>) {
-    <span class='kw'>let</span> <span class='ident'>num</span> <span class='op'>=</span> <span class='number'>5</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">fn</span> <span class="ident">factory</span>() <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> (<span class="ident">Fn</span>(<span class="ident">i32</span>) <span class="op">-&gt;</span> <span class="ident">i32</span>) {
+    <span class="kw">let</span> <span class="ident">num</span> <span class="op">=</span> <span class="number">5</span>;
 
-    <span class='op'>|</span><span class='ident'>x</span><span class='op'>|</span> <span class='ident'>x</span> <span class='op'>+</span> <span class='ident'>num</span>
+    <span class="op">|</span><span class="ident">x</span><span class="op">|</span> <span class="ident">x</span> <span class="op">+</span> <span class="ident">num</span>
 }
 
-<span class='kw'>let</span> <span class='ident'>f</span> <span class='op'>=</span> <span class='ident'>factory</span>();
+<span class="kw">let</span> <span class="ident">f</span> <span class="op">=</span> <span class="ident">factory</span>();
 
-<span class='kw'>let</span> <span class='ident'>answer</span> <span class='op'>=</span> <span class='ident'>f</span>(<span class='number'>1</span>);
-<span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>6</span>, <span class='ident'>answer</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20factory()%20-%3E%20%26'static%20(Fn(i32)%20-%3E%20i32)%20%7B%0A%20%20%20%20let%20num%20%3D%205%3B%0A%0A%20%20%20%20%7Cx%7C%20x%20%2B%20num%0A%7D%0A%0Alet%20f%20%3D%20factory()%3B%0A%0Alet%20answer%20%3D%20f(1)%3B%0Aassert_eq!(6%2C%20answer)%3B%0A%7D">Run</a></pre>
+<span class="kw">let</span> <span class="ident">answer</span> <span class="op">=</span> <span class="ident">f</span>(<span class="number">1</span>);
+<span class="macro">assert_eq</span><span class="macro">!</span>(<span class="number">6</span>, <span class="ident">answer</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20factory()%20-%3E%20%26'static%20(Fn(i32)%20-%3E%20i32)%20%7B%0A%20%20%20%20let%20num%20%3D%205%3B%0A%0A%20%20%20%20%7Cx%7C%20x%20%2B%20num%0A%7D%0A%0Alet%20f%20%3D%20factory()%3B%0A%0Alet%20answer%20%3D%20f(1)%3B%0Aassert_eq!(6%2C%20answer)%3B%0A%7D">Run</a></pre>
 
 <p>Но мы получим еще ошибку:</p>
 
@@ -594,16 +594,16 @@ Rust показывает их как <code>closure &lt;anon&gt;</code>, а не
 
 <p>Так что же делать? Этот код <em>почти</em> работает:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span> <span class='ident'>factory</span>() <span class='op'>-&gt;</span> <span class='ident'>Box</span><span class='op'>&lt;</span><span class='ident'>Fn</span>(<span class='ident'>i32</span>) <span class='op'>-&gt;</span> <span class='ident'>i32</span><span class='op'>&gt;</span> {
-    <span class='kw'>let</span> <span class='ident'>num</span> <span class='op'>=</span> <span class='number'>5</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">fn</span> <span class="ident">factory</span>() <span class="op">-&gt;</span> <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Fn</span>(<span class="ident">i32</span>) <span class="op">-&gt;</span> <span class="ident">i32</span><span class="op">&gt;</span> {
+    <span class="kw">let</span> <span class="ident">num</span> <span class="op">=</span> <span class="number">5</span>;
 
-    <span class='ident'>Box</span>::<span class='ident'>new</span>(<span class='op'>|</span><span class='ident'>x</span><span class='op'>|</span> <span class='ident'>x</span> <span class='op'>+</span> <span class='ident'>num</span>)
+    <span class="ident">Box</span>::<span class="ident">new</span>(<span class="op">|</span><span class="ident">x</span><span class="op">|</span> <span class="ident">x</span> <span class="op">+</span> <span class="ident">num</span>)
 }
-<span class='kw'>let</span> <span class='ident'>f</span> <span class='op'>=</span> <span class='ident'>factory</span>();
+<span class="kw">let</span> <span class="ident">f</span> <span class="op">=</span> <span class="ident">factory</span>();
 
-<span class='kw'>let</span> <span class='ident'>answer</span> <span class='op'>=</span> <span class='ident'>f</span>(<span class='number'>1</span>);
-<span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>6</span>, <span class='ident'>answer</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20factory()%20-%3E%20Box%3CFn(i32)%20-%3E%20i32%3E%20%7B%0A%20%20%20%20let%20num%20%3D%205%3B%0A%0A%20%20%20%20Box%3A%3Anew(%7Cx%7C%20x%20%2B%20num)%0A%7D%0Afn%20main()%20%7B%0Alet%20f%20%3D%20factory()%3B%0A%0Alet%20answer%20%3D%20f(1)%3B%0Aassert_eq!(6%2C%20answer)%3B%0A%7D%0A">Run</a></pre>
+<span class="kw">let</span> <span class="ident">answer</span> <span class="op">=</span> <span class="ident">f</span>(<span class="number">1</span>);
+<span class="macro">assert_eq</span><span class="macro">!</span>(<span class="number">6</span>, <span class="ident">answer</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20factory()%20-%3E%20Box%3CFn(i32)%20-%3E%20i32%3E%20%7B%0A%20%20%20%20let%20num%20%3D%205%3B%0A%0A%20%20%20%20Box%3A%3Anew(%7Cx%7C%20x%20%2B%20num)%0A%7D%0Afn%20main()%20%7B%0Alet%20f%20%3D%20factory()%3B%0A%0Alet%20answer%20%3D%20f(1)%3B%0Aassert_eq!(6%2C%20answer)%3B%0A%7D%0A">Run</a></pre>
 
 <p>Мы используем типаж-объект, полученный в результате упаковки (<code>Box</code>) типажа
 <code>Fn</code>. И остаётся только одна, последняя проблема:</p>
@@ -617,16 +617,16 @@ Box::new(|x| x + num)
 <p>Мы все еще по-прежнему ссылаемся на родительский фрейм стека. С этим последним
 исправлением мы сможем наконец выполнить нашу задачу:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span> <span class='ident'>factory</span>() <span class='op'>-&gt;</span> <span class='ident'>Box</span><span class='op'>&lt;</span><span class='ident'>Fn</span>(<span class='ident'>i32</span>) <span class='op'>-&gt;</span> <span class='ident'>i32</span><span class='op'>&gt;</span> {
-    <span class='kw'>let</span> <span class='ident'>num</span> <span class='op'>=</span> <span class='number'>5</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">fn</span> <span class="ident">factory</span>() <span class="op">-&gt;</span> <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Fn</span>(<span class="ident">i32</span>) <span class="op">-&gt;</span> <span class="ident">i32</span><span class="op">&gt;</span> {
+    <span class="kw">let</span> <span class="ident">num</span> <span class="op">=</span> <span class="number">5</span>;
 
-    <span class='ident'>Box</span>::<span class='ident'>new</span>(<span class='kw'>move</span> <span class='op'>|</span><span class='ident'>x</span><span class='op'>|</span> <span class='ident'>x</span> <span class='op'>+</span> <span class='ident'>num</span>)
+    <span class="ident">Box</span>::<span class="ident">new</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">x</span><span class="op">|</span> <span class="ident">x</span> <span class="op">+</span> <span class="ident">num</span>)
 }
-<span class='kw'>let</span> <span class='ident'>f</span> <span class='op'>=</span> <span class='ident'>factory</span>();
+<span class="kw">let</span> <span class="ident">f</span> <span class="op">=</span> <span class="ident">factory</span>();
 
-<span class='kw'>let</span> <span class='ident'>answer</span> <span class='op'>=</span> <span class='ident'>f</span>(<span class='number'>1</span>);
-<span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>6</span>, <span class='ident'>answer</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20factory()%20-%3E%20Box%3CFn(i32)%20-%3E%20i32%3E%20%7B%0A%20%20%20%20let%20num%20%3D%205%3B%0A%0A%20%20%20%20Box%3A%3Anew(move%20%7Cx%7C%20x%20%2B%20num)%0A%7D%0Afn%20main()%20%7B%0Alet%20f%20%3D%20factory()%3B%0A%0Alet%20answer%20%3D%20f(1)%3B%0Aassert_eq!(6%2C%20answer)%3B%0A%7D%0A">Run</a></pre>
+<span class="kw">let</span> <span class="ident">answer</span> <span class="op">=</span> <span class="ident">f</span>(<span class="number">1</span>);
+<span class="macro">assert_eq</span><span class="macro">!</span>(<span class="number">6</span>, <span class="ident">answer</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20factory()%20-%3E%20Box%3CFn(i32)%20-%3E%20i32%3E%20%7B%0A%20%20%20%20let%20num%20%3D%205%3B%0A%0A%20%20%20%20Box%3A%3Anew(move%20%7Cx%7C%20x%20%2B%20num)%0A%7D%0Afn%20main()%20%7B%0Alet%20f%20%3D%20factory()%3B%0A%0Alet%20answer%20%3D%20f(1)%3B%0Aassert_eq!(6%2C%20answer)%3B%0A%7D%0A">Run</a></pre>
 
 <p>Благодаря изменению внутреннего замыкания на <code>move Fn</code> будет создаваться новый
 фрейм стека для нашего замыкания. А благодаря упаковке (<code>Box</code>) замыкания,

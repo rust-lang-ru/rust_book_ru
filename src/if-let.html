@@ -195,25 +195,25 @@
 <p>В качестве примера рассмотрим <code>Option&lt;T&gt;</code>. Если это <code>Some&lt;T&gt;</code>, мы хотим вызвать
 функцию на этом значении, а если это <code>None</code> — не делать ничего. Вроде такого:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>match</span> <span class='ident'>option</span> {
-    <span class='prelude-val'>Some</span>(<span class='ident'>x</span>) <span class='op'>=&gt;</span> { <span class='ident'>foo</span>(<span class='ident'>x</span>) },
-    <span class='prelude-val'>None</span> <span class='op'>=&gt;</span> {},
+<pre class="rust rust-example-rendered">
+<span class="kw">match</span> <span class="ident">option</span> {
+    <span class="prelude-val">Some</span>(<span class="ident">x</span>) <span class="op">=&gt;</span> { <span class="ident">foo</span>(<span class="ident">x</span>) },
+    <span class="prelude-val">None</span> <span class="op">=&gt;</span> {},
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20option%20%3D%20Some(5)%3B%0Afn%20foo(x%3A%20i32)%20%7B%20%7D%0Amatch%20option%20%7B%0A%20%20%20%20Some(x)%20%3D%3E%20%7B%20foo(x)%20%7D%2C%0A%20%20%20%20None%20%3D%3E%20%7B%7D%2C%0A%7D%0A%7D">Run</a></pre>
 
 <p>Здесь необязательно использовать <code>match</code>. <code>if</code> тоже подойдёт:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>if</span> <span class='ident'>option</span>.<span class='ident'>is_some</span>() {
-    <span class='kw'>let</span> <span class='ident'>x</span> <span class='op'>=</span> <span class='ident'>option</span>.<span class='ident'>unwrap</span>();
-    <span class='ident'>foo</span>(<span class='ident'>x</span>);
+<pre class="rust rust-example-rendered">
+<span class="kw">if</span> <span class="ident">option</span>.<span class="ident">is_some</span>() {
+    <span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="ident">option</span>.<span class="ident">unwrap</span>();
+    <span class="ident">foo</span>(<span class="ident">x</span>);
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20option%20%3D%20Some(5)%3B%0Afn%20foo(x%3A%20i32)%20%7B%20%7D%0Aif%20option.is_some()%20%7B%0A%20%20%20%20let%20x%20%3D%20option.unwrap()%3B%0A%20%20%20%20foo(x)%3B%0A%7D%0A%7D">Run</a></pre>
 
 <p>Но оба этих варианта выглядят странно. Мы можем исправить это с помощью <code>if let</code>:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>if</span> <span class='kw'>let</span> <span class='prelude-val'>Some</span>(<span class='ident'>x</span>) <span class='op'>=</span> <span class='ident'>option</span> {
-    <span class='ident'>foo</span>(<span class='ident'>x</span>);
+<pre class="rust rust-example-rendered">
+<span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">x</span>) <span class="op">=</span> <span class="ident">option</span> {
+    <span class="ident">foo</span>(<span class="ident">x</span>);
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20option%20%3D%20Some(5)%3B%0Afn%20foo(x%3A%20i32)%20%7B%20%7D%0Aif%20let%20Some(x)%20%3D%20option%20%7B%0A%20%20%20%20foo(x)%3B%0A%7D%0A%7D">Run</a></pre>
 
 <p>Если <a href="patterns.html">сопоставление с образцом</a> успешно, имена в образце связываются с
@@ -223,30 +223,30 @@
 <p>Если вы хотите делать что-то ещё при несовпадении с образцом, используйте
 <code>else</code>:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>if</span> <span class='kw'>let</span> <span class='prelude-val'>Some</span>(<span class='ident'>x</span>) <span class='op'>=</span> <span class='ident'>option</span> {
-    <span class='ident'>foo</span>(<span class='ident'>x</span>);
-} <span class='kw'>else</span> {
-    <span class='ident'>bar</span>();
+<pre class="rust rust-example-rendered">
+<span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">x</span>) <span class="op">=</span> <span class="ident">option</span> {
+    <span class="ident">foo</span>(<span class="ident">x</span>);
+} <span class="kw">else</span> {
+    <span class="ident">bar</span>();
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20option%20%3D%20Some(5)%3B%0Afn%20foo(x%3A%20i32)%20%7B%20%7D%0Afn%20bar()%20%7B%20%7D%0Aif%20let%20Some(x)%20%3D%20option%20%7B%0A%20%20%20%20foo(x)%3B%0A%7D%20else%20%7B%0A%20%20%20%20bar()%3B%0A%7D%0A%7D">Run</a></pre>
 
 <h2 id='while-let' class='section-header'><a href='#while-let'><code>while let</code></a></h2>
 <p>Похожим образом, <code>while let</code> можно использовать для перебора значений, пока
 они соответствуют образцу. Код вроде такого:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>loop</span> {
-    <span class='kw'>match</span> <span class='ident'>option</span> {
-        <span class='prelude-val'>Some</span>(<span class='ident'>x</span>) <span class='op'>=&gt;</span> <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>x</span>),
-        _ <span class='op'>=&gt;</span> <span class='kw'>break</span>,
+<pre class="rust rust-example-rendered">
+<span class="kw">loop</span> {
+    <span class="kw">match</span> <span class="ident">option</span> {
+        <span class="prelude-val">Some</span>(<span class="ident">x</span>) <span class="op">=&gt;</span> <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">x</span>),
+        _ <span class="op">=&gt;</span> <span class="kw">break</span>,
     }
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20option%3A%20Option%3Ci32%3E%20%3D%20None%3B%0Aloop%20%7B%0A%20%20%20%20match%20option%20%7B%0A%20%20%20%20%20%20%20%20Some(x)%20%3D%3E%20println!(%22%7B%7D%22%2C%20x)%2C%0A%20%20%20%20%20%20%20%20_%20%3D%3E%20break%2C%0A%20%20%20%20%7D%0A%7D%0A%7D">Run</a></pre>
 
 <p>Превращается в такой:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>while</span> <span class='kw'>let</span> <span class='prelude-val'>Some</span>(<span class='ident'>x</span>) <span class='op'>=</span> <span class='ident'>option</span> {
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>x</span>);
+<pre class="rust rust-example-rendered">
+<span class="kw">while</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">x</span>) <span class="op">=</span> <span class="ident">option</span> {
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">x</span>);
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20option%3A%20Option%3Ci32%3E%20%3D%20None%3B%0Awhile%20let%20Some(x)%20%3D%20option%20%7B%0A%20%20%20%20println!(%22%7B%7D%22%2C%20x)%3B%0A%7D%0A%7D">Run</a></pre>
 
     <script src='../rustbook.js'></script>

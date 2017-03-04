@@ -204,45 +204,45 @@
 для освобождения. Вот программа, не использующая стандартную библиотеку, и
 реализующая <code>Box</code> через <code>malloc</code> и <code>free</code>:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>feature</span>(<span class='ident'>lang_items</span>, <span class='ident'>box_syntax</span>, <span class='ident'>start</span>, <span class='ident'>no_std</span>, <span class='ident'>libc</span>)]</span>
-<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>no_std</span>]</span>
+<pre class="rust rust-example-rendered">
+<span class="attribute">#<span class="op">!</span>[<span class="ident">feature</span>(<span class="ident">lang_items</span>, <span class="ident">box_syntax</span>, <span class="ident">start</span>, <span class="ident">no_std</span>, <span class="ident">libc</span>)]</span>
+<span class="attribute">#<span class="op">!</span>[<span class="ident">no_std</span>]</span>
 
-<span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>libc</span>;
+<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">libc</span>;
 
-<span class='kw'>extern</span> {
-    <span class='kw'>fn</span> <span class='ident'>abort</span>() <span class='op'>-&gt;</span> <span class='op'>!</span>;
+<span class="kw">extern</span> {
+    <span class="kw">fn</span> <span class="ident">abort</span>() <span class="op">-&gt;</span> <span class="op">!</span>;
 }
 
-<span class='attribute'>#[<span class='ident'>lang</span> <span class='op'>=</span> <span class='string'>&quot;owned_box&quot;</span>]</span>
-<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Box</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span>(<span class='kw-2'>*</span><span class='kw-2'>mut</span> <span class='ident'>T</span>);
+<span class="attribute">#[<span class="ident">lang</span> <span class="op">=</span> <span class="string">&quot;owned_box&quot;</span>]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(<span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T</span>);
 
-<span class='attribute'>#[<span class='ident'>lang</span><span class='op'>=</span><span class='string'>&quot;exchange_malloc&quot;</span>]</span>
-<span class='kw'>unsafe</span> <span class='kw'>fn</span> <span class='ident'>allocate</span>(<span class='ident'>size</span>: <span class='ident'>usize</span>, <span class='ident'>_align</span>: <span class='ident'>usize</span>) <span class='op'>-&gt;</span> <span class='kw-2'>*</span><span class='kw-2'>mut</span> <span class='ident'>u8</span> {
-    <span class='kw'>let</span> <span class='ident'>p</span> <span class='op'>=</span> <span class='ident'>libc</span>::<span class='ident'>malloc</span>(<span class='ident'>size</span> <span class='kw'>as</span> <span class='ident'>libc</span>::<span class='ident'>size_t</span>) <span class='kw'>as</span> <span class='kw-2'>*</span><span class='kw-2'>mut</span> <span class='ident'>u8</span>;
+<span class="attribute">#[<span class="ident">lang</span><span class="op">=</span><span class="string">&quot;exchange_malloc&quot;</span>]</span>
+<span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">allocate</span>(<span class="ident">size</span>: <span class="ident">usize</span>, <span class="ident">_align</span>: <span class="ident">usize</span>) <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u8</span> {
+    <span class="kw">let</span> <span class="ident">p</span> <span class="op">=</span> <span class="ident">libc</span>::<span class="ident">malloc</span>(<span class="ident">size</span> <span class="kw">as</span> <span class="ident">libc</span>::<span class="ident">size_t</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u8</span>;
 
-    <span class='comment'>// malloc завершился ошибкой</span>
-    <span class='kw'>if</span> <span class='ident'>p</span> <span class='kw'>as</span> <span class='ident'>usize</span> <span class='op'>==</span> <span class='number'>0</span> {
-        <span class='ident'>abort</span>();
+    <span class="comment">// malloc завершился ошибкой</span>
+    <span class="kw">if</span> <span class="ident">p</span> <span class="kw">as</span> <span class="ident">usize</span> <span class="op">==</span> <span class="number">0</span> {
+        <span class="ident">abort</span>();
     }
 
-    <span class='ident'>p</span>
+    <span class="ident">p</span>
 }
-<span class='attribute'>#[<span class='ident'>lang</span><span class='op'>=</span><span class='string'>&quot;exchange_free&quot;</span>]</span>
-<span class='kw'>unsafe</span> <span class='kw'>fn</span> <span class='ident'>deallocate</span>(<span class='ident'>ptr</span>: <span class='kw-2'>*</span><span class='kw-2'>mut</span> <span class='ident'>u8</span>, <span class='ident'>_size</span>: <span class='ident'>usize</span>, <span class='ident'>_align</span>: <span class='ident'>usize</span>) {
-    <span class='ident'>libc</span>::<span class='ident'>free</span>(<span class='ident'>ptr</span> <span class='kw'>as</span> <span class='kw-2'>*</span><span class='kw-2'>mut</span> <span class='ident'>libc</span>::<span class='ident'>c_void</span>)
-}
-
-<span class='attribute'>#[<span class='ident'>start</span>]</span>
-<span class='kw'>fn</span> <span class='ident'>main</span>(<span class='ident'>argc</span>: <span class='ident'>isize</span>, <span class='ident'>argv</span>: <span class='kw-2'>*</span><span class='kw'>const</span> <span class='kw-2'>*</span><span class='kw'>const</span> <span class='ident'>u8</span>) <span class='op'>-&gt;</span> <span class='ident'>isize</span> {
-    <span class='kw'>let</span> <span class='ident'>x</span> <span class='op'>=</span> <span class='kw'>box</span> <span class='number'>1</span>;
-
-    <span class='number'>0</span>
+<span class="attribute">#[<span class="ident">lang</span><span class="op">=</span><span class="string">&quot;exchange_free&quot;</span>]</span>
+<span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">deallocate</span>(<span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u8</span>, <span class="ident">_size</span>: <span class="ident">usize</span>, <span class="ident">_align</span>: <span class="ident">usize</span>) {
+    <span class="ident">libc</span>::<span class="ident">free</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">libc</span>::<span class="ident">c_void</span>)
 }
 
-<span class='attribute'>#[<span class='ident'>lang</span> <span class='op'>=</span> <span class='string'>&quot;stack_exhausted&quot;</span>]</span> <span class='kw'>extern</span> <span class='kw'>fn</span> <span class='ident'>stack_exhausted</span>() {}
-<span class='attribute'>#[<span class='ident'>lang</span> <span class='op'>=</span> <span class='string'>&quot;eh_personality&quot;</span>]</span> <span class='kw'>extern</span> <span class='kw'>fn</span> <span class='ident'>eh_personality</span>() {}
-<span class='attribute'>#[<span class='ident'>lang</span> <span class='op'>=</span> <span class='string'>&quot;panic_fmt&quot;</span>]</span> <span class='kw'>fn</span> <span class='ident'>panic_fmt</span>() <span class='op'>-&gt;</span> <span class='op'>!</span> { <span class='kw'>loop</span> {} }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=%23!%5Bfeature(lang_items%2C%20box_syntax%2C%20start%2C%20no_std%2C%20libc)%5D%0A%23!%5Bno_std%5D%0A%0Aextern%20crate%20libc%3B%0A%0Aextern%20%7B%0A%20%20%20%20fn%20abort()%20-%3E%20!%3B%0A%7D%0A%0A%23%5Blang%20%3D%20%22owned_box%22%5D%0Apub%20struct%20Box%3CT%3E(*mut%20T)%3B%0A%0A%23%5Blang%3D%22exchange_malloc%22%5D%0Aunsafe%20fn%20allocate(size%3A%20usize%2C%20_align%3A%20usize)%20-%3E%20*mut%20u8%20%7B%0A%20%20%20%20let%20p%20%3D%20libc%3A%3Amalloc(size%20as%20libc%3A%3Asize_t)%20as%20*mut%20u8%3B%0A%0A%20%20%20%20%2F%2F%20malloc%20%D0%B7%D0%B0%D0%B2%D0%B5%D1%80%D1%88%D0%B8%D0%BB%D1%81%D1%8F%20%D0%BE%D1%88%D0%B8%D0%B1%D0%BA%D0%BE%D0%B9%0A%20%20%20%20if%20p%20as%20usize%20%3D%3D%200%20%7B%0A%20%20%20%20%20%20%20%20abort()%3B%0A%20%20%20%20%7D%0A%0A%20%20%20%20p%0A%7D%0A%23%5Blang%3D%22exchange_free%22%5D%0Aunsafe%20fn%20deallocate(ptr%3A%20*mut%20u8%2C%20_size%3A%20usize%2C%20_align%3A%20usize)%20%7B%0A%20%20%20%20libc%3A%3Afree(ptr%20as%20*mut%20libc%3A%3Ac_void)%0A%7D%0A%0A%23%5Bstart%5D%0Afn%20main(argc%3A%20isize%2C%20argv%3A%20*const%20*const%20u8)%20-%3E%20isize%20%7B%0A%20%20%20%20let%20x%20%3D%20box%201%3B%0A%0A%20%20%20%200%0A%7D%0A%0A%23%5Blang%20%3D%20%22stack_exhausted%22%5D%20extern%20fn%20stack_exhausted()%20%7B%7D%0A%23%5Blang%20%3D%20%22eh_personality%22%5D%20extern%20fn%20eh_personality()%20%7B%7D%0A%23%5Blang%20%3D%20%22panic_fmt%22%5D%20fn%20panic_fmt()%20-%3E%20!%20%7B%20loop%20%7B%7D%20%7D%0A&amp;version=nightly">Run</a></pre>
+<span class="attribute">#[<span class="ident">start</span>]</span>
+<span class="kw">fn</span> <span class="ident">main</span>(<span class="ident">argc</span>: <span class="ident">isize</span>, <span class="ident">argv</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-&gt;</span> <span class="ident">isize</span> {
+    <span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="kw">box</span> <span class="number">1</span>;
+
+    <span class="number">0</span>
+}
+
+<span class="attribute">#[<span class="ident">lang</span> <span class="op">=</span> <span class="string">&quot;stack_exhausted&quot;</span>]</span> <span class="kw">extern</span> <span class="kw">fn</span> <span class="ident">stack_exhausted</span>() {}
+<span class="attribute">#[<span class="ident">lang</span> <span class="op">=</span> <span class="string">&quot;eh_personality&quot;</span>]</span> <span class="kw">extern</span> <span class="kw">fn</span> <span class="ident">eh_personality</span>() {}
+<span class="attribute">#[<span class="ident">lang</span> <span class="op">=</span> <span class="string">&quot;panic_fmt&quot;</span>]</span> <span class="kw">fn</span> <span class="ident">panic_fmt</span>() <span class="op">-&gt;</span> <span class="op">!</span> { <span class="kw">loop</span> {} }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=%23!%5Bfeature(lang_items%2C%20box_syntax%2C%20start%2C%20no_std%2C%20libc)%5D%0A%23!%5Bno_std%5D%0A%0Aextern%20crate%20libc%3B%0A%0Aextern%20%7B%0A%20%20%20%20fn%20abort()%20-%3E%20!%3B%0A%7D%0A%0A%23%5Blang%20%3D%20%22owned_box%22%5D%0Apub%20struct%20Box%3CT%3E(*mut%20T)%3B%0A%0A%23%5Blang%3D%22exchange_malloc%22%5D%0Aunsafe%20fn%20allocate(size%3A%20usize%2C%20_align%3A%20usize)%20-%3E%20*mut%20u8%20%7B%0A%20%20%20%20let%20p%20%3D%20libc%3A%3Amalloc(size%20as%20libc%3A%3Asize_t)%20as%20*mut%20u8%3B%0A%0A%20%20%20%20%2F%2F%20malloc%20%D0%B7%D0%B0%D0%B2%D0%B5%D1%80%D1%88%D0%B8%D0%BB%D1%81%D1%8F%20%D0%BE%D1%88%D0%B8%D0%B1%D0%BA%D0%BE%D0%B9%0A%20%20%20%20if%20p%20as%20usize%20%3D%3D%200%20%7B%0A%20%20%20%20%20%20%20%20abort()%3B%0A%20%20%20%20%7D%0A%0A%20%20%20%20p%0A%7D%0A%23%5Blang%3D%22exchange_free%22%5D%0Aunsafe%20fn%20deallocate(ptr%3A%20*mut%20u8%2C%20_size%3A%20usize%2C%20_align%3A%20usize)%20%7B%0A%20%20%20%20libc%3A%3Afree(ptr%20as%20*mut%20libc%3A%3Ac_void)%0A%7D%0A%0A%23%5Bstart%5D%0Afn%20main(argc%3A%20isize%2C%20argv%3A%20*const%20*const%20u8)%20-%3E%20isize%20%7B%0A%20%20%20%20let%20x%20%3D%20box%201%3B%0A%0A%20%20%20%200%0A%7D%0A%0A%23%5Blang%20%3D%20%22stack_exhausted%22%5D%20extern%20fn%20stack_exhausted()%20%7B%7D%0A%23%5Blang%20%3D%20%22eh_personality%22%5D%20extern%20fn%20eh_personality()%20%7B%7D%0A%23%5Blang%20%3D%20%22panic_fmt%22%5D%20fn%20panic_fmt()%20-%3E%20!%20%7B%20loop%20%7B%7D%20%7D%0A&amp;version=nightly">Run</a></pre>
 
 <p>Заметьте, что <code>exchange_malloc</code> должен возвращать допустимый указатель, поэтому
 он производит проверку внутри и делает <code>abort</code>, если она не прошла.</p>

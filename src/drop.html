@@ -193,21 +193,21 @@
 (сброс) — позволяет выполнить некоторый код, когда значение выходит из области
 видимости. Например:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>struct</span> <span class='ident'>HasDrop</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">struct</span> <span class="ident">HasDrop</span>;
 
-<span class='kw'>impl</span> <span class='ident'>Drop</span> <span class='kw'>for</span> <span class='ident'>HasDrop</span> {
-    <span class='kw'>fn</span> <span class='ident'>drop</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>) {
-        <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Сбрасываем!&quot;</span>);
+<span class="kw">impl</span> <span class="ident">Drop</span> <span class="kw">for</span> <span class="ident">HasDrop</span> {
+    <span class="kw">fn</span> <span class="ident">drop</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) {
+        <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;Сбрасываем!&quot;</span>);
     }
 }
 
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='kw'>let</span> <span class='ident'>x</span> <span class='op'>=</span> <span class='ident'>HasDrop</span>;
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="ident">HasDrop</span>;
 
-    <span class='comment'>// сделаем что-то</span>
+    <span class="comment">// сделаем что-то</span>
 
-} <span class='comment'>// тут x выходит из области видимости</span><a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=struct%20HasDrop%3B%0A%0Aimpl%20Drop%20for%20HasDrop%20%7B%0A%20%20%20%20fn%20drop(%26mut%20self)%20%7B%0A%20%20%20%20%20%20%20%20println!(%22%D0%A1%D0%B1%D1%80%D0%B0%D1%81%D1%8B%D0%B2%D0%B0%D0%B5%D0%BC!%22)%3B%0A%20%20%20%20%7D%0A%7D%0A%0Afn%20main()%20%7B%0A%20%20%20%20let%20x%20%3D%20HasDrop%3B%0A%0A%20%20%20%20%2F%2F%20%D1%81%D0%B4%D0%B5%D0%BB%D0%B0%D0%B5%D0%BC%20%D1%87%D1%82%D0%BE-%D1%82%D0%BE%0A%0A%7D%20%2F%2F%20%D1%82%D1%83%D1%82%20x%20%D0%B2%D1%8B%D1%85%D0%BE%D0%B4%D0%B8%D1%82%20%D0%B8%D0%B7%20%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D0%B8%20%D0%B2%D0%B8%D0%B4%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D0%B8%0A">Run</a></pre>
+} <span class="comment">// тут x выходит из области видимости</span><a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=struct%20HasDrop%3B%0A%0Aimpl%20Drop%20for%20HasDrop%20%7B%0A%20%20%20%20fn%20drop(%26mut%20self)%20%7B%0A%20%20%20%20%20%20%20%20println!(%22%D0%A1%D0%B1%D1%80%D0%B0%D1%81%D1%8B%D0%B2%D0%B0%D0%B5%D0%BC!%22)%3B%0A%20%20%20%20%7D%0A%7D%0A%0Afn%20main()%20%7B%0A%20%20%20%20let%20x%20%3D%20HasDrop%3B%0A%0A%20%20%20%20%2F%2F%20%D1%81%D0%B4%D0%B5%D0%BB%D0%B0%D0%B5%D0%BC%20%D1%87%D1%82%D0%BE-%D1%82%D0%BE%0A%0A%7D%20%2F%2F%20%D1%82%D1%83%D1%82%20x%20%D0%B2%D1%8B%D1%85%D0%BE%D0%B4%D0%B8%D1%82%20%D0%B8%D0%B7%20%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D0%B8%20%D0%B2%D0%B8%D0%B4%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D0%B8%0A">Run</a></pre>
 
 <p>Когда <code>x</code> выходит из области видимости в конце <code>main()</code>, исполнится код
 реализации типажа <code>Drop</code>. У него один метод, который тоже называется <code>drop()</code>.
@@ -217,20 +217,20 @@
 тонкостей. Например, значения сбрасываются в порядке, обратном порядку их
 объявления. Вот ещё пример:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>struct</span> <span class='ident'>Firework</span> {
-    <span class='ident'>strength</span>: <span class='ident'>i32</span>,
+<pre class="rust rust-example-rendered">
+<span class="kw">struct</span> <span class="ident">Firework</span> {
+    <span class="ident">strength</span>: <span class="ident">i32</span>,
 }
 
-<span class='kw'>impl</span> <span class='ident'>Drop</span> <span class='kw'>for</span> <span class='ident'>Firework</span> {
-    <span class='kw'>fn</span> <span class='ident'>drop</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>) {
-        <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;БАБАХ силой {}!!!&quot;</span>, <span class='self'>self</span>.<span class='ident'>strength</span>);
+<span class="kw">impl</span> <span class="ident">Drop</span> <span class="kw">for</span> <span class="ident">Firework</span> {
+    <span class="kw">fn</span> <span class="ident">drop</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) {
+        <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;БАБАХ силой {}!!!&quot;</span>, <span class="self">self</span>.<span class="ident">strength</span>);
     }
 }
 
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='kw'>let</span> <span class='ident'>firecracker</span> <span class='op'>=</span> <span class='ident'>Firework</span> { <span class='ident'>strength</span>: <span class='number'>1</span> };
-    <span class='kw'>let</span> <span class='ident'>tnt</span> <span class='op'>=</span> <span class='ident'>Firework</span> { <span class='ident'>strength</span>: <span class='number'>100</span> };
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="kw">let</span> <span class="ident">firecracker</span> <span class="op">=</span> <span class="ident">Firework</span> { <span class="ident">strength</span>: <span class="number">1</span> };
+    <span class="kw">let</span> <span class="ident">tnt</span> <span class="op">=</span> <span class="ident">Firework</span> { <span class="ident">strength</span>: <span class="number">100</span> };
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=struct%20Firework%20%7B%0A%20%20%20%20strength%3A%20i32%2C%0A%7D%0A%0Aimpl%20Drop%20for%20Firework%20%7B%0A%20%20%20%20fn%20drop(%26mut%20self)%20%7B%0A%20%20%20%20%20%20%20%20println!(%22%D0%91%D0%90%D0%91%D0%90%D0%A5%20%D1%81%D0%B8%D0%BB%D0%BE%D0%B9%20%7B%7D!!!%22%2C%20self.strength)%3B%0A%20%20%20%20%7D%0A%7D%0A%0Afn%20main()%20%7B%0A%20%20%20%20let%20firecracker%20%3D%20Firework%20%7B%20strength%3A%201%20%7D%3B%0A%20%20%20%20let%20tnt%20%3D%20Firework%20%7B%20strength%3A%20100%20%7D%3B%0A%7D%0A">Run</a></pre>
 
 <p>Этот код выведет следующее:</p>

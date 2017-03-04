@@ -199,10 +199,10 @@
 обобщённый код. Стандартная библиотека Rust предоставляет тип <code>Option&lt;T&gt;</code>,
 который является обобщённым типом:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>enum</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span> {
-    <span class='prelude-val'>Some</span>(<span class='ident'>T</span>),
-    <span class='prelude-val'>None</span>,
+<pre class="rust rust-example-rendered">
+<span class="kw">enum</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
+    <span class="prelude-val">Some</span>(<span class="ident">T</span>),
+    <span class="prelude-val">None</span>,
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Aenum%20Option%3CT%3E%20%7B%0A%20%20%20%20Some(T)%2C%0A%20%20%20%20None%2C%0A%7D%0A%7D">Run</a></pre>
 
 <p>Часть <code>&lt;T&gt;</code>, которую вы раньше уже видели несколько раз, указывает, что это
@@ -211,8 +211,8 @@
 обобщении. Вот пример использования <code>Option&lt;T&gt;</code> с некоторыми дополнительными
 аннотациями типов:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>let</span> <span class='ident'>x</span>: <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>i32</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='prelude-val'>Some</span>(<span class='number'>5</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20x%3A%20Option%3Ci32%3E%20%3D%20Some(5)%3B%0A%7D">Run</a></pre>
+<pre class="rust rust-example-rendered">
+<span class="kw">let</span> <span class="ident">x</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="number">5</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20x%3A%20Option%3Ci32%3E%20%3D%20Some(5)%3B%0A%7D">Run</a></pre>
 
 <p>В определении типа мы используем <code>Option&lt;i32&gt;</code>. Обратите внимание, что это очень
 похоже на <code>Option&lt;T&gt;</code>. С той лишь разницей, что, в данном конкретном <code>Option</code>,
@@ -221,36 +221,36 @@
 обе стороны совпадают, поэтому компилятор счастлив. Если же они не совпадают, то
 мы получим ошибку:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>let</span> <span class='ident'>x</span>: <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>f64</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='prelude-val'>Some</span>(<span class='number'>5</span>);
-<span class='comment'>// error: mismatched types: expected `core::option::Option&lt;f64&gt;`,</span>
-<span class='comment'>// found `core::option::Option&lt;_&gt;` (expected f64 but found integral variable)</span><a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20x%3A%20Option%3Cf64%3E%20%3D%20Some(5)%3B%0A%2F%2F%20error%3A%20mismatched%20types%3A%20expected%20%60core%3A%3Aoption%3A%3AOption%3Cf64%3E%60%2C%0A%2F%2F%20found%20%60core%3A%3Aoption%3A%3AOption%3C_%3E%60%20(expected%20f64%20but%20found%20integral%20variable)%0A%7D">Run</a></pre>
+<pre class="rust rust-example-rendered">
+<span class="kw">let</span> <span class="ident">x</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="number">5</span>);
+<span class="comment">// error: mismatched types: expected `core::option::Option&lt;f64&gt;`,</span>
+<span class="comment">// found `core::option::Option&lt;_&gt;` (expected f64 but found integral variable)</span><a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20x%3A%20Option%3Cf64%3E%20%3D%20Some(5)%3B%0A%2F%2F%20error%3A%20mismatched%20types%3A%20expected%20%60core%3A%3Aoption%3A%3AOption%3Cf64%3E%60%2C%0A%2F%2F%20found%20%60core%3A%3Aoption%3A%3AOption%3C_%3E%60%20(expected%20f64%20but%20found%20integral%20variable)%0A%7D">Run</a></pre>
 
 <p>Но это не значит, что мы не можем сделать <code>Option&lt;T&gt;</code>, который содержит <code>f64</code>!
 Просто типы должны совпадать:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>let</span> <span class='ident'>x</span>: <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>i32</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='prelude-val'>Some</span>(<span class='number'>5</span>);
-<span class='kw'>let</span> <span class='ident'>y</span>: <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>f64</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='prelude-val'>Some</span>(<span class='number'>5.0f64</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20x%3A%20Option%3Ci32%3E%20%3D%20Some(5)%3B%0Alet%20y%3A%20Option%3Cf64%3E%20%3D%20Some(5.0f64)%3B%0A%7D">Run</a></pre>
+<pre class="rust rust-example-rendered">
+<span class="kw">let</span> <span class="ident">x</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="number">5</span>);
+<span class="kw">let</span> <span class="ident">y</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="number">5.0f64</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20x%3A%20Option%3Ci32%3E%20%3D%20Some(5)%3B%0Alet%20y%3A%20Option%3Cf64%3E%20%3D%20Some(5.0f64)%3B%0A%7D">Run</a></pre>
 
 <p>Это просто прекрасно. Одно определение — многостороннее использование.</p>
 
 <p>Обобщать можно более, чем по одному параметру. Рассмотрим другой обобщённый тип
 из стандартной библиотеки Rust — <code>Result&lt;T, E&gt;</code>:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>enum</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>T</span>, <span class='ident'>E</span><span class='op'>&gt;</span> {
-    <span class='prelude-val'>Ok</span>(<span class='ident'>T</span>),
-    <span class='prelude-val'>Err</span>(<span class='ident'>E</span>),
+<pre class="rust rust-example-rendered">
+<span class="kw">enum</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">E</span><span class="op">&gt;</span> {
+    <span class="prelude-val">Ok</span>(<span class="ident">T</span>),
+    <span class="prelude-val">Err</span>(<span class="ident">E</span>),
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Aenum%20Result%3CT%2C%20E%3E%20%7B%0A%20%20%20%20Ok(T)%2C%0A%20%20%20%20Err(E)%2C%0A%7D%0A%7D">Run</a></pre>
 
 <p>Этот тип является обобщённым сразу для <em>двух</em> типов: <code>T</code> и <code>E</code>. Кстати,
 заглавные буквы могут быть любыми. Мы могли бы определить <code>Result&lt;T, E&gt;</code> как:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>enum</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>A</span>, <span class='ident'>Z</span><span class='op'>&gt;</span> {
-    <span class='prelude-val'>Ok</span>(<span class='ident'>A</span>),
-    <span class='prelude-val'>Err</span>(<span class='ident'>Z</span>),
+<pre class="rust rust-example-rendered">
+<span class="kw">enum</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">A</span>, <span class="ident">Z</span><span class="op">&gt;</span> {
+    <span class="prelude-val">Ok</span>(<span class="ident">A</span>),
+    <span class="prelude-val">Err</span>(<span class="ident">Z</span>),
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Aenum%20Result%3CA%2C%20Z%3E%20%7B%0A%20%20%20%20Ok(A)%2C%0A%20%20%20%20Err(Z)%2C%0A%7D%0A%7D">Run</a></pre>
 
 <p>если бы захотели. Соглашение гласит, что первый обобщённый параметр для &#39;типа&#39;
@@ -264,9 +264,9 @@
 <p>Мы можем задавать функции, которые принимают обобщённые типы, с помощью
 аналогичного синтаксиса:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span> <span class='ident'>takes_anything</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span>(<span class='ident'>x</span>: <span class='ident'>T</span>) {
-    <span class='comment'>// делаем что-то с x</span>
+<pre class="rust rust-example-rendered">
+<span class="kw">fn</span> <span class="ident">takes_anything</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">x</span>: <span class="ident">T</span>) {
+    <span class="comment">// делаем что-то с x</span>
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20takes_anything%3CT%3E(x%3A%20T)%20%7B%0A%20%20%20%20%2F%2F%20%D0%B4%D0%B5%D0%BB%D0%B0%D0%B5%D0%BC%20%D1%87%D1%82%D0%BE-%D1%82%D0%BE%20%D1%81%20x%0A%7D%0A%7D">Run</a></pre>
 
 <p>Синтаксис состоит из двух частей: <code>&lt;T&gt;</code> говорит о том, что «эта функция является
@@ -274,16 +274,16 @@
 
 <p>Несколько аргументов могут иметь один и тот же обобщённый тип:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span> <span class='ident'>takes_two_of_the_same_things</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span>(<span class='ident'>x</span>: <span class='ident'>T</span>, <span class='ident'>y</span>: <span class='ident'>T</span>) {
-    <span class='comment'>// ...</span>
+<pre class="rust rust-example-rendered">
+<span class="kw">fn</span> <span class="ident">takes_two_of_the_same_things</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">x</span>: <span class="ident">T</span>, <span class="ident">y</span>: <span class="ident">T</span>) {
+    <span class="comment">// ...</span>
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20takes_two_of_the_same_things%3CT%3E(x%3A%20T%2C%20y%3A%20T)%20%7B%0A%20%20%20%20%2F%2F%20...%0A%7D%0A%7D">Run</a></pre>
 
 <p>Мы можем написать версию, которая принимает несколько типов:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span> <span class='ident'>takes_two_things</span><span class='op'>&lt;</span><span class='ident'>T</span>, <span class='ident'>U</span><span class='op'>&gt;</span>(<span class='ident'>x</span>: <span class='ident'>T</span>, <span class='ident'>y</span>: <span class='ident'>U</span>) {
-    <span class='comment'>// ...</span>
+<pre class="rust rust-example-rendered">
+<span class="kw">fn</span> <span class="ident">takes_two_things</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">U</span><span class="op">&gt;</span>(<span class="ident">x</span>: <span class="ident">T</span>, <span class="ident">y</span>: <span class="ident">U</span>) {
+    <span class="comment">// ...</span>
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20takes_two_things%3CT%2C%20U%3E(x%3A%20T%2C%20y%3A%20U)%20%7B%0A%20%20%20%20%2F%2F%20...%0A%7D%0A%7D">Run</a></pre>
 
 <p>Обобщённые функции наиболее полезны в связке с «ограничениями по типажам», о
@@ -292,14 +292,14 @@
 <h2 id='Обобщённые-структуры' class='section-header'><a href='#Обобщённые-структуры'>Обобщённые структуры</a></h2>
 <p>Вы также можете задать обобщённый тип для <code>struct</code>:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>struct</span> <span class='ident'>Point</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span> {
-    <span class='ident'>x</span>: <span class='ident'>T</span>,
-    <span class='ident'>y</span>: <span class='ident'>T</span>,
+<pre class="rust rust-example-rendered">
+<span class="kw">struct</span> <span class="ident">Point</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
+    <span class="ident">x</span>: <span class="ident">T</span>,
+    <span class="ident">y</span>: <span class="ident">T</span>,
 }
 
-<span class='kw'>let</span> <span class='ident'>int_origin</span> <span class='op'>=</span> <span class='ident'>Point</span> { <span class='ident'>x</span>: <span class='number'>0</span>, <span class='ident'>y</span>: <span class='number'>0</span> };
-<span class='kw'>let</span> <span class='ident'>float_origin</span> <span class='op'>=</span> <span class='ident'>Point</span> { <span class='ident'>x</span>: <span class='number'>0.0</span>, <span class='ident'>y</span>: <span class='number'>0.0</span> };<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Astruct%20Point%3CT%3E%20%7B%0A%20%20%20%20x%3A%20T%2C%0A%20%20%20%20y%3A%20T%2C%0A%7D%0A%0Alet%20int_origin%20%3D%20Point%20%7B%20x%3A%200%2C%20y%3A%200%20%7D%3B%0Alet%20float_origin%20%3D%20Point%20%7B%20x%3A%200.0%2C%20y%3A%200.0%20%7D%3B%0A%7D">Run</a></pre>
+<span class="kw">let</span> <span class="ident">int_origin</span> <span class="op">=</span> <span class="ident">Point</span> { <span class="ident">x</span>: <span class="number">0</span>, <span class="ident">y</span>: <span class="number">0</span> };
+<span class="kw">let</span> <span class="ident">float_origin</span> <span class="op">=</span> <span class="ident">Point</span> { <span class="ident">x</span>: <span class="number">0.0</span>, <span class="ident">y</span>: <span class="number">0.0</span> };<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Astruct%20Point%3CT%3E%20%7B%0A%20%20%20%20x%3A%20T%2C%0A%20%20%20%20y%3A%20T%2C%0A%7D%0A%0Alet%20int_origin%20%3D%20Point%20%7B%20x%3A%200%2C%20y%3A%200%20%7D%3B%0Alet%20float_origin%20%3D%20Point%20%7B%20x%3A%200.0%2C%20y%3A%200.0%20%7D%3B%0A%7D">Run</a></pre>
 
 <p>Аналогично функциям, мы также объявляем обобщённые параметры в <code>&lt;T&gt;</code>, а затем
 используем их в объявлении типа <code>x: T</code>.</p>

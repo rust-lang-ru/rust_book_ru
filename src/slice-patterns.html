@@ -192,15 +192,15 @@
 массив, то вы можете использовать <code>&amp;</code> и активировать возможность
 <code>slice_patterns</code>:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>feature</span>(<span class='ident'>slice_patterns</span>)]</span>
+<pre class="rust rust-example-rendered">
+<span class="attribute">#<span class="op">!</span>[<span class="ident">feature</span>(<span class="ident">slice_patterns</span>)]</span>
 
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='kw'>let</span> <span class='ident'>v</span> <span class='op'>=</span> <span class='macro'>vec</span><span class='macro'>!</span>[<span class='string'>&quot;match_this&quot;</span>, <span class='string'>&quot;1&quot;</span>];
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="kw">let</span> <span class="ident">v</span> <span class="op">=</span> <span class="macro">vec</span><span class="macro">!</span>[<span class="string">&quot;match_this&quot;</span>, <span class="string">&quot;1&quot;</span>];
 
-    <span class='kw'>match</span> <span class='kw-2'>&amp;</span><span class='ident'>v</span>[..] {
-        [<span class='string'>&quot;match_this&quot;</span>, <span class='ident'>second</span>] <span class='op'>=&gt;</span> <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;The second element is {}&quot;</span>, <span class='ident'>second</span>),
-        _ <span class='op'>=&gt;</span> {},
+    <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="ident">v</span>[..] {
+        [<span class="string">&quot;match_this&quot;</span>, <span class="ident">second</span>] <span class="op">=&gt;</span> <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;The second element is {}&quot;</span>, <span class="ident">second</span>),
+        _ <span class="op">=&gt;</span> {},
     }
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=%23!%5Bfeature(slice_patterns)%5D%0A%0Afn%20main()%20%7B%0A%20%20%20%20let%20v%20%3D%20vec!%5B%22match_this%22%2C%20%221%22%5D%3B%0A%0A%20%20%20%20match%20%26v%5B..%5D%20%7B%0A%20%20%20%20%20%20%20%20%5B%22match_this%22%2C%20second%5D%20%3D%3E%20println!(%22The%20second%20element%20is%20%7B%7D%22%2C%20second)%2C%0A%20%20%20%20%20%20%20%20_%20%3D%3E%20%7B%7D%2C%0A%20%20%20%20%7D%0A%7D%0A&amp;version=nightly">Run</a></pre>
 
@@ -209,23 +209,23 @@
 использовать в массиве один раз. Если перед <code>..</code> есть идентификатор, результат
 среза будет связан с этим именем. Например:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>feature</span>(<span class='ident'>advanced_slice_patterns</span>, <span class='ident'>slice_patterns</span>)]</span>
+<pre class="rust rust-example-rendered">
+<span class="attribute">#<span class="op">!</span>[<span class="ident">feature</span>(<span class="ident">advanced_slice_patterns</span>, <span class="ident">slice_patterns</span>)]</span>
 
-<span class='kw'>fn</span> <span class='ident'>is_symmetric</span>(<span class='ident'>list</span>: <span class='kw-2'>&amp;</span>[<span class='ident'>u32</span>]) <span class='op'>-&gt;</span> <span class='ident'>bool</span> {
-    <span class='kw'>match</span> <span class='ident'>list</span> {
-        [] <span class='op'>|</span> [_] <span class='op'>=&gt;</span> <span class='bool-val'>true</span>,
-        [<span class='ident'>x</span>, <span class='ident'>inside</span>.., <span class='ident'>y</span>] <span class='kw'>if</span> <span class='ident'>x</span> <span class='op'>==</span> <span class='ident'>y</span> <span class='op'>=&gt;</span> <span class='ident'>is_symmetric</span>(<span class='ident'>inside</span>),
-        _ <span class='op'>=&gt;</span> <span class='bool-val'>false</span>
+<span class="kw">fn</span> <span class="ident">is_symmetric</span>(<span class="ident">list</span>: <span class="kw-2">&amp;</span>[<span class="ident">u32</span>]) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">match</span> <span class="ident">list</span> {
+        [] <span class="op">|</span> [_] <span class="op">=&gt;</span> <span class="bool-val">true</span>,
+        [<span class="ident">x</span>, <span class="ident">inside</span>.., <span class="ident">y</span>] <span class="kw">if</span> <span class="ident">x</span> <span class="op">==</span> <span class="ident">y</span> <span class="op">=&gt;</span> <span class="ident">is_symmetric</span>(<span class="ident">inside</span>),
+        _ <span class="op">=&gt;</span> <span class="bool-val">false</span>
     }
 }
 
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='kw'>let</span> <span class='ident'>sym</span> <span class='op'>=</span> <span class='kw-2'>&amp;</span>[<span class='number'>0</span>, <span class='number'>1</span>, <span class='number'>4</span>, <span class='number'>2</span>, <span class='number'>4</span>, <span class='number'>1</span>, <span class='number'>0</span>];
-    <span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>is_symmetric</span>(<span class='ident'>sym</span>));
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="kw">let</span> <span class="ident">sym</span> <span class="op">=</span> <span class="kw-2">&amp;</span>[<span class="number">0</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">0</span>];
+    <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">is_symmetric</span>(<span class="ident">sym</span>));
 
-    <span class='kw'>let</span> <span class='ident'>not_sym</span> <span class='op'>=</span> <span class='kw-2'>&amp;</span>[<span class='number'>0</span>, <span class='number'>1</span>, <span class='number'>7</span>, <span class='number'>2</span>, <span class='number'>4</span>, <span class='number'>1</span>, <span class='number'>0</span>];
-    <span class='macro'>assert</span><span class='macro'>!</span>(<span class='op'>!</span><span class='ident'>is_symmetric</span>(<span class='ident'>not_sym</span>));
+    <span class="kw">let</span> <span class="ident">not_sym</span> <span class="op">=</span> <span class="kw-2">&amp;</span>[<span class="number">0</span>, <span class="number">1</span>, <span class="number">7</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">0</span>];
+    <span class="macro">assert</span><span class="macro">!</span>(<span class="op">!</span><span class="ident">is_symmetric</span>(<span class="ident">not_sym</span>));
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=%23!%5Bfeature(advanced_slice_patterns%2C%20slice_patterns)%5D%0A%0Afn%20is_symmetric(list%3A%20%26%5Bu32%5D)%20-%3E%20bool%20%7B%0A%20%20%20%20match%20list%20%7B%0A%20%20%20%20%20%20%20%20%5B%5D%20%7C%20%5B_%5D%20%3D%3E%20true%2C%0A%20%20%20%20%20%20%20%20%5Bx%2C%20inside..%2C%20y%5D%20if%20x%20%3D%3D%20y%20%3D%3E%20is_symmetric(inside)%2C%0A%20%20%20%20%20%20%20%20_%20%3D%3E%20false%0A%20%20%20%20%7D%0A%7D%0A%0Afn%20main()%20%7B%0A%20%20%20%20let%20sym%20%3D%20%26%5B0%2C%201%2C%204%2C%202%2C%204%2C%201%2C%200%5D%3B%0A%20%20%20%20assert!(is_symmetric(sym))%3B%0A%0A%20%20%20%20let%20not_sym%20%3D%20%26%5B0%2C%201%2C%207%2C%202%2C%204%2C%201%2C%200%5D%3B%0A%20%20%20%20assert!(!is_symmetric(not_sym))%3B%0A%7D%0A&amp;version=nightly">Run</a></pre>
 
     <script src='../rustbook.js'></script>

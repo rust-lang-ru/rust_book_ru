@@ -259,20 +259,20 @@ $ cd phrases
 <p>Для объявления каждого из наших модулей, мы используем ключевое слово <code>mod</code>.
 Давайте сделаем, чтобы наш <code>src/lib.rs</code> выглядел следующим образом:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>mod</span> <span class='ident'>english</span> {
-    <span class='kw'>mod</span> <span class='ident'>greetings</span> {
+<pre class="rust rust-example-rendered">
+<span class="kw">mod</span> <span class="ident">english</span> {
+    <span class="kw">mod</span> <span class="ident">greetings</span> {
     }
 
-    <span class='kw'>mod</span> <span class='ident'>farewells</span> {
+    <span class="kw">mod</span> <span class="ident">farewells</span> {
     }
 }
 
-<span class='kw'>mod</span> <span class='ident'>japanese</span> {
-    <span class='kw'>mod</span> <span class='ident'>greetings</span> {
+<span class="kw">mod</span> <span class="ident">japanese</span> {
+    <span class="kw">mod</span> <span class="ident">greetings</span> {
     }
 
-    <span class='kw'>mod</span> <span class='ident'>farewells</span> {
+    <span class="kw">mod</span> <span class="ident">farewells</span> {
     }
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Amod%20english%20%7B%0A%20%20%20%20mod%20greetings%20%7B%0A%20%20%20%20%7D%0A%0A%20%20%20%20mod%20farewells%20%7B%0A%20%20%20%20%7D%0A%7D%0A%0Amod%20japanese%20%7B%0A%20%20%20%20mod%20greetings%20%7B%0A%20%20%20%20%7D%0A%0A%20%20%20%20mod%20farewells%20%7B%0A%20%20%20%20%7D%0A%7D%0A%7D">Run</a></pre>
 
@@ -308,15 +308,15 @@ Rust поддерживает это двумя способами.</p>
 
 <p>Вместо объявления модуля наподобие:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>mod</span> <span class='ident'>english</span> {
-    <span class='comment'>// contents of our module go here</span>
+<pre class="rust rust-example-rendered">
+<span class="kw">mod</span> <span class="ident">english</span> {
+    <span class="comment">// contents of our module go here</span>
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Amod%20english%20%7B%0A%20%20%20%20%2F%2F%20contents%20of%20our%20module%20go%20here%0A%7D%0A%7D">Run</a></pre>
 
 <p>Мы можем объявить наш модуль в виде:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>mod</span> <span class='ident'>english</span>;<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Amod%20english%3B%0A%7D">Run</a></pre>
+<pre class="rust rust-example-rendered">
+<span class="kw">mod</span> <span class="ident">english</span>;<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Amod%20english%3B%0A%7D">Run</a></pre>
 
 <p>Если мы это сделаем, то Rust будет ожидать, что найдет либо файл <code>english.rs</code>,
 либо файл <code>english/mod.rs</code> с содержимым нашего модуля.</p>
@@ -352,9 +352,9 @@ Rust поддерживает это двумя способами.</p>
 
 <p><code>src/lib.rs</code> — корень нашего контейнера, и выглядит он следующим образом:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>mod</span> <span class='ident'>english</span>;
-<span class='kw'>mod</span> <span class='ident'>japanese</span>;<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Amod%20english%3B%0Amod%20japanese%3B%0A%7D">Run</a></pre>
+<pre class="rust rust-example-rendered">
+<span class="kw">mod</span> <span class="ident">english</span>;
+<span class="kw">mod</span> <span class="ident">japanese</span>;<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Amod%20english%3B%0Amod%20japanese%3B%0A%7D">Run</a></pre>
 
 <p>Эти два объявления информируют Rust, что следует искать: <code>src/english.rs</code> или
 <code>src/english/mod.rs</code>, <code>src/japanese.rs</code> или <code>src/japanese/mod.rs</code>, в зависимости
@@ -362,9 +362,9 @@ Rust поддерживает это двумя способами.</p>
 наши модули содержат суб-модули. И <code>src/english/mod.rs</code> и <code>src/japanese/mod.rs</code>
 выглядят следующим образом:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>mod</span> <span class='ident'>greetings</span>;
-<span class='kw'>mod</span> <span class='ident'>farewells</span>;<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Amod%20greetings%3B%0Amod%20farewells%3B%0A%7D">Run</a></pre>
+<pre class="rust rust-example-rendered">
+<span class="kw">mod</span> <span class="ident">greetings</span>;
+<span class="kw">mod</span> <span class="ident">farewells</span>;<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Amod%20greetings%3B%0Amod%20farewells%3B%0A%7D">Run</a></pre>
 
 <p>В свою очередь, эти объявления информируют Rust, что следует искать:
 <code>src/english/greetings.rs</code>, <code>src/japanese/greetings.rs</code>,
@@ -379,23 +379,23 @@ Rust поддерживает это двумя способами.</p>
 
 <p>Поместите следующий код в <code>src/english/greetings.rs</code>:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span> <span class='ident'>hello</span>() <span class='op'>-&gt;</span> <span class='ident'>String</span> {
-    <span class='string'>&quot;Hello!&quot;</span>.<span class='ident'>to_string</span>()
+<pre class="rust rust-example-rendered">
+<span class="kw">fn</span> <span class="ident">hello</span>() <span class="op">-&gt;</span> <span class="ident">String</span> {
+    <span class="string">&quot;Hello!&quot;</span>.<span class="ident">to_string</span>()
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20hello()%20-%3E%20String%20%7B%0A%20%20%20%20%22Hello!%22.to_string()%0A%7D%0A%7D">Run</a></pre>
 
 <p>Следующий код в <code>src/english/farewells.rs</code>:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span> <span class='ident'>goodbye</span>() <span class='op'>-&gt;</span> <span class='ident'>String</span> {
-    <span class='string'>&quot;Goodbye.&quot;</span>.<span class='ident'>to_string</span>()
+<pre class="rust rust-example-rendered">
+<span class="kw">fn</span> <span class="ident">goodbye</span>() <span class="op">-&gt;</span> <span class="ident">String</span> {
+    <span class="string">&quot;Goodbye.&quot;</span>.<span class="ident">to_string</span>()
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20goodbye()%20-%3E%20String%20%7B%0A%20%20%20%20%22Goodbye.%22.to_string()%0A%7D%0A%7D">Run</a></pre>
 
 <p>Следующий код в <code>src/japanese/greetings.rs</code>:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span> <span class='ident'>hello</span>() <span class='op'>-&gt;</span> <span class='ident'>String</span> {
-    <span class='string'>&quot;こんにちは&quot;</span>.<span class='ident'>to_string</span>()
+<pre class="rust rust-example-rendered">
+<span class="kw">fn</span> <span class="ident">hello</span>() <span class="op">-&gt;</span> <span class="ident">String</span> {
+    <span class="string">&quot;こんにちは&quot;</span>.<span class="ident">to_string</span>()
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20hello()%20-%3E%20String%20%7B%0A%20%20%20%20%22%E3%81%93%E3%82%93%E3%81%AB%E3%81%A1%E3%81%AF%22.to_string()%0A%7D%0A%7D">Run</a></pre>
 
 <p>Конечно, вы можете скопировать и вставить этот код с этой страницы, или просто
@@ -404,9 +404,9 @@ Rust поддерживает это двумя способами.</p>
 
 <p>Поместите следующий код в <code>src/japanese/farewells.rs</code>:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span> <span class='ident'>goodbye</span>() <span class='op'>-&gt;</span> <span class='ident'>String</span> {
-    <span class='string'>&quot;さようなら&quot;</span>.<span class='ident'>to_string</span>()
+<pre class="rust rust-example-rendered">
+<span class="kw">fn</span> <span class="ident">goodbye</span>() <span class="op">-&gt;</span> <span class="ident">String</span> {
+    <span class="string">&quot;さようなら&quot;</span>.<span class="ident">to_string</span>()
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20goodbye()%20-%3E%20String%20%7B%0A%20%20%20%20%22%E3%81%95%E3%82%88%E3%81%86%E3%81%AA%E3%82%89%22.to_string()%0A%7D%0A%7D">Run</a></pre>
 
 <p>(Это «Sayonara», если вам интересно.)</p>
@@ -421,15 +421,15 @@ Rust поддерживает это двумя способами.</p>
 <p>Создайте файл <code>src/main.rs</code> и положите в него следующее: (при этом он не будет
 компилироваться)</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>phrases</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">phrases</span>;
 
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Hello in English: {}&quot;</span>, <span class='ident'>phrases</span>::<span class='ident'>english</span>::<span class='ident'>greetings</span>::<span class='ident'>hello</span>());
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Goodbye in English: {}&quot;</span>, <span class='ident'>phrases</span>::<span class='ident'>english</span>::<span class='ident'>farewells</span>::<span class='ident'>goodbye</span>());
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;Hello in English: {}&quot;</span>, <span class="ident">phrases</span>::<span class="ident">english</span>::<span class="ident">greetings</span>::<span class="ident">hello</span>());
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;Goodbye in English: {}&quot;</span>, <span class="ident">phrases</span>::<span class="ident">english</span>::<span class="ident">farewells</span>::<span class="ident">goodbye</span>());
 
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Hello in Japanese: {}&quot;</span>, <span class='ident'>phrases</span>::<span class='ident'>japanese</span>::<span class='ident'>greetings</span>::<span class='ident'>hello</span>());
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Goodbye in Japanese: {}&quot;</span>, <span class='ident'>phrases</span>::<span class='ident'>japanese</span>::<span class='ident'>farewells</span>::<span class='ident'>goodbye</span>());
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;Hello in Japanese: {}&quot;</span>, <span class="ident">phrases</span>::<span class="ident">japanese</span>::<span class="ident">greetings</span>::<span class="ident">hello</span>());
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;Goodbye in Japanese: {}&quot;</span>, <span class="ident">phrases</span>::<span class="ident">japanese</span>::<span class="ident">farewells</span>::<span class="ident">goodbye</span>());
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=extern%20crate%20phrases%3B%0A%0Afn%20main()%20%7B%0A%20%20%20%20println!(%22Hello%20in%20English%3A%20%7B%7D%22%2C%20phrases%3A%3Aenglish%3A%3Agreetings%3A%3Ahello())%3B%0A%20%20%20%20println!(%22Goodbye%20in%20English%3A%20%7B%7D%22%2C%20phrases%3A%3Aenglish%3A%3Afarewells%3A%3Agoodbye())%3B%0A%0A%20%20%20%20println!(%22Hello%20in%20Japanese%3A%20%7B%7D%22%2C%20phrases%3A%3Ajapanese%3A%3Agreetings%3A%3Ahello())%3B%0A%20%20%20%20println!(%22Goodbye%20in%20Japanese%3A%20%7B%7D%22%2C%20phrases%3A%3Ajapanese%3A%3Afarewells%3A%3Agoodbye())%3B%0A%7D%0A">Run</a></pre>
 
 <p>Объявление <code>extern crate</code> информирует Rust о том, что для компиляции и компоновки
@@ -472,40 +472,40 @@ phrases/src/main.rs:4:5: 4:76 note: expansion site
 сначала сосредоточимся на модуле <code>english</code>, для чего сократим файл <code>src/main.rs</code>
 до этого:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>phrases</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">phrases</span>;
 
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Hello in English: {}&quot;</span>, <span class='ident'>phrases</span>::<span class='ident'>english</span>::<span class='ident'>greetings</span>::<span class='ident'>hello</span>());
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Goodbye in English: {}&quot;</span>, <span class='ident'>phrases</span>::<span class='ident'>english</span>::<span class='ident'>farewells</span>::<span class='ident'>goodbye</span>());
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;Hello in English: {}&quot;</span>, <span class="ident">phrases</span>::<span class="ident">english</span>::<span class="ident">greetings</span>::<span class="ident">hello</span>());
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;Goodbye in English: {}&quot;</span>, <span class="ident">phrases</span>::<span class="ident">english</span>::<span class="ident">farewells</span>::<span class="ident">goodbye</span>());
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=extern%20crate%20phrases%3B%0A%0Afn%20main()%20%7B%0A%20%20%20%20println!(%22Hello%20in%20English%3A%20%7B%7D%22%2C%20phrases%3A%3Aenglish%3A%3Agreetings%3A%3Ahello())%3B%0A%20%20%20%20println!(%22Goodbye%20in%20English%3A%20%7B%7D%22%2C%20phrases%3A%3Aenglish%3A%3Afarewells%3A%3Agoodbye())%3B%0A%7D%0A">Run</a></pre>
 
 <p>В файле <code>src/lib.rs</code> в объявлении модуля <code>english</code> давайте добавим модификатор
 <code>pub</code>:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>english</span>;
-<span class='kw'>mod</span> <span class='ident'>japanese</span>;<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Apub%20mod%20english%3B%0Amod%20japanese%3B%0A%7D">Run</a></pre>
+<pre class="rust rust-example-rendered">
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">english</span>;
+<span class="kw">mod</span> <span class="ident">japanese</span>;<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Apub%20mod%20english%3B%0Amod%20japanese%3B%0A%7D">Run</a></pre>
 
 <p>В файле <code>src/english/mod.rs</code> давайте сделаем оба модуля с модификатором <code>pub</code>:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>greetings</span>;
-<span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>farewells</span>;<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Apub%20mod%20greetings%3B%0Apub%20mod%20farewells%3B%0A%7D">Run</a></pre>
+<pre class="rust rust-example-rendered">
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">greetings</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">farewells</span>;<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Apub%20mod%20greetings%3B%0Apub%20mod%20farewells%3B%0A%7D">Run</a></pre>
 
 <p>В файле <code>src/english/greetings.rs</code> давайте добавим модификатор <code>pub</code> к
 объявлению нашей функции <code>fn</code>:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>hello</span>() <span class='op'>-&gt;</span> <span class='ident'>String</span> {
-    <span class='string'>&quot;Hello!&quot;</span>.<span class='ident'>to_string</span>()
+<pre class="rust rust-example-rendered">
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">hello</span>() <span class="op">-&gt;</span> <span class="ident">String</span> {
+    <span class="string">&quot;Hello!&quot;</span>.<span class="ident">to_string</span>()
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Apub%20fn%20hello()%20-%3E%20String%20%7B%0A%20%20%20%20%22Hello!%22.to_string()%0A%7D%0A%7D">Run</a></pre>
 
 <p>А также в файле <code>src/english/farewells.rs</code>:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>goodbye</span>() <span class='op'>-&gt;</span> <span class='ident'>String</span> {
-    <span class='string'>&quot;Goodbye.&quot;</span>.<span class='ident'>to_string</span>()
+<pre class="rust rust-example-rendered">
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">goodbye</span>() <span class="op">-&gt;</span> <span class="ident">String</span> {
+    <span class="string">&quot;Goodbye.&quot;</span>.<span class="ident">to_string</span>()
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Apub%20fn%20goodbye()%20-%3E%20String%20%7B%0A%20%20%20%20%22Goodbye.%22.to_string()%0A%7D%0A%7D">Run</a></pre>
 
 <p>Теперь наши контейнеры компилируются, хотя и с предупреждениями о том, что
@@ -537,15 +537,15 @@ Goodbye in English: Goodbye.
 нашу локальную область видимости. Давайте изменим файл <code>src/main.rs</code>, чтобы он
 выглядел следующим образом:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>phrases</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">phrases</span>;
 
-<span class='kw'>use</span> <span class='ident'>phrases</span>::<span class='ident'>english</span>::<span class='ident'>greetings</span>;
-<span class='kw'>use</span> <span class='ident'>phrases</span>::<span class='ident'>english</span>::<span class='ident'>farewells</span>;
+<span class="kw">use</span> <span class="ident">phrases</span>::<span class="ident">english</span>::<span class="ident">greetings</span>;
+<span class="kw">use</span> <span class="ident">phrases</span>::<span class="ident">english</span>::<span class="ident">farewells</span>;
 
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Hello in English: {}&quot;</span>, <span class='ident'>greetings</span>::<span class='ident'>hello</span>());
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Goodbye in English: {}&quot;</span>, <span class='ident'>farewells</span>::<span class='ident'>goodbye</span>());
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;Hello in English: {}&quot;</span>, <span class="ident">greetings</span>::<span class="ident">hello</span>());
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;Goodbye in English: {}&quot;</span>, <span class="ident">farewells</span>::<span class="ident">goodbye</span>());
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=extern%20crate%20phrases%3B%0A%0Ause%20phrases%3A%3Aenglish%3A%3Agreetings%3B%0Ause%20phrases%3A%3Aenglish%3A%3Afarewells%3B%0A%0Afn%20main()%20%7B%0A%20%20%20%20println!(%22Hello%20in%20English%3A%20%7B%7D%22%2C%20greetings%3A%3Ahello())%3B%0A%20%20%20%20println!(%22Goodbye%20in%20English%3A%20%7B%7D%22%2C%20farewells%3A%3Agoodbye())%3B%0A%7D%0A">Run</a></pre>
 
 <p>Две строки, начинающиеся с <code>use</code>, импортируют соответствующие модули в локальную
@@ -554,15 +554,15 @@ Goodbye in English: Goodbye.
 импортировать модуль, а не функцию непосредственно. Другими словами, вы <em>могли
 бы</em> сделать следующее:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>phrases</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">phrases</span>;
 
-<span class='kw'>use</span> <span class='ident'>phrases</span>::<span class='ident'>english</span>::<span class='ident'>greetings</span>::<span class='ident'>hello</span>;
-<span class='kw'>use</span> <span class='ident'>phrases</span>::<span class='ident'>english</span>::<span class='ident'>farewells</span>::<span class='ident'>goodbye</span>;
+<span class="kw">use</span> <span class="ident">phrases</span>::<span class="ident">english</span>::<span class="ident">greetings</span>::<span class="ident">hello</span>;
+<span class="kw">use</span> <span class="ident">phrases</span>::<span class="ident">english</span>::<span class="ident">farewells</span>::<span class="ident">goodbye</span>;
 
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Hello in English: {}&quot;</span>, <span class='ident'>hello</span>());
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Goodbye in English: {}&quot;</span>, <span class='ident'>goodbye</span>());
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;Hello in English: {}&quot;</span>, <span class="ident">hello</span>());
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;Goodbye in English: {}&quot;</span>, <span class="ident">goodbye</span>());
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=extern%20crate%20phrases%3B%0A%0Ause%20phrases%3A%3Aenglish%3A%3Agreetings%3A%3Ahello%3B%0Ause%20phrases%3A%3Aenglish%3A%3Afarewells%3A%3Agoodbye%3B%0A%0Afn%20main()%20%7B%0A%20%20%20%20println!(%22Hello%20in%20English%3A%20%7B%7D%22%2C%20hello())%3B%0A%20%20%20%20println!(%22Goodbye%20in%20English%3A%20%7B%7D%22%2C%20goodbye())%3B%0A%7D%0A">Run</a></pre>
 
 <p>Но такой подход не является идиоматическим. Он значительно чаще приводит к
@@ -571,15 +571,15 @@ Goodbye in English: Goodbye.
 имен, то Rust выдает ошибку компиляции. Например, если мы сделаем функции
 <code>japanese</code> публичными, и пытаемся скомпилировать этот код:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>phrases</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">phrases</span>;
 
-<span class='kw'>use</span> <span class='ident'>phrases</span>::<span class='ident'>english</span>::<span class='ident'>greetings</span>::<span class='ident'>hello</span>;
-<span class='kw'>use</span> <span class='ident'>phrases</span>::<span class='ident'>japanese</span>::<span class='ident'>greetings</span>::<span class='ident'>hello</span>;
+<span class="kw">use</span> <span class="ident">phrases</span>::<span class="ident">english</span>::<span class="ident">greetings</span>::<span class="ident">hello</span>;
+<span class="kw">use</span> <span class="ident">phrases</span>::<span class="ident">japanese</span>::<span class="ident">greetings</span>::<span class="ident">hello</span>;
 
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Hello in English: {}&quot;</span>, <span class='ident'>hello</span>());
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Hello in Japanese: {}&quot;</span>, <span class='ident'>hello</span>());
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;Hello in English: {}&quot;</span>, <span class="ident">hello</span>());
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;Hello in Japanese: {}&quot;</span>, <span class="ident">hello</span>());
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=extern%20crate%20phrases%3B%0A%0Ause%20phrases%3A%3Aenglish%3A%3Agreetings%3A%3Ahello%3B%0Ause%20phrases%3A%3Ajapanese%3A%3Agreetings%3A%3Ahello%3B%0A%0Afn%20main()%20%7B%0A%20%20%20%20println!(%22Hello%20in%20English%3A%20%7B%7D%22%2C%20hello())%3B%0A%20%20%20%20println!(%22Hello%20in%20Japanese%3A%20%7B%7D%22%2C%20hello())%3B%0A%7D%0A">Run</a></pre>
 
 <p>Rust выдаст нам сообщение об ошибке во время компиляции:</p>
@@ -595,14 +595,14 @@ Could not compile `phrases`.
 <p>Если мы импортируем несколько имен из одного модуля, то нам совсем не
 обязательно писать одно и то же много раз. Вместо этого кода:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>use</span> <span class='ident'>phrases</span>::<span class='ident'>english</span>::<span class='ident'>greetings</span>;
-<span class='kw'>use</span> <span class='ident'>phrases</span>::<span class='ident'>english</span>::<span class='ident'>farewells</span>;<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Ause%20phrases%3A%3Aenglish%3A%3Agreetings%3B%0Ause%20phrases%3A%3Aenglish%3A%3Afarewells%3B%0A%7D">Run</a></pre>
+<pre class="rust rust-example-rendered">
+<span class="kw">use</span> <span class="ident">phrases</span>::<span class="ident">english</span>::<span class="ident">greetings</span>;
+<span class="kw">use</span> <span class="ident">phrases</span>::<span class="ident">english</span>::<span class="ident">farewells</span>;<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Ause%20phrases%3A%3Aenglish%3A%3Agreetings%3B%0Ause%20phrases%3A%3Aenglish%3A%3Afarewells%3B%0A%7D">Run</a></pre>
 
 <p>Вы можете использовать сокращение:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>use</span> <span class='ident'>phrases</span>::<span class='ident'>english</span>::{<span class='ident'>greetings</span>, <span class='ident'>farewells</span>};<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Ause%20phrases%3A%3Aenglish%3A%3A%7Bgreetings%2C%20farewells%7D%3B%0A%7D">Run</a></pre>
+<pre class="rust rust-example-rendered">
+<span class="kw">use</span> <span class="ident">phrases</span>::<span class="ident">english</span>::{<span class="ident">greetings</span>, <span class="ident">farewells</span>};<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Ause%20phrases%3A%3Aenglish%3A%3A%7Bgreetings%2C%20farewells%7D%3B%0A%7D">Run</a></pre>
 
 <h2 id='Реэкспорт-с-помощью-pub-use' class='section-header'><a href='#Реэкспорт-с-помощью-pub-use'>Реэкспорт с помощью <code>pub use</code></a></h2>
 <p>Вы можете использовать <code>use</code> не просто для сокращения идентификаторов. Вы также
@@ -612,49 +612,49 @@ Could not compile `phrases`.
 
 <p>Давайте посмотрим на примере. Измените файл <code>src/main.rs</code> следующим образом:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>phrases</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">phrases</span>;
 
-<span class='kw'>use</span> <span class='ident'>phrases</span>::<span class='ident'>english</span>::{<span class='ident'>greetings</span>,<span class='ident'>farewells</span>};
-<span class='kw'>use</span> <span class='ident'>phrases</span>::<span class='ident'>japanese</span>;
+<span class="kw">use</span> <span class="ident">phrases</span>::<span class="ident">english</span>::{<span class="ident">greetings</span>,<span class="ident">farewells</span>};
+<span class="kw">use</span> <span class="ident">phrases</span>::<span class="ident">japanese</span>;
 
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Hello in English: {}&quot;</span>, <span class='ident'>greetings</span>::<span class='ident'>hello</span>());
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Goodbye in English: {}&quot;</span>, <span class='ident'>farewells</span>::<span class='ident'>goodbye</span>());
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;Hello in English: {}&quot;</span>, <span class="ident">greetings</span>::<span class="ident">hello</span>());
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;Goodbye in English: {}&quot;</span>, <span class="ident">farewells</span>::<span class="ident">goodbye</span>());
 
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Hello in Japanese: {}&quot;</span>, <span class='ident'>japanese</span>::<span class='ident'>hello</span>());
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Goodbye in Japanese: {}&quot;</span>, <span class='ident'>japanese</span>::<span class='ident'>goodbye</span>());
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;Hello in Japanese: {}&quot;</span>, <span class="ident">japanese</span>::<span class="ident">hello</span>());
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;Goodbye in Japanese: {}&quot;</span>, <span class="ident">japanese</span>::<span class="ident">goodbye</span>());
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=extern%20crate%20phrases%3B%0A%0Ause%20phrases%3A%3Aenglish%3A%3A%7Bgreetings%2Cfarewells%7D%3B%0Ause%20phrases%3A%3Ajapanese%3B%0A%0Afn%20main()%20%7B%0A%20%20%20%20println!(%22Hello%20in%20English%3A%20%7B%7D%22%2C%20greetings%3A%3Ahello())%3B%0A%20%20%20%20println!(%22Goodbye%20in%20English%3A%20%7B%7D%22%2C%20farewells%3A%3Agoodbye())%3B%0A%0A%20%20%20%20println!(%22Hello%20in%20Japanese%3A%20%7B%7D%22%2C%20japanese%3A%3Ahello())%3B%0A%20%20%20%20println!(%22Goodbye%20in%20Japanese%3A%20%7B%7D%22%2C%20japanese%3A%3Agoodbye())%3B%0A%7D%0A">Run</a></pre>
 
 <p>Затем измените файл <code>src/lib.rs</code>, чтобы сделать модуль <code>japanese</code> с публичным:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>english</span>;
-<span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>japanese</span>;<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Apub%20mod%20english%3B%0Apub%20mod%20japanese%3B%0A%7D">Run</a></pre>
+<pre class="rust rust-example-rendered">
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">english</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">japanese</span>;<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Apub%20mod%20english%3B%0Apub%20mod%20japanese%3B%0A%7D">Run</a></pre>
 
 <p>Далее, убедитесь, что обе функции публичные, сперва в
 <code>src/japanese/greetings.rs</code>:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>hello</span>() <span class='op'>-&gt;</span> <span class='ident'>String</span> {
-    <span class='string'>&quot;こんにちは&quot;</span>.<span class='ident'>to_string</span>()
+<pre class="rust rust-example-rendered">
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">hello</span>() <span class="op">-&gt;</span> <span class="ident">String</span> {
+    <span class="string">&quot;こんにちは&quot;</span>.<span class="ident">to_string</span>()
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Apub%20fn%20hello()%20-%3E%20String%20%7B%0A%20%20%20%20%22%E3%81%93%E3%82%93%E3%81%AB%E3%81%A1%E3%81%AF%22.to_string()%0A%7D%0A%7D">Run</a></pre>
 
 <p>А затем в <code>src/japanese/farewells.rs</code>:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>goodbye</span>() <span class='op'>-&gt;</span> <span class='ident'>String</span> {
-    <span class='string'>&quot;さようなら&quot;</span>.<span class='ident'>to_string</span>()
+<pre class="rust rust-example-rendered">
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">goodbye</span>() <span class="op">-&gt;</span> <span class="ident">String</span> {
+    <span class="string">&quot;さようなら&quot;</span>.<span class="ident">to_string</span>()
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Apub%20fn%20goodbye()%20-%3E%20String%20%7B%0A%20%20%20%20%22%E3%81%95%E3%82%88%E3%81%86%E3%81%AA%E3%82%89%22.to_string()%0A%7D%0A%7D">Run</a></pre>
 
 <p>Наконец, измените файл <code>src/japanese/mod.rs</code> вот так:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>pub</span> <span class='kw'>use</span> <span class='self'>self</span>::<span class='ident'>greetings</span>::<span class='ident'>hello</span>;
-<span class='kw'>pub</span> <span class='kw'>use</span> <span class='self'>self</span>::<span class='ident'>farewells</span>::<span class='ident'>goodbye</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">greetings</span>::<span class="ident">hello</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">farewells</span>::<span class="ident">goodbye</span>;
 
-<span class='kw'>mod</span> <span class='ident'>greetings</span>;
-<span class='kw'>mod</span> <span class='ident'>farewells</span>;<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Apub%20use%20self%3A%3Agreetings%3A%3Ahello%3B%0Apub%20use%20self%3A%3Afarewells%3A%3Agoodbye%3B%0A%0Amod%20greetings%3B%0Amod%20farewells%3B%0A%7D">Run</a></pre>
+<span class="kw">mod</span> <span class="ident">greetings</span>;
+<span class="kw">mod</span> <span class="ident">farewells</span>;<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Apub%20use%20self%3A%3Agreetings%3A%3Ahello%3B%0Apub%20use%20self%3A%3Afarewells%3A%3Agoodbye%3B%0A%0Amod%20greetings%3B%0Amod%20farewells%3B%0A%7D">Run</a></pre>
 
 <p>Объявление <code>pub use</code> привносит указанную функцию в эту часть области видимости
 нашей модульной иерархии. Так как мы использовали <code>pub use</code> внутри нашего модуля

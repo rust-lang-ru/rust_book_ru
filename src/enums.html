@@ -192,12 +192,12 @@
 из нескольких возможных вариантов. Каждый вариант в перечислении может быть
 также связан с другими данными:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>enum</span> <span class='ident'>Message</span> {
-    <span class='ident'>Quit</span>,
-    <span class='ident'>ChangeColor</span>(<span class='ident'>i32</span>, <span class='ident'>i32</span>, <span class='ident'>i32</span>),
-    <span class='ident'>Move</span> { <span class='ident'>x</span>: <span class='ident'>i32</span>, <span class='ident'>y</span>: <span class='ident'>i32</span> },
-    <span class='ident'>Write</span>(<span class='ident'>String</span>),
+<pre class="rust rust-example-rendered">
+<span class="kw">enum</span> <span class="ident">Message</span> {
+    <span class="ident">Quit</span>,
+    <span class="ident">ChangeColor</span>(<span class="ident">i32</span>, <span class="ident">i32</span>, <span class="ident">i32</span>),
+    <span class="ident">Move</span> { <span class="ident">x</span>: <span class="ident">i32</span>, <span class="ident">y</span>: <span class="ident">i32</span> },
+    <span class="ident">Write</span>(<span class="ident">String</span>),
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Aenum%20Message%20%7B%0A%20%20%20%20Quit%2C%0A%20%20%20%20ChangeColor(i32%2C%20i32%2C%20i32)%2C%0A%20%20%20%20Move%20%7B%20x%3A%20i32%2C%20y%3A%20i32%20%7D%2C%0A%20%20%20%20Write(String)%2C%0A%7D%0A%7D">Run</a></pre>
 
 <p>Синтаксис для объявления вариантов схож с синтаксисом для объявления структур:
@@ -213,15 +213,15 @@
 область видимости ограничена именем самого перечисления. Это позволяет
 использовать оба варианта из примера ниже совместно:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>let</span> <span class='ident'>x</span>: <span class='ident'>Message</span> <span class='op'>=</span> <span class='ident'>Message</span>::<span class='ident'>Move</span> { <span class='ident'>x</span>: <span class='number'>3</span>, <span class='ident'>y</span>: <span class='number'>4</span> };
+<pre class="rust rust-example-rendered">
+<span class="kw">let</span> <span class="ident">x</span>: <span class="ident">Message</span> <span class="op">=</span> <span class="ident">Message</span>::<span class="ident">Move</span> { <span class="ident">x</span>: <span class="number">3</span>, <span class="ident">y</span>: <span class="number">4</span> };
 
-<span class='kw'>enum</span> <span class='ident'>BoardGameTurn</span> {
-    <span class='ident'>Move</span> { <span class='ident'>squares</span>: <span class='ident'>i32</span> },
-    <span class='ident'>Pass</span>,
+<span class="kw">enum</span> <span class="ident">BoardGameTurn</span> {
+    <span class="ident">Move</span> { <span class="ident">squares</span>: <span class="ident">i32</span> },
+    <span class="ident">Pass</span>,
 }
 
-<span class='kw'>let</span> <span class='ident'>y</span>: <span class='ident'>BoardGameTurn</span> <span class='op'>=</span> <span class='ident'>BoardGameTurn</span>::<span class='ident'>Move</span> { <span class='ident'>squares</span>: <span class='number'>1</span> };<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Aenum%20Message%20%7B%0A%20%20%20%20Move%20%7B%20x%3A%20i32%2C%20y%3A%20i32%20%7D%2C%0A%7D%0Alet%20x%3A%20Message%20%3D%20Message%3A%3AMove%20%7B%20x%3A%203%2C%20y%3A%204%20%7D%3B%0A%0Aenum%20BoardGameTurn%20%7B%0A%20%20%20%20Move%20%7B%20squares%3A%20i32%20%7D%2C%0A%20%20%20%20Pass%2C%0A%7D%0A%0Alet%20y%3A%20BoardGameTurn%20%3D%20BoardGameTurn%3A%3AMove%20%7B%20squares%3A%201%20%7D%3B%0A%7D">Run</a></pre>
+<span class="kw">let</span> <span class="ident">y</span>: <span class="ident">BoardGameTurn</span> <span class="op">=</span> <span class="ident">BoardGameTurn</span>::<span class="ident">Move</span> { <span class="ident">squares</span>: <span class="number">1</span> };<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Aenum%20Message%20%7B%0A%20%20%20%20Move%20%7B%20x%3A%20i32%2C%20y%3A%20i32%20%7D%2C%0A%7D%0Alet%20x%3A%20Message%20%3D%20Message%3A%3AMove%20%7B%20x%3A%203%2C%20y%3A%204%20%7D%3B%0A%0Aenum%20BoardGameTurn%20%7B%0A%20%20%20%20Move%20%7B%20squares%3A%20i32%20%7D%2C%0A%20%20%20%20Pass%2C%0A%7D%0A%0Alet%20y%3A%20BoardGameTurn%20%3D%20BoardGameTurn%3A%3AMove%20%7B%20squares%3A%201%20%7D%3B%0A%7D">Run</a></pre>
 
 <p>Оба варианта имеют одинаковое имя <code>Move</code>, но поскольку область видимости
 каждого из них ограничена именем соответствующего перечисления, они могут быть
@@ -232,9 +232,9 @@
 <em>размеченное объединение</em> (<em>tagged union</em>), поскольку данные включают в себя
 метку, обозначающую что это за тип.</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span> <span class='ident'>process_color_change</span>(<span class='ident'>msg</span>: <span class='ident'>Message</span>) {
-    <span class='kw'>let</span> <span class='ident'>Message</span>::<span class='ident'>ChangeColor</span>(<span class='ident'>r</span>, <span class='ident'>g</span>, <span class='ident'>b</span>) <span class='op'>=</span> <span class='ident'>msg</span>; <span class='comment'>// ошибка времени компиляции</span>
+<pre class="rust rust-example-rendered">
+<span class="kw">fn</span> <span class="ident">process_color_change</span>(<span class="ident">msg</span>: <span class="ident">Message</span>) {
+    <span class="kw">let</span> <span class="ident">Message</span>::<span class="ident">ChangeColor</span>(<span class="ident">r</span>, <span class="ident">g</span>, <span class="ident">b</span>) <span class="op">=</span> <span class="ident">msg</span>; <span class="comment">// ошибка времени компиляции</span>
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afn%20process_color_change(msg%3A%20Message)%20%7B%0A%20%20%20%20let%20Message%3A%3AChangeColor(r%2C%20g%2C%20b)%20%3D%20msg%3B%20%2F%2F%20%D0%BE%D1%88%D0%B8%D0%B1%D0%BA%D0%B0%20%D0%B2%D1%80%D0%B5%D0%BC%D0%B5%D0%BD%D0%B8%20%D0%BA%D0%BE%D0%BC%D0%BF%D0%B8%D0%BB%D1%8F%D1%86%D0%B8%D0%B8%0A%7D%0A%7D">Run</a></pre>
 
 <p>То, что пользовательские типы по умолчанию не поддерживают операции, может
@@ -248,28 +248,28 @@
 <p>Конструктор перечисления может быть также использован как обычная функция.
 Например:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>let</span> <span class='ident'>m</span> <span class='op'>=</span> <span class='ident'>Message</span>::<span class='ident'>Write</span>(<span class='string'>&quot;Hello, world&quot;</span>.<span class='ident'>to_string</span>());<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Aenum%20Message%20%7B%0AWrite(String)%2C%0A%7D%0Alet%20m%20%3D%20Message%3A%3AWrite(%22Hello%2C%20world%22.to_string())%3B%0A%7D">Run</a></pre>
+<pre class="rust rust-example-rendered">
+<span class="kw">let</span> <span class="ident">m</span> <span class="op">=</span> <span class="ident">Message</span>::<span class="ident">Write</span>(<span class="string">&quot;Hello, world&quot;</span>.<span class="ident">to_string</span>());<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Aenum%20Message%20%7B%0AWrite(String)%2C%0A%7D%0Alet%20m%20%3D%20Message%3A%3AWrite(%22Hello%2C%20world%22.to_string())%3B%0A%7D">Run</a></pre>
 
 <p>тоже самое, что и</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>fn</span> <span class='ident'>foo</span>(<span class='ident'>x</span>: <span class='ident'>String</span>) <span class='op'>-&gt;</span> <span class='ident'>Message</span> {
-    <span class='ident'>Message</span>::<span class='ident'>Write</span>(<span class='ident'>x</span>)
+<pre class="rust rust-example-rendered">
+<span class="kw">fn</span> <span class="ident">foo</span>(<span class="ident">x</span>: <span class="ident">String</span>) <span class="op">-&gt;</span> <span class="ident">Message</span> {
+    <span class="ident">Message</span>::<span class="ident">Write</span>(<span class="ident">x</span>)
 }
 
-<span class='kw'>let</span> <span class='ident'>x</span> <span class='op'>=</span> <span class='ident'>foo</span>(<span class='string'>&quot;Hello, world&quot;</span>.<span class='ident'>to_string</span>());<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Aenum%20Message%20%7B%0AWrite(String)%2C%0A%7D%0Afn%20foo(x%3A%20String)%20-%3E%20Message%20%7B%0A%20%20%20%20Message%3A%3AWrite(x)%0A%7D%0A%0Alet%20x%20%3D%20foo(%22Hello%2C%20world%22.to_string())%3B%0A%7D">Run</a></pre>
+<span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="ident">foo</span>(<span class="string">&quot;Hello, world&quot;</span>.<span class="ident">to_string</span>());<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Aenum%20Message%20%7B%0AWrite(String)%2C%0A%7D%0Afn%20foo(x%3A%20String)%20-%3E%20Message%20%7B%0A%20%20%20%20Message%3A%3AWrite(x)%0A%7D%0A%0Alet%20x%20%3D%20foo(%22Hello%2C%20world%22.to_string())%3B%0A%7D">Run</a></pre>
 
 <p>На данный момент это не так уж и полезно для нас, но когда мы перейдем к
 <a href="closures.html">замыканиям</a>, мы поговорим о передаче функций в роли аргумента другой
 функции. Например, с помощью <a href="iterators.html">итераторов</a> мы можем преобразовывать
 вектор строк в вектор состоящий из <code>Message::Write</code>:</p>
 
-<pre class='rust rust-example-rendered'>
+<pre class="rust rust-example-rendered">
 
-<span class='kw'>let</span> <span class='ident'>v</span> <span class='op'>=</span> <span class='macro'>vec</span><span class='macro'>!</span>[<span class='string'>&quot;Hello&quot;</span>.<span class='ident'>to_string</span>(), <span class='string'>&quot;World&quot;</span>.<span class='ident'>to_string</span>()];
+<span class="kw">let</span> <span class="ident">v</span> <span class="op">=</span> <span class="macro">vec</span><span class="macro">!</span>[<span class="string">&quot;Hello&quot;</span>.<span class="ident">to_string</span>(), <span class="string">&quot;World&quot;</span>.<span class="ident">to_string</span>()];
 
-<span class='kw'>let</span> <span class='ident'>v1</span>: <span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>Message</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='ident'>v</span>.<span class='ident'>into_iter</span>().<span class='ident'>map</span>(<span class='ident'>Message</span>::<span class='ident'>Write</span>).<span class='ident'>collect</span>();<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Aenum%20Message%20%7B%0AWrite(String)%2C%0A%7D%0A%0Alet%20v%20%3D%20vec!%5B%22Hello%22.to_string()%2C%20%22World%22.to_string()%5D%3B%0A%0Alet%20v1%3A%20Vec%3CMessage%3E%20%3D%20v.into_iter().map(Message%3A%3AWrite).collect()%3B%0A%7D">Run</a></pre>
+<span class="kw">let</span> <span class="ident">v1</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Message</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">v</span>.<span class="ident">into_iter</span>().<span class="ident">map</span>(<span class="ident">Message</span>::<span class="ident">Write</span>).<span class="ident">collect</span>();<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Aenum%20Message%20%7B%0AWrite(String)%2C%0A%7D%0A%0Alet%20v%20%3D%20vec!%5B%22Hello%22.to_string()%2C%20%22World%22.to_string()%5D%3B%0A%0Alet%20v1%3A%20Vec%3CMessage%3E%20%3D%20v.into_iter().map(Message%3A%3AWrite).collect()%3B%0A%7D">Run</a></pre>
 
     <script src='../rustbook.js'></script>
 </div></div>

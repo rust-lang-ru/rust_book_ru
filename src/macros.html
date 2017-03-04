@@ -223,41 +223,41 @@
 <p>Вы, возможно, видели макрос <code>vec!</code>, который используется для инициализации
 <a href="vectors.html">вектора</a> с произвольным количеством элементов.</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>let</span> <span class='ident'>x</span>: <span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>u32</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='macro'>vec</span><span class='macro'>!</span>[<span class='number'>1</span>, <span class='number'>2</span>, <span class='number'>3</span>];<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20x%3A%20Vec%3Cu32%3E%20%3D%20vec!%5B1%2C%202%2C%203%5D%3B%0Aassert_eq!(x%2C%20%5B1%2C%202%2C%203%5D)%3B%0A%7D">Run</a></pre>
+<pre class="rust rust-example-rendered">
+<span class="kw">let</span> <span class="ident">x</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span> <span class="op">=</span> <span class="macro">vec</span><span class="macro">!</span>[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20x%3A%20Vec%3Cu32%3E%20%3D%20vec!%5B1%2C%202%2C%203%5D%3B%0Aassert_eq!(x%2C%20%5B1%2C%202%2C%203%5D)%3B%0A%7D">Run</a></pre>
 
 <p>Его нельзя реализовать в виде обычной функции, так как он принимает любое
 количество аргументов. Но мы можем представить его в виде синтаксического
 сокращения для следующего кода</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>let</span> <span class='ident'>x</span>: <span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>u32</span><span class='op'>&gt;</span> <span class='op'>=</span> {
-    <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>temp_vec</span> <span class='op'>=</span> <span class='ident'>Vec</span>::<span class='ident'>new</span>();
-    <span class='ident'>temp_vec</span>.<span class='ident'>push</span>(<span class='number'>1</span>);
-    <span class='ident'>temp_vec</span>.<span class='ident'>push</span>(<span class='number'>2</span>);
-    <span class='ident'>temp_vec</span>.<span class='ident'>push</span>(<span class='number'>3</span>);
-    <span class='ident'>temp_vec</span>
+<pre class="rust rust-example-rendered">
+<span class="kw">let</span> <span class="ident">x</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span> <span class="op">=</span> {
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">temp_vec</span> <span class="op">=</span> <span class="ident">Vec</span>::<span class="ident">new</span>();
+    <span class="ident">temp_vec</span>.<span class="ident">push</span>(<span class="number">1</span>);
+    <span class="ident">temp_vec</span>.<span class="ident">push</span>(<span class="number">2</span>);
+    <span class="ident">temp_vec</span>.<span class="ident">push</span>(<span class="number">3</span>);
+    <span class="ident">temp_vec</span>
 };<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20x%3A%20Vec%3Cu32%3E%20%3D%20%7B%0A%20%20%20%20let%20mut%20temp_vec%20%3D%20Vec%3A%3Anew()%3B%0A%20%20%20%20temp_vec.push(1)%3B%0A%20%20%20%20temp_vec.push(2)%3B%0A%20%20%20%20temp_vec.push(3)%3B%0A%20%20%20%20temp_vec%0A%7D%3B%0Aassert_eq!(x%2C%20%5B1%2C%202%2C%203%5D)%3B%0A%7D">Run</a></pre>
 
 <p>Мы можем реализовать это сокращение, используя макрос: <sup id="fnref1"><a href="#fn1" rel="footnote">1</a></sup></p>
 
-<pre class='rust rust-example-rendered'>
-<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>vec</span> {
-    ( $( <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>x</span>:<span class='ident'>expr</span> ),<span class='op'>*</span> ) <span class='op'>=&gt;</span> {
+<pre class="rust rust-example-rendered">
+<span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">vec</span> {
+    ( $( <span class="macro-nonterminal">$</span><span class="macro-nonterminal">x</span>:<span class="ident">expr</span> ),<span class="op">*</span> ) <span class="op">=&gt;</span> {
         {
-            <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>temp_vec</span> <span class='op'>=</span> <span class='ident'>Vec</span>::<span class='ident'>new</span>();
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">temp_vec</span> <span class="op">=</span> <span class="ident">Vec</span>::<span class="ident">new</span>();
             $(
-                <span class='ident'>temp_vec</span>.<span class='ident'>push</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>x</span>);
-            )<span class='op'>*</span>
-            <span class='ident'>temp_vec</span>
+                <span class="ident">temp_vec</span>.<span class="ident">push</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">x</span>);
+            )<span class="op">*</span>
+            <span class="ident">temp_vec</span>
         }
     };
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=macro_rules!%20vec%20%7B%0A%20%20%20%20(%20%24(%20%24x%3Aexpr%20)%2C*%20)%20%3D%3E%20%7B%0A%20%20%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20let%20mut%20temp_vec%20%3D%20Vec%3A%3Anew()%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%24(%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20temp_vec.push(%24x)%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20)*%0A%20%20%20%20%20%20%20%20%20%20%20%20temp_vec%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%3B%0A%7D%0Afn%20main()%20%7B%0A%20%20%20%20assert_eq!(vec!%5B1%2C2%2C3%5D%2C%20%5B1%2C%202%2C%203%5D)%3B%0A%7D%0A">Run</a></pre>
 
 <p>Ого, тут много нового синтаксиса! Давайте разберем его.</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>vec</span> { ... }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Amacro_rules!%20vec%20%7B%20...%20%7D%0A%7D">Run</a></pre>
+<pre class="rust rust-example-rendered">
+<span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">vec</span> { ... }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Amacro_rules!%20vec%20%7B%20...%20%7D%0A%7D">Run</a></pre>
 
 <p>Тут мы определяем макрос с именем <code>vec</code>, аналогично тому, как <code>fn vec</code>
 определяло бы функцию с именем <code>vec</code>. При вызове мы неформально пишем имя
@@ -269,8 +269,8 @@
 <p>Макрос определяется с помощью ряда <em>правил</em>, которые представляют собой варианты
 сопоставления с образцом. Выше у нас было</p>
 
-<pre class='rust rust-example-rendered'>
-( $( <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>x</span>:<span class='ident'>expr</span> ),<span class='op'>*</span> ) <span class='op'>=&gt;</span> { ... };<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0A(%20%24(%20%24x%3Aexpr%20)%2C*%20)%20%3D%3E%20%7B%20...%20%7D%3B%0A%7D">Run</a></pre>
+<pre class="rust rust-example-rendered">
+( $( <span class="macro-nonterminal">$</span><span class="macro-nonterminal">x</span>:<span class="ident">expr</span> ),<span class="op">*</span> ) <span class="op">=&gt;</span> { ... };<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0A(%20%24(%20%24x%3Aexpr%20)%2C*%20)%20%3D%3E%20%7B%20...%20%7D%3B%0A%7D">Run</a></pre>
 
 <p>Это очень похоже на конструкцию <code>match</code>, но сопоставление происходит на уровне
 синтаксических деревьев Rust, на этапе компиляции. Точка с запятой не является
@@ -289,14 +289,14 @@
 элементы Rust, которые появляются в образце, должны в точности совпадать.
 Например,</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>foo</span> {
-    (<span class='ident'>x</span> <span class='op'>=&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>e</span>:<span class='ident'>expr</span>) <span class='op'>=&gt;</span> (<span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;mode X: {}&quot;</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>e</span>));
-    (<span class='ident'>y</span> <span class='op'>=&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>e</span>:<span class='ident'>expr</span>) <span class='op'>=&gt;</span> (<span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;mode Y: {}&quot;</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>e</span>));
+<pre class="rust rust-example-rendered">
+<span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">foo</span> {
+    (<span class="ident">x</span> <span class="op">=&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">e</span>:<span class="ident">expr</span>) <span class="op">=&gt;</span> (<span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;mode X: {}&quot;</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">e</span>));
+    (<span class="ident">y</span> <span class="op">=&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">e</span>:<span class="ident">expr</span>) <span class="op">=&gt;</span> (<span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;mode Y: {}&quot;</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">e</span>));
 }
 
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='macro'>foo</span><span class='macro'>!</span>(<span class='ident'>y</span> <span class='op'>=&gt;</span> <span class='number'>3</span>);
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="macro">foo</span><span class="macro">!</span>(<span class="ident">y</span> <span class="op">=&gt;</span> <span class="number">3</span>);
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=macro_rules!%20foo%20%7B%0A%20%20%20%20(x%20%3D%3E%20%24e%3Aexpr)%20%3D%3E%20(println!(%22mode%20X%3A%20%7B%7D%22%2C%20%24e))%3B%0A%20%20%20%20(y%20%3D%3E%20%24e%3Aexpr)%20%3D%3E%20(println!(%22mode%20Y%3A%20%7B%7D%22%2C%20%24e))%3B%0A%7D%0A%0Afn%20main()%20%7B%0A%20%20%20%20foo!(y%20%3D%3E%203)%3B%0A%7D%0A">Run</a></pre>
 
 <p>выведет</p>
@@ -306,8 +306,8 @@
 
 <p>А с</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='macro'>foo</span><span class='macro'>!</span>(<span class='ident'>z</span> <span class='op'>=&gt;</span> <span class='number'>3</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afoo!(z%20%3D%3E%203)%3B%0A%7D">Run</a></pre>
+<pre class="rust rust-example-rendered">
+<span class="macro">foo</span><span class="macro">!</span>(<span class="ident">z</span> <span class="op">=&gt;</span> <span class="number">3</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afoo!(z%20%3D%3E%203)%3B%0A%7D">Run</a></pre>
 
 <p>мы получим ошибку компиляции</p>
 
@@ -319,10 +319,10 @@
 Rust. Но мы можем соединить кусочки раздробленного синтаксиса, захваченные при
 сопоставлении с соответствующим образцом. Из предыдущего примера:</p>
 
-<pre class='rust rust-example-rendered'>
+<pre class="rust rust-example-rendered">
 $(
-    <span class='ident'>temp_vec</span>.<span class='ident'>push</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>x</span>);
-)<span class='kw-2'>*</span><a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0A%24(%0A%20%20%20%20temp_vec.push(%24x)%3B%0A)*%0A%7D">Run</a></pre>
+    <span class="ident">temp_vec</span>.<span class="ident">push</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">x</span>);
+)<span class="kw-2">*</span><a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0A%24(%0A%20%20%20%20temp_vec.push(%24x)%3B%0A)*%0A%7D">Run</a></pre>
 
 <p>Каждое соответствующее выражение <code>$x</code> будет генерировать одиночный оператор
 <code>push</code> в развернутой форме макроса. Повторение в развернутой форме происходит
@@ -336,9 +336,9 @@ $(
 <p>Еще одна деталь: макрос <code>vec!</code> имеет <em>две</em> пары фигурных скобках правой части.
 Они часто сочетаются таким образом:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>foo</span> {
-    () <span class='op'>=&gt;</span> {{
+<pre class="rust rust-example-rendered">
+<span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">foo</span> {
+    () <span class="op">=&gt;</span> {{
         ...
     }}
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Amacro_rules!%20foo%20%7B%0A%20%20%20%20()%20%3D%3E%20%7B%7B%0A%20%20%20%20%20%20%20%20...%0A%20%20%20%20%7D%7D%0A%7D%0A%7D">Run</a></pre>
@@ -374,23 +374,23 @@ $(
 <p>Этот причудливый макрос иллюстрирует дублирования переменных из внешних уровней
 повторения.</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>o_O</span> {
+<pre class="rust rust-example-rendered">
+<span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">o_O</span> {
     (
         $(
-            <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>x</span>:<span class='ident'>expr</span>; [ $( <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>y</span>:<span class='ident'>expr</span> ),<span class='op'>*</span> ]
-        );<span class='op'>*</span>
-    ) <span class='op'>=&gt;</span> {
-        <span class='kw-2'>&amp;</span>[ $($( <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>x</span> <span class='op'>+</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>y</span> ),<span class='kw-2'>*</span>),<span class='op'>*</span> ]
+            <span class="macro-nonterminal">$</span><span class="macro-nonterminal">x</span>:<span class="ident">expr</span>; [ $( <span class="macro-nonterminal">$</span><span class="macro-nonterminal">y</span>:<span class="ident">expr</span> ),<span class="op">*</span> ]
+        );<span class="op">*</span>
+    ) <span class="op">=&gt;</span> {
+        <span class="kw-2">&amp;</span>[ $($( <span class="macro-nonterminal">$</span><span class="macro-nonterminal">x</span> <span class="op">+</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">y</span> ),<span class="kw-2">*</span>),<span class="op">*</span> ]
     }
 }
 
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='kw'>let</span> <span class='ident'>a</span>: <span class='kw-2'>&amp;</span>[<span class='ident'>i32</span>]
-        <span class='op'>=</span> <span class='macro'>o_O</span><span class='macro'>!</span>(<span class='number'>10</span>; [<span class='number'>1</span>, <span class='number'>2</span>, <span class='number'>3</span>];
-               <span class='number'>20</span>; [<span class='number'>4</span>, <span class='number'>5</span>, <span class='number'>6</span>]);
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="kw">let</span> <span class="ident">a</span>: <span class="kw-2">&amp;</span>[<span class="ident">i32</span>]
+        <span class="op">=</span> <span class="macro">o_O</span><span class="macro">!</span>(<span class="number">10</span>; [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];
+               <span class="number">20</span>; [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]);
 
-    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>a</span>, [<span class='number'>11</span>, <span class='number'>12</span>, <span class='number'>13</span>, <span class='number'>24</span>, <span class='number'>25</span>, <span class='number'>26</span>]);
+    <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">a</span>, [<span class="number">11</span>, <span class="number">12</span>, <span class="number">13</span>, <span class="number">24</span>, <span class="number">25</span>, <span class="number">26</span>]);
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=macro_rules!%20o_O%20%7B%0A%20%20%20%20(%0A%20%20%20%20%20%20%20%20%24(%0A%20%20%20%20%20%20%20%20%20%20%20%20%24x%3Aexpr%3B%20%5B%20%24(%20%24y%3Aexpr%20)%2C*%20%5D%0A%20%20%20%20%20%20%20%20)%3B*%0A%20%20%20%20)%20%3D%3E%20%7B%0A%20%20%20%20%20%20%20%20%26%5B%20%24(%24(%20%24x%20%2B%20%24y%20)%2C*)%2C*%20%5D%0A%20%20%20%20%7D%0A%7D%0A%0Afn%20main()%20%7B%0A%20%20%20%20let%20a%3A%20%26%5Bi32%5D%0A%20%20%20%20%20%20%20%20%3D%20o_O!(10%3B%20%5B1%2C%202%2C%203%5D%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2020%3B%20%5B4%2C%205%2C%206%5D)%3B%0A%0A%20%20%20%20assert_eq!(a%2C%20%5B11%2C%2012%2C%2013%2C%2024%2C%2025%2C%2026%5D)%3B%0A%7D%0A">Run</a></pre>
 
 <p>Это наибольшая синтаксиса совпадений. Эти примеры используют конструкцию
@@ -421,13 +421,13 @@ int main() {
 знаете стандартные идиомы для устранения этой проблемы, а также пять или шесть
 других проблем. В Rust мы можем не беспокоиться об этом.</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>five_times</span> {
-    (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>x</span>:<span class='ident'>expr</span>) <span class='op'>=&gt;</span> (<span class='number'>5</span> <span class='op'>*</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>x</span>);
+<pre class="rust rust-example-rendered">
+<span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">five_times</span> {
+    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">x</span>:<span class="ident">expr</span>) <span class="op">=&gt;</span> (<span class="number">5</span> <span class="op">*</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">x</span>);
 }
 
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>25</span>, <span class='macro'>five_times</span><span class='macro'>!</span>(<span class='number'>2</span> <span class='op'>+</span> <span class='number'>3</span>));
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="number">25</span>, <span class="macro">five_times</span><span class="macro">!</span>(<span class="number">2</span> <span class="op">+</span> <span class="number">3</span>));
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=macro_rules!%20five_times%20%7B%0A%20%20%20%20(%24x%3Aexpr)%20%3D%3E%20(5%20*%20%24x)%3B%0A%7D%0A%0Afn%20main()%20%7B%0A%20%20%20%20assert_eq!(25%2C%20five_times!(2%20%2B%203))%3B%0A%7D%0A">Run</a></pre>
 
 <p>Метапеременная <code>$x</code> обрабатывается как единый узел выражения, и сохраняет свое
@@ -465,19 +465,19 @@ if (state &gt; 0) {
 
 <p>Эквивалентный макрос в Rust обладает требуемым поведением.</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>log</span> {
-    (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>msg</span>:<span class='ident'>expr</span>) <span class='op'>=&gt;</span> {{
-        <span class='kw'>let</span> <span class='ident'>state</span>: <span class='ident'>i32</span> <span class='op'>=</span> <span class='ident'>get_log_state</span>();
-        <span class='kw'>if</span> <span class='ident'>state</span> <span class='op'>&gt;</span> <span class='number'>0</span> {
-            <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;log({}): {}&quot;</span>, <span class='ident'>state</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>msg</span>);
+<pre class="rust rust-example-rendered">
+<span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">log</span> {
+    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">msg</span>:<span class="ident">expr</span>) <span class="op">=&gt;</span> {{
+        <span class="kw">let</span> <span class="ident">state</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="ident">get_log_state</span>();
+        <span class="kw">if</span> <span class="ident">state</span> <span class="op">&gt;</span> <span class="number">0</span> {
+            <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;log({}): {}&quot;</span>, <span class="ident">state</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">msg</span>);
         }
     }};
 }
 
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='kw'>let</span> <span class='ident'>state</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span> <span class='op'>=</span> <span class='string'>&quot;reticulating splines&quot;</span>;
-    <span class='macro'>log</span><span class='macro'>!</span>(<span class='ident'>state</span>);
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="kw">let</span> <span class="ident">state</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;reticulating splines&quot;</span>;
+    <span class="macro">log</span><span class="macro">!</span>(<span class="ident">state</span>);
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20get_log_state()%20-%3E%20i32%20%7B%203%20%7D%0Amacro_rules!%20log%20%7B%0A%20%20%20%20(%24msg%3Aexpr)%20%3D%3E%20%7B%7B%0A%20%20%20%20%20%20%20%20let%20state%3A%20i32%20%3D%20get_log_state()%3B%0A%20%20%20%20%20%20%20%20if%20state%20%3E%200%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20println!(%22log(%7B%7D)%3A%20%7B%7D%22%2C%20state%2C%20%24msg)%3B%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%7D%3B%0A%7D%0A%0Afn%20main()%20%7B%0A%20%20%20%20let%20state%3A%20%26str%20%3D%20%22reticulating%20splines%22%3B%0A%20%20%20%20log!(state)%3B%0A%7D%0A">Run</a></pre>
 
 <p>Это работает, потому что Rust имеет <a href="http://en.wikipedia.org/wiki/Hygienic_macro">систему макросов с соблюдением
@@ -490,40 +490,40 @@ if (state &gt; 0) {
 <p>Это также ограничивает возможности макросов для внедрения новых связываний
 переменных на месте вызова. Код, приведенный ниже, не будет работать:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>foo</span> {
-    () <span class='op'>=&gt;</span> (<span class='kw'>let</span> <span class='ident'>x</span> <span class='op'>=</span> <span class='number'>3</span>);
+<pre class="rust rust-example-rendered">
+<span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">foo</span> {
+    () <span class="op">=&gt;</span> (<span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="number">3</span>);
 }
 
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='macro'>foo</span><span class='macro'>!</span>();
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>x</span>);
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="macro">foo</span><span class="macro">!</span>();
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">x</span>);
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=macro_rules!%20foo%20%7B%0A%20%20%20%20()%20%3D%3E%20(let%20x%20%3D%203)%3B%0A%7D%0A%0Afn%20main()%20%7B%0A%20%20%20%20foo!()%3B%0A%20%20%20%20println!(%22%7B%7D%22%2C%20x)%3B%0A%7D%0A">Run</a></pre>
 
 <p>Вместо этого вы должны передавать имя переменной при вызове, тогда она будет
 обладать меткой правильного контекста синтаксиса.</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>foo</span> {
-    (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>v</span>:<span class='ident'>ident</span>) <span class='op'>=&gt;</span> (<span class='kw'>let</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>v</span> <span class='op'>=</span> <span class='number'>3</span>);
+<pre class="rust rust-example-rendered">
+<span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">foo</span> {
+    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">v</span>:<span class="ident">ident</span>) <span class="op">=&gt;</span> (<span class="kw">let</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">v</span> <span class="op">=</span> <span class="number">3</span>);
 }
 
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='macro'>foo</span><span class='macro'>!</span>(<span class='ident'>x</span>);
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>x</span>);
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="macro">foo</span><span class="macro">!</span>(<span class="ident">x</span>);
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">x</span>);
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=macro_rules!%20foo%20%7B%0A%20%20%20%20(%24v%3Aident)%20%3D%3E%20(let%20%24v%20%3D%203)%3B%0A%7D%0A%0Afn%20main()%20%7B%0A%20%20%20%20foo!(x)%3B%0A%20%20%20%20println!(%22%7B%7D%22%2C%20x)%3B%0A%7D%0A">Run</a></pre>
 
 <p>Это справедливо для <code>let</code> привязок и меток loop, но не для <a href="https://doc.rust-lang.org/stable/reference.html#items">элементов</a>.
 Код, приведенный ниже, компилируется:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>foo</span> {
-    () <span class='op'>=&gt;</span> (<span class='kw'>fn</span> <span class='ident'>x</span>() { });
+<pre class="rust rust-example-rendered">
+<span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">foo</span> {
+    () <span class="op">=&gt;</span> (<span class="kw">fn</span> <span class="ident">x</span>() { });
 }
 
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='macro'>foo</span><span class='macro'>!</span>();
-    <span class='ident'>x</span>();
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="macro">foo</span><span class="macro">!</span>();
+    <span class="ident">x</span>();
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=macro_rules!%20foo%20%7B%0A%20%20%20%20()%20%3D%3E%20(fn%20x()%20%7B%20%7D)%3B%0A%7D%0A%0Afn%20main()%20%7B%0A%20%20%20%20foo!()%3B%0A%20%20%20%20x()%3B%0A%7D%0A">Run</a></pre>
 
 <h1 id='Рекурсия-макросов' class='section-header'><a href='#Рекурсия-макросов'>Рекурсия макросов</a></h1>
@@ -532,32 +532,32 @@ if (state &gt; 0) {
 использованы для обработки древовидного ввода, как показано на этом (упрощенном)
 HTML сокращение:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>write_html</span> {
-    (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>w</span>:<span class='ident'>expr</span>, ) <span class='op'>=&gt;</span> (());
+<pre class="rust rust-example-rendered">
+<span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">write_html</span> {
+    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">w</span>:<span class="ident">expr</span>, ) <span class="op">=&gt;</span> (());
 
-    (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>w</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>e</span>:<span class='ident'>tt</span>) <span class='op'>=&gt;</span> (<span class='macro'>write</span><span class='macro'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>w</span>, <span class='string'>&quot;{}&quot;</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>e</span>));
+    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">w</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">e</span>:<span class="ident">tt</span>) <span class="op">=&gt;</span> (<span class="macro">write</span><span class="macro">!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">w</span>, <span class="string">&quot;{}&quot;</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">e</span>));
 
-    (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>w</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>tag</span>:<span class='ident'>ident</span> [ $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>inner</span>:<span class='ident'>tt</span>)<span class='op'>*</span> ] $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>rest</span>:<span class='ident'>tt</span>)<span class='kw-2'>*</span>) <span class='op'>=&gt;</span> {{
-        <span class='macro'>write</span><span class='macro'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>w</span>, <span class='string'>&quot;&lt;{}&gt;&quot;</span>, <span class='macro'>stringify</span><span class='macro'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>tag</span>));
-        <span class='macro'>write_html</span><span class='macro'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>w</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>inner</span>)<span class='kw-2'>*</span>);
-        <span class='macro'>write</span><span class='macro'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>w</span>, <span class='string'>&quot;&lt;/{}&gt;&quot;</span>, <span class='macro'>stringify</span><span class='macro'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>tag</span>));
-        <span class='macro'>write_html</span><span class='macro'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>w</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>rest</span>)<span class='kw-2'>*</span>);
+    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">w</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">tag</span>:<span class="ident">ident</span> [ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">inner</span>:<span class="ident">tt</span>)<span class="op">*</span> ] $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>:<span class="ident">tt</span>)<span class="kw-2">*</span>) <span class="op">=&gt;</span> {{
+        <span class="macro">write</span><span class="macro">!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">w</span>, <span class="string">&quot;&lt;{}&gt;&quot;</span>, <span class="macro">stringify</span><span class="macro">!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">tag</span>));
+        <span class="macro">write_html</span><span class="macro">!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">w</span>, $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">inner</span>)<span class="kw-2">*</span>);
+        <span class="macro">write</span><span class="macro">!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">w</span>, <span class="string">&quot;&lt;/{}&gt;&quot;</span>, <span class="macro">stringify</span><span class="macro">!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">tag</span>));
+        <span class="macro">write_html</span><span class="macro">!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">w</span>, $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>)<span class="kw-2">*</span>);
     }};
 }
 
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>fmt</span>::<span class='ident'>Write</span>;
-    <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>out</span> <span class='op'>=</span> <span class='ident'>String</span>::<span class='ident'>new</span>();
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fmt</span>::<span class="ident">Write</span>;
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">out</span> <span class="op">=</span> <span class="ident">String</span>::<span class="ident">new</span>();
 
-    <span class='macro'>write_html</span><span class='macro'>!</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>out</span>,
-        <span class='ident'>html</span>[
-            <span class='ident'>head</span>[<span class='ident'>title</span>[<span class='string'>&quot;Macros guide&quot;</span>]]
-            <span class='ident'>body</span>[<span class='ident'>h1</span>[<span class='string'>&quot;Macros are the best!&quot;</span>]]
+    <span class="macro">write_html</span><span class="macro">!</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">out</span>,
+        <span class="ident">html</span>[
+            <span class="ident">head</span>[<span class="ident">title</span>[<span class="string">&quot;Macros guide&quot;</span>]]
+            <span class="ident">body</span>[<span class="ident">h1</span>[<span class="string">&quot;Macros are the best!&quot;</span>]]
         ]);
 
-    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>out</span>,
-        <span class='string'>&quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Macros guide&lt;/title&gt;&lt;/head&gt;\
+    <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">out</span>,
+        <span class="string">&quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Macros guide&lt;/title&gt;&lt;/head&gt;\
          &lt;body&gt;&lt;h1&gt;Macros are the best!&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;&quot;</span>);
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=%23!%5Ballow(unused_must_use)%5D%0Amacro_rules!%20write_html%20%7B%0A%20%20%20%20(%24w%3Aexpr%2C%20)%20%3D%3E%20(())%3B%0A%0A%20%20%20%20(%24w%3Aexpr%2C%20%24e%3Att)%20%3D%3E%20(write!(%24w%2C%20%22%7B%7D%22%2C%20%24e))%3B%0A%0A%20%20%20%20(%24w%3Aexpr%2C%20%24tag%3Aident%20%5B%20%24(%24inner%3Att)*%20%5D%20%24(%24rest%3Att)*)%20%3D%3E%20%7B%7B%0A%20%20%20%20%20%20%20%20write!(%24w%2C%20%22%3C%7B%7D%3E%22%2C%20stringify!(%24tag))%3B%0A%20%20%20%20%20%20%20%20write_html!(%24w%2C%20%24(%24inner)*)%3B%0A%20%20%20%20%20%20%20%20write!(%24w%2C%20%22%3C%2F%7B%7D%3E%22%2C%20stringify!(%24tag))%3B%0A%20%20%20%20%20%20%20%20write_html!(%24w%2C%20%24(%24rest)*)%3B%0A%20%20%20%20%7D%7D%3B%0A%7D%0A%0Afn%20main()%20%7B%0A%20%20%2F%2F%20FIXME(%2321826)%0A%20%20%20%20use%20std%3A%3Afmt%3A%3AWrite%3B%0A%20%20%20%20let%20mut%20out%20%3D%20String%3A%3Anew()%3B%0A%0A%20%20%20%20write_html!(%26mut%20out%2C%0A%20%20%20%20%20%20%20%20html%5B%0A%20%20%20%20%20%20%20%20%20%20%20%20head%5Btitle%5B%22Macros%20guide%22%5D%5D%0A%20%20%20%20%20%20%20%20%20%20%20%20body%5Bh1%5B%22Macros%20are%20the%20best!%22%5D%5D%0A%20%20%20%20%20%20%20%20%5D)%3B%0A%0A%20%20%20%20assert_eq!(out%2C%0A%20%20%20%20%20%20%20%20%22%3Chtml%3E%3Chead%3E%3Ctitle%3EMacros%20guide%3C%2Ftitle%3E%3C%2Fhead%3E%5C%0A%20%20%20%20%20%20%20%20%20%3Cbody%3E%3Ch1%3EMacros%20are%20the%20best!%3C%2Fh1%3E%3C%2Fbody%3E%3C%2Fhtml%3E%22)%3B%0A%7D%0A">Run</a></pre>
 
@@ -682,9 +682,9 @@ HTML сокращение:</p>
 <p>Атрибут <code>macro_use</code> также можно поставить на подключение контейнера <code>extern crate</code>. В этом контексте оно управляет тем, какие макросы будут загружены из
 внешнего контейнера, т.е.</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='attribute'>#[<span class='ident'>macro_use</span>(<span class='ident'>foo</span>, <span class='ident'>bar</span>)]</span>
-<span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>baz</span>;<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0A%23%5Bmacro_use(foo%2C%20bar)%5D%0Aextern%20crate%20baz%3B%0A%7D">Run</a></pre>
+<pre class="rust rust-example-rendered">
+<span class="attribute">#[<span class="ident">macro_use</span>(<span class="ident">foo</span>, <span class="ident">bar</span>)]</span>
+<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">baz</span>;<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0A%23%5Bmacro_use(foo%2C%20bar)%5D%0Aextern%20crate%20baz%3B%0A%7D">Run</a></pre>
 
 <p>Если атрибут записан просто как <code>#[macro_use]</code>, будут загружены все
 макросы. Если атрибута нет, никакие макросы не будут загружены. Загружены могут
@@ -695,36 +695,36 @@ HTML сокращение:</p>
 
 <p>Например:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>m1</span> { () <span class='op'>=&gt;</span> (()) }
+<pre class="rust rust-example-rendered">
+<span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">m1</span> { () <span class="op">=&gt;</span> (()) }
 
-<span class='comment'>// здесь видны: m1</span>
+<span class="comment">// здесь видны: m1</span>
 
-<span class='kw'>mod</span> <span class='ident'>foo</span> {
-    <span class='comment'>// здесь видны: m1</span>
+<span class="kw">mod</span> <span class="ident">foo</span> {
+    <span class="comment">// здесь видны: m1</span>
 
-    <span class='attribute'>#[<span class='ident'>macro_export</span>]</span>
-    <span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>m2</span> { () <span class='op'>=&gt;</span> (()) }
+    <span class="attribute">#[<span class="ident">macro_export</span>]</span>
+    <span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">m2</span> { () <span class="op">=&gt;</span> (()) }
 
-    <span class='comment'>// здесь видны: m1, m2</span>
+    <span class="comment">// здесь видны: m1, m2</span>
 }
 
-<span class='comment'>// здесь видны: m1</span>
+<span class="comment">// здесь видны: m1</span>
 
-<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>m3</span> { () <span class='op'>=&gt;</span> (()) }
+<span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">m3</span> { () <span class="op">=&gt;</span> (()) }
 
-<span class='comment'>// здесь видны: m1, m3</span>
+<span class="comment">// здесь видны: m1, m3</span>
 
-<span class='attribute'>#[<span class='ident'>macro_use</span>]</span>
-<span class='kw'>mod</span> <span class='ident'>bar</span> {
-    <span class='comment'>// здесь видны: m1, m3</span>
+<span class="attribute">#[<span class="ident">macro_use</span>]</span>
+<span class="kw">mod</span> <span class="ident">bar</span> {
+    <span class="comment">// здесь видны: m1, m3</span>
 
-    <span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>m4</span> { () <span class='op'>=&gt;</span> (()) }
+    <span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">m4</span> { () <span class="op">=&gt;</span> (()) }
 
-    <span class='comment'>// здесь видны: m1, m3, m4</span>
+    <span class="comment">// здесь видны: m1, m3, m4</span>
 }
 
-<span class='comment'>// здесь видны: m1, m3, m4</span><a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=macro_rules!%20m1%20%7B%20()%20%3D%3E%20(())%20%7D%0A%0A%2F%2F%20%D0%B7%D0%B4%D0%B5%D1%81%D1%8C%20%D0%B2%D0%B8%D0%B4%D0%BD%D1%8B%3A%20m1%0A%0Amod%20foo%20%7B%0A%20%20%20%20%2F%2F%20%D0%B7%D0%B4%D0%B5%D1%81%D1%8C%20%D0%B2%D0%B8%D0%B4%D0%BD%D1%8B%3A%20m1%0A%0A%20%20%20%20%23%5Bmacro_export%5D%0A%20%20%20%20macro_rules!%20m2%20%7B%20()%20%3D%3E%20(())%20%7D%0A%0A%20%20%20%20%2F%2F%20%D0%B7%D0%B4%D0%B5%D1%81%D1%8C%20%D0%B2%D0%B8%D0%B4%D0%BD%D1%8B%3A%20m1%2C%20m2%0A%7D%0A%0A%2F%2F%20%D0%B7%D0%B4%D0%B5%D1%81%D1%8C%20%D0%B2%D0%B8%D0%B4%D0%BD%D1%8B%3A%20m1%0A%0Amacro_rules!%20m3%20%7B%20()%20%3D%3E%20(())%20%7D%0A%0A%2F%2F%20%D0%B7%D0%B4%D0%B5%D1%81%D1%8C%20%D0%B2%D0%B8%D0%B4%D0%BD%D1%8B%3A%20m1%2C%20m3%0A%0A%23%5Bmacro_use%5D%0Amod%20bar%20%7B%0A%20%20%20%20%2F%2F%20%D0%B7%D0%B4%D0%B5%D1%81%D1%8C%20%D0%B2%D0%B8%D0%B4%D0%BD%D1%8B%3A%20m1%2C%20m3%0A%0A%20%20%20%20macro_rules!%20m4%20%7B%20()%20%3D%3E%20(())%20%7D%0A%0A%20%20%20%20%2F%2F%20%D0%B7%D0%B4%D0%B5%D1%81%D1%8C%20%D0%B2%D0%B8%D0%B4%D0%BD%D1%8B%3A%20m1%2C%20m3%2C%20m4%0A%7D%0A%0A%2F%2F%20%D0%B7%D0%B4%D0%B5%D1%81%D1%8C%20%D0%B2%D0%B8%D0%B4%D0%BD%D1%8B%3A%20m1%2C%20m3%2C%20m4%0Afn%20main()%20%7B%20%7D%0A">Run</a></pre>
+<span class="comment">// здесь видны: m1, m3, m4</span><a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=macro_rules!%20m1%20%7B%20()%20%3D%3E%20(())%20%7D%0A%0A%2F%2F%20%D0%B7%D0%B4%D0%B5%D1%81%D1%8C%20%D0%B2%D0%B8%D0%B4%D0%BD%D1%8B%3A%20m1%0A%0Amod%20foo%20%7B%0A%20%20%20%20%2F%2F%20%D0%B7%D0%B4%D0%B5%D1%81%D1%8C%20%D0%B2%D0%B8%D0%B4%D0%BD%D1%8B%3A%20m1%0A%0A%20%20%20%20%23%5Bmacro_export%5D%0A%20%20%20%20macro_rules!%20m2%20%7B%20()%20%3D%3E%20(())%20%7D%0A%0A%20%20%20%20%2F%2F%20%D0%B7%D0%B4%D0%B5%D1%81%D1%8C%20%D0%B2%D0%B8%D0%B4%D0%BD%D1%8B%3A%20m1%2C%20m2%0A%7D%0A%0A%2F%2F%20%D0%B7%D0%B4%D0%B5%D1%81%D1%8C%20%D0%B2%D0%B8%D0%B4%D0%BD%D1%8B%3A%20m1%0A%0Amacro_rules!%20m3%20%7B%20()%20%3D%3E%20(())%20%7D%0A%0A%2F%2F%20%D0%B7%D0%B4%D0%B5%D1%81%D1%8C%20%D0%B2%D0%B8%D0%B4%D0%BD%D1%8B%3A%20m1%2C%20m3%0A%0A%23%5Bmacro_use%5D%0Amod%20bar%20%7B%0A%20%20%20%20%2F%2F%20%D0%B7%D0%B4%D0%B5%D1%81%D1%8C%20%D0%B2%D0%B8%D0%B4%D0%BD%D1%8B%3A%20m1%2C%20m3%0A%0A%20%20%20%20macro_rules!%20m4%20%7B%20()%20%3D%3E%20(())%20%7D%0A%0A%20%20%20%20%2F%2F%20%D0%B7%D0%B4%D0%B5%D1%81%D1%8C%20%D0%B2%D0%B8%D0%B4%D0%BD%D1%8B%3A%20m1%2C%20m3%2C%20m4%0A%7D%0A%0A%2F%2F%20%D0%B7%D0%B4%D0%B5%D1%81%D1%8C%20%D0%B2%D0%B8%D0%B4%D0%BD%D1%8B%3A%20m1%2C%20m3%2C%20m4%0Afn%20main()%20%7B%20%7D%0A">Run</a></pre>
 
 <p>Когда эта библиотека загружается с помощью <code>#[macro_use] extern crate</code>, виден
 только макрос <code>m2</code>.</p>
@@ -736,19 +736,19 @@ HTML сокращение:</p>
 <p>Если макрос используется в нескольких контейнерах, всё становится ещё
 сложнее. Допустим, <code>mylib</code> определяет</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>increment</span>(<span class='ident'>x</span>: <span class='ident'>u32</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
-    <span class='ident'>x</span> <span class='op'>+</span> <span class='number'>1</span>
+<pre class="rust rust-example-rendered">
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">increment</span>(<span class="ident">x</span>: <span class="ident">u32</span>) <span class="op">-&gt;</span> <span class="ident">u32</span> {
+    <span class="ident">x</span> <span class="op">+</span> <span class="number">1</span>
 }
 
-<span class='attribute'>#[<span class='ident'>macro_export</span>]</span>
-<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>inc_a</span> {
-    (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>x</span>:<span class='ident'>expr</span>) <span class='op'>=&gt;</span> ( ::<span class='ident'>increment</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>x</span>) )
+<span class="attribute">#[<span class="ident">macro_export</span>]</span>
+<span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">inc_a</span> {
+    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">x</span>:<span class="ident">expr</span>) <span class="op">=&gt;</span> ( ::<span class="ident">increment</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">x</span>) )
 }
 
-<span class='attribute'>#[<span class='ident'>macro_export</span>]</span>
-<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>inc_b</span> {
-    (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>x</span>:<span class='ident'>expr</span>) <span class='op'>=&gt;</span> ( ::<span class='ident'>mylib</span>::<span class='ident'>increment</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>x</span>) )
+<span class="attribute">#[<span class="ident">macro_export</span>]</span>
+<span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">inc_b</span> {
+    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">x</span>:<span class="ident">expr</span>) <span class="op">=&gt;</span> ( ::<span class="ident">mylib</span>::<span class="ident">increment</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">x</span>) )
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=pub%20fn%20increment(x%3A%20u32)%20-%3E%20u32%20%7B%0A%20%20%20%20x%20%2B%201%0A%7D%0A%0A%23%5Bmacro_export%5D%0Amacro_rules!%20inc_a%20%7B%0A%20%20%20%20(%24x%3Aexpr)%20%3D%3E%20(%20%3A%3Aincrement(%24x)%20)%0A%7D%0A%0A%23%5Bmacro_export%5D%0Amacro_rules!%20inc_b%20%7B%0A%20%20%20%20(%24x%3Aexpr)%20%3D%3E%20(%20%3A%3Amylib%3A%3Aincrement(%24x)%20)%0A%7D%0Afn%20main()%20%7B%20%7D%0A">Run</a></pre>
 
 <p><code>inc_a</code> работает только внутри <code>mylib</code>, а <code>inc_b</code> — только снаружи. Более того,
@@ -760,10 +760,10 @@ HTML сокращение:</p>
 используется в одном и том же контейнере, <code>$crate</code> станет пустой. Это означает,
 что мы можем написать</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='attribute'>#[<span class='ident'>macro_export</span>]</span>
-<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>inc</span> {
-    (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>x</span>:<span class='ident'>expr</span>) <span class='op'>=&gt;</span> ( <span class='macro-nonterminal'>$</span><span class='kw'>crate</span>::<span class='macro-nonterminal'>increment</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>x</span>) )
+<pre class="rust rust-example-rendered">
+<span class="attribute">#[<span class="ident">macro_export</span>]</span>
+<span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">inc</span> {
+    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">x</span>:<span class="ident">expr</span>) <span class="op">=&gt;</span> ( <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">increment</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">x</span>) )
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=%23%5Bmacro_export%5D%0Amacro_rules!%20inc%20%7B%0A%20%20%20%20(%24x%3Aexpr)%20%3D%3E%20(%20%24crate%3A%3Aincrement(%24x)%20)%0A%7D%0Afn%20main()%20%7B%20%7D%0A">Run</a></pre>
 
 <p>чтобы определить один макрос, который будет работать и внутри, и снаружи
@@ -785,27 +785,27 @@ HTML сокращение:</p>
 заметить, что мы не рекомендуем такой подход, а просто иллюстрируем возможности
 макросов.</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>bct</span> {
-    <span class='comment'>// cmd 0:  d ... =&gt; ...</span>
-    (<span class='number'>0</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>ps</span>:<span class='ident'>tt</span>),<span class='op'>*</span> ; <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>_d</span>:<span class='ident'>tt</span>)
-        <span class='op'>=&gt;</span> (<span class='macro'>bct</span><span class='macro'>!</span>($(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>ps</span>),<span class='kw-2'>*</span>, <span class='number'>0</span> ; ));
-    (<span class='number'>0</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>ps</span>:<span class='ident'>tt</span>),<span class='op'>*</span> ; <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>_d</span>:<span class='ident'>tt</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>ds</span>:<span class='ident'>tt</span>),<span class='kw-2'>*</span>)
-        <span class='op'>=&gt;</span> (<span class='macro'>bct</span><span class='macro'>!</span>($(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>ps</span>),<span class='kw-2'>*</span>, <span class='number'>0</span> ; $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>ds</span>),<span class='kw-2'>*</span>));
+<pre class="rust rust-example-rendered">
+<span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">bct</span> {
+    <span class="comment">// cmd 0:  d ... =&gt; ...</span>
+    (<span class="number">0</span>, $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">ps</span>:<span class="ident">tt</span>),<span class="op">*</span> ; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">_d</span>:<span class="ident">tt</span>)
+        <span class="op">=&gt;</span> (<span class="macro">bct</span><span class="macro">!</span>($(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">ps</span>),<span class="kw-2">*</span>, <span class="number">0</span> ; ));
+    (<span class="number">0</span>, $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">ps</span>:<span class="ident">tt</span>),<span class="op">*</span> ; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">_d</span>:<span class="ident">tt</span>, $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">ds</span>:<span class="ident">tt</span>),<span class="kw-2">*</span>)
+        <span class="op">=&gt;</span> (<span class="macro">bct</span><span class="macro">!</span>($(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">ps</span>),<span class="kw-2">*</span>, <span class="number">0</span> ; $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">ds</span>),<span class="kw-2">*</span>));
 
-    <span class='comment'>// cmd 1p:  1 ... =&gt; 1 ... p</span>
-    (<span class='number'>1</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>p</span>:<span class='ident'>tt</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>ps</span>:<span class='ident'>tt</span>),<span class='op'>*</span> ; <span class='number'>1</span>)
-        <span class='op'>=&gt;</span> (<span class='macro'>bct</span><span class='macro'>!</span>($(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>ps</span>),<span class='kw-2'>*</span>, <span class='number'>1</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>p</span> ; <span class='number'>1</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>p</span>));
-    (<span class='number'>1</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>p</span>:<span class='ident'>tt</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>ps</span>:<span class='ident'>tt</span>),<span class='op'>*</span> ; <span class='number'>1</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>ds</span>:<span class='ident'>tt</span>),<span class='kw-2'>*</span>)
-        <span class='op'>=&gt;</span> (<span class='macro'>bct</span><span class='macro'>!</span>($(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>ps</span>),<span class='kw-2'>*</span>, <span class='number'>1</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>p</span> ; <span class='number'>1</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>ds</span>),<span class='kw-2'>*</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>p</span>));
+    <span class="comment">// cmd 1p:  1 ... =&gt; 1 ... p</span>
+    (<span class="number">1</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">p</span>:<span class="ident">tt</span>, $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">ps</span>:<span class="ident">tt</span>),<span class="op">*</span> ; <span class="number">1</span>)
+        <span class="op">=&gt;</span> (<span class="macro">bct</span><span class="macro">!</span>($(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">ps</span>),<span class="kw-2">*</span>, <span class="number">1</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">p</span> ; <span class="number">1</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">p</span>));
+    (<span class="number">1</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">p</span>:<span class="ident">tt</span>, $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">ps</span>:<span class="ident">tt</span>),<span class="op">*</span> ; <span class="number">1</span>, $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">ds</span>:<span class="ident">tt</span>),<span class="kw-2">*</span>)
+        <span class="op">=&gt;</span> (<span class="macro">bct</span><span class="macro">!</span>($(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">ps</span>),<span class="kw-2">*</span>, <span class="number">1</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">p</span> ; <span class="number">1</span>, $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">ds</span>),<span class="kw-2">*</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">p</span>));
 
-    <span class='comment'>// cmd 1p:  0 ... =&gt; 0 ...</span>
-    (<span class='number'>1</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>p</span>:<span class='ident'>tt</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>ps</span>:<span class='ident'>tt</span>),<span class='op'>*</span> ; $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>ds</span>:<span class='ident'>tt</span>),<span class='kw-2'>*</span>)
-        <span class='op'>=&gt;</span> (<span class='macro'>bct</span><span class='macro'>!</span>($(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>ps</span>),<span class='kw-2'>*</span>, <span class='number'>1</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>p</span> ; $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>ds</span>),<span class='kw-2'>*</span>));
+    <span class="comment">// cmd 1p:  0 ... =&gt; 0 ...</span>
+    (<span class="number">1</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">p</span>:<span class="ident">tt</span>, $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">ps</span>:<span class="ident">tt</span>),<span class="op">*</span> ; $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">ds</span>:<span class="ident">tt</span>),<span class="kw-2">*</span>)
+        <span class="op">=&gt;</span> (<span class="macro">bct</span><span class="macro">!</span>($(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">ps</span>),<span class="kw-2">*</span>, <span class="number">1</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">p</span> ; $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">ds</span>),<span class="kw-2">*</span>));
 
-    <span class='comment'>// halt on empty data string</span>
-    ( $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>ps</span>:<span class='ident'>tt</span>),<span class='op'>*</span> ; )
-        <span class='op'>=&gt;</span> (());
+    <span class="comment">// halt on empty data string</span>
+    ( $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">ps</span>:<span class="ident">tt</span>),<span class="op">*</span> ; )
+        <span class="op">=&gt;</span> (());
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Amacro_rules!%20bct%20%7B%0A%20%20%20%20%2F%2F%20cmd%200%3A%20%20d%20...%20%3D%3E%20...%0A%20%20%20%20(0%2C%20%24(%24ps%3Att)%2C*%20%3B%20%24_d%3Att)%0A%20%20%20%20%20%20%20%20%3D%3E%20(bct!(%24(%24ps)%2C*%2C%200%20%3B%20))%3B%0A%20%20%20%20(0%2C%20%24(%24ps%3Att)%2C*%20%3B%20%24_d%3Att%2C%20%24(%24ds%3Att)%2C*)%0A%20%20%20%20%20%20%20%20%3D%3E%20(bct!(%24(%24ps)%2C*%2C%200%20%3B%20%24(%24ds)%2C*))%3B%0A%0A%20%20%20%20%2F%2F%20cmd%201p%3A%20%201%20...%20%3D%3E%201%20...%20p%0A%20%20%20%20(1%2C%20%24p%3Att%2C%20%24(%24ps%3Att)%2C*%20%3B%201)%0A%20%20%20%20%20%20%20%20%3D%3E%20(bct!(%24(%24ps)%2C*%2C%201%2C%20%24p%20%3B%201%2C%20%24p))%3B%0A%20%20%20%20(1%2C%20%24p%3Att%2C%20%24(%24ps%3Att)%2C*%20%3B%201%2C%20%24(%24ds%3Att)%2C*)%0A%20%20%20%20%20%20%20%20%3D%3E%20(bct!(%24(%24ps)%2C*%2C%201%2C%20%24p%20%3B%201%2C%20%24(%24ds)%2C*%2C%20%24p))%3B%0A%0A%20%20%20%20%2F%2F%20cmd%201p%3A%20%200%20...%20%3D%3E%200%20...%0A%20%20%20%20(1%2C%20%24p%3Att%2C%20%24(%24ps%3Att)%2C*%20%3B%20%24(%24ds%3Att)%2C*)%0A%20%20%20%20%20%20%20%20%3D%3E%20(bct!(%24(%24ps)%2C*%2C%201%2C%20%24p%20%3B%20%24(%24ds)%2C*))%3B%0A%0A%20%20%20%20%2F%2F%20halt%20on%20empty%20data%20string%0A%20%20%20%20(%20%24(%24ps%3Att)%2C*%20%3B%20)%0A%20%20%20%20%20%20%20%20%3D%3E%20(())%3B%0A%7D%0A%7D">Run</a></pre>
 
 <p>В качестве упражнения предлагаем читателю определить ещё один макрос, чтобы
@@ -818,87 +818,87 @@ HTML сокращение:</p>
 <p>Этот макрос вызывает панику текущего потока. Вы можете указать сообщение, с
 которым поток завершится:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='macro'>panic</span><span class='macro'>!</span>(<span class='string'>&quot;о нет!&quot;</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Apanic!(%22%D0%BE%20%D0%BD%D0%B5%D1%82!%22)%3B%0A%7D">Run</a></pre>
+<pre class="rust rust-example-rendered">
+<span class="macro">panic</span><span class="macro">!</span>(<span class="string">&quot;о нет!&quot;</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Apanic!(%22%D0%BE%20%D0%BD%D0%B5%D1%82!%22)%3B%0A%7D">Run</a></pre>
 
 <h2 id='vec' class='section-header'><a href='#vec'>vec!</a></h2>
 <p>Макрос <code>vec!</code> используется по всей книге, поэтому вы наверняка уже видели его.
 Он упрощает создание <code>Vec&lt;T&gt;</code>:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>let</span> <span class='ident'>v</span> <span class='op'>=</span> <span class='macro'>vec</span><span class='macro'>!</span>[<span class='number'>1</span>, <span class='number'>2</span>, <span class='number'>3</span>, <span class='number'>4</span>, <span class='number'>5</span>];<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20v%20%3D%20vec!%5B1%2C%202%2C%203%2C%204%2C%205%5D%3B%0A%7D">Run</a></pre>
+<pre class="rust rust-example-rendered">
+<span class="kw">let</span> <span class="ident">v</span> <span class="op">=</span> <span class="macro">vec</span><span class="macro">!</span>[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20v%20%3D%20vec!%5B1%2C%202%2C%203%2C%204%2C%205%5D%3B%0A%7D">Run</a></pre>
 
 <p>Он также позволяет вам создавать векторы с повторяющимися значениями. Например,
 вот сто нолей:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>let</span> <span class='ident'>v</span> <span class='op'>=</span> <span class='macro'>vec</span><span class='macro'>!</span>[<span class='number'>0</span>; <span class='number'>100</span>];<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20v%20%3D%20vec!%5B0%3B%20100%5D%3B%0A%7D">Run</a></pre>
+<pre class="rust rust-example-rendered">
+<span class="kw">let</span> <span class="ident">v</span> <span class="op">=</span> <span class="macro">vec</span><span class="macro">!</span>[<span class="number">0</span>; <span class="number">100</span>];<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20v%20%3D%20vec!%5B0%3B%20100%5D%3B%0A%7D">Run</a></pre>
 
 <h2 id='assert-and-assert_eq' class='section-header'><a href='#assert-and-assert_eq'>assert! and assert_eq!</a></h2>
 <p>Эти два макроса используются в тестах. <code>assert!</code> принимает логическое значение.
 <code>assert_eq!</code> принимает два значения и проверяет, что они равны. <code>true</code>
 засчитывается как успех, а <code>false</code> вызывает панику и проваливает тест. Вот так:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='comment'>// Работает!</span>
+<pre class="rust rust-example-rendered">
+<span class="comment">// Работает!</span>
 
-<span class='macro'>assert</span><span class='macro'>!</span>(<span class='bool-val'>true</span>);
-<span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>5</span>, <span class='number'>3</span> <span class='op'>+</span> <span class='number'>2</span>);
+<span class="macro">assert</span><span class="macro">!</span>(<span class="bool-val">true</span>);
+<span class="macro">assert_eq</span><span class="macro">!</span>(<span class="number">5</span>, <span class="number">3</span> <span class="op">+</span> <span class="number">2</span>);
 
-<span class='comment'>// а это нет :(</span>
+<span class="comment">// а это нет :(</span>
 
-<span class='macro'>assert</span><span class='macro'>!</span>(<span class='number'>5</span> <span class='op'>&lt;</span> <span class='number'>3</span>);
-<span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>5</span>, <span class='number'>3</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0A%2F%2F%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D1%82!%0A%0Aassert!(true)%3B%0Aassert_eq!(5%2C%203%20%2B%202)%3B%0A%0A%2F%2F%20%D0%B0%20%D1%8D%D1%82%D0%BE%20%D0%BD%D0%B5%D1%82%20%3A(%0A%0Aassert!(5%20%3C%203)%3B%0Aassert_eq!(5%2C%203)%3B%0A%7D">Run</a></pre>
+<span class="macro">assert</span><span class="macro">!</span>(<span class="number">5</span> <span class="op">&lt;</span> <span class="number">3</span>);
+<span class="macro">assert_eq</span><span class="macro">!</span>(<span class="number">5</span>, <span class="number">3</span>);<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0A%2F%2F%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D1%82!%0A%0Aassert!(true)%3B%0Aassert_eq!(5%2C%203%20%2B%202)%3B%0A%0A%2F%2F%20%D0%B0%20%D1%8D%D1%82%D0%BE%20%D0%BD%D0%B5%D1%82%20%3A(%0A%0Aassert!(5%20%3C%203)%3B%0Aassert_eq!(5%2C%203)%3B%0A%7D">Run</a></pre>
 
 <h2 id='try' class='section-header'><a href='#try'>try!</a></h2>
 <p><code>try!</code> используется для обработки ошибок. Он принимает нечто возвращающее
 <code>Result&lt;T, E&gt;</code> и возвращает <code>T</code> если было возвращено <code>Ok&lt;T&gt;</code>; иначе он делает
 возврат из функции со значением <code>Err(E)</code>. Вроде такого:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>fs</span>::<span class='ident'>File</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fs</span>::<span class="ident">File</span>;
 
-<span class='kw'>fn</span> <span class='ident'>foo</span>() <span class='op'>-&gt;</span> <span class='ident'>std</span>::<span class='ident'>io</span>::<span class='prelude-ty'>Result</span><span class='op'>&lt;</span>()<span class='op'>&gt;</span> {
-    <span class='kw'>let</span> <span class='ident'>f</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>File</span>::<span class='ident'>create</span>(<span class='string'>&quot;foo.txt&quot;</span>));
+<span class="kw">fn</span> <span class="ident">foo</span>() <span class="op">-&gt;</span> <span class="ident">std</span>::<span class="ident">io</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+    <span class="kw">let</span> <span class="ident">f</span> <span class="op">=</span> <span class="macro">try</span><span class="macro">!</span>(<span class="ident">File</span>::<span class="ident">create</span>(<span class="string">&quot;foo.txt&quot;</span>));
 
-    <span class='prelude-val'>Ok</span>(())
+    <span class="prelude-val">Ok</span>(())
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Ause%20std%3A%3Afs%3A%3AFile%3B%0A%0Afn%20foo()%20-%3E%20std%3A%3Aio%3A%3AResult%3C()%3E%20%7B%0A%20%20%20%20let%20f%20%3D%20try!(File%3A%3Acreate(%22foo.txt%22))%3B%0A%0A%20%20%20%20Ok(())%0A%7D%0A%7D">Run</a></pre>
 
 <p>Такой код читается легче, чем этот:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>fs</span>::<span class='ident'>File</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fs</span>::<span class="ident">File</span>;
 
-<span class='kw'>fn</span> <span class='ident'>foo</span>() <span class='op'>-&gt;</span> <span class='ident'>std</span>::<span class='ident'>io</span>::<span class='prelude-ty'>Result</span><span class='op'>&lt;</span>()<span class='op'>&gt;</span> {
-    <span class='kw'>let</span> <span class='ident'>f</span> <span class='op'>=</span> <span class='ident'>File</span>::<span class='ident'>create</span>(<span class='string'>&quot;foo.txt&quot;</span>);
+<span class="kw">fn</span> <span class="ident">foo</span>() <span class="op">-&gt;</span> <span class="ident">std</span>::<span class="ident">io</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+    <span class="kw">let</span> <span class="ident">f</span> <span class="op">=</span> <span class="ident">File</span>::<span class="ident">create</span>(<span class="string">&quot;foo.txt&quot;</span>);
 
-    <span class='kw'>let</span> <span class='ident'>f</span> <span class='op'>=</span> <span class='kw'>match</span> <span class='ident'>f</span> {
-        <span class='prelude-val'>Ok</span>(<span class='ident'>t</span>) <span class='op'>=&gt;</span> <span class='ident'>t</span>,
-        <span class='prelude-val'>Err</span>(<span class='ident'>e</span>) <span class='op'>=&gt;</span> <span class='kw'>return</span> <span class='prelude-val'>Err</span>(<span class='ident'>e</span>),
+    <span class="kw">let</span> <span class="ident">f</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">f</span> {
+        <span class="prelude-val">Ok</span>(<span class="ident">t</span>) <span class="op">=&gt;</span> <span class="ident">t</span>,
+        <span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=&gt;</span> <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">e</span>),
     };
 
-    <span class='prelude-val'>Ok</span>(())
+    <span class="prelude-val">Ok</span>(())
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Ause%20std%3A%3Afs%3A%3AFile%3B%0A%0Afn%20foo()%20-%3E%20std%3A%3Aio%3A%3AResult%3C()%3E%20%7B%0A%20%20%20%20let%20f%20%3D%20File%3A%3Acreate(%22foo.txt%22)%3B%0A%0A%20%20%20%20let%20f%20%3D%20match%20f%20%7B%0A%20%20%20%20%20%20%20%20Ok(t)%20%3D%3E%20t%2C%0A%20%20%20%20%20%20%20%20Err(e)%20%3D%3E%20return%20Err(e)%2C%0A%20%20%20%20%7D%3B%0A%0A%20%20%20%20Ok(())%0A%7D%0A%7D">Run</a></pre>
 
 <h2 id='unreachable' class='section-header'><a href='#unreachable'>unreachable!</a></h2>
 <p>Этот макрос применяется, когда вы хотите пометить какой-то код, который никогда
 не должен исполняться:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>if</span> <span class='bool-val'>false</span> {
-    <span class='macro'>unreachable</span><span class='macro'>!</span>();
+<pre class="rust rust-example-rendered">
+<span class="kw">if</span> <span class="bool-val">false</span> {
+    <span class="macro">unreachable</span><span class="macro">!</span>();
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Aif%20false%20%7B%0A%20%20%20%20unreachable!()%3B%0A%7D%0A%7D">Run</a></pre>
 
 <p>Иногда вам придётся определять ветви условных конструкций, которые точно никогда
 не исполнятся. В таком случае, используйте этот макрос, чтобы в случае ошибки
 программа запаниковала:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>let</span> <span class='ident'>x</span>: <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>i32</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='prelude-val'>None</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">let</span> <span class="ident">x</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">None</span>;
 
-<span class='kw'>match</span> <span class='ident'>x</span> {
-    <span class='prelude-val'>Some</span>(_) <span class='op'>=&gt;</span> <span class='macro'>unreachable</span><span class='macro'>!</span>(),
-    <span class='prelude-val'>None</span> <span class='op'>=&gt;</span> <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Я знаю, что x — это None!&quot;</span>),
+<span class="kw">match</span> <span class="ident">x</span> {
+    <span class="prelude-val">Some</span>(_) <span class="op">=&gt;</span> <span class="macro">unreachable</span><span class="macro">!</span>(),
+    <span class="prelude-val">None</span> <span class="op">=&gt;</span> <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;Я знаю, что x — это None!&quot;</span>),
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20x%3A%20Option%3Ci32%3E%20%3D%20None%3B%0A%0Amatch%20x%20%7B%0A%20%20%20%20Some(_)%20%3D%3E%20unreachable!()%2C%0A%20%20%20%20None%20%3D%3E%20println!(%22%D0%AF%20%D0%B7%D0%BD%D0%B0%D1%8E%2C%20%D1%87%D1%82%D0%BE%20x%E2%80%AF%E2%80%94%20%D1%8D%D1%82%D0%BE%20None!%22)%2C%0A%7D%0A%7D">Run</a></pre>
 
 <h2 id='unimplemented' class='section-header'><a href='#unimplemented'>unimplemented!</a></h2>

@@ -203,11 +203,11 @@ chapter on <code>#![no_std]</code></a></p>
 
 <p>To use <code>#![no_std]</code>, add a it to your crate root:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>no_std</span>]</span>
+<pre class="rust rust-example-rendered">
+<span class="attribute">#<span class="op">!</span>[<span class="ident">no_std</span>]</span>
 
-<span class='kw'>fn</span> <span class='ident'>plus_one</span>(<span class='ident'>x</span>: <span class='ident'>i32</span>) <span class='op'>-&gt;</span> <span class='ident'>i32</span> {
-    <span class='ident'>x</span> <span class='op'>+</span> <span class='number'>1</span>
+<span class="kw">fn</span> <span class="ident">plus_one</span>(<span class="ident">x</span>: <span class="ident">i32</span>) <span class="op">-&gt;</span> <span class="ident">i32</span> {
+    <span class="ident">x</span> <span class="op">+</span> <span class="number">1</span>
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=%23!%5Bno_std%5D%0A%0Afn%20main()%20%7B%0Afn%20plus_one(x%3A%20i32)%20-%3E%20i32%20%7B%0A%20%20%20%20x%20%2B%201%0A%7D%0A%7D">Run</a></pre>
 
 <p>Much of the functionality that’s exposed in the standard library is also
@@ -217,14 +217,14 @@ its features without an explicit import. By the same token, when using
 <code>!#[no_std]</code>, Rust will bring <code>core</code> into scope for you, as well as <a href="(http://doc.rust-lang.org/core/prelude/v1/)">its
 prelude</a>. This means that a lot of code will Just Work:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>no_std</span>]</span>
+<pre class="rust rust-example-rendered">
+<span class="attribute">#<span class="op">!</span>[<span class="ident">no_std</span>]</span>
 
-<span class='kw'>fn</span> <span class='ident'>may_fail</span>(<span class='ident'>failure</span>: <span class='ident'>bool</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span>(), <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span><span class='op'>&gt;</span> {
-    <span class='kw'>if</span> <span class='ident'>failure</span> {
-        <span class='prelude-val'>Err</span>(<span class='string'>&quot;this didn’t work!&quot;</span>)
-    } <span class='kw'>else</span> {
-        <span class='prelude-val'>Ok</span>(())
+<span class="kw">fn</span> <span class="ident">may_fail</span>(<span class="ident">failure</span>: <span class="ident">bool</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> {
+    <span class="kw">if</span> <span class="ident">failure</span> {
+        <span class="prelude-val">Err</span>(<span class="string">&quot;this didn’t work!&quot;</span>)
+    } <span class="kw">else</span> {
+        <span class="prelude-val">Ok</span>(())
     }
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=%23!%5Bno_std%5D%0A%0Afn%20main()%20%7B%0Afn%20may_fail(failure%3A%20bool)%20-%3E%20Result%3C()%2C%20%26'static%20str%3E%20%7B%0A%20%20%20%20if%20failure%20%7B%0A%20%20%20%20%20%20%20%20Err(%22this%20didn%E2%80%99t%20work!%22)%0A%20%20%20%20%7D%20else%20%7B%0A%20%20%20%20%20%20%20%20Ok(())%0A%20%20%20%20%7D%0A%7D%0A%7D">Run</a></pre>
 

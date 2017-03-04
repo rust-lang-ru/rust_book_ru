@@ -287,23 +287,23 @@ $ cd embed
 
 <p>Эту программу легко переписать на Rust:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>thread</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">thread</span>;
 
-<span class='kw'>fn</span> <span class='ident'>process</span>() {
-    <span class='kw'>let</span> <span class='ident'>handles</span>: <span class='ident'>Vec</span><span class='op'>&lt;</span>_<span class='op'>&gt;</span> <span class='op'>=</span> (<span class='number'>0</span>..<span class='number'>10</span>).<span class='ident'>map</span>(<span class='op'>|</span>_<span class='op'>|</span> {
-        <span class='ident'>thread</span>::<span class='ident'>spawn</span>(<span class='op'>||</span> {
-            <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>x</span> <span class='op'>=</span> <span class='number'>0</span>;
-            <span class='kw'>for</span> _ <span class='kw'>in</span> <span class='number'>0</span>..<span class='number'>5_000_000</span> {
-                <span class='ident'>x</span> <span class='op'>+=</span> <span class='number'>1</span>
+<span class="kw">fn</span> <span class="ident">process</span>() {
+    <span class="kw">let</span> <span class="ident">handles</span>: <span class="ident">Vec</span><span class="op">&lt;</span>_<span class="op">&gt;</span> <span class="op">=</span> (<span class="number">0</span>..<span class="number">10</span>).<span class="ident">map</span>(<span class="op">|</span>_<span class="op">|</span> {
+        <span class="ident">thread</span>::<span class="ident">spawn</span>(<span class="op">||</span> {
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">x</span> <span class="op">=</span> <span class="number">0</span>;
+            <span class="kw">for</span> _ <span class="kw">in</span> <span class="number">0</span>..<span class="number">5_000_000</span> {
+                <span class="ident">x</span> <span class="op">+=</span> <span class="number">1</span>
             }
-            <span class='ident'>x</span>
+            <span class="ident">x</span>
         })
-    }).<span class='ident'>collect</span>();
+    }).<span class="ident">collect</span>();
 
-    <span class='kw'>for</span> <span class='ident'>h</span> <span class='kw'>in</span> <span class='ident'>handles</span> {
-        <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Поток завершился со счётом={}&quot;</span>,
-        <span class='ident'>h</span>.<span class='ident'>join</span>().<span class='ident'>map_err</span>(<span class='op'>|</span>_<span class='op'>|</span> <span class='string'>&quot;Не удалось соединиться с потоком!&quot;</span>).<span class='ident'>unwrap</span>());
+    <span class="kw">for</span> <span class="ident">h</span> <span class="kw">in</span> <span class="ident">handles</span> {
+        <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;Поток завершился со счётом={}&quot;</span>,
+        <span class="ident">h</span>.<span class="ident">join</span>().<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> <span class="string">&quot;Не удалось соединиться с потоком!&quot;</span>).<span class="ident">unwrap</span>());
     }
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Ause%20std%3A%3Athread%3B%0A%0Afn%20process()%20%7B%0A%20%20%20%20let%20handles%3A%20Vec%3C_%3E%20%3D%20(0..10).map(%7C_%7C%20%7B%0A%20%20%20%20%20%20%20%20thread%3A%3Aspawn(%7C%7C%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20let%20mut%20x%20%3D%200%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20for%20_%20in%200..5_000_000%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20x%20%2B%3D%201%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20x%0A%20%20%20%20%20%20%20%20%7D)%0A%20%20%20%20%7D).collect()%3B%0A%0A%20%20%20%20for%20h%20in%20handles%20%7B%0A%20%20%20%20%20%20%20%20println!(%22%D0%9F%D0%BE%D1%82%D0%BE%D0%BA%20%D0%B7%D0%B0%D0%B2%D0%B5%D1%80%D1%88%D0%B8%D0%BB%D1%81%D1%8F%20%D1%81%D0%BE%20%D1%81%D1%87%D1%91%D1%82%D0%BE%D0%BC%3D%7B%7D%22%2C%0A%20%20%20%20%20%20%20%20h.join().map_err(%7C_%7C%20%22%D0%9D%D0%B5%20%D1%83%D0%B4%D0%B0%D0%BB%D0%BE%D1%81%D1%8C%20%D1%81%D0%BE%D0%B5%D0%B4%D0%B8%D0%BD%D0%B8%D1%82%D1%8C%D1%81%D1%8F%20%D1%81%20%D0%BF%D0%BE%D1%82%D0%BE%D0%BA%D0%BE%D0%BC!%22).unwrap())%3B%0A%20%20%20%20%7D%0A%7D%0A%7D">Run</a></pre>
 
@@ -318,9 +318,9 @@ $ cd embed
 нужно сделать два небольших изменения, чтобы исправить это. Первое, что мы
 должны сделать, это изменить начало нашего кода:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='attribute'>#[<span class='ident'>no_mangle</span>]</span>
-<span class='kw'>pub</span> <span class='kw'>extern</span> <span class='kw'>fn</span> <span class='ident'>process</span>() {<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0A%23%5Bno_mangle%5D%0Apub%20extern%20fn%20process()%20%7B%0A%7D">Run</a></pre>
+<pre class="rust rust-example-rendered">
+<span class="attribute">#[<span class="ident">no_mangle</span>]</span>
+<span class="kw">pub</span> <span class="kw">extern</span> <span class="kw">fn</span> <span class="ident">process</span>() {<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0A%23%5Bno_mangle%5D%0Apub%20extern%20fn%20process()%20%7B%0A%7D">Run</a></pre>
 
 <p>Мы добавили новый атрибут, <code>no_mangle</code>. В процессе создания библиотеки Rust, в
 выходном скомпилированном файле происходит изменение имени функции. Причины

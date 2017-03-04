@@ -191,31 +191,31 @@
     <p>С включенной возможностью <code>associated_consts</code> вы можете определить константы
 вроде этой:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>feature</span>(<span class='ident'>associated_consts</span>)]</span>
+<pre class="rust rust-example-rendered">
+<span class="attribute">#<span class="op">!</span>[<span class="ident">feature</span>(<span class="ident">associated_consts</span>)]</span>
 
-<span class='kw'>trait</span> <span class='ident'>Foo</span> {
-    <span class='kw'>const</span> <span class='ident'>ID</span>: <span class='ident'>i32</span>;
+<span class="kw">trait</span> <span class="ident">Foo</span> {
+    <span class="kw">const</span> <span class="ident">ID</span>: <span class="ident">i32</span>;
 }
 
-<span class='kw'>impl</span> <span class='ident'>Foo</span> <span class='kw'>for</span> <span class='ident'>i32</span> {
-    <span class='kw'>const</span> <span class='ident'>ID</span>: <span class='ident'>i32</span> <span class='op'>=</span> <span class='number'>1</span>;
+<span class="kw">impl</span> <span class="ident">Foo</span> <span class="kw">for</span> <span class="ident">i32</span> {
+    <span class="kw">const</span> <span class="ident">ID</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span>;
 }
 
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>1</span>, <span class='ident'>i32</span>::<span class='ident'>ID</span>);
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="number">1</span>, <span class="ident">i32</span>::<span class="ident">ID</span>);
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=%23!%5Bfeature(associated_consts)%5D%0A%0Atrait%20Foo%20%7B%0A%20%20%20%20const%20ID%3A%20i32%3B%0A%7D%0A%0Aimpl%20Foo%20for%20i32%20%7B%0A%20%20%20%20const%20ID%3A%20i32%20%3D%201%3B%0A%7D%0A%0Afn%20main()%20%7B%0A%20%20%20%20assert_eq!(1%2C%20i32%3A%3AID)%3B%0A%7D%0A&amp;version=nightly">Run</a></pre>
 
 <p>Любая реализация <code>Foo</code> должна будет определить <code>ID</code>. Без этого определения:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>feature</span>(<span class='ident'>associated_consts</span>)]</span>
+<pre class="rust rust-example-rendered">
+<span class="attribute">#<span class="op">!</span>[<span class="ident">feature</span>(<span class="ident">associated_consts</span>)]</span>
 
-<span class='kw'>trait</span> <span class='ident'>Foo</span> {
-    <span class='kw'>const</span> <span class='ident'>ID</span>: <span class='ident'>i32</span>;
+<span class="kw">trait</span> <span class="ident">Foo</span> {
+    <span class="kw">const</span> <span class="ident">ID</span>: <span class="ident">i32</span>;
 }
 
-<span class='kw'>impl</span> <span class='ident'>Foo</span> <span class='kw'>for</span> <span class='ident'>i32</span> {
+<span class="kw">impl</span> <span class="ident">Foo</span> <span class="kw">for</span> <span class="ident">i32</span> {
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=%23!%5Bfeature(associated_consts)%5D%0A%0Afn%20main()%20%7B%0Atrait%20Foo%20%7B%0A%20%20%20%20const%20ID%3A%20i32%3B%0A%7D%0A%0Aimpl%20Foo%20for%20i32%20%7B%0A%7D%0A%7D&amp;version=nightly">Run</a></pre>
 
 <p>выдаст ошибку</p>
@@ -227,23 +227,23 @@
 
 <p>Также может быть реализовано значение по умолчанию:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>feature</span>(<span class='ident'>associated_consts</span>)]</span>
+<pre class="rust rust-example-rendered">
+<span class="attribute">#<span class="op">!</span>[<span class="ident">feature</span>(<span class="ident">associated_consts</span>)]</span>
 
-<span class='kw'>trait</span> <span class='ident'>Foo</span> {
-    <span class='kw'>const</span> <span class='ident'>ID</span>: <span class='ident'>i32</span> <span class='op'>=</span> <span class='number'>1</span>;
+<span class="kw">trait</span> <span class="ident">Foo</span> {
+    <span class="kw">const</span> <span class="ident">ID</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span>;
 }
 
-<span class='kw'>impl</span> <span class='ident'>Foo</span> <span class='kw'>for</span> <span class='ident'>i32</span> {
+<span class="kw">impl</span> <span class="ident">Foo</span> <span class="kw">for</span> <span class="ident">i32</span> {
 }
 
-<span class='kw'>impl</span> <span class='ident'>Foo</span> <span class='kw'>for</span> <span class='ident'>i64</span> {
-    <span class='kw'>const</span> <span class='ident'>ID</span>: <span class='ident'>i32</span> <span class='op'>=</span> <span class='number'>5</span>;
+<span class="kw">impl</span> <span class="ident">Foo</span> <span class="kw">for</span> <span class="ident">i64</span> {
+    <span class="kw">const</span> <span class="ident">ID</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">5</span>;
 }
 
-<span class='kw'>fn</span> <span class='ident'>main</span>() {
-    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>1</span>, <span class='ident'>i32</span>::<span class='ident'>ID</span>);
-    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>5</span>, <span class='ident'>i64</span>::<span class='ident'>ID</span>);
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="number">1</span>, <span class="ident">i32</span>::<span class="ident">ID</span>);
+    <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="number">5</span>, <span class="ident">i64</span>::<span class="ident">ID</span>);
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=%23!%5Bfeature(associated_consts)%5D%0A%0Atrait%20Foo%20%7B%0A%20%20%20%20const%20ID%3A%20i32%20%3D%201%3B%0A%7D%0A%0Aimpl%20Foo%20for%20i32%20%7B%0A%7D%0A%0Aimpl%20Foo%20for%20i64%20%7B%0A%20%20%20%20const%20ID%3A%20i32%20%3D%205%3B%0A%7D%0A%0Afn%20main()%20%7B%0A%20%20%20%20assert_eq!(1%2C%20i32%3A%3AID)%3B%0A%20%20%20%20assert_eq!(5%2C%20i64%3A%3AID)%3B%0A%7D%0A&amp;version=nightly">Run</a></pre>
 
 <p>Как вы можете видеть, при реализации <code>Foo</code>, можно оставить константу
@@ -254,13 +254,13 @@
 <p>Ассоциированные константы могут быть ассоциированы не только с типажом. Это
 также прекрасно работает и с блоком <code>impl</code> для <code>struct</code>:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>feature</span>(<span class='ident'>associated_consts</span>)]</span>
+<pre class="rust rust-example-rendered">
+<span class="attribute">#<span class="op">!</span>[<span class="ident">feature</span>(<span class="ident">associated_consts</span>)]</span>
 
-<span class='kw'>struct</span> <span class='ident'>Foo</span>;
+<span class="kw">struct</span> <span class="ident">Foo</span>;
 
-<span class='kw'>impl</span> <span class='ident'>Foo</span> {
-    <span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>FOO</span>: <span class='ident'>u32</span> <span class='op'>=</span> <span class='number'>3</span>;
+<span class="kw">impl</span> <span class="ident">Foo</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">FOO</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">3</span>;
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=%23!%5Bfeature(associated_consts)%5D%0A%0Afn%20main()%20%7B%0Astruct%20Foo%3B%0A%0Aimpl%20Foo%20%7B%0A%20%20%20%20pub%20const%20FOO%3A%20u32%20%3D%203%3B%0A%7D%0A%7D&amp;version=nightly">Run</a></pre>
 
     <script src='../rustbook.js'></script>

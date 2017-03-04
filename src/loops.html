@@ -197,25 +197,25 @@
 выполнится какой-либо оператор, прерывающий его. Бесконечный цикл в Rust
 выглядит так:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>loop</span> {
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Зациклились!&quot;</span>);
+<pre class="rust rust-example-rendered">
+<span class="kw">loop</span> {
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;Зациклились!&quot;</span>);
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Aloop%20%7B%0A%20%20%20%20println!(%22%D0%97%D0%B0%D1%86%D0%B8%D0%BA%D0%BB%D0%B8%D0%BB%D0%B8%D1%81%D1%8C!%22)%3B%0A%7D%0A%7D">Run</a></pre>
 
 <h2 id='Циклы-while' class='section-header'><a href='#Циклы-while'>Циклы <code>while</code></a></h2>
 <p>Цикл <code>while</code> — это ещё один вид конструкции цикла в Rust. Выглядит он так:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>x</span> <span class='op'>=</span> <span class='number'>5</span>; <span class='comment'>// mut x: i32</span>
-<span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>done</span> <span class='op'>=</span> <span class='bool-val'>false</span>; <span class='comment'>// mut done: bool</span>
+<pre class="rust rust-example-rendered">
+<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">x</span> <span class="op">=</span> <span class="number">5</span>; <span class="comment">// mut x: i32</span>
+<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">done</span> <span class="op">=</span> <span class="bool-val">false</span>; <span class="comment">// mut done: bool</span>
 
-<span class='kw'>while</span> <span class='op'>!</span><span class='ident'>done</span> {
-    <span class='ident'>x</span> <span class='op'>+=</span> <span class='ident'>x</span> <span class='op'>-</span> <span class='number'>3</span>;
+<span class="kw">while</span> <span class="op">!</span><span class="ident">done</span> {
+    <span class="ident">x</span> <span class="op">+=</span> <span class="ident">x</span> <span class="op">-</span> <span class="number">3</span>;
 
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>x</span>);
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">x</span>);
 
-    <span class='kw'>if</span> <span class='ident'>x</span> <span class='op'>%</span> <span class='number'>5</span> <span class='op'>==</span> <span class='number'>0</span> {
-        <span class='ident'>done</span> <span class='op'>=</span> <span class='bool-val'>true</span>;
+    <span class="kw">if</span> <span class="ident">x</span> <span class="op">%</span> <span class="number">5</span> <span class="op">==</span> <span class="number">0</span> {
+        <span class="ident">done</span> <span class="op">=</span> <span class="bool-val">true</span>;
     }
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20mut%20x%20%3D%205%3B%20%2F%2F%20mut%20x%3A%20i32%0Alet%20mut%20done%20%3D%20false%3B%20%2F%2F%20mut%20done%3A%20bool%0A%0Awhile%20!done%20%7B%0A%20%20%20%20x%20%2B%3D%20x%20-%203%3B%0A%0A%20%20%20%20println!(%22%7B%7D%22%2C%20x)%3B%0A%0A%20%20%20%20if%20x%20%25%205%20%3D%3D%200%20%7B%0A%20%20%20%20%20%20%20%20done%20%3D%20true%3B%0A%20%20%20%20%7D%0A%7D%0A%7D">Run</a></pre>
 
@@ -225,13 +225,13 @@
 
 <p>Если вам нужен бесконечный цикл, то можете сделать условие всегда истинным:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>while</span> <span class='bool-val'>true</span> {<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Awhile%20true%20%7B%0A%7D">Run</a></pre>
+<pre class="rust rust-example-rendered">
+<span class="kw">while</span> <span class="bool-val">true</span> {<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Awhile%20true%20%7B%0A%7D">Run</a></pre>
 
 <p>Однако, для такого случая в Rust имеется ключевое слово <code>loop</code>:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>loop</span> {<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Aloop%20%7B%0A%7D">Run</a></pre>
+<pre class="rust rust-example-rendered">
+<span class="kw">loop</span> {<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Aloop%20%7B%0A%7D">Run</a></pre>
 
 <p>В Rust анализатор потока управления обрабатывает конструкцию <code>loop</code> иначе, чем
 <code>while true</code>, хотя для нас это одно и тоже. На данном этапе изучения Rust нам не
@@ -253,16 +253,16 @@
 
 <p>Однако, этот код в Rust будет выглядеть следующим образом:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>for</span> <span class='ident'>x</span> <span class='kw'>in</span> <span class='number'>0</span>..<span class='number'>10</span> {
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>x</span>); <span class='comment'>// x: i32</span>
+<pre class="rust rust-example-rendered">
+<span class="kw">for</span> <span class="ident">x</span> <span class="kw">in</span> <span class="number">0</span>..<span class="number">10</span> {
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">x</span>); <span class="comment">// x: i32</span>
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afor%20x%20in%200..10%20%7B%0A%20%20%20%20println!(%22%7B%7D%22%2C%20x)%3B%20%2F%2F%20x%3A%20i32%0A%7D%0A%7D">Run</a></pre>
 
 <p>Можно представить цикл более абстрактно:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>for</span> <span class='ident'>переменная</span> <span class='kw'>in</span> <span class='ident'>выражение</span> {
-    <span class='ident'>тело_цикла</span>
+<pre class="rust rust-example-rendered">
+<span class="kw">for</span> <span class="ident">переменная</span> <span class="kw">in</span> <span class="ident">выражение</span> {
+    <span class="ident">тело_цикла</span>
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afor%20%D0%BF%D0%B5%D1%80%D0%B5%D0%BC%D0%B5%D0%BD%D0%BD%D0%B0%D1%8F%20in%20%D0%B2%D1%8B%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%7B%0A%20%20%20%20%D1%82%D0%B5%D0%BB%D0%BE_%D1%86%D0%B8%D0%BA%D0%BB%D0%B0%0A%7D%0A%7D">Run</a></pre>
 
 <p>Выражение — это <a href="iterators.html">итератор</a>. Их мы будем рассматривать позже в этом
@@ -286,9 +286,9 @@ C.</p>
 <code>.enumerate()</code>.</p>
 
 <h4 id='С-интервалами' class='section-header'><a href='#С-интервалами'>С интервалами</a></h4>
-<pre class='rust rust-example-rendered'>
-<span class='kw'>for</span> (<span class='ident'>i</span>,<span class='ident'>j</span>) <span class='kw'>in</span> (<span class='number'>5</span>..<span class='number'>10</span>).<span class='ident'>enumerate</span>() {
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;i = {} и j = {}&quot;</span>, <span class='ident'>i</span>, <span class='ident'>j</span>);
+<pre class="rust rust-example-rendered">
+<span class="kw">for</span> (<span class="ident">i</span>,<span class="ident">j</span>) <span class="kw">in</span> (<span class="number">5</span>..<span class="number">10</span>).<span class="ident">enumerate</span>() {
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;i = {} и j = {}&quot;</span>, <span class="ident">i</span>, <span class="ident">j</span>);
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afor%20(i%2Cj)%20in%20(5..10).enumerate()%20%7B%0A%20%20%20%20println!(%22i%20%3D%20%7B%7D%20%D0%B8%20j%20%3D%20%7B%7D%22%2C%20i%2C%20j)%3B%0A%7D%0A%7D">Run</a></pre>
 
 <p>Выводит:</p>
@@ -303,10 +303,10 @@ i = 4 и j = 9
 <p>Не забудьте написать скобки вокруг интервала.</p>
 
 <h4 id='С-итераторами' class='section-header'><a href='#С-итераторами'>С итераторами</a></h4>
-<pre class='rust rust-example-rendered'>
-<span class='kw'>let</span> <span class='ident'>lines</span> <span class='op'>=</span> <span class='string'>&quot;привет\nмир\nhello\nworld&quot;</span>.<span class='ident'>lines</span>();
-<span class='kw'>for</span> (<span class='ident'>linenumber</span>, <span class='ident'>line</span>) <span class='kw'>in</span> <span class='ident'>lines</span>.<span class='ident'>enumerate</span>() {
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}: {}&quot;</span>, <span class='ident'>linenumber</span>, <span class='ident'>line</span>);
+<pre class="rust rust-example-rendered">
+<span class="kw">let</span> <span class="ident">lines</span> <span class="op">=</span> <span class="string">&quot;привет\nмир\nhello\nworld&quot;</span>.<span class="ident">lines</span>();
+<span class="kw">for</span> (<span class="ident">linenumber</span>, <span class="ident">line</span>) <span class="kw">in</span> <span class="ident">lines</span>.<span class="ident">enumerate</span>() {
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;{}: {}&quot;</span>, <span class="ident">linenumber</span>, <span class="ident">line</span>);
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20lines%20%3D%20%22%D0%BF%D1%80%D0%B8%D0%B2%D0%B5%D1%82%5Cn%D0%BC%D0%B8%D1%80%5Cnhello%5Cnworld%22.lines()%3B%0Afor%20(linenumber%2C%20line)%20in%20lines.enumerate()%20%7B%0A%20%20%20%20println!(%22%7B%7D%3A%20%7B%7D%22%2C%20linenumber%2C%20line)%3B%0A%7D%0A%7D">Run</a></pre>
 
 <p>Outputs:</p>
@@ -320,17 +320,17 @@ i = 4 и j = 9
 <h2 id='Раннее-прерывание-цикла' class='section-header'><a href='#Раннее-прерывание-цикла'>Раннее прерывание цикла</a></h2>
 <p>Давайте ещё раз посмотрим на цикл <code>while</code>:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>x</span> <span class='op'>=</span> <span class='number'>5</span>;
-<span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>done</span> <span class='op'>=</span> <span class='bool-val'>false</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">x</span> <span class="op">=</span> <span class="number">5</span>;
+<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">done</span> <span class="op">=</span> <span class="bool-val">false</span>;
 
-<span class='kw'>while</span> <span class='op'>!</span><span class='ident'>done</span> {
-    <span class='ident'>x</span> <span class='op'>+=</span> <span class='ident'>x</span> <span class='op'>-</span> <span class='number'>3</span>;
+<span class="kw">while</span> <span class="op">!</span><span class="ident">done</span> {
+    <span class="ident">x</span> <span class="op">+=</span> <span class="ident">x</span> <span class="op">-</span> <span class="number">3</span>;
 
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>x</span>);
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">x</span>);
 
-    <span class='kw'>if</span> <span class='ident'>x</span> <span class='op'>%</span> <span class='number'>5</span> <span class='op'>==</span> <span class='number'>0</span> {
-        <span class='ident'>done</span> <span class='op'>=</span> <span class='bool-val'>true</span>;
+    <span class="kw">if</span> <span class="ident">x</span> <span class="op">%</span> <span class="number">5</span> <span class="op">==</span> <span class="number">0</span> {
+        <span class="ident">done</span> <span class="op">=</span> <span class="bool-val">true</span>;
     }
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20mut%20x%20%3D%205%3B%0Alet%20mut%20done%20%3D%20false%3B%0A%0Awhile%20!done%20%7B%0A%20%20%20%20x%20%2B%3D%20x%20-%203%3B%0A%0A%20%20%20%20println!(%22%7B%7D%22%2C%20x)%3B%0A%0A%20%20%20%20if%20x%20%25%205%20%3D%3D%200%20%7B%0A%20%20%20%20%20%20%20%20done%20%3D%20true%3B%0A%20%20%20%20%7D%0A%7D%0A%7D">Run</a></pre>
 
@@ -341,15 +341,15 @@ i = 4 и j = 9
 <p>Мы можем переписать цикл с помощью <code>break</code>, чтобы избавиться от переменной
 <code>done</code>:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>x</span> <span class='op'>=</span> <span class='number'>5</span>;
+<pre class="rust rust-example-rendered">
+<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">x</span> <span class="op">=</span> <span class="number">5</span>;
 
-<span class='kw'>loop</span> {
-    <span class='ident'>x</span> <span class='op'>+=</span> <span class='ident'>x</span> <span class='op'>-</span> <span class='number'>3</span>;
+<span class="kw">loop</span> {
+    <span class="ident">x</span> <span class="op">+=</span> <span class="ident">x</span> <span class="op">-</span> <span class="number">3</span>;
 
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>x</span>);
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">x</span>);
 
-    <span class='kw'>if</span> <span class='ident'>x</span> <span class='op'>%</span> <span class='number'>5</span> <span class='op'>==</span> <span class='number'>0</span> { <span class='kw'>break</span>; }
+    <span class="kw">if</span> <span class="ident">x</span> <span class="op">%</span> <span class="number">5</span> <span class="op">==</span> <span class="number">0</span> { <span class="kw">break</span>; }
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Alet%20mut%20x%20%3D%205%3B%0A%0Aloop%20%7B%0A%20%20%20%20x%20%2B%3D%20x%20-%203%3B%0A%0A%20%20%20%20println!(%22%7B%7D%22%2C%20x)%3B%0A%0A%20%20%20%20if%20x%20%25%205%20%3D%3D%200%20%7B%20break%3B%20%7D%0A%7D%0A%7D">Run</a></pre>
 
 <p>Теперь мы используем бесконечный цикл <code>loop</code> и <code>break</code> для выхода из цикла.
@@ -358,11 +358,11 @@ i = 4 и j = 9
 <p><code>continue</code> похож на <code>break</code>, но вместо выхода из цикла переходит к следующей
 итерации. Следующий пример отобразит только нечётные числа:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='kw'>for</span> <span class='ident'>x</span> <span class='kw'>in</span> <span class='number'>0</span>..<span class='number'>10</span> {
-    <span class='kw'>if</span> <span class='ident'>x</span> <span class='op'>%</span> <span class='number'>2</span> <span class='op'>==</span> <span class='number'>0</span> { <span class='kw'>continue</span>; }
+<pre class="rust rust-example-rendered">
+<span class="kw">for</span> <span class="ident">x</span> <span class="kw">in</span> <span class="number">0</span>..<span class="number">10</span> {
+    <span class="kw">if</span> <span class="ident">x</span> <span class="op">%</span> <span class="number">2</span> <span class="op">==</span> <span class="number">0</span> { <span class="kw">continue</span>; }
 
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>x</span>);
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">x</span>);
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0Afor%20x%20in%200..10%20%7B%0A%20%20%20%20if%20x%20%25%202%20%3D%3D%200%20%7B%20continue%3B%20%7D%0A%0A%20%20%20%20println!(%22%7B%7D%22%2C%20x)%3B%0A%7D%0A%7D">Run</a></pre>
 
 <h2 id='Метки-циклов' class='section-header'><a href='#Метки-циклов'>Метки циклов</a></h2>
@@ -372,12 +372,12 @@ i = 4 и j = 9
 хотите прервать внешний цикл, вы можете использовать метку. Так, этот код будет
 печатать на экране только когда и <code>x</code>, и <code>y</code> нечётны:</p>
 
-<pre class='rust rust-example-rendered'>
-<span class='lifetime'>&#39;outer</span>: <span class='kw'>for</span> <span class='ident'>x</span> <span class='kw'>in</span> <span class='number'>0</span>..<span class='number'>10</span> {
-    <span class='lifetime'>&#39;inner</span>: <span class='kw'>for</span> <span class='ident'>y</span> <span class='kw'>in</span> <span class='number'>0</span>..<span class='number'>10</span> {
-        <span class='kw'>if</span> <span class='ident'>x</span> <span class='op'>%</span> <span class='number'>2</span> <span class='op'>==</span> <span class='number'>0</span> { <span class='kw'>continue</span> <span class='lifetime'>&#39;outer</span>; } <span class='comment'>// продолжает цикл по x</span>
-        <span class='kw'>if</span> <span class='ident'>y</span> <span class='op'>%</span> <span class='number'>2</span> <span class='op'>==</span> <span class='number'>0</span> { <span class='kw'>continue</span> <span class='lifetime'>&#39;inner</span>; } <span class='comment'>// продолжает цикл по y</span>
-        <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;x: {}, y: {}&quot;</span>, <span class='ident'>x</span>, <span class='ident'>y</span>);
+<pre class="rust rust-example-rendered">
+<span class="lifetime">&#39;outer</span>: <span class="kw">for</span> <span class="ident">x</span> <span class="kw">in</span> <span class="number">0</span>..<span class="number">10</span> {
+    <span class="lifetime">&#39;inner</span>: <span class="kw">for</span> <span class="ident">y</span> <span class="kw">in</span> <span class="number">0</span>..<span class="number">10</span> {
+        <span class="kw">if</span> <span class="ident">x</span> <span class="op">%</span> <span class="number">2</span> <span class="op">==</span> <span class="number">0</span> { <span class="kw">continue</span> <span class="lifetime">&#39;outer</span>; } <span class="comment">// продолжает цикл по x</span>
+        <span class="kw">if</span> <span class="ident">y</span> <span class="op">%</span> <span class="number">2</span> <span class="op">==</span> <span class="number">0</span> { <span class="kw">continue</span> <span class="lifetime">&#39;inner</span>; } <span class="comment">// продолжает цикл по y</span>
+        <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;x: {}, y: {}&quot;</span>, <span class="ident">x</span>, <span class="ident">y</span>);
     }
 }<a class="test-arrow" target="_blank" href="https://play.rust-lang.org/?code=fn%20main()%20%7B%0A'outer%3A%20for%20x%20in%200..10%20%7B%0A%20%20%20%20'inner%3A%20for%20y%20in%200..10%20%7B%0A%20%20%20%20%20%20%20%20if%20x%20%25%202%20%3D%3D%200%20%7B%20continue%20'outer%3B%20%7D%20%2F%2F%20%D0%BF%D1%80%D0%BE%D0%B4%D0%BE%D0%BB%D0%B6%D0%B0%D0%B5%D1%82%20%D1%86%D0%B8%D0%BA%D0%BB%20%D0%BF%D0%BE%20x%0A%20%20%20%20%20%20%20%20if%20y%20%25%202%20%3D%3D%200%20%7B%20continue%20'inner%3B%20%7D%20%2F%2F%20%D0%BF%D1%80%D0%BE%D0%B4%D0%BE%D0%BB%D0%B6%D0%B0%D0%B5%D1%82%20%D1%86%D0%B8%D0%BA%D0%BB%20%D0%BF%D0%BE%20y%0A%20%20%20%20%20%20%20%20println!(%22x%3A%20%7B%7D%2C%20y%3A%20%7B%7D%22%2C%20x%2C%20y)%3B%0A%20%20%20%20%7D%0A%7D%0A%7D">Run</a></pre>
 
