@@ -20,7 +20,9 @@ trait Graph<N, E> {
 параметра, _также_ должна быть обобщённой с параметрами `N` и `E`:
 
 ```rust,ignore
-fn distance<N, E, G: Graph<N, E>>(graph: &G, start: &N, end: &N) -> u32 { ... }
+fn distance<N, E, G: Graph<N, E>>(graph: &G, start: &N, end: &N) -> u32 { 
+    ... 
+}
 ```
 
 Наша функция расчета расстояния работает независимо от типа `Edge`, поэтому
