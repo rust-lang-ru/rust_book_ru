@@ -52,7 +52,7 @@ h1 {
 h4, h5, h6 {
     margin-top: 12px;
     margin-bottom: 5px;
-    padding: 5px 10px;
+    padding: 5px 0;
 }
 h5, h6 {
     text-decoration: underline;
@@ -61,7 +61,7 @@ h5, h6 {
 h1 {
     font-size: 28px;
     font-weight: 500;
-    padding: .1em .4em;
+    padding: .1em 0;
     border-bottom: 2px solid #ddd;
 }
 h1.title {
@@ -69,12 +69,12 @@ h1.title {
 }
 h2 {
     font-size: 26px;
-    padding: .2em .5em;
+    padding: .2em 0;
     border-bottom: 1px solid #ddd;
 }
 h3 {
     font-size: 24px;
-    padding: .2em .7em;
+    padding: .2em 0;
     border-bottom: 1px solid #DDE8FC;
 }
 h4 {
@@ -337,6 +337,9 @@ body {
     margin-right:auto;
     max-width: 750px;
     padding-bottom: 50px;
+    line-height: 1.6;
+    color: rgba(0, 0, 0, .8);
+    letter-spacing: -.003em;
 }
 
 .chapter {
