@@ -446,11 +446,11 @@ Cargo ожидает, что ваши файлы с исходным кодом 
 Убедитесь в том, что имя правильное: вам нужна заглавная `C`! В противном случае
 Cargo не найдёт конфигурационный файл.
 
-Это файл в формате [TOML] (Tom's Obvious, Minimal Language). TOML — это аналог
+Это файл в формате [*TOML*][toml]<!-- ignore --> (Tom's Obvious, Minimal Language). TOML — это аналог
 INI, но с некоторыми дополнениями, и он используется в конфигурационных файлах
 для Cargo.
 
-[TOML]: https://github.com/toml-lang/toml
+[toml]: https://github.com/toml-lang/toml
 
 Поместите в данный файл следующие строки:
 
